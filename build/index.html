@@ -1,0 +1,701 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;json&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="json">json</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#requests-v2" class="toc-h1 toc-link" data-title="requests-v2">Requests v2</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-products" class="toc-h2 toc-link" data-title="get-all-products">Get all products</a>
+                  </li>
+                  <li>
+                    <a href="#basic-order-preview" class="toc-h2 toc-link" data-title="basic-order-preview">Basic order - preview</a>
+                  </li>
+                  <li>
+                    <a href="#basic-order-execute" class="toc-h2 toc-link" data-title="basic-order-execute">Basic order - execute</a>
+                  </li>
+                  <li>
+                    <a href="#full-order-preview" class="toc-h2 toc-link" data-title="full-order-preview">Full order - preview</a>
+                  </li>
+                  <li>
+                    <a href="#full-order-execute" class="toc-h2 toc-link" data-title="full-order-execute">Full order - execute</a>
+                  </li>
+                  <li>
+                    <a href="#rush-upgrade-preview" class="toc-h2 toc-link" data-title="rush-upgrade-preview">Rush upgrade - preview</a>
+                  </li>
+                  <li>
+                    <a href="#rush-upgrade-execute" class="toc-h2 toc-link" data-title="rush-upgrade-execute">Rush upgrade - execute</a>
+                  </li>
+                  <li>
+                    <a href="#full-order-new-pricing-preview" class="toc-h2 toc-link" data-title="full-order-new-pricing-preview">Full order (new pricing) - preview</a>
+                  </li>
+                  <li>
+                    <a href="#full-order-new-pricing-execute" class="toc-h2 toc-link" data-title="full-order-new-pricing-execute">Full order (new pricing) - execute</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='requests-v2'>Requests v2</h1>
+<p>This follows the pattern of POST /request/{producttype}/preview, which returns a preview invoice,
+then a follow-up POST /request/{producttype}/order with the same request object to execute the transaction.</p>
+<h2 id='get-all-products'>Get all products</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Basic record request. Proof of vaccination for groomers and boarders."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rush request; order will be processed within 48 hours"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.99"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full medical records and your order will be processed within 48 hours"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.99"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional vet for full medical records"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.99"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Free rush service provided to user"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all products in the product catalog.</p>
+
+<aside class="notice">
+Product IDs will not change; new products that are added will get new IDs.
+</aside>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /v2/products</code></p>
+<h2 id='basic-order-preview'>Basic order - preview</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"selected_vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2037</span><span class="p">,</span><span class="w"> </span><span class="mi">1984</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Basic records for Apple from Yorktown Animal Hospital: Gariboldi Rita T DVM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Basic records for Apple from Animal Kind Veterinary Hospital"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the order preview for basic record requests (should be free).</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /user/v2/pets/:petid/request/basic/preview</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>selected_vets</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>place</code> table.</td>
+</tr>
+</tbody></table>
+<h2 id='basic-order-execute'>Basic order - execute</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"selected_vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2037</span><span class="p">,</span><span class="w"> </span><span class="mi">1984</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/sig.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"May be under my maiden name (Wilson)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"May be under my husband's name (Russell)"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="mi">18613</span><span class="p">,</span><span class="w">
+    </span><span class="mi">18614</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Returns an array of the newly created request IDs.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /user/v2/pets/:petid/request/basic/order</code></p>
+<h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>selected_vets</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>place</code> table.</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string</td>
+<td>URL to the image file containing the client&#39;s signature.</td>
+</tr>
+<tr>
+<td>note</td>
+<td>array of strings</td>
+<td>Array of notes to each vet, in the same order as selected_vets.</td>
+</tr>
+</tbody></table>
+<h2 id='full-order-preview'>Full order - preview</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"selected_vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2037</span><span class="p">,</span><span class="w"> </span><span class="mi">1984</span><span class="w"> </span><span class="p">],</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request for full medical records for Apple from Yorktown Animal Hospital: Gariboldi Rita T DVM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional request for medical records for Apple from Animal Kind Veterinary Hospital"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">14.98</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">16.48</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the order preview for full record requests.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /user/v2/pets/:petid/request/full/preview</code></p>
+<h3 id='post-parameters-3'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>selected_vets</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>place</code> table.</td>
+</tr>
+</tbody></table>
+<h2 id='full-order-execute'>Full order - execute</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"selected_vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2037</span><span class="p">,</span><span class="w"> </span><span class="mi">1984</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/sig.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"May be under my maiden name (Wilson)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"May be under my husband's name (Russell)"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="mi">18615</span><span class="p">,</span><span class="w">
+    </span><span class="mi">18616</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Charges the customer&#39;s credit/debit card (see Payment section) and creates the record requests.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST /user/v2/pets/:petid/request/full/order</code></p>
+<h3 id='post-parameters-4'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>selected_vets</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>place</code> table.</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string</td>
+<td>URL to the image file containing the client&#39;s signature.</td>
+</tr>
+<tr>
+<td>note</td>
+<td>array of strings</td>
+<td>Array of notes to each vet, in the same order as selected_vets.</td>
+</tr>
+</tbody></table>
+<h2 id='rush-upgrade-preview'>Rush upgrade - preview</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"request_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">17767</span><span class="p">,</span><span class="w"> </span><span class="mi">17768</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Upgrade request for Apple from Yorktown Animal Hospital: Gariboldi Rita T DVM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Upgrade request for Apple from Animal Kind Veterinary Hospital"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.98</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.98</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the order preview for upgrading a basic record request to a rush request.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST /user/v2/pets/:petid/request/rush/preview</code></p>
+<h3 id='post-parameters-5'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>request_ids</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>request</code> table.</td>
+</tr>
+</tbody></table>
+<h2 id='rush-upgrade-execute'>Rush upgrade - execute</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"request_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">17767</span><span class="p">,</span><span class="w"> </span><span class="mi">17768</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Charges the customer&#39;s credit/debit card (see Payment section) and prioritizes the given requests.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST /user/v2/pets/:petid/request/rush/order</code></p>
+<h3 id='post-parameters-6'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>request_ids</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>request</code> table.</td>
+</tr>
+</tbody></table>
+<h2 id='full-order-new-pricing-preview'>Full order (new pricing) - preview</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="mi">2037</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">pets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="mi">1984</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">pets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request for full medical records for Apple from Yorktown Animal Hospital: Gariboldi Rita T DVM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request for full medical records for Apple from Animal Kind Veterinary Hospital"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional pet: Bowser"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">29.97</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.00</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">32.97</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the order preview for full record requests. Pricing is as follows: $10 for each vet, and $10
+for each pet after the first one (regardless of how many vets). So if you have 2 places and 2 pets, the
+total cost comes out to $10 * 2 vets + $10 * 1 additional pet = $30.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>POST /user/v2/request/full/preview</code></p>
+<h3 id='post-parameters-7'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vets</td>
+<td>object</td>
+<td>Keys are IDs from the <code>place</code> table; values are objects as described below</td>
+</tr>
+<tr>
+<td>vets[place_id].pets</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>pet</code> table.</td>
+</tr>
+</tbody></table>
+<h2 id='full-order-new-pricing-execute'>Full order (new pricing) - execute</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="mi">2037</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">pets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="err">note</span><span class="p">:</span><span class="w"> </span><span class="s2">"May be under my maiden name (Wilson)"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="mi">1984</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">pets</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="err">note</span><span class="p">:</span><span class="w"> </span><span class="s2">"May be under my husband's name (Russell)"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/sig.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkout note to Pawprint"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="mi">18617</span><span class="p">,</span><span class="w">
+    </span><span class="mi">18618</span><span class="p">,</span><span class="w">
+    </span><span class="mi">18619</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Charges the customer&#39;s credit/debit card (see Payment section) and creates the record requests.
+Returns array of the newly created request IDs.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST /user/v2/request/full/order</code></p>
+<h3 id='post-parameters-8'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vets</td>
+<td>object</td>
+<td>Keys are IDs from the <code>place</code> table; values are objects as described below</td>
+</tr>
+<tr>
+<td>vets[place_id].pets</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>pet</code> table.</td>
+</tr>
+<tr>
+<td>vets[place_id].note</td>
+<td>array of ints</td>
+<td>Note to this particular vet.</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string</td>
+<td>URL to the image file containing the client&#39;s signature.</td>
+</tr>
+<tr>
+<td>checkout_notes</td>
+<td>string</td>
+<td>Checkout note to Pawprint.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="json">json</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
