@@ -219,6 +219,43 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
+            <a href="#templates-examples" class="toc-h1 toc-link" data-title="templates-examples">Templates/examples</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-example" class="toc-h2 toc-link" data-title="post-example">POST example</a>
+                  </li>
+                  <li>
+                    <a href="#get-example" class="toc-h2 toc-link" data-title="get-example">GET example</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#reminders-v2" class="toc-h1 toc-link" data-title="reminders-v2">Reminders v2</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-reminders" class="toc-h2 toc-link" data-title="get-all-reminders">Get all reminders</a>
+                  </li>
+                  <li>
+                    <a href="#get-specific-reminder" class="toc-h2 toc-link" data-title="get-specific-reminder">Get specific reminder</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-reminder" class="toc-h2 toc-link" data-title="create-a-reminder">Create a reminder</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-reminder" class="toc-h2 toc-link" data-title="update-a-reminder">Update a reminder</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-reminder" class="toc-h2 toc-link" data-title="delete-a-reminder">Delete a reminder</a>
+                  </li>
+                  <li>
+                    <a href="#update-settings" class="toc-h2 toc-link" data-title="update-settings">Update settings</a>
+                  </li>
+                  <li>
+                    <a href="#update-settings-vet_reminder" class="toc-h2 toc-link" data-title="update-settings-vet_reminder">Update settings (vet_reminder)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#requests-v2" class="toc-h1 toc-link" data-title="requests-v2">Requests v2</a>
               <ul class="toc-list-h2">
                   <li>
@@ -258,7 +295,422 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='requests-v2'>Requests v2</h1>
+        <h1 id='templates-examples'>Templates/examples</h1>
+<p>Use these as a template by copying and pasting them.</p>
+<h2 id='post-example'>POST example</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Hey"</span><span class="p">,</span><span class="w"> </span><span class="s2">"there"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-20T21:00:00.000Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">340</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Summary of the API and remarks go here.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /user/:uriparameter/example/:anotheruriparameter</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>int</td>
+<td>ID from the <code>user</code> table.</td>
+</tr>
+<tr>
+<td>pet_id</td>
+<td>int</td>
+<td>ID from the <code>pet</code></td>
+</tr>
+<tr>
+<td>notes</td>
+<td>array of strings</td>
+<td>Notes</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>datetime</td>
+<td>February twentieth</td>
+</tr>
+</tbody></table>
+<h2 id='get-example'>GET example</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">340</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a user profile by <code>user.id</code>.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /user/:userid</code></p>
+<h3 id='query-string-parameters'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>since</td>
+<td>datetime</td>
+<td>Gets updates made since this time.</td>
+</tr>
+<tr>
+<td>$top</td>
+<td>int</td>
+<td>Limits the number of results.</td>
+</tr>
+<tr>
+<td>$skip</td>
+<td>int</td>
+<td>Results start at this index.</td>
+</tr>
+</tbody></table>
+<h1 id='reminders-v2'>Reminders v2</h1>
+<p>V2 reminders. These can be one-shot reminders, or be scheduled to repeat at specific intervals
+and with specified start/end dates. A user can have multiple reminders attached to it.
+Timing details are stored in the <code>custom_reminder_v2</code> table, while per-user settings
+are stored in the <code>user_reminder_v2</code> table. All operations on specific reminders
+use <code>user_reminder_v2.id</code> as the parameter; only the creator can modify a reminder.</p>
+<h2 id='get-all-reminders'>Get all reminders</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"reminders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reminder_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="mi">39654</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">67555</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-25T21:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"until_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"marked_done"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"frequency_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">schedules</span><span class="se">\"</span><span class="s2">:[{</span><span class="se">\"</span><span class="s2">dw</span><span class="se">\"</span><span class="s2">:[2,4,6]}],</span><span class="se">\"</span><span class="s2">exceptions</span><span class="se">\"</span><span class="s2">:[]}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My reminder"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grain-free only"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">340</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reminder_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">311</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="mi">39654</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">67555</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-25T21:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"until_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T21:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"marked_done"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"days"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"frequency_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My updated reminder"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"z/d only"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">134402</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reminder_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">134402</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="mi">37851</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">67543</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01T08:00:00.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lepto vaccination"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Palmer Veterinary Clinic"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet_reminder"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"until_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"marked_done"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"frequency_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets all active and non-active reminders for a user. Deleted reminders are omitted.
+<strong>This also includes (non-ignored) reminders from the vet_reminder table.</strong></p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /user/v2/all_reminders</code></p>
+<h2 id='get-specific-reminder'>Get specific reminder</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">340</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reminder_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">311</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_by"</span><span class="p">:</span><span class="w"> </span><span class="mi">39654</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">67555</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-25T21:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"until_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T21:00:00.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"marked_done"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"days"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"frequency_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My updated reminder"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"z/d only"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a specific reminder by <code>user_reminder_v2.id</code>.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /user/v2/reminder/:userreminderid</code></p>
+<h2 id='create-a-reminder'>Create a reminder</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">67555</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-25T13:00:00-08:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"until_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T13:00:00-08:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"frequency_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">schedules</span><span class="se">\"</span><span class="s2">:[{</span><span class="se">\"</span><span class="s2">dw</span><span class="se">\"</span><span class="s2">:[7]}],</span><span class="se">\"</span><span class="s2">exceptions</span><span class="se">\"</span><span class="s2">:[]}"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My reminder"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grain-free only"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">340</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the <code>user_reminder_v2.id</code> of the newly created reminder. Only one of <code>schedule</code> or
+the tuple (<code>frequency_unit</code>, <code>frequency_count</code>) should be specified. <code>schedule</code> is used
+for day-of-week reminders while <code>frequency_unit</code> and <code>frequency_count</code> are used for everything else.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /user/v2/reminder</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pet_id</td>
+<td>int</td>
+<td>ID from the <code>pet</code> table.</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>datetime</td>
+<td>When the first reminder should go off.</td>
+</tr>
+<tr>
+<td>until_date</td>
+<td>datetime</td>
+<td>When the reminder should end; leave this null for a one-shot reminder.</td>
+</tr>
+<tr>
+<td>frequency_unit</td>
+<td>string</td>
+<td>Unit of measure for <code>frequency_count</code>, e.g. <code>days</code>.</td>
+</tr>
+<tr>
+<td>frequency_count</td>
+<td>int</td>
+<td>How often the reminder should repeat; combined with <code>frequency_unit</code>.</td>
+</tr>
+<tr>
+<td>schedule</td>
+<td>string</td>
+<td>JSON object parsable by <a href="https://bunkat.github.io/later/">later.js</a>.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Reminder title.</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Reminder notes.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>ID from the <code>eventtype</code> table.</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-reminder'>Update a reminder</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-25T13:00:00-08:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"until_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T13:00:00-08:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"frequency_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">schedules</span><span class="se">\"</span><span class="s2">:[{</span><span class="se">\"</span><span class="s2">dw</span><span class="se">\"</span><span class="s2">:[7]}],</span><span class="se">\"</span><span class="s2">exceptions</span><span class="se">\"</span><span class="s2">:[]}"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My reminder"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Grain-free only"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Updates a reminder. Only the creator can update a reminder; otherwise HTTP 403/Forbidden is returned.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>PUT /user/v2/reminder/:userreminderid</code></p>
+<h3 id='put-parameters'>PUT parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>start_date</td>
+<td>datetime</td>
+<td>When the first reminder should go off.</td>
+</tr>
+<tr>
+<td>until_date</td>
+<td>datetime</td>
+<td>When the reminder should end; leave this null for a one-shot reminder.</td>
+</tr>
+<tr>
+<td>frequency_unit</td>
+<td>string</td>
+<td>Unit of measure for <code>frequency_count</code>, e.g. <code>days</code>.</td>
+</tr>
+<tr>
+<td>frequency_count</td>
+<td>int</td>
+<td>How often the reminder should repeat; combined with <code>frequency_unit</code>.</td>
+</tr>
+<tr>
+<td>schedule</td>
+<td>string</td>
+<td>JSON object parsable by <a href="https://bunkat.github.io/later/">later.js</a>.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Reminder title.</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Reminder notes.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>ID from the <code>eventtype</code> table.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-reminder'>Delete a reminder</h2>
+<p>(Soft) Deletes a reminder. Only the creator can delete a reminder; otherwise HTTP 403/Forbidden is returned.
+To deactivate a reminder, non-creators can use the <code>/v2/reminder/user/:userreminderid/settings</code> endpoint.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>DELETE /user/v2/reminder/:userreminderid</code></p>
+<h2 id='update-settings'>Update settings</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"remove"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Both creators and non-creators can update their reminder settings. One or both parameters can be specified.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>PUT /user/v2/reminder/user/:userreminderid/settings</code></p>
+<h3 id='put-parameters-2'>PUT parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>Turns a reminder on/off, only for the calling user.</td>
+</tr>
+<tr>
+<td>remove</td>
+<td>boolean</td>
+<td>Soft deletes a reminder, only for the calling user, even if they&#39;re not its creator.</td>
+</tr>
+</tbody></table>
+<h2 id='update-settings-vet_reminder'>Update settings (vet_reminder)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"done"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Both marks a <code>vet_reminder</code> as ignored or complete from the home page. One or both parameters can be specified.
+Effectively, there is no difference in behavior if a reminder was ignored vs. marked as done.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>PUT /user/v2/reminder/vet/:vetreminderid/settings</code></p>
+<h3 id='put-parameters-3'>PUT parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>Ignores the reminder if set to <code>true</code>.</td>
+</tr>
+<tr>
+<td>done</td>
+<td>boolean</td>
+<td>Marks the reminder as done if set to <code>true</code>.</td>
+</tr>
+</tbody></table>
+<h1 id='requests-v2'>Requests v2</h1>
 <p>This follows the pattern of POST /request/{producttype}/preview, which returns a preview invoice,
 then a follow-up POST /request/{producttype}/order with the same request object to execute the transaction.</p>
 <h2 id='get-all-products'>Get all products</h2>
