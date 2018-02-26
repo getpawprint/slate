@@ -166,7 +166,7 @@ selected_vets | array of ints | Array of IDs from the `place` table.
 {
 	"selected_vets": [ 2037, 1984 ],
 	"signature": "https://s3.aws.amazon.com/pawprint/sig.png",
-  "note": ["May be under my maiden name (Wilson)", "May be under my husband's name (Russell)"]
+	"note": ["May be under my maiden name (Wilson)", "May be under my husband's name (Russell)"]
 }
 ```
 
@@ -263,13 +263,14 @@ request_ids | array of ints | Array of IDs from the `request` table.
 ```json
 {
   "vets": {
-    2037: {
-      pets: [ 1 ]
+    "2037": {
+      "pets": [ 1 ]
     },
-    1984: {
-      pets: [ 1, 10 ]
+    "1984": {
+      "pets": [ 1, 10 ]
     }
-  }
+  },
+  "promocode": "mars"
 }
 ```
 
@@ -296,7 +297,8 @@ request_ids | array of ints | Array of IDs from the `request` table.
     ],
     "subtotal": 29.97,
     "tax": 3.00,
-    "total": 32.97
+    "total": 32.97,
+    "discount": -5
 }
 ```
 
@@ -312,6 +314,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 vets | object | Keys are IDs from the `place` table; values are objects as described below
 vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
+promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
 
 ## Full order (new pricing) - execute
 > Request example
@@ -319,17 +322,18 @@ vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
 ```json
 {
   "vets": {
-    2037: {
-      pets: [ 1 ],
-      note: "May be under my maiden name (Wilson)"
+    "2037": {
+      "pets": [ 1 ],
+      "note": "May be under my maiden name (Wilson)"
     },
-    1984: {
-      pets: [ 1, 10 ],
-      note: "May be under my husband's name (Russell)"
+    "1984": {
+      "pets": [ 1, 10 ],
+      "note": "May be under my husband's name (Russell)"
     }
   }
 	"signature": "https://s3.aws.amazon.com/pawprint/sig.png",
-	"checkout_notes": "Checkout note to Pawprint"
+	"checkout_notes": "Checkout note to Pawprint",
+	"promocode": "mars"
 }
 ```
 
@@ -357,3 +361,4 @@ vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
 vets\[place_id\].note | array of ints | Note to this particular vet.
 signature | string |  URL to the image file containing the client's signature.
 checkout_notes | string | Checkout note to Pawprint.
+promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
