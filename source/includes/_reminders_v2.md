@@ -110,7 +110,7 @@ Gets a specific reminder by `user_reminder_v2.id`.
 	"start_date": "2018-01-25T13:00:00-08:00",
 	"until_date": "2019-01-25T13:00:00-08:00",
 	"frequency_unit": null,
-  "frequency_count": 0,
+	"frequency_count": 0,
 	"schedule": "{\"schedules\":[{\"dw\":[7]}],\"exceptions\":[]}",
 	"title": "My reminder",
 	"notes": "Grain-free only",
@@ -137,8 +137,8 @@ for day-of-week reminders while `frequency_unit` and `frequency_count` are used 
 Parameter | Type | Description
 --------- | ---- | -----------
 pet_id | int | ID from the `pet` table.
-start_date | datetime | When the first reminder should go off.
-until_date | datetime| When the reminder should end; leave this null for a one-shot reminder.
+start_date | string | When the first reminder should go off. For time zone reasons, this is a pass-through string.
+until_date | string| When the reminder should end; leave this null for a one-shot reminder. For time zone reasons, this is a pass-through string.
 frequency_unit | string | Unit of measure for `frequency_count`, e.g. `days`.
 frequency_count | int | How often the reminder should repeat; combined with `frequency_unit`.
 schedule | string | JSON object parsable by [later.js](https://bunkat.github.io/later/).
@@ -176,8 +176,8 @@ Updates a reminder. Only the creator can update a reminder; otherwise HTTP 403/F
 ### PUT parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-start_date | datetime | When the first reminder should go off.
-until_date | datetime| When the reminder should end; leave this null for a one-shot reminder.
+start_date | string | When the first reminder should go off. For time zone reasons, this is a pass-through string.
+until_date | string| When the reminder should end; leave this null for a one-shot reminder. For time zone reasons, this is a pass-through string.
 frequency_unit | string | Unit of measure for `frequency_count`, e.g. `days`.
 frequency_count | int | How often the reminder should repeat; combined with `frequency_unit`.
 schedule | string | JSON object parsable by [later.js](https://bunkat.github.io/later/).

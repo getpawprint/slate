@@ -9,6 +9,7 @@ toc_footers:
 
 includes:
   - reminders_v2
+  - requests_v1
   - requests_v2
 
 search: true
