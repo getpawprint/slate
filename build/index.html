@@ -230,6 +230,22 @@
               </ul>
           </li>
           <li>
+            <a href="#payments" class="toc-h1 toc-link" data-title="payments">Payments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#update-payment-information" class="toc-h2 toc-link" data-title="update-payment-information">Update payment information</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#places" class="toc-h1 toc-link" data-title="places">Places</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#add-new-place" class="toc-h2 toc-link" data-title="add-new-place">Add new place</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#reminders-v2" class="toc-h1 toc-link" data-title="reminders-v2">Reminders v2</a>
               <ul class="toc-list-h2">
                   <li>
@@ -388,6 +404,142 @@
 <td>$skip</td>
 <td>int</td>
 <td>Results start at this index.</td>
+</tr>
+</tbody></table>
+<h1 id='payments'>Payments</h1>
+<p>We use <a href="http://stripe.com/">Stripe</a> for managing payments.</p>
+<h2 id='update-payment-information'>Update payment information</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tok_b3ad9ff2c01vcf"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Sets the user&#39;s payment source with the given Stripe token. If a Stripe customer doesn&#39;t exist yet,
+the token is used to create a Stripe customer with a payment source. If the Stripe customer does exist,
+the token is used to update the Stripe customer&#39;s payment source.</p>
+
+<aside class="notice">
+Stripe tokens can be used only once, and then they are considered consumed.
+It is generated from payment information by the client, and can be used to
+either set up an account with a payment source, or update the payment source on
+an existing account.
+</aside>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /user/stripe/:userid/source</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>string</td>
+<td>Stripe token returned by the client-side Stripe API.</td>
+</tr>
+</tbody></table>
+<h1 id='places'>Places</h1>
+<p>Places are backed by the <code>place</code> table and are referenced by a lot of other
+tables, such as <code>request</code>, <code>business_pet</code>, and <code>event</code>.</p>
+<h2 id='add-new-place'>Add new place</h2>
+<blockquote>
+<p>Request examples</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Super Test Vet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"621 Escondido Rd, Stanford, CA 94305"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"supertestvet@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ8d3CFNe6j4AR21tyt88xx2g"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15555551234"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15555556789"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11440</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Super Test Vet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contactMethod"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-05T04:38:37.090Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-05T04:38:37.090Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ8d3CFNe6j4AR21tyt88xx2g"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"621 Escondido Rd, Stanford, CA 94305"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15555551234"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"supertestvet@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hours"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vetstreet_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15555556789"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pawprint_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"twilio_phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"appointment_email_opt_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Adds a new place to the <code>place</code> table and returns the entire row. If the place existed already
+(based on matching name &amp; address or matching Google Places ID), the existing place is returned
+and no new place is added.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /user/places</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String?</td>
+<td>The place&#39;s name</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String?</td>
+<td>The place&#39;s physical location address</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String?</td>
+<td>The place&#39;s email address</td>
+</tr>
+<tr>
+<td>website</td>
+<td>String?</td>
+<td>The place&#39;s web site address</td>
+</tr>
+<tr>
+<td>placesid</td>
+<td>String?</td>
+<td>A Google Place ID</td>
+</tr>
+<tr>
+<td>fax</td>
+<td>String?</td>
+<td>The place&#39;s fax number</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String?</td>
+<td>The place&#39;s phone number</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>&quot;vet&quot; if it&#39;s a vet (so far the only values in the database are &quot;vet&quot;, blank or &quot;unknown&quot;</td>
 </tr>
 </tbody></table>
 <h1 id='reminders-v2'>Reminders v2</h1>
@@ -769,13 +921,24 @@ then a follow-up POST /request/{producttype}/order with the same request object 
         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
         </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Free rush service provided to user"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full medical records for 1 pet at 1 vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.99"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional pet at a vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4.99"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Gets all products in the product catalog.</p>
 
 <aside class="notice">
-Product IDs will not change; new products that are added will get new IDs.
+Product IDs will not change; new products that are added will get new IDs, so you can
+hard code product IDs into the app.
 </aside>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /v2/products</code></p>
