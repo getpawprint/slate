@@ -31,6 +31,16 @@ then a follow-up POST /request/{producttype}/order with the same request object 
         "id": 5,
         "description": "Free rush service provided to user",
         "cost": "0.00"
+    },
+    {
+        "id": 6,
+        "description": "Full medical records for 1 pet at 1 vet",
+        "cost": "9.99"
+    },
+    {
+        "id": 7,
+        "description": "Additional pet at a vet",
+        "cost": "4.99"
     }
 ]
 ```
@@ -38,7 +48,8 @@ then a follow-up POST /request/{producttype}/order with the same request object 
 Gets all products in the product catalog.
 
 <aside class="notice">
-Product IDs will not change; new products that are added will get new IDs.
+Product IDs will not change; new products that are added will get new IDs, so you can
+hard code product IDs into the app.
 </aside>
 
 
