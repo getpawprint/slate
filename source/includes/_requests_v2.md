@@ -9,36 +9,43 @@ then a follow-up POST /request/{producttype}/order with the same request object 
 [
     {
         "id": 1,
+        "title": "Basic record request",
         "description": "Basic record request. Proof of vaccination for groomers and boarders.",
         "cost": "0.00"
     },
     {
         "id": 2,
+        "title": "Rush request",
         "description": "Rush request; order will be processed within 48 hours",
         "cost": "4.99"
     },
     {
         "id": 3,
+        "title": "Full medical records request",
         "description": "Full medical records and your order will be processed within 48 hours",
         "cost": "9.99"
     },
     {
         "id": 4,
+        "title": "Additional vet",
         "description": "Additional vet for full medical records",
         "cost": "4.99"
     },
     {
         "id": 5,
+        "title": "Free rush service",
         "description": "Free rush service provided to user",
         "cost": "0.00"
     },
     {
         "id": 6,
+        "title": "Full medical records request",
         "description": "Full medical records for 1 pet at 1 vet",
         "cost": "9.99"
     },
     {
         "id": 7,
+        "title": "Additional pet at a vet",
         "description": "Additional pet at a vet",
         "cost": "4.99"
     }
@@ -369,7 +376,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 vets | object | Keys are IDs from the `place` table; values are objects as described below
 vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
-vets\[place_id\].note | array of ints | Note to this particular vet.
+vets\[place_id\].note | string | Note to this particular vet.
 signature | string |  URL to the image file containing the client's signature.
 checkout_notes | string | Checkout note to Pawprint.
 promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
