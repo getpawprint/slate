@@ -57,7 +57,9 @@ time the training algorithm is run, the new model should not return that incorre
 To get the correct entry, you can call `GET /user/medications` to get a list of all medications and `GET /user/reminder_events`
 to get a list of all reminder_events.
 
-**Must be logged in as a vet to call this.**
+<aside class="notice">
+Must be logged in as a vet to call this. That is, the auth token must be for a user ID in pawprint_vet.user_id.
+</aside>
 
 ### HTTP Request
 `POST /vet/ml/feedback`
