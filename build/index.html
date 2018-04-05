@@ -230,13 +230,30 @@
               </ul>
           </li>
           <li>
+            <a href="#activation" class="toc-h1 toc-link" data-title="activation">Activation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#check-pet-invite-code" class="toc-h2 toc-link" data-title="check-pet-invite-code">Check pet invite code</a>
+                  </li>
+                  <li>
+                    <a href="#check-vet-activation-code" class="toc-h2 toc-link" data-title="check-vet-activation-code">Check vet activation code</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#machine-learning-algo-tagging" class="toc-h1 toc-link" data-title="machine-learning-algo-tagging">Machine learning/algo tagging</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#query-algorithm" class="toc-h2 toc-link" data-title="query-algorithm">Query algorithm</a>
                   </li>
                   <li>
-                    <a href="#feedback" class="toc-h2 toc-link" data-title="feedback">Feedback</a>
+                    <a href="#get-pending-feedback" class="toc-h2 toc-link" data-title="get-pending-feedback">Get pending feedback</a>
+                  </li>
+                  <li>
+                    <a href="#submit-feedback" class="toc-h2 toc-link" data-title="submit-feedback">Submit feedback</a>
+                  </li>
+                  <li>
+                    <a href="#refit" class="toc-h2 toc-link" data-title="refit">Refit</a>
                   </li>
               </ul>
           </li>
@@ -319,6 +336,14 @@
                   </li>
                   <li>
                     <a href="#full-order-new-pricing-execute" class="toc-h2 toc-link" data-title="full-order-new-pricing-execute">Full order (new pricing) - execute</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#activation" class="toc-h1 toc-link" data-title="activation">Activation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#share-pet-records" class="toc-h2 toc-link" data-title="share-pet-records">Share pet records</a>
                   </li>
               </ul>
           </li>
@@ -417,6 +442,37 @@
 <td>Results start at this index.</td>
 </tr>
 </tbody></table>
+<h1 id='activation'>Activation</h1>
+<p>For inviting, onboarding and account linking.</p>
+<h2 id='check-pet-invite-code'>Check pet invite code</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">pet_id</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Checks if an invite code exists. This is when you share a pet. Returns the pet ID associated with the invite code.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /invite_code/:inviteCode</code></p>
+<h2 id='check-vet-activation-code'>Check vet activation code</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"vetBanner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/banner.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"vetName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Demo Veterinary"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">106539</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="err">'johnsmith@example.com'</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">15555551234</span><span class="err">'</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Checks if a vet activation code exists. This is for onboarding or linking a vet account. Some vet information
+and user information is returned, which can be used to pre-populate fields for account creation.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /user/activation/:code</code></p>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback.</p>
 <h2 id='query-algorithm'>Query algorithm</h2>
@@ -449,7 +505,30 @@ of the most probable match, and returns the probability (between 0 and 1) in the
 <td>Input string for the algorithm.</td>
 </tr>
 </tbody></table>
-<h2 id='feedback'>Feedback</h2>
+<h2 id='get-pending-feedback'>Get pending feedback</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prom"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medication"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vocab_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PromAce, Aceproject"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rabies annual"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reminder_event"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vocab_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rabies"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all pending feedback for the machine learning algorithm that was submitted from vet portals in a list.
+This will return an empty list if a refit (see below) was run recently.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /ml/feedback</code></p>
+<h2 id='submit-feedback'>Submit feedback</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
@@ -481,37 +560,26 @@ to get a list of all reminder_events.</p>
 <aside class="notice">
 Must be logged in as a vet to call this. That is, the auth token must be for a user ID in pawprint_vet.user_id.
 </aside>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /vet/ml/feedback</code></p>
-<h3 id='post-parameters'>POST parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>query</td>
-<td>string</td>
-<td>Freeform text input string containing the example.</td>
-</tr>
-<tr>
-<td>type</td>
-<td>string</td>
-<td>Either <code>reminder_event</code> or <code>medication</code>.</td>
-</tr>
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Either a <code>reminder_event.id</code> or <code>medication.id</code>.</td>
-</tr>
-<tr>
-<td>is_correct</td>
-<td>boolean?</td>
-<td>Whether or not the original prediction was correct. This isn&#39;t fed back to the algo; it is only used for reporting.</td>
-</tr>
-</tbody></table>
+<h2 id='refit'>Refit</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Refits all pending feedback items into the machine learning model.</p>
+
+<aside class="notice">
+Must be logged in as an admin to call this. That is, the auth token must be for a user ID in user where type = 0.
+</aside>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /admin/ml/refit</code></p>
 <h1 id='payments'>Payments</h1>
 <p>We use <a href="http://stripe.com/">Stripe</a> for managing payments.</p>
 <h2 id='update-payment-information'>Update payment information</h2>
@@ -1455,6 +1523,39 @@ Returns array of the newly created request IDs.</p>
 <td>promocode</td>
 <td>string</td>
 <td>If specified, attempts to apply the promo code to the order. If the promo code didn&#39;t work, HTTP 400 is returned along with an error message.</td>
+</tr>
+</tbody></table>
+<h1 id='activation'>Activation</h1>
+<p>For inviting, onboarding and account linking.</p>
+<h2 id='share-pet-records'>Share pet records</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"recipients"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com, demo2@getpawprint.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Shares pet records via email. The email contains the pet&#39;s name, vaccinations, and links to PDFs were both
+user-uploaded and admin-uploaded (from a records request).</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /user/pet/:petid/share</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>recipients</td>
+<td>string</td>
+<td>Comma-separated list of recipient emails</td>
 </tr>
 </tbody></table>
 

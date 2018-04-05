@@ -26,7 +26,34 @@ Parameter | Type | Description
 --------- | ---- | -----------
 q | string | Input string for the algorithm.
 
-## Feedback
+## Get pending feedback
+
+> Response example
+
+```json
+[
+    {
+        "query": "prom",
+        "id": 1,
+        "type": "medication",
+        "vocab_string": "PromAce, Aceproject"
+    },
+    {
+        "query": "rabies annual",
+        "id": 24,
+        "type": "reminder_event",
+        "vocab_string": "Rabies"
+    }
+]
+```
+
+Gets all pending feedback for the machine learning algorithm that was submitted from vet portals in a list.
+This will return an empty list if a refit (see below) was run recently.
+
+### HTTP Request
+`GET /ml/feedback`
+
+## Submit feedback
 > Request example
 
 ```json
@@ -64,10 +91,24 @@ Must be logged in as a vet to call this. That is, the auth token must be for a u
 ### HTTP Request
 `POST /vet/ml/feedback`
 
-### POST parameters
-Parameter | Type | Description
---------- | ---- | -----------
-query | string | Freeform text input string containing the example.
-type | string | Either `reminder_event` or `medication`.
-id | integer | Either a `reminder_event.id` or `medication.id`.
-is_correct | boolean? | Whether or not the original prediction was correct. This isn't fed back to the algo; it is only used for reporting.
+## Refit
+> Request example
+
+```json
+(none)
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Refits all pending feedback items into the machine learning model.
+
+<aside class="notice">
+Must be logged in as an admin to call this. That is, the auth token must be for a user ID in user where type = 0.
+</aside>
+
+### HTTP Request
+`POST /admin/ml/refit`
