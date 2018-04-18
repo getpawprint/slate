@@ -10,6 +10,7 @@ toc_footers:
 includes:
   - activation
   - machine_learning
+  - medication
   - payments
   - places
   - reminders_v2

@@ -1,5 +1,7 @@
 # Machine learning/algo tagging
-For demo pages and machine learning feedback.
+For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
+if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after
+the last save will be lost.
 
 ## Query algorithm
 
@@ -91,6 +93,19 @@ Must be logged in as a vet to call this. That is, the auth token must be for a u
 ### HTTP Request
 `POST /vet/ml/feedback`
 
+## Delete pending feedback item
+
+> Response example
+
+```json
+(none)
+```
+
+Deletes a pending feedback item. Expected to be called from the ML refitting page in the admin dashboard.
+
+### HTTP Request
+`DELETE /admin/ml/feedback/:feedback_id`
+
 ## Refit
 > Request example
 
@@ -112,3 +127,26 @@ Must be logged in as an admin to call this. That is, the auth token must be for 
 
 ### HTTP Request
 `POST /admin/ml/refit`
+
+## Save state
+> Request example
+
+```json
+(none)
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Saves the state of the machine learning model to Google Cloud Storage. If the virtual machine or container hosting the machine learning service
+is reset, the state of the machine learning model will be restored.
+
+<aside class="notice">
+Must be logged in as an admin to call this. That is, the auth token must be for a user ID in user where type = 0.
+</aside>
+
+### HTTP Request
+`POST /admin/ml/save`

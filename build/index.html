@@ -265,7 +265,33 @@
                     <a href="#submit-feedback" class="toc-h2 toc-link" data-title="submit-feedback">Submit feedback</a>
                   </li>
                   <li>
+                    <a href="#delete-pending-feedback-item" class="toc-h2 toc-link" data-title="delete-pending-feedback-item">Delete pending feedback item</a>
+                  </li>
+                  <li>
                     <a href="#refit" class="toc-h2 toc-link" data-title="refit">Refit</a>
+                  </li>
+                  <li>
+                    <a href="#save-state" class="toc-h2 toc-link" data-title="save-state">Save state</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#medications" class="toc-h1 toc-link" data-title="medications">Medications</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-built-in-medications" class="toc-h2 toc-link" data-title="get-all-built-in-medications">Get all built-in medications</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-of-a-pet-39-s-medications" class="toc-h2 toc-link" data-title="get-all-of-a-pet-s-medications">Get all of a pet's medications</a>
+                  </li>
+                  <li>
+                    <a href="#create-pet-medication" class="toc-h2 toc-link" data-title="create-pet-medication">Create pet medication</a>
+                  </li>
+                  <li>
+                    <a href="#update-pet-medication" class="toc-h2 toc-link" data-title="update-pet-medication">Update pet medication</a>
+                  </li>
+                  <li>
+                    <a href="#delete-pet-medication" class="toc-h2 toc-link" data-title="delete-pet-medication">Delete pet medication</a>
                   </li>
               </ul>
           </li>
@@ -681,7 +707,9 @@ with the corresponding field(s) from <code>vet_pet</code>; existing <code>pet</c
 </tr>
 </tbody></table>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
-<p>For demo pages and machine learning feedback.</p>
+<p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
+if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after
+the last save will be lost.</p>
 <h2 id='query-algorithm'>Query algorithm</h2>
 <blockquote>
 <p>Response example</p>
@@ -769,6 +797,15 @@ Must be logged in as a vet to call this. That is, the auth token must be for a u
 </aside>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /vet/ml/feedback</code></p>
+<h2 id='delete-pending-feedback-item'>Delete pending feedback item</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Deletes a pending feedback item. Expected to be called from the ML refitting page in the admin dashboard.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>DELETE /admin/ml/feedback/:feedback_id</code></p>
 <h2 id='refit'>Refit</h2>
 <blockquote>
 <p>Request example</p>
@@ -785,8 +822,299 @@ Must be logged in as a vet to call this. That is, the auth token must be for a u
 <aside class="notice">
 Must be logged in as an admin to call this. That is, the auth token must be for a user ID in user where type = 0.
 </aside>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /admin/ml/refit</code></p>
+<h2 id='save-state'>Save state</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Saves the state of the machine learning model to Google Cloud Storage. If the virtual machine or container hosting the machine learning service
+is reset, the state of the machine learning model will be restored.</p>
+
+<aside class="notice">
+Must be logged in as an admin to call this. That is, the auth token must be for a user ID in user where type = 0.
+</aside>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST /admin/ml/save</code></p>
+<h1 id='medications'>Medications</h1>
+<p>Medications - both built-in and user-added medications.</p>
+<h2 id='get-all-built-in-medications'>Get all built-in medications</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">485</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seresto"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flea/tick collar"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"active_ingredient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"imidacloprid, flumethrin"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">284</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ProHeart 6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heartworm preventative"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"active_ingredient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moxidectin"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">479</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Scalibor"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flea/tick collar"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"active_ingredient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flumethrin, imidacloprid"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">483</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sentry Flea/Tick Collar"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flea/tick collar"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"active_ingredient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deltamethrin"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all medications built in with Pawprint.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /user/medications</code></p>
+<h2 id='get-all-of-a-pet-39-s-medications'>Get all of a pet&#39;s medications</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"medication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">464</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3523</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">68795</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dosage_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dosage_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tablet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"times"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"weekly"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heartgard Plus"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reminder_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heartworm/intestinal worm preventative"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_ingredient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ivermectin, pyrantel pamoate"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oral"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"warning"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prescription"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"until_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"marked_done"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"medication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4040</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">68795</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dosage_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dosage_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tablet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"times"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"For anxiety"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Xanax"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reminder_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14182</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sedative"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_ingredient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alprazolam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oral"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"warning"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"prescription"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"until_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"marked_done"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets a medication for a pet.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /user/medications/</code></p>
+<h2 id='create-pet-medication'>Create pet medication</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"dosage_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dosage_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tablet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"For anxiety"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Xanax"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"medication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reminder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-25T13:00:00-08:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"until_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T13:00:00-08:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"daily"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"frequency_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Xanax"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm a medication reminder"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Create a pet medication. The <code>reminder</code> field is optional and follows the format of creating a V2 reminder, except
+pet_id and type do not need to be specified.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /user/v2/pets/:petid/medication</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dosage_number</td>
+<td>int?</td>
+<td>Size of a dose of the medication</td>
+</tr>
+<tr>
+<td>dosage_unit</td>
+<td>string?</td>
+<td>Units for the dose</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string?</td>
+<td>Notes</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Name of the medication</td>
+</tr>
+<tr>
+<td>medication_id</td>
+<td>int?</td>
+<td>Foreign key into the <code>medication</code> table; null if the medication doesn&#39;t exist in our system</td>
+</tr>
+<tr>
+<td>reminder</td>
+<td>object</td>
+<td>Reminder object; see documentation for Reminders V2 - Create a reminder</td>
+</tr>
+<tr>
+<td>times</td>
+<td>int?</td>
+<td>deprecated; is stored in database but has no effect.</td>
+</tr>
+<tr>
+<td>frequency</td>
+<td>string?</td>
+<td>deprecated; is stored in database but has no effect.</td>
+</tr>
+</tbody></table>
+<h2 id='update-pet-medication'>Update pet medication</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"dosage_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dosage_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tablet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"For anxiety"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Xanax"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"medication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reminder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-25T13:00:00-08:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"until_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-25T13:00:00-08:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"daily"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"frequency_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Afoxolaner"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm a medication reminder"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Updates a pet medication.
+<code>:petid</code> is an ID from the <code>pet</code> table, while <code>:medicationid</code> is an ID from the <code>pet_medication</code> table.
+If a <code>reminder</code> object is supplied, either the existing reminder is updated or a new reminder is created.
+If a <code>reminder</code> object is not supplied in the request, but there is an existing reminder for that medication,
+the reminder will be deleted.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>PUT /user/v2/pets/:petid/medication/:medicationid</code></p>
+<h3 id='put-parameters'>PUT parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>dosage_number</td>
+<td>int?</td>
+<td>Size of a dose of the medication</td>
+</tr>
+<tr>
+<td>dosage_unit</td>
+<td>string?</td>
+<td>Units for the dose</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string?</td>
+<td>Notes</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Name of the medication</td>
+</tr>
+<tr>
+<td>medication_id</td>
+<td>int?</td>
+<td>Foreign key into the <code>medication</code> table; null if the medication doesn&#39;t exist in our system</td>
+</tr>
+<tr>
+<td>reminder</td>
+<td>object</td>
+<td>Reminder object; see documentation for Reminders V2 - Create a reminder</td>
+</tr>
+<tr>
+<td>times</td>
+<td>int?</td>
+<td>deprecated; is stored in database but has no effect.</td>
+</tr>
+<tr>
+<td>frequency</td>
+<td>string?</td>
+<td>deprecated; is stored in database but has no effect.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-pet-medication'>Delete pet medication</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Deletes a pet medication.
+<code>:petid</code> is an ID from the <code>pet</code> table, while <code>:medicationid</code> is an ID from the <code>pet_medication</code> table.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>DELETE /user/v2/pets/:petid/medication/:medicationid</code></p>
 <h1 id='payments'>Payments</h1>
 <p>We use <a href="http://stripe.com/">Stripe</a> for managing payments.</p>
 <h2 id='update-payment-information'>Update payment information</h2>
