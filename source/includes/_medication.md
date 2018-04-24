@@ -68,8 +68,7 @@ Gets all medications built in with Pawprint.
 				"frequency_unit": null,
 				"type": null,
 				"schedule": null,
-				"marked_done": null,
-				"source": "pet_medication"
+				"marked_done": null
 		},
 		{
 				"medication_id": 9,
@@ -95,17 +94,18 @@ Gets all medications built in with Pawprint.
 				"type": null,
 				"schedule": null,
 				"marked_done": null,
-				"source": "inferred"
 		}
 ]
 ```
 
-Gets a medication for a pet. Medications come from two sources - the `pet_medication` table, in which case the `source` field will have the value `pet_medication`,
+Gets a medication for a pet. Medications come from the `pet_medication` table.
+
+, in which case the `source` field will have the value `pet_medication`,
 or the `inferred_medication_raw` table, in which case the `source` field will have the value `inferred`. Inferred medications come from the output of a
 natural language processing algorithm run over the `vet_pet_history`, `vet_reminder` and `vet_invoice` tables, so they cannot be deleted.
 
 ### HTTP Request
-`GET /user/medications/`
+`GET /user/v2/pets/:petid/medications/`
 
 ## Create pet medication
 > Request example
@@ -222,3 +222,51 @@ Deletes a pet medication.
 
 ### HTTP Request
 `DELETE /user/v2/pets/:petid/medication/:medicationid`
+
+## Get suggested pet medications
+
+> Response example
+
+```json
+[
+    {
+        "id": 8161,
+        "medication_id": 9,
+        "pet_id": 67543,
+        "name": "Alprazolam (Xanax®)",
+        "description": "Sedative",
+        "active_ingredient": "alprazolam",
+        "notes": "From vet"
+    }
+]
+```
+
+Gets suggested medications for a pet. These suggestions come from running algo tagging on the `vet_pet_history`, `vet_reminder` and `vet_invoice` tables.
+Users should be able to accept or reject these suggestions - accepting will go to the "Add Medication" page with the
+fields pre-populated by this API, and then a new medication will be added to the `pet_medication` table.
+
+If the suggestion is rejected, then the medication will not appear in the queue again unless there is more vet data
+at a later date which suggests the same medication.
+
+### HTTP Request
+`GET /user/v2/pets/:petid/medications/suggested`
+
+## Reject suggested pet medication
+
+> Response example
+
+```json
+(TBD)
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Rejects a suggested medication from the queue. The medication will not appear in the queue again unless there is more vet data
+at a later date which suggests the same medication.
+
+### HTTP Request
+`DELETE /user/v2/pets/:petid/medications/suggested/:suggestionid`

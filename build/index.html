@@ -293,6 +293,12 @@
                   <li>
                     <a href="#delete-pet-medication" class="toc-h2 toc-link" data-title="delete-pet-medication">Delete pet medication</a>
                   </li>
+                  <li>
+                    <a href="#get-suggested-pet-medications" class="toc-h2 toc-link" data-title="get-suggested-pet-medications">Get suggested pet medications</a>
+                  </li>
+                  <li>
+                    <a href="#reject-suggested-pet-medication" class="toc-h2 toc-link" data-title="reject-suggested-pet-medication">Reject suggested pet medication</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -907,8 +913,7 @@ Must be logged in as an admin to call this. That is, the auth token must be for 
                 </span><span class="s2">"frequency_unit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"marked_done"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet_medication"</span><span class="w">
+                </span><span class="s2">"marked_done"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"medication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
@@ -934,15 +939,16 @@ Must be logged in as an admin to call this. That is, the auth token must be for 
                 </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"marked_done"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inferred"</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>Gets a medication for a pet. Medications come from two sources - the <code>pet_medication</code> table, in which case the <code>source</code> field will have the value <code>pet_medication</code>,
+<p>Gets a medication for a pet. Medications come from the <code>pet_medication</code> table.</p>
+
+<p>, in which case the <code>source</code> field will have the value <code>pet_medication</code>,
 or the <code>inferred_medication_raw</code> table, in which case the <code>source</code> field will have the value <code>inferred</code>. Inferred medications come from the output of a
 natural language processing algorithm run over the <code>vet_pet_history</code>, <code>vet_reminder</code> and <code>vet_invoice</code> tables, so they cannot be deleted.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET /user/medications/</code></p>
+<p><code>GET /user/v2/pets/:petid/medications/</code></p>
 <h2 id='create-pet-medication'>Create pet medication</h2>
 <blockquote>
 <p>Request example</p>
@@ -1119,6 +1125,45 @@ the reminder will be deleted.</p>
 <code>:petid</code> is an ID from the <code>pet</code> table, while <code>:medicationid</code> is an ID from the <code>pet_medication</code> table.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>DELETE /user/v2/pets/:petid/medication/:medicationid</code></p>
+<h2 id='get-suggested-pet-medications'>Get suggested pet medications</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8161</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"medication_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">67543</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alprazolam (Xanax®)"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sedative"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active_ingredient"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alprazolam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From vet"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets suggested medications for a pet. These suggestions come from running algo tagging on the <code>vet_pet_history</code>, <code>vet_reminder</code> and <code>vet_invoice</code> tables.
+Users should be able to accept or reject these suggestions - accepting will go to the &quot;Add Medication&quot; page with the
+fields pre-populated by this API, and then a new medication will be added to the <code>pet_medication</code> table.</p>
+
+<p>If the suggestion is rejected, then the medication will not appear in the queue again unless there is more vet data
+at a later date which suggests the same medication.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET /user/v2/pets/:petid/medications/suggested</code></p>
+<h2 id='reject-suggested-pet-medication'>Reject suggested pet medication</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(TBD)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Rejects a suggested medication from the queue. The medication will not appear in the queue again unless there is more vet data
+at a later date which suggests the same medication.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>DELETE /user/v2/pets/:petid/medications/suggested/:suggestionid</code></p>
 <h1 id='payments'>Payments</h1>
 <p>We use <a href="http://stripe.com/">Stripe</a> for managing payments.</p>
 <h2 id='update-payment-information'>Update payment information</h2>
