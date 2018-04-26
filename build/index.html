@@ -1143,17 +1143,18 @@ the reminder will be deleted.</p>
 </span></code></pre>
 <p>Gets suggested medications for a pet. These suggestions come from running algo tagging on the <code>vet_pet_history</code>, <code>vet_reminder</code> and <code>vet_invoice</code> tables.
 Users should be able to accept or reject these suggestions - accepting will go to the &quot;Add Medication&quot; page with the
-fields pre-populated by this API, and then a new medication will be added to the <code>pet_medication</code> table.</p>
+fields pre-populated by this API, and then a new medication will be added to the <code>pet_medication</code> table.
+Medications already in the <code>pet_medication</code> table will not appear in the suggested medications queue.</p>
 
 <p>If the suggestion is rejected, then the medication will not appear in the queue again unless there is more vet data
 at a later date which suggests the same medication.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET /user/v2/pets/:petid/medications/suggested</code></p>
+<p><code>GET /user/v2/pets/:petid/medication/suggested</code></p>
 <h2 id='reject-suggested-pet-medication'>Reject suggested pet medication</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(TBD)</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Response example</p>
@@ -1163,7 +1164,7 @@ at a later date which suggests the same medication.</p>
 <p>Rejects a suggested medication from the queue. The medication will not appear in the queue again unless there is more vet data
 at a later date which suggests the same medication.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>DELETE /user/v2/pets/:petid/medications/suggested/:suggestionid</code></p>
+<p><code>DELETE /user/v2/pets/:petid/medication/suggested/:suggestionid</code></p>
 <h1 id='payments'>Payments</h1>
 <p>We use <a href="http://stripe.com/">Stripe</a> for managing payments.</p>
 <h2 id='update-payment-information'>Update payment information</h2>

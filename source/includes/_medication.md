@@ -244,19 +244,20 @@ Deletes a pet medication.
 Gets suggested medications for a pet. These suggestions come from running algo tagging on the `vet_pet_history`, `vet_reminder` and `vet_invoice` tables.
 Users should be able to accept or reject these suggestions - accepting will go to the "Add Medication" page with the
 fields pre-populated by this API, and then a new medication will be added to the `pet_medication` table.
+Medications already in the `pet_medication` table will not appear in the suggested medications queue.
 
 If the suggestion is rejected, then the medication will not appear in the queue again unless there is more vet data
 at a later date which suggests the same medication.
 
 ### HTTP Request
-`GET /user/v2/pets/:petid/medications/suggested`
+`GET /user/v2/pets/:petid/medication/suggested`
 
 ## Reject suggested pet medication
 
 > Response example
 
 ```json
-(TBD)
+(none)
 ```
 
 > Response example
@@ -269,4 +270,4 @@ Rejects a suggested medication from the queue. The medication will not appear in
 at a later date which suggests the same medication.
 
 ### HTTP Request
-`DELETE /user/v2/pets/:petid/medications/suggested/:suggestionid`
+`DELETE /user/v2/pets/:petid/medication/suggested/:suggestionid`
