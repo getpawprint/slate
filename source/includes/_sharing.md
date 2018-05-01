@@ -1,4 +1,4 @@
-# Activation
+# Sharing
 For inviting, onboarding and account linking.
 
 ## Share pet records
