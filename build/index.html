@@ -265,16 +265,19 @@
                     <a href="#find-available-vet-integrations-for-user" class="toc-h2 toc-link" data-title="find-available-vet-integrations-for-user">Find available vet integrations for user</a>
                   </li>
                   <li>
-                    <a href="#verify-and-link-existing-account" class="toc-h2 toc-link" data-title="verify-and-link-existing-account">Verify and link existing account</a>
+                    <a href="#link-user-with-vet_user" class="toc-h2 toc-link" data-title="link-user-with-vet_user">Link user with vet_user</a>
                   </li>
                   <li>
-                    <a href="#send-verification-link-for-new-accounts" class="toc-h2 toc-link" data-title="send-verification-link-for-new-accounts">Send verification link for new accounts</a>
+                    <a href="#send-account-linking-token" class="toc-h2 toc-link" data-title="send-account-linking-token">Send account linking token</a>
                   </li>
                   <li>
-                    <a href="#verify-token-and-link-accounts" class="toc-h2 toc-link" data-title="verify-token-and-link-accounts">Verify token and link accounts</a>
+                    <a href="#validate-and-consume-email-phone-token" class="toc-h2 toc-link" data-title="validate-and-consume-email-phone-token">Validate and consume email/phone token</a>
                   </li>
                   <li>
-                    <a href="#verify-token-and-create-account" class="toc-h2 toc-link" data-title="verify-token-and-create-account">Verify token and create account</a>
+                    <a href="#send-account-creation-token" class="toc-h2 toc-link" data-title="send-account-creation-token">Send account creation token</a>
+                  </li>
+                  <li>
+                    <a href="#create-user-account-from-vet_user-account" class="toc-h2 toc-link" data-title="create-user-account-from-vet_user-account">Create user account from vet_user account</a>
                   </li>
               </ul>
           </li>
@@ -828,25 +831,41 @@ and the vet_user&#39;s activation code is in the <code>activation_code</code> ta
 </tr>
 </tbody></table>
 <h1 id='activation-v2'>Activation V2</h1>
-<p>For inviting, onboarding and account linking.</p>
+<p>For inviting, onboarding and account linking.
+Expected scenarios:
+* User is logged in to an existing Pawprint account. The flow should be:
+  1. Call <code>/user/v2/activation/vet_integrations</code>
+  2. To link an account that has <code>verified: true</code>,  call <code>/user/v2/activation/link_vet_user</code>, and enter the pet linking flow.
+  3. To link an account that has <code>verified: false</code>, call <code>/user/v2/activation/send_link_token</code> to get a Branch link with a verification token.
+  4. Call <code>/user/v2/activation/validate</code> with the verification token
+  5. Call <code>/user/v2/activation/link_vet_user</code>.
+  6. Enter the pet linking flow.
+* User has an account in <code>vet_user</code>, but no Pawprint account. Create a Pawprint account from the vet_user account like this:
+  1. Have the user enter an email address or phone number associated with the <code>vet_user</code> account.
+    Call <code>/user/v2/activation/send_create_token</code> with the email/phone. This sends a Branch link with a verification token to that email/phone.
+  2. Call <code>/user/v2/activation/create_from_vet_account</code> with the verification token, new email and password.
+  3. Enter the pet linking flow.</p>
 <h2 id='find-available-vet-integrations-for-user'>Find available vet integrations for user</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
-  </span><span class="s2">"vet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Demo Veterinary"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"vet_banner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/banner.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vet_user_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vet_user_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vet_user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vet_user_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-1234"</span><span class="w">
-   </span><span class="p">}]</span><span class="w">
+    </span><span class="s2">"vet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Demo Veterinary"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vet_banner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/banner.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vet_user_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vet_user_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vet_user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vet_user_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-1234"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 <p>Checks for available vet integrations for a user. Looks for the user&#39;s email address and phone number in the
-<code>vet_user</code> table (that haven&#39;t been linked already, i.e. <code>vet_user.user_id</code> is null) and returns matching vet integrations.</p>
+<code>vet_user</code> table (that haven&#39;t been linked already, i.e. <code>vet_user.user_id</code> is null) and returns matching vet integrations.
+If an entry contains <code>verified: true</code> then you can directl call <code>/v2/activation/send_link_token</code> without having to verify
+the email or phone number first.</p>
 
 <p>If the same email address or phone number is used for multiple accounts within the same vet (e.g. husband/wife accounts),
 then the &quot;users&quot; array will contain multiple elements.
@@ -854,40 +873,24 @@ If the same email address or phone number is used for multiple accounts across d
 then the root-level array will contain multiple elements.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /user/v2/activation/vet_integrations</code></p>
-<h2 id='verify-and-link-existing-account'>Verify and link existing account</h2>
+<h2 id='link-user-with-vet_user'>Link user with vet_user</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"101"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"verification_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"verification_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-1234"</span><span class="w">
+    </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"linked"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span><span class="err">or</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"verification_sent"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Checks if a verified email address or phone number of the calling user matches the email address or phone number
-of the specified <code>vet_user</code>.</p>
-
-<ul>
-<li>If there is a match, the <code>vet_user</code> account is linked with the <code>user</code> account.
-<code>vet_user_id</code> should be obtained from the &quot;Find available vet integrations for user&quot; call described above.</li>
-<li>If there is no match, a verification message is sent to <code>verification_email</code> or <code>verification_phone</code>.
-At least one of those fields must be specified; if both are specified, then both an email and an SMS are sent.</li>
-</ul>
+<p><strong>For an existing user.</strong> Links a user with a vet_user, not including pets. Each user account has a list of verified email addresses and phone numbers;
+if this list does not contain the <code>vet_user.email</code> or <code>vet_user.phone</code>, HTTP 403 is returned. Emails and phones can be added to the
+list of verified emails/phones with other API calls in this section.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST /user/v2/activation/check_link</code></p>
+<p><code>POST /user/v2/activation/link_vet_user</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -899,27 +902,17 @@ At least one of those fields must be specified; if both are specified, then both
 <tr>
 <td>vet_user_id</td>
 <td>int</td>
-<td>ID from the <code>vet_user</code> table.</td>
-</tr>
-<tr>
-<td>verification_email</td>
-<td>string?</td>
-<td>If there is no match, send a verification message to this email address.</td>
-</tr>
-<tr>
-<td>verification_phone</td>
-<td>string?</td>
-<td>If there is no match, SMS a verification message to this phone number.</td>
+<td>ID from the <code>vet_user</code> table to link.</td>
 </tr>
 </tbody></table>
-<h2 id='send-verification-link-for-new-accounts'>Send verification link for new accounts</h2>
+<h2 id='send-account-linking-token'>Send account linking token</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"verification_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"verification_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-1234"</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -927,10 +920,13 @@ At least one of those fields must be specified; if both are specified, then both
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Generates a verification token on the backend, then sends a verification link to <code>verification_email</code> or <code>verification_phone</code>.
-At least one of those fields must be specified; if both are specified, then both an email and an SMS are sent.</p>
+<p><strong>For an existing user.</strong> Generates a verification token for the email address or phone number, then sends a Branch link containing that token to the
+specified email/phone. Only one of <code>&quot;email&quot;</code> or <code>&quot;phone&quot;</code> should be specified for the <code>type</code> parameter.</p>
+
+<p>The Branch link will contain <code>context: account_link</code>, <code>vet_user_id</code> and <code>verificationToken</code> in its payload. <code>context</code> can be used
+for navigation, and <code>verificationToken</code> should be saved and sent for the next call in the flow.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST /user/v2/activation/verify</code></p>
+<p><code>POST /user/v2/activation/send_link_token</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -940,18 +936,32 @@ At least one of those fields must be specified; if both are specified, then both
 </tr>
 </thead><tbody>
 <tr>
+<td>type</td>
+<td>string</td>
+<td><code>&quot;email&quot;</code> or <code>&quot;phone&quot;</code>.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>email address if <code>type</code> was <code>&quot;email&quot;</code>.</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>phone number if <code>type</code> was <code>&quot;phone&quot;</code>.</td>
+</tr>
+<tr>
 <td>vet_user_id</td>
 <td>int</td>
 <td>ID from the <code>vet_user</code> table.</td>
 </tr>
 </tbody></table>
-<h2 id='verify-token-and-link-accounts'>Verify token and link accounts</h2>
+<h2 id='validate-and-consume-email-phone-token'>Validate and consume email/phone token</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d43b6a1-2154-42de-9961-1a35396cdef8"</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d43b6a1-2154-42de-9961-1a35396cdef8"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -959,10 +969,9 @@ At least one of those fields must be specified; if both are specified, then both
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p><strong>For an existing user.</strong> Verifies a token and adds the user&#39;s email and/or phone to the list of verified emails/phones.
-Then links the user&#39;s account to the given vet_user account.</p>
+<p><strong>For an existing user.</strong> Verifies a token and adds the user&#39;s email and/or phone to the list of verified emails/phones.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>POST /user/v2/activation/verify_link</code></p>
+<p><code>POST /user/v2/activation/validate</code></p>
 <h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -972,37 +981,40 @@ Then links the user&#39;s account to the given vet_user account.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>vet_user_id</td>
-<td>int</td>
-<td>ID from the <code>vet_user</code> table.</td>
-</tr>
-<tr>
 <td>token</td>
 <td>string</td>
-<td>Token from verification link.</td>
+<td>Verification token from the Branch link (emailed or SMSed by an earlier call in the flow).</td>
 </tr>
 </tbody></table>
-<h2 id='verify-token-and-create-account'>Verify token and create account</h2>
+<h2 id='send-account-creation-token'>Send account creation token</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d43b6a1-2154-42de-9961-1a35396cdef8"</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTE5ODUsImlhdCI6MTUyNDg2OTQ1M30.ryzei351HyZrdksi9aa51rtkDH-s2sALaouuhsZug-A"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"expires"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-15T00:00:00"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p><strong>For creating a user account from a vet_user account.</strong> Verifies a token and adds the user&#39;s email and/or phone to the list of verified emails/phones.
-Then creates a user account from the vet_user account. Returns an auth token for the newly created user account.</p>
+<p><strong>For creating new users.</strong> Finds the <code>vet_user</code> associated with the given email/phone and generates a verification token.
+A Branch link is sent to the email/phone. The Branch link will contain
+<code>context: sign_up</code>, <code>verificationToken</code>, <code>first_name</code>, <code>last_name</code>, <code>email</code>, <code>phone</code>, <code>vet_name</code> and <code>vet_banner</code>
+in its payload.
+<code>context</code> can be used for navigation, and <code>verificationToken</code> should be saved and sent for the next call in the flow.
+The rest of the Branch link payload is for pre-populating fields in user account creation.</p>
+
+<aside class="notice">
+If multiple `vet_users` have the same email address or phone number, HTTP 500 is returned along with a message to contact support@getpawprint.com
+This case is currently undefined.
+
+This is a public API and does not require authentication.
+</aside>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>POST /user/v2/activation/verify_create</code></p>
+<p><code>POST /user/v2/activation/send_create_token</code></p>
 <h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -1012,14 +1024,69 @@ Then creates a user account from the vet_user account. Returns an auth token for
 </tr>
 </thead><tbody>
 <tr>
-<td>vet_user_id</td>
-<td>int</td>
-<td>ID from the <code>vet_user</code> table.</td>
+<td>type</td>
+<td>string</td>
+<td><code>&quot;email&quot;</code> or <code>&quot;phone&quot;</code>.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>email address if <code>type</code> was <code>&quot;email&quot;</code>.</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>phone number if <code>type</code> was <code>&quot;phone&quot;</code>.</td>
+</tr>
+</tbody></table>
+<h2 id='create-user-account-from-vet_user-account'>Create user account from vet_user account</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6d43b6a1-2154-42de-9961-1a35396cdef8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"passw3rd"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"authToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auth_token_here"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1009</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>For creating new users.</strong> Checks the given <code>token</code> against the <code>vet_user.verification_token</code> column. If there is a match,
+a new user account is created and the token is consumed. An auth token is returned so the user can immediately start using the app.</p>
+
+<aside class="notice">
+This is a public API and does not require authentication.
+</aside>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST /user/v2/activation/create_from_vet_account</code></p>
+<h3 id='post-parameters-5'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Email address to be used as the login email.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>New password. This is stored in salted and hashed form on the server.</td>
 </tr>
 <tr>
 <td>token</td>
 <td>string</td>
-<td>Token from verification link.</td>
+<td>Verification token included with the Branch link sent from a previous call in the flow.</td>
 </tr>
 </tbody></table>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
@@ -2362,7 +2429,7 @@ total cost comes out to $10 * 2 vets + $10 * 1 additional pet = $30.</p>
       </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">],</span><span class="w">
       </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"May be under my husband's name (Russell)"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
     </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/sig.png"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"checkout_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkout note to Pawprint"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"promocode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mars"</span><span class="w">

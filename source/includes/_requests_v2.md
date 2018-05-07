@@ -348,7 +348,7 @@ promocode | string | If specified, attempts to apply the promo code to the order
       "pets": [ 1, 10 ],
       "note": "May be under my husband's name (Russell)"
     }
-  }
+  },
 	"signature": "https://s3.aws.amazon.com/pawprint/sig.png",
 	"checkout_notes": "Checkout note to Pawprint",
 	"promocode": "mars"
