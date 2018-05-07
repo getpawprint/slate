@@ -1,14 +1,15 @@
 # Activation V2
 For inviting, onboarding and account linking.
 Expected scenarios:
-* User is logged in to an existing Pawprint account. The flow should be:
+
+- User is logged in to an existing Pawprint account. The flow should be:
   1. Call `/user/v2/activation/vet_integrations`
   2. To link an account that has `verified: true`,  call `/user/v2/activation/link_vet_user`, and enter the pet linking flow.
   3. To link an account that has `verified: false`, call `/user/v2/activation/send_link_token` to get a Branch link with a verification token.
   4. Call `/user/v2/activation/validate` with the verification token
   5. Call `/user/v2/activation/link_vet_user`.
   6. Enter the pet linking flow.
-* User has an account in `vet_user`, but no Pawprint account. Create a Pawprint account from the vet_user account like this:
+- User has an account in `vet_user`, but no Pawprint account. Create a Pawprint account from the vet_user account like this:
   1. Have the user enter an email address or phone number associated with the `vet_user` account.
     Call `/user/v2/activation/send_create_token` with the email/phone. This sends a Branch link with a verification token to that email/phone.
   2. Call `/user/v2/activation/create_from_vet_account` with the verification token, new email and password.

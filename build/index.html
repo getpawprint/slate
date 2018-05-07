@@ -832,19 +832,28 @@ and the vet_user&#39;s activation code is in the <code>activation_code</code> ta
 </tbody></table>
 <h1 id='activation-v2'>Activation V2</h1>
 <p>For inviting, onboarding and account linking.
-Expected scenarios:
-* User is logged in to an existing Pawprint account. The flow should be:
-  1. Call <code>/user/v2/activation/vet_integrations</code>
-  2. To link an account that has <code>verified: true</code>,  call <code>/user/v2/activation/link_vet_user</code>, and enter the pet linking flow.
-  3. To link an account that has <code>verified: false</code>, call <code>/user/v2/activation/send_link_token</code> to get a Branch link with a verification token.
-  4. Call <code>/user/v2/activation/validate</code> with the verification token
-  5. Call <code>/user/v2/activation/link_vet_user</code>.
-  6. Enter the pet linking flow.
-* User has an account in <code>vet_user</code>, but no Pawprint account. Create a Pawprint account from the vet_user account like this:
-  1. Have the user enter an email address or phone number associated with the <code>vet_user</code> account.
-    Call <code>/user/v2/activation/send_create_token</code> with the email/phone. This sends a Branch link with a verification token to that email/phone.
-  2. Call <code>/user/v2/activation/create_from_vet_account</code> with the verification token, new email and password.
-  3. Enter the pet linking flow.</p>
+Expected scenarios:</p>
+
+<ul>
+<li>User is logged in to an existing Pawprint account. The flow should be:
+
+<ol>
+<li>Call <code>/user/v2/activation/vet_integrations</code></li>
+<li>To link an account that has <code>verified: true</code>,  call <code>/user/v2/activation/link_vet_user</code>, and enter the pet linking flow.</li>
+<li>To link an account that has <code>verified: false</code>, call <code>/user/v2/activation/send_link_token</code> to get a Branch link with a verification token.</li>
+<li>Call <code>/user/v2/activation/validate</code> with the verification token</li>
+<li>Call <code>/user/v2/activation/link_vet_user</code>.</li>
+<li>Enter the pet linking flow.</li>
+</ol></li>
+<li>User has an account in <code>vet_user</code>, but no Pawprint account. Create a Pawprint account from the vet_user account like this:
+
+<ol>
+<li>Have the user enter an email address or phone number associated with the <code>vet_user</code> account.
+Call <code>/user/v2/activation/send_create_token</code> with the email/phone. This sends a Branch link with a verification token to that email/phone.</li>
+<li>Call <code>/user/v2/activation/create_from_vet_account</code> with the verification token, new email and password.</li>
+<li>Enter the pet linking flow.</li>
+</ol></li>
+</ul>
 <h2 id='find-available-vet-integrations-for-user'>Find available vet integrations for user</h2>
 <blockquote>
 <p>Response example</p>
