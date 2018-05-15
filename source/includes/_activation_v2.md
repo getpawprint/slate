@@ -11,9 +11,10 @@ Expected scenarios:
   6. Enter the pet linking flow.
 - User has an account in `vet_user`, but no Pawprint account. Create a Pawprint account from the vet_user account like this:
   1. Have the user enter an email address or phone number associated with the `vet_user` account.
-    Call `/user/v2/activation/send_create_token` with the email/phone. This sends a Branch link with a verification token to that email/phone.
-  2. Call `/user/v2/activation/create_from_vet_account` with the verification token, new email and password.
-  3. Enter the pet linking flow.
+  2. Call `/activation/vet_integrations` with an email address or phone number, which returns `vet_user_ids`.
+  3. Call `/user/v2/activation/send_create_token` with a `vet_user_id`. This sends a Branch link with a verification token to the email/phone associated with the `vet_user` account.
+  4. Call `/user/v2/activation/create_from_vet_account` with the verification token, new email and password.
+  5. Enter the pet linking flow.
 
 ## Find available vet integrations for user
 
@@ -24,11 +25,11 @@ Expected scenarios:
 	"vet_name": "Pawprint Demo Veterinary",
 	"vet_banner": "https://s3.aws.amazon.com/pawprint/banner.png",
 	"users": [{
-		"vet_user_id": "101",
-		"vet_user_first_name": "John",
-		"vet_user_last_name": "Smith",
-		"vet_user_email": "demo@getpawprint.com",
-		"vet_user_phone": "555-555-1234",
+		"vet_user_id": 101,
+		"first_name": "John",
+		"last_name": "Smith",
+		"email": "demo@getpawprint.com",
+		"phone": "555-555-1234",
 		"verified": true
 	 }]
 }]
@@ -133,13 +134,52 @@ Parameter | Type | Description
 --------- | ---- | -----------
 token | string | Verification token from the Branch link (emailed or SMSed by an earlier call in the flow).
 
+## Find vet integrations for email/phone
+
+> Response example
+
+```json
+[{
+	"vet_name": "Pawprint Demo Veterinary",
+	"vet_banner": "https://s3.aws.amazon.com/pawprint/banner.png",
+	"users": [{
+		"vet_user_id": 101,
+		"first_name": "John",
+		"already_linked": false
+	 }]
+}]
+```
+
+**For creating new users.** Checks for `vet_users` for the given email address or phone number.
+Only `email` or `phone` should be specified as a `GET` parameter; if both are specified, only `email` will be taken.
+The response includes `vet_user` accounts that are already linked; these are ineligible for account creation.
+
+<aside class="notice">
+This is a public API and does not require authentication.
+Only the `vet_user`'s `vet_user_id`, first name and account linking status are returned.
+</aside>
+
+If the same email address or phone number is used for multiple accounts within the same vet (e.g. husband/wife accounts),
+then the "users" array will contain multiple elements.
+If the same email address or phone number is used for multiple accounts across different vets, (e.g. one pet, multiple vets)
+then the root-level array will contain multiple elements.
+
+### HTTP Request
+`GET /activation/vet_integrations`
+
+### GET parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+email | string? | Email address
+phone | string? | Phone number
+
 ## Send account creation token
 > Request example
 
 ```json
 {
-	"type": "email",
-	"email": "demo@getpawprint.com"
+  "vet_user_id": 101,
+	"type": "email"
 }
 ```
 
@@ -149,17 +189,18 @@ token | string | Verification token from the Branch link (emailed or SMSed by an
 (none)
 ```
 
-**For creating new users.** Finds the `vet_user` associated with the given email/phone and generates a verification token.
+**For creating new users.** Generates a verification token for the given `vet_user`.
 A Branch link is sent to the email/phone. The Branch link will contain
 `context: sign_up`, `verificationToken`, `first_name`, `last_name`, `email`, `phone`, `vet_name` and `vet_banner`
 in its payload.
 `context` can be used for navigation, and `verificationToken` should be saved and sent for the next call in the flow.
 The rest of the Branch link payload is for pre-populating fields in user account creation.
 
-<aside class="notice">
-If multiple `vet_users` have the same email address or phone number, HTTP 500 is returned along with a message to contact support@getpawprint.com
-This case is currently undefined.
+If the `vet_user` is already linked, an HTTP 400 error will be returned.
+If `type:email` is specified and the `vet_user` does not have an email address, an HTTP 400 error will be returned.
+Same behavior for `type: phone`.
 
+<aside class="notice">
 This is a public API and does not require authentication.
 </aside>
 
@@ -169,9 +210,8 @@ This is a public API and does not require authentication.
 ### POST parameters
 Parameter | Type | Description
 --------- | ---- | -----------
+vet_user_id| string | The `vet_user` that will receive the account creation token.
 type | string | `"email"` or `"phone"`.
-email | string | email address if `type` was `"email"`.
-phone | string | phone number if `type` was `"phone"`.
 
 ## Create user account from vet_user account
 > Request example
