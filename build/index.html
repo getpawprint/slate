@@ -347,6 +347,9 @@
                   <li>
                     <a href="#add-new-place" class="toc-h2 toc-link" data-title="add-new-place">Add new place</a>
                   </li>
+                  <li>
+                    <a href="#places-search" class="toc-h2 toc-link" data-title="places-search">Places search</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1645,7 +1648,7 @@ an existing account.
 tables, such as <code>request</code>, <code>business_pet</code>, and <code>event</code>.</p>
 <h2 id='add-new-place'>Add new place</h2>
 <blockquote>
-<p>Request examples</p>
+<p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Super Test Vet"</span><span class="p">,</span><span class="w">
@@ -1733,6 +1736,74 @@ and no new place is added.</p>
 <td>type</td>
 <td>String</td>
 <td>&quot;vet&quot; if it&#39;s a vet (so far the only values in the database are &quot;vet&quot;, blank or &quot;unknown&quot;</td>
+</tr>
+</tbody></table>
+<h2 id='places-search'>Places search</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">609</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ08cxkN1oYogRJfpZbg5DPHM"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"googlePlaceID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ08cxkN1oYogRJfpZbg5DPHM"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Trusty Vet - Affordable Pet Care - Research Park"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"practiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Trusty Vet - Affordable Pet Care - Research Park"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6945 Highway 72 West, Huntsville, AL 35806undefined"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2564898387"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2564898353"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.trustyvet.com/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unformattedPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2564898387"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"twilio_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2564898387"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"canFormatPhone"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11748</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ_____8-9uokRdyo3YP5dbAA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"googlePlaceID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ_____8-9uokRdyo3YP5dbAA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Affordable Veterinary Services of Virginia"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"practiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Affordable Veterinary Services of Virginia"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5457 Indian River Rd, Virginia Beach, VA 23464"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9077453219"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://affordableveterinaryservices.com/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unformattedPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"907-745-3219"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"twilio_phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This vet is walk-in only."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJv7y3eRQ-ZIgRIa8WUeIUzwo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJv7y3eRQ-ZIgRIa8WUeIUzwo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"googlePlaceID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJv7y3eRQ-ZIgRIa8WUeIUzwo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Affordable Veterinary Care"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"practiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Affordable Veterinary Care"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11314 Lebanon Rd, Mt Juliet, TN 37122"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16157888008"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.veterinarianmtjuliet.com/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unformattedPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+1 615-788-8008"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"canFormatPhone"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Searches the <code>place</code> table, Google Vets, and Google Businesses. Results are unified
+into a single format, then certains fields like phone and address are formatted, and finally,
+the results are de-duped by ID, address, phone number, and name,
+with a preference for keeping items from the <code>place</code> table over Google results.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /user/places</code></p>
+<h3 id='get-parameters'>GET parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>String</td>
+<td>Search term</td>
 </tr>
 </tbody></table>
 <h1 id='reminders-v2'>Reminders v2</h1>
