@@ -380,3 +380,18 @@ vets\[place_id\].note | string | Note to this particular vet.
 signature | string |  URL to the image file containing the client's signature.
 checkout_notes | string | Checkout note to Pawprint.
 promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+
+## Is pet linked
+> Response example
+
+```json
+{
+  "isPetLinked": true
+}
+```
+
+Checks if a pet is linked to a Pawprint vet associated with the given place.
+Also handles cases where the Pawprint vet has multiple places/locations.
+
+### HTTP Request
+`GET /user/pets/is_pet_linked/:petid/:placeid`

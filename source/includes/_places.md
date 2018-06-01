@@ -123,3 +123,62 @@ with a preference for keeping items from the `place` table over Google results.
 Parameter | Type | Description
 --------- | ---- | -----------
 0 | String | Search term
+
+## Create appointment request at a place
+> Request example
+
+```json
+{
+	"email": "echoi@getpawprint.com",
+	"phone": "425-555-1234",
+	"pet_name": "Pumpkin",
+	"pet_species": "Cat",
+	"pet_breed": "Domestic shorthair",
+	"appointment_type_id": 2,
+	"time": ["2017-12-15T08:00:00-06:00"],
+	"notes": "Testing",
+	"user_name": "Eric Choi"
+}
+```
+
+> Response example
+
+```json
+{
+
+}
+```
+
+Creates an appointment request to the given place.
+
+If the place is linked to an onboarded Pawprint vet, an email is automatically sent to the vet
+with the appointment request, and the automated email will show up in the request's contact log.
+An onboarded Pawprint vet can be associated with multiple places; the join table is `pawprint_vet_place`.
+
+If the place is not linked to an onboarded Pawprint vet, the appointment request will show as a new
+request on the admin dashboard, and one of the admins will handle it.
+
+<aside class="notice">
+The requested time(s) are displayed in the user's time zone; however, the accepted time will appear in the admin's time zone.
+For example, the requested times will appear as US/Eastern, but if the admin page is viewed in San Francisco,
+the accepted time will appear as US/Pacific.
+</aside>
+
+### HTTP Request
+`POST /place/:placeid/appointment`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+user_name | String | The user's name
+user_id | int? | The user's ID, if the user is logged in
+email | String? | The user's email
+phone | String? | The place's phone number
+pet_id | int? | An ID from the `pet` table, if the user is logged in
+pet_name | String | The pet's name
+pet_species | String? | The pet's species, e.g. "cat", "dog"
+pet_breed | String? | The pet's breed, e.g. "Pit bull mix"
+appointment_type_id | int | Appointment type ID from the `appointment_type` table
+time | json | JSON list of requested times
+notes | String? | Note to vet
+

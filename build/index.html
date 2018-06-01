@@ -350,6 +350,9 @@
                   <li>
                     <a href="#places-search" class="toc-h2 toc-link" data-title="places-search">Places search</a>
                   </li>
+                  <li>
+                    <a href="#create-appointment-request-at-a-place" class="toc-h2 toc-link" data-title="create-appointment-request-at-a-place">Create appointment request at a place</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -415,6 +418,9 @@
                   </li>
                   <li>
                     <a href="#full-order-new-pricing-execute" class="toc-h2 toc-link" data-title="full-order-new-pricing-execute">Full order (new pricing) - execute</a>
+                  </li>
+                  <li>
+                    <a href="#is-pet-linked" class="toc-h2 toc-link" data-title="is-pet-linked">Is pet linked</a>
                   </li>
               </ul>
           </li>
@@ -1806,6 +1812,109 @@ with a preference for keeping items from the <code>place</code> table over Googl
 <td>Search term</td>
 </tr>
 </tbody></table>
+<h2 id='create-appointment-request-at-a-place'>Create appointment request at a place</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echoi@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"425-555-1234"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic shorthair"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"appointment_type_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"2017-12-15T08:00:00-06:00"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eric Choi"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Creates an appointment request to the given place.</p>
+
+<p>If the place is linked to an onboarded Pawprint vet, an email is automatically sent to the vet
+with the appointment request, and the automated email will show up in the request&#39;s contact log.
+An onboarded Pawprint vet can be associated with multiple places; the join table is <code>pawprint_vet_place</code>.</p>
+
+<p>If the place is not linked to an onboarded Pawprint vet, the appointment request will show as a new
+request on the admin dashboard, and one of the admins will handle it.</p>
+
+<aside class="notice">
+The requested time(s) are displayed in the user's time zone; however, the accepted time will appear in the admin's time zone.
+For example, the requested times will appear as US/Eastern, but if the admin page is viewed in San Francisco,
+the accepted time will appear as US/Pacific.
+</aside>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /place/:placeid/appointment</code></p>
+<h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_name</td>
+<td>String</td>
+<td>The user&#39;s name</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>int?</td>
+<td>The user&#39;s ID, if the user is logged in</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String?</td>
+<td>The user&#39;s email</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String?</td>
+<td>The place&#39;s phone number</td>
+</tr>
+<tr>
+<td>pet_id</td>
+<td>int?</td>
+<td>An ID from the <code>pet</code> table, if the user is logged in</td>
+</tr>
+<tr>
+<td>pet_name</td>
+<td>String</td>
+<td>The pet&#39;s name</td>
+</tr>
+<tr>
+<td>pet_species</td>
+<td>String?</td>
+<td>The pet&#39;s species, e.g. &quot;cat&quot;, &quot;dog&quot;</td>
+</tr>
+<tr>
+<td>pet_breed</td>
+<td>String?</td>
+<td>The pet&#39;s breed, e.g. &quot;Pit bull mix&quot;</td>
+</tr>
+<tr>
+<td>appointment_type_id</td>
+<td>int</td>
+<td>Appointment type ID from the <code>appointment_type</code> table</td>
+</tr>
+<tr>
+<td>time</td>
+<td>json</td>
+<td>JSON list of requested times</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>String?</td>
+<td>Note to vet</td>
+</tr>
+</tbody></table>
 <h1 id='reminders-v2'>Reminders v2</h1>
 <p>V2 reminders. These can be one-shot reminders, or be scheduled to repeat at specific intervals
 and with specified start/end dates. A user can have multiple reminders attached to it.
@@ -2615,6 +2724,18 @@ Returns array of the newly created request IDs.</p>
 <td>If specified, attempts to apply the promo code to the order. If the promo code didn&#39;t work, HTTP 400 is returned along with an error message.</td>
 </tr>
 </tbody></table>
+<h2 id='is-pet-linked'>Is pet linked</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"isPetLinked"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Checks if a pet is linked to a Pawprint vet associated with the given place.
+Also handles cases where the Pawprint vet has multiple places/locations.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET /user/pets/is_pet_linked/:petid/:placeid</code></p>
 <h1 id='sharing'>Sharing</h1>
 <p>For inviting, onboarding and account linking.</p>
 <h2 id='share-pet-records'>Share pet records</h2>
