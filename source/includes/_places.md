@@ -144,9 +144,7 @@ Parameter | Type | Description
 > Response example
 
 ```json
-{
-
-}
+(none)
 ```
 
 Creates an appointment request to the given place.

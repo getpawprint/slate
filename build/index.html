@@ -233,9 +233,6 @@
             <a href="#activation" class="toc-h1 toc-link" data-title="activation">Activation</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#check-pet-invite-code" class="toc-h2 toc-link" data-title="check-pet-invite-code">Check pet invite code</a>
-                  </li>
-                  <li>
                     <a href="#check-vet-activation-code" class="toc-h2 toc-link" data-title="check-vet-activation-code">Check vet activation code</a>
                   </li>
                   <li>
@@ -430,6 +427,15 @@
                   <li>
                     <a href="#share-pet-records" class="toc-h2 toc-link" data-title="share-pet-records">Share pet records</a>
                   </li>
+                  <li>
+                    <a href="#check-pet-invite-code" class="toc-h2 toc-link" data-title="check-pet-invite-code">Check pet invite code</a>
+                  </li>
+                  <li>
+                    <a href="#create-pet-invite-code" class="toc-h2 toc-link" data-title="create-pet-invite-code">Create pet invite code</a>
+                  </li>
+                  <li>
+                    <a href="#use-pet-invite-code" class="toc-h2 toc-link" data-title="use-pet-invite-code">Use pet invite code</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -529,17 +535,6 @@
 </tbody></table>
 <h1 id='activation'>Activation</h1>
 <p>For inviting, onboarding and account linking.</p>
-<h2 id='check-pet-invite-code'>Check pet invite code</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="err">pet_id</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Checks if an invite code exists. This is when you share a pet. Returns the pet ID associated with the invite code.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /invite_code/:inviteCode</code></p>
 <h2 id='check-vet-activation-code'>Check vet activation code</h2>
 <blockquote>
 <p>Response example</p>
@@ -556,7 +551,7 @@
 </span></code></pre>
 <p>Checks if a vet activation code exists. This is for onboarding or linking a vet account. Some vet information
 and user information is returned, which can be used to pre-populate fields for account creation.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /user/activation/:code</code></p>
 <h2 id='sign-up-a-user'>Sign up a user</h2>
 <blockquote>
@@ -587,8 +582,8 @@ and user information is returned, which can be used to pre-populate fields for a
 <p>Signs up a user, according to one of the following flows:</p>
 <h4 id='facebook'>Facebook</h4>
 <p>If a facebook <code>access_token</code> and <code>facebookid</code> are provided, then the user information is obtained via facebook.</p>
-<h4 id='pet-invite-code'>Pet invite code</h4>
-<p>If an <code>activation_code</code> is provided, and the code exists in the <code>activation_code</code> table where <code>activation_code.user_id</code> is not null,
+<h4 id='biz-invite-code'>Biz invite code</h4>
+<p>Deprecated scenario. If an <code>activation_code</code> is provided, and the code exists in the <code>activation_code</code> table where <code>activation_code.user_id</code> is not null,
 then there should already be a user account created with <code>type = 4</code> (&quot;ghost user&quot;). The &quot;ghost user&quot; is activated by setting <code>type = 1</code> (regular user)
 and setting the password.</p>
 <h4 id='vet-activation-code'>Vet activation code</h4>
@@ -601,7 +596,7 @@ The activation code will be deleted after the user has been created.
 </aside>
 <h4 id='regular'>Regular</h4>
 <p>If no Facebook information or access code was provided, then a new user account is created.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST /user/signup</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
@@ -684,7 +679,7 @@ The activation code will be deleted after the user has been created.
 </span></code></pre>
 <p>Gets the vet_pets associated with the user. The user must be linked with a vet integration account in order
 for this to work.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /user/vet_pets</code></p>
 <h2 id='sync-existing-pet-with-vet_pet'>Sync existing pet with vet_pet</h2>
 <blockquote>
@@ -702,7 +697,7 @@ for this to work.</p>
 </span></code></pre>
 <p>Updates an entry in the <code>pet</code> table with data from an existing <code>vet_pet</code>. If any field(s) in <code>pet</code> are blank, they are filled in
 with the corresponding field(s) from <code>vet_pet</code>; existing <code>pet</code> data is not overwritten.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /user/sync_pet</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
@@ -737,7 +732,7 @@ with the corresponding field(s) from <code>vet_pet</code>; existing <code>pet</c
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Creates a new entry in the <code>pet</code> table from an existing <code>vet_pet</code>.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /user/create_pet</code></p>
 <h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
@@ -772,7 +767,7 @@ with the corresponding field(s) from <code>vet_pet</code>; existing <code>pet</c
 and either the <code>email</code> or <code>phone</code> field is required depending on the value for <code>type</code>.
 When this endpoint is called, a token is generated in the <code>vet_user.verification_token</code> field, and the verification
 link (a Branch URL) contains this token.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST /user/send_vet_user_verification</code></p>
 <h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>
@@ -816,7 +811,7 @@ link (a Branch URL) contains this token.</p>
 <p>Checks a verification token against the vet_user table and sets its status to verified. Links vet_user account
 with an existing user account. The verification token is generated by the <code>send_vet_user_verification</code> call,
 and the vet_user&#39;s activation code is in the <code>activation_code</code> table.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /user/verify_vet_user</code></p>
 <h3 id='post-parameters-5'>POST parameters</h3>
 <table><thead>
@@ -1831,9 +1826,7 @@ with a preference for keeping items from the <code>place</code> table over Googl
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Creates an appointment request to the given place.</p>
 
@@ -2754,7 +2747,7 @@ Also handles cases where the Pawprint vet has multiple places/locations.</p>
 <p>Shares pet records via email. The email contains the pet&#39;s name, vaccinations, and links to PDFs were both
 user-uploaded and admin-uploaded (from a records request).</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /user/pet/:petid/share</code></p>
+<p><code>POST /user/pets/:petid/share</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -2769,6 +2762,66 @@ user-uploaded and admin-uploaded (from a records request).</p>
 <td>Comma-separated list of recipient emails</td>
 </tr>
 </tbody></table>
+<h2 id='check-pet-invite-code'>Check pet invite code</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">pet_id</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Checks if an invite code exists. This is when you share a pet. Returns the pet ID associated with the invite code.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /invite_code/:inviteCode</code></p>
+<h2 id='create-pet-invite-code'>Create pet invite code</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-01T12:00:00Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Creates a pet invite code for the purpose of sharing pet ownership with another user.
+Access levels are 1 for full ownership and 2 for limited ownership; however, access levels are deprecated.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /user/pets/:petid/invite_code</code></p>
+<h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>access</td>
+<td>int</td>
+<td>Deprecated. 1 for full ownership; 2 for limited ownership.</td>
+</tr>
+</tbody></table>
+<h2 id='use-pet-invite-code'>Use pet invite code</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">pet_id</span><span class="p">:</span><span class="w"> </span><span class="mi">53540</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Uses a pet invite code. Note that this is a GET and not a POST; this is an old API.
+When the pet invite code is used, a relationship is created in the <code>user_pet</code> table between the pet
+and the calling user, and all pet reminders are copied to the user&#39;s reminders in <code>user_reminder_v2</code> as well.
+The proper design would specify this as a POST and v2 may change the verb in the future.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /user/invite_code/:code</code></p>
 
       </div>
       <div class="dark-box">

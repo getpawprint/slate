@@ -1,21 +1,6 @@
 # Activation
 For inviting, onboarding and account linking.
 
-## Check pet invite code
-
-> Response example
-
-```json
-{
-  pet_id: 101
-}
-```
-
-Checks if an invite code exists. This is when you share a pet. Returns the pet ID associated with the invite code.
-
-### HTTP Request
-`GET /invite_code/:inviteCode`
-
 ## Check vet activation code
 
 > Response example
@@ -71,8 +56,8 @@ Signs up a user, according to one of the following flows:
 #### Facebook
 If a facebook `access_token` and `facebookid` are provided, then the user information is obtained via facebook.
 
-#### Pet invite code
-If an `activation_code` is provided, and the code exists in the `activation_code` table where `activation_code.user_id` is not null,
+#### Biz invite code
+Deprecated scenario. If an `activation_code` is provided, and the code exists in the `activation_code` table where `activation_code.user_id` is not null,
 then there should already be a user account created with `type = 4` ("ghost user"). The "ghost user" is activated by setting `type = 1` (regular user)
 and setting the password.
 
