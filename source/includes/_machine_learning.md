@@ -150,3 +150,61 @@ Must be logged in as an admin to call this. That is, the auth token must be for 
 
 ### HTTP Request
 `POST /admin/ml/save`
+
+## Get a page of reminders
+
+> Response example
+
+```json
+[
+    {
+        "text": "Exam- Wellness",
+        "count": 127333,
+    },
+    {
+        "text": "Vaccination-Rabies",
+        "count": 99835,
+    }
+]
+```
+
+Gets a page of text from the vet_reminder table that hasn't had feedback yet, ordered by frequency (most frequently seen strings will be at the top)
+then by alphabetical order.
+
+### HTTP Request
+`GET /admin/ml/reminders`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+skip | int | Page offset
+top | int | Page size
+
+## Get a page of invoices
+
+> Response example
+
+```json
+[
+    {
+        "text": "Exam- Wellness",
+        "count": 127333,
+    },
+    {
+        "text": "Vaccination-Rabies",
+        "count": 99835,
+    }
+]
+```
+
+Gets a page of text from the vet_invoice table that hasn't had feedback yet, ordered by frequency (most frequently seen strings will be at the top)
+then by alphabetical order.
+
+### HTTP Request
+`GET /admin/ml/invoices`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+skip | int | Page offset
+top | int | Page size

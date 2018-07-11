@@ -302,6 +302,12 @@
                   <li>
                     <a href="#save-state" class="toc-h2 toc-link" data-title="save-state">Save state</a>
                   </li>
+                  <li>
+                    <a href="#get-a-page-of-reminders" class="toc-h2 toc-link" data-title="get-a-page-of-reminders">Get a page of reminders</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-page-of-invoices" class="toc-h2 toc-link" data-title="get-a-page-of-invoices">Get a page of invoices</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -435,6 +441,26 @@
                   </li>
                   <li>
                     <a href="#use-pet-invite-code" class="toc-h2 toc-link" data-title="use-pet-invite-code">Use pet invite code</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#web-requests" class="toc-h1 toc-link" data-title="web-requests">Web requests</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-or-update-user" class="toc-h2 toc-link" data-title="create-or-update-user">Create or update user</a>
+                  </li>
+                  <li>
+                    <a href="#create-or-update-pet" class="toc-h2 toc-link" data-title="create-or-update-pet">Create or update pet</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-new-request" class="toc-h2 toc-link" data-title="create-a-new-request">Create a new request</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-request" class="toc-h2 toc-link" data-title="update-a-request">Update a request</a>
+                  </li>
+                  <li>
+                    <a href="#get-existing-request" class="toc-h2 toc-link" data-title="get-existing-request">Get existing request</a>
                   </li>
               </ul>
           </li>
@@ -1287,6 +1313,82 @@ Must be logged in as an admin to call this. That is, the auth token must be for 
 </aside>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST /admin/ml/save</code></p>
+<h2 id='get-a-page-of-reminders'>Get a page of reminders</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exam- Wellness"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">127333</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vaccination-Rabies"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">99835</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets a page of text from the vet_reminder table that hasn&#39;t had feedback yet, ordered by frequency (most frequently seen strings will be at the top)
+then by alphabetical order.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET /admin/ml/reminders</code></p>
+<h3 id='query-string-parameters-2'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>skip</td>
+<td>int</td>
+<td>Page offset</td>
+</tr>
+<tr>
+<td>top</td>
+<td>int</td>
+<td>Page size</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-page-of-invoices'>Get a page of invoices</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exam- Wellness"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">127333</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vaccination-Rabies"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">99835</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets a page of text from the vet_invoice table that hasn&#39;t had feedback yet, ordered by frequency (most frequently seen strings will be at the top)
+then by alphabetical order.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /admin/ml/invoices</code></p>
+<h3 id='query-string-parameters-3'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>skip</td>
+<td>int</td>
+<td>Page offset</td>
+</tr>
+<tr>
+<td>top</td>
+<td>int</td>
+<td>Page size</td>
+</tr>
+</tbody></table>
 <h1 id='medications'>Medications</h1>
 <p>Medications - both built-in and user-added medications.</p>
 <h2 id='get-all-built-in-medications'>Get all built-in medications</h2>
@@ -2822,6 +2924,264 @@ and the calling user, and all pet reminders are copied to the user&#39;s reminde
 The proper design would specify this as a POST and v2 may change the verb in the future.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /user/invite_code/:code</code></p>
+<h1 id='web-requests'>Web requests</h1>
+<p>Save and retrieve progress for creating a web request</p>
+<h2 id='create-or-update-user'>Create or update user</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cecil"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harvey"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255556174"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"street_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"street_address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apt 101"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bellevue"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the web_user ID of the web user, based on email match.
+The web_user is either created or updated; which operation is not transparent to the caller.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /web_request/user</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>string?</td>
+<td>User&#39;s first name.</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>string?</td>
+<td>User&#39;s last name.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Required. User&#39;s email address.</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string?</td>
+<td>User&#39;s phone number.</td>
+</tr>
+<tr>
+<td>street_address</td>
+<td>string?</td>
+<td>Line 1 of the user&#39;s street address.</td>
+</tr>
+<tr>
+<td>street_address2</td>
+<td>string?</td>
+<td>Line 2 of the user&#39;s street address.</td>
+</tr>
+<tr>
+<td>city</td>
+<td>string?</td>
+<td>User&#39;s city.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string?</td>
+<td>User&#39;s state.</td>
+</tr>
+<tr>
+<td>country</td>
+<td>string?</td>
+<td>User&#39;s country.</td>
+</tr>
+</tbody></table>
+<h2 id='create-or-update-pet'>Create or update pet</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gizmo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yorkshire Terrier"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the web_pet ID of the pet, based on name match.
+The web_pet is either created or updated; which operation is not transparent to the caller.
+The pet&#39;s owner must be specified in the URL parameter :webuserid.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /web_request/user/:webuserid/pets</code></p>
+<h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Required. Pet&#39;s name.</td>
+</tr>
+<tr>
+<td>species</td>
+<td>string</td>
+<td>Required. Pet&#39;s species, e.g. &quot;Dog&quot;, &quot;Cat&quot;, &quot;Rabbit&quot;, etc.</td>
+</tr>
+<tr>
+<td>breed</td>
+<td>string?</td>
+<td>Pet&#39;s breed, e.g. &quot;Chihuahua&quot; or &quot;Domestic Short Hair&quot;</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string?</td>
+<td>&#39;M&#39; for male or &#39;F&#39; for female.</td>
+</tr>
+</tbody></table>
+<h2 id='create-a-new-request'>Create a new request</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"web_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"web_pet_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Need proof of vaccination"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abZj4sT839fsbCdiut8qwV"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Creates a partial or full records request (without submitting). Submitting the request is a separate API call.
+The request is assigned a unique random string, which is returned to the caller and can be used to
+retrieve or update the session.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /web_request</code></p>
+<h3 id='post-parameters-3'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>web_user_id</td>
+<td>int</td>
+<td>Required. User ID created by the <code>/web_request/user</code> call.</td>
+</tr>
+<tr>
+<td>web_pet_ids</td>
+<td>array of ints</td>
+<td>Optional. List of web_pet IDs.</td>
+</tr>
+<tr>
+<td>place_id</td>
+<td>int</td>
+<td>Optional. ID from the <code>place</code> table.</td>
+</tr>
+<tr>
+<td>checkout_type</td>
+<td>int</td>
+<td>Optional. ID from the <code>product</code> table.</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>string</td>
+<td>Optional. User&#39;s reason for the records request.</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-request'>Update a request</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"web_pet_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Need proof of vaccination"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Updates a partial or full records request (without submitting). Submitting the request is a separate API call.
+Requests are assigned a unique random string which is used as the request identifier.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>PUT /web_request/:webrequestid</code></p>
+<h3 id='put-parameters'>PUT parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>web_pet_ids</td>
+<td>array of ints</td>
+<td>Optional. List of web_pet IDs. The previously stored list is completely overwritten by this list.</td>
+</tr>
+<tr>
+<td>place_id</td>
+<td>int</td>
+<td>Optional. ID from the <code>place</code> table.</td>
+</tr>
+<tr>
+<td>checkout_type</td>
+<td>int</td>
+<td>Optional. ID from the <code>product</code> table.</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>string</td>
+<td>Optional. User&#39;s reason for the records request.</td>
+</tr>
+</tbody></table>
+<h2 id='get-existing-request'>Get existing request</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"web_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"web_pet_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Need proof of vaccination"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets an existing web request.
+Requests are assigned a unique random string which is used as the request identifier.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /web_request/:webrequestid</code></p>
 
       </div>
       <div class="dark-box">
