@@ -125,7 +125,9 @@ reason | string | Optional. User's reason for the records request.
 	"web_pet_ids": [ 2, 5 ],
 	"place_id": 1337,
 	"checkout_type": 1,
-	"reason": "Need proof of vaccination"
+	"reason": "Need proof of vaccination",
+	"consent": "https://s3.aws.amazon.com/pawprint/consent_101.pdf",
+	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf"
 }
 ```
 
@@ -144,10 +146,12 @@ Requests are assigned a unique random string which is used as the request identi
 ### PUT parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-web_pet_ids | array of ints | Optional. List of web_pet IDs. The previously stored list is completely overwritten by this list.
-place_id | int | Optional. ID from the `place` table.
-checkout_type | int | Optional. ID from the `product` table.
-reason | string | Optional. User's reason for the records request.
+web_pet_ids | array of ints? | Optional. List of web_pet IDs. The previously stored list is completely overwritten by this list.
+place_id | int? | Optional. ID from the `place` table.
+checkout_type | int? | Optional. ID from the `product` table.
+reason | string? | Optional. User's reason for the records request.
+consent | string? | Optional. Link to the consent form.
+signature | string? | Optional. Link to the user's electronic signature.
 
 ## Get existing request
 
@@ -159,7 +163,9 @@ reason | string | Optional. User's reason for the records request.
 	"web_pet_ids": [ 2, 5 ],
 	"place_id": 1337,
 	"checkout_type": 1,
-	"reason": "Need proof of vaccination"
+	"reason": "Need proof of vaccination",
+	"consent": "https://s3.aws.amazon.com/pawprint/consent_101.pdf",
+	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf"
 }
 ```
 
@@ -189,6 +195,8 @@ Submits a complete request. A request is complete if it contains:
 - One or more complete pet objects
   - If one or more pet objects are not complete, request creation will not succeed
 - A reason for the request
+- A completed consent form
+- An electronic signature
 - A place
 
 Once the request has been validated, the following actions will be performed:
