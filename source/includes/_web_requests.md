@@ -169,3 +169,40 @@ Requests are assigned a unique random string which is used as the request identi
 ### HTTP Request
 `GET /web_request/:webrequestid`
 
+## Submit a (complete) request
+> Request example
+
+```json
+{
+	"stripe_token": "tk_8STubeEqtr8i"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Submits a complete request. A request is complete if it contains:
+- A complete web_user object
+- One or more complete pet objects
+  - If one or more pet objects are not complete, request creation will not succeed
+- A reason for the request
+- A place
+
+Once the request has been validated, the following actions will be performed:
+1. Create a "ghost" `user` from the `web_user` in the request. This has the same attributes as a regular user account, except the `type` is 5
+and the user has no password. Hence, they will not be able to log in to the app, but they should be prompted to set a password
+and finish setting up their account.
+2. Create `pet`s from the `web_pet`s in the request. These are the same as any other pet in the database.
+3. Create the appropriate `user_pet` relationships. These are the same as any other `user_pet` relationship in the database.
+4. Create the `request` in the database. This is the same as any other request in the database.
+
+### HTTP Request
+`POST /web_request/:webrequestid`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+stripe_token | string? | Optional. Stripe token to charge if this was a paid request.
