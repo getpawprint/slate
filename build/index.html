@@ -448,7 +448,10 @@
             <a href="#web-requests" class="toc-h1 toc-link" data-title="web-requests">Web requests</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#create-or-update-user" class="toc-h2 toc-link" data-title="create-or-update-user">Create or update user</a>
+                    <a href="#create-a-user" class="toc-h2 toc-link" data-title="create-a-user">Create a user</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-user" class="toc-h2 toc-link" data-title="update-a-user">Update a user</a>
                   </li>
                   <li>
                     <a href="#create-or-update-pet" class="toc-h2 toc-link" data-title="create-or-update-pet">Create or update pet</a>
@@ -2929,19 +2932,20 @@ The proper design would specify this as a POST and v2 may change the verb in the
 <p><code>GET /user/invite_code/:code</code></p>
 <h1 id='web-requests'>Web requests</h1>
 <p>Save and retrieve progress for creating a web request</p>
-<h2 id='create-or-update-user'>Create or update user</h2>
+<h2 id='create-a-user'>Create a user</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cecil"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harvey"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255556174"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"street_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"street_address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apt 101"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bellevue"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98004"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2949,11 +2953,11 @@ The proper design would specify this as a POST and v2 may change the verb in the
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XOKQ-n5zjba1lM1-pOncpGHMaAxoqTGl"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Returns the web_user ID of the web user, based on email match.
-The web_user is either created or updated; which operation is not transparent to the caller.</p>
+<p>Returns an external ID (unique random string) that identifies the <code>web_user</code> in subsequent requests;
+this is so people can&#39;t easily guess random <code>web_user</code>s and modify their information.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /web_request/user</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
@@ -3010,6 +3014,82 @@ The web_user is either created or updated; which operation is not transparent to
 <td>User&#39;s country.</td>
 </tr>
 </tbody></table>
+<h2 id='update-a-user'>Update a user</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cecil"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harvey"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255556174"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"street_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"street_address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apt 101"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bellevue"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98004"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XOKQ-n5zjba1lM1-pOncpGHMaAxoqTGl"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns a unique random string that identifies the <code>web_user</code> in subsequent requests (an external identifier);
+this is so people can&#39;t easily guess random <code>web_user</code>s and modify their information. Note that email cannot be changed.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>PUT /web_request/user/:web_user_external_id</code></p>
+<h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>string?</td>
+<td>User&#39;s first name.</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>string?</td>
+<td>User&#39;s last name.</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string?</td>
+<td>User&#39;s phone number.</td>
+</tr>
+<tr>
+<td>street_address</td>
+<td>string?</td>
+<td>Line 1 of the user&#39;s street address.</td>
+</tr>
+<tr>
+<td>street_address2</td>
+<td>string?</td>
+<td>Line 2 of the user&#39;s street address.</td>
+</tr>
+<tr>
+<td>city</td>
+<td>string?</td>
+<td>User&#39;s city.</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string?</td>
+<td>User&#39;s state.</td>
+</tr>
+<tr>
+<td>country</td>
+<td>string?</td>
+<td>User&#39;s country.</td>
+</tr>
+</tbody></table>
 <h2 id='create-or-update-pet'>Create or update pet</h2>
 <blockquote>
 <p>Request example</p>
@@ -3028,12 +3108,11 @@ The web_user is either created or updated; which operation is not transparent to
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Returns the web_pet ID of the pet, based on name match.
-The web_pet is either created or updated; which operation is not transparent to the caller.
-The pet&#39;s owner must be specified in the URL parameter :webuserid.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST /web_request/user/:webuserid/pets</code></p>
-<h3 id='post-parameters-2'>POST parameters</h3>
+<p>Returns the ID of the <code>web_pet</code>. If the <code>name</code> parameter matches an existing pet owned by the user, it is updated;
+otherwise a new pet is created and linked to the <code>web_user</code>.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /web_request/user/:web_user_external_id/pets</code></p>
+<h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3048,8 +3127,8 @@ The pet&#39;s owner must be specified in the URL parameter :webuserid.</p>
 </tr>
 <tr>
 <td>species</td>
-<td>string</td>
-<td>Required. Pet&#39;s species, e.g. &quot;Dog&quot;, &quot;Cat&quot;, &quot;Rabbit&quot;, etc.</td>
+<td>string?</td>
+<td>Pet&#39;s species, e.g. &quot;Dog&quot;, &quot;Cat&quot;, &quot;Rabbit&quot;, etc.</td>
 </tr>
 <tr>
 <td>breed</td>
@@ -3084,9 +3163,9 @@ The pet&#39;s owner must be specified in the URL parameter :webuserid.</p>
 <p>Creates a partial or full records request (without submitting). Submitting the request is a separate API call.
 The request is assigned a unique random string, which is returned to the caller and can be used to
 retrieve or update the session.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /web_request</code></p>
-<h3 id='post-parameters-3'>POST parameters</h3>
+<h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3140,7 +3219,7 @@ retrieve or update the session.</p>
 </span></code></pre>
 <p>Updates a partial or full records request (without submitting). Submitting the request is a separate API call.
 Requests are assigned a unique random string which is used as the request identifier.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>PUT /web_request/:webrequestid</code></p>
 <h3 id='put-parameters'>PUT parameters</h3>
 <table><thead>
@@ -3197,7 +3276,7 @@ Requests are assigned a unique random string which is used as the request identi
 </span></code></pre>
 <p>Gets an existing web request.
 Requests are assigned a unique random string which is used as the request identifier.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /web_request/:webrequestid</code></p>
 <h2 id='submit-a-complete-request'>Submit a (complete) request</h2>
 <blockquote>
@@ -3212,25 +3291,34 @@ Requests are assigned a unique random string which is used as the request identi
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Submits a complete request. A request is complete if it contains:
-- A complete web_user object
-- One or more complete pet objects
-  - If one or more pet objects are not complete, request creation will not succeed
-- A reason for the request
-- A completed consent form
-- An electronic signature
-- A place</p>
+<p>Submits a complete request. A request is complete if it contains:</p>
 
-<p>Once the request has been validated, the following actions will be performed:
-1. Create a &quot;ghost&quot; <code>user</code> from the <code>web_user</code> in the request. This has the same attributes as a regular user account, except the <code>type</code> is 5
+<ul>
+<li>A complete web_user object</li>
+<li>One or more complete pet objects
+
+<ul>
+<li>If one or more pet objects are not complete, request creation will not succeed</li>
+</ul></li>
+<li>A reason for the request</li>
+<li>A completed consent form</li>
+<li>An electronic signature</li>
+<li>A place</li>
+</ul>
+
+<p>Once the request has been validated, the following actions will be performed:</p>
+
+<ol>
+<li>Create a &quot;ghost&quot; <code>user</code> from the <code>web_user</code> in the request. This has the same attributes as a regular user account, except the <code>type</code> is 5
 and the user has no password. Hence, they will not be able to log in to the app, but they should be prompted to set a password
-and finish setting up their account.
-2. Create <code>pet</code>s from the <code>web_pet</code>s in the request. These are the same as any other pet in the database.
-3. Create the appropriate <code>user_pet</code> relationships. These are the same as any other <code>user_pet</code> relationship in the database.
-4. Create the <code>request</code> in the database. This is the same as any other request in the database.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+and finish setting up their account.</li>
+<li>Create <code>pet</code>s from the <code>web_pet</code>s in the request. These are the same as any other pet in the database.</li>
+<li>Create the appropriate <code>user_pet</code> relationships. These are the same as any other <code>user_pet</code> relationship in the database.</li>
+<li>Create the <code>request</code> in the database. This is the same as any other request in the database.</li>
+</ol>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /web_request/:webrequestid</code></p>
-<h3 id='post-parameters-4'>POST parameters</h3>
+<h3 id='post-parameters-5'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
