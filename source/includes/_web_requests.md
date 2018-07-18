@@ -113,7 +113,7 @@ Returns the ID of the `web_pet`. If the `name` parameter matches an existing pet
 otherwise a new pet is created and linked to the `web_user`.
 
 ### HTTP Request
-`POST /web_request/user/:web_user_external_id/pets`
+`POST /web_request/:web_user_external_id/pets`
 
 ### POST parameters
 Parameter | Type | Description
@@ -123,6 +123,24 @@ species | string? | Pet's species, e.g. "Dog", "Cat", "Rabbit", etc.
 breed | string? | Pet's breed, e.g. "Chihuahua" or "Domestic Short Hair"
 gender| string? | 'M' for male or 'F' for female.
 
+## Delete a web pet from a request
+> Request example
+
+```json
+(none)
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Unlinks a web_pet from its web user and web_request, then deletes it.
+
+### HTTP Request
+`DELETE /web_request/user/:web_user_external_id/pets/:web_pet_id`
+
 ## Create a new request
 > Request example
 
@@ -131,8 +149,10 @@ gender| string? | 'M' for male or 'F' for female.
 	"web_user_id": 1,
 	"web_pet_ids": [ 2, 5 ],
 	"place_id": 1337,
-	"checkout_type": 1,
-	"reason": "Need proof of vaccination"
+	"product_id": 1,
+	"reason": "Need proof of vaccination",
+	"stripe_token": "tk_8STubeEqtr8i",
+	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf"
 }
 ```
 
@@ -157,8 +177,10 @@ Parameter | Type | Description
 web_user_id | int | Required. User ID created by the `/web_request/user` call.
 web_pet_ids | array of ints | Optional. List of web_pet IDs.
 place_id | int | Optional. ID from the `place` table.
-checkout_type | int | Optional. ID from the `product` table.
-reason | string | Optional. User's reason for the records request.
+product_id | int | Optional. ID from the `product` table.
+reason | string? | Optional. User's reason for the records request.
+stripe_token | string? | Optional. Payment information (not charged until the request is submitted).
+signature | string? | Optional. Link to the user's electronic signature.
 
 ## Update a request
 > Request example
@@ -167,9 +189,9 @@ reason | string | Optional. User's reason for the records request.
 {
 	"web_pet_ids": [ 2, 5 ],
 	"place_id": 1337,
-	"checkout_type": 1,
+	"product_id": 1,
 	"reason": "Need proof of vaccination",
-	"consent": "https://s3.aws.amazon.com/pawprint/consent_101.pdf",
+	"stripe_token": "tk_8STubeEqtr8i",
 	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf"
 }
 ```
@@ -191,9 +213,9 @@ Parameter | Type | Description
 --------- | ---- | -----------
 web_pet_ids | array of ints? | Optional. List of web_pet IDs. The previously stored list is completely overwritten by this list.
 place_id | int? | Optional. ID from the `place` table.
-checkout_type | int? | Optional. ID from the `product` table.
+product_id | int? | Optional. ID from the `product` table.
 reason | string? | Optional. User's reason for the records request.
-consent | string? | Optional. Link to the consent form.
+stripe_token | string? | Optional. Payment information (not charged until the request is submitted).
 signature | string? | Optional. Link to the user's electronic signature.
 
 ## Get existing request
@@ -205,9 +227,9 @@ signature | string? | Optional. Link to the user's electronic signature.
 	"web_user_id": 1,
 	"web_pet_ids": [ 2, 5 ],
 	"place_id": 1337,
-	"checkout_type": 1,
+	"product_id": 1,
 	"reason": "Need proof of vaccination",
-	"consent": "https://s3.aws.amazon.com/pawprint/consent_101.pdf",
+	"stripe_token": "tk_8STubeEqtr8i",
 	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf"
 }
 ```
@@ -222,9 +244,7 @@ Requests are assigned a unique random string which is used as the request identi
 > Request example
 
 ```json
-{
-	"stripe_token": "tk_8STubeEqtr8i"
-}
+(none)
 ```
 
 > Response example
@@ -239,9 +259,9 @@ Submits a complete request. A request is complete if it contains:
 - One or more complete pet objects
   - If one or more pet objects are not complete, request creation will not succeed
 - A reason for the request
-- A completed consent form
 - An electronic signature
 - A place
+- A Stripe token for payment, if it's a paid request
 
 Once the request has been validated, the following actions will be performed:
 

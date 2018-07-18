@@ -457,6 +457,9 @@
                     <a href="#create-or-update-pet" class="toc-h2 toc-link" data-title="create-or-update-pet">Create or update pet</a>
                   </li>
                   <li>
+                    <a href="#delete-a-web-pet-from-a-request" class="toc-h2 toc-link" data-title="delete-a-web-pet-from-a-request">Delete a web pet from a request</a>
+                  </li>
+                  <li>
                     <a href="#create-a-new-request" class="toc-h2 toc-link" data-title="create-a-new-request">Create a new request</a>
                   </li>
                   <li>
@@ -3111,7 +3114,7 @@ this is so people can&#39;t easily guess random <code>web_user</code>s and modif
 <p>Returns the ID of the <code>web_pet</code>. If the <code>name</code> parameter matches an existing pet owned by the user, it is updated;
 otherwise a new pet is created and linked to the <code>web_user</code>.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST /web_request/user/:web_user_external_id/pets</code></p>
+<p><code>POST /web_request/:web_user_external_id/pets</code></p>
 <h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -3141,6 +3144,20 @@ otherwise a new pet is created and linked to the <code>web_user</code>.</p>
 <td>&#39;M&#39; for male or &#39;F&#39; for female.</td>
 </tr>
 </tbody></table>
+<h2 id='delete-a-web-pet-from-a-request'>Delete a web pet from a request</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Unlinks a web_pet from its web user and web_request, then deletes it.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>DELETE /web_request/user/:web_user_external_id/pets/:web_pet_id</code></p>
 <h2 id='create-a-new-request'>Create a new request</h2>
 <blockquote>
 <p>Request example</p>
@@ -3149,8 +3166,10 @@ otherwise a new pet is created and linked to the <code>web_user</code>.</p>
     </span><span class="s2">"web_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"web_pet_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">],</span><span class="w">
     </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"checkout_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Need proof of vaccination"</span><span class="w">
+    </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Need proof of vaccination"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stripe_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tk_8STubeEqtr8i"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/signature_101.pdf"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -3163,7 +3182,7 @@ otherwise a new pet is created and linked to the <code>web_user</code>.</p>
 <p>Creates a partial or full records request (without submitting). Submitting the request is a separate API call.
 The request is assigned a unique random string, which is returned to the caller and can be used to
 retrieve or update the session.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /web_request</code></p>
 <h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>
@@ -3189,14 +3208,24 @@ retrieve or update the session.</p>
 <td>Optional. ID from the <code>place</code> table.</td>
 </tr>
 <tr>
-<td>checkout_type</td>
+<td>product_id</td>
 <td>int</td>
 <td>Optional. ID from the <code>product</code> table.</td>
 </tr>
 <tr>
 <td>reason</td>
-<td>string</td>
+<td>string?</td>
 <td>Optional. User&#39;s reason for the records request.</td>
+</tr>
+<tr>
+<td>stripe_token</td>
+<td>string?</td>
+<td>Optional. Payment information (not charged until the request is submitted).</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string?</td>
+<td>Optional. Link to the user&#39;s electronic signature.</td>
 </tr>
 </tbody></table>
 <h2 id='update-a-request'>Update a request</h2>
@@ -3206,9 +3235,9 @@ retrieve or update the session.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"web_pet_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">],</span><span class="w">
     </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"checkout_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Need proof of vaccination"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"consent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/consent_101.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stripe_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tk_8STubeEqtr8i"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/signature_101.pdf"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3219,7 +3248,7 @@ retrieve or update the session.</p>
 </span></code></pre>
 <p>Updates a partial or full records request (without submitting). Submitting the request is a separate API call.
 Requests are assigned a unique random string which is used as the request identifier.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>PUT /web_request/:webrequestid</code></p>
 <h3 id='put-parameters'>PUT parameters</h3>
 <table><thead>
@@ -3240,7 +3269,7 @@ Requests are assigned a unique random string which is used as the request identi
 <td>Optional. ID from the <code>place</code> table.</td>
 </tr>
 <tr>
-<td>checkout_type</td>
+<td>product_id</td>
 <td>int?</td>
 <td>Optional. ID from the <code>product</code> table.</td>
 </tr>
@@ -3250,9 +3279,9 @@ Requests are assigned a unique random string which is used as the request identi
 <td>Optional. User&#39;s reason for the records request.</td>
 </tr>
 <tr>
-<td>consent</td>
+<td>stripe_token</td>
 <td>string?</td>
-<td>Optional. Link to the consent form.</td>
+<td>Optional. Payment information (not charged until the request is submitted).</td>
 </tr>
 <tr>
 <td>signature</td>
@@ -3268,23 +3297,21 @@ Requests are assigned a unique random string which is used as the request identi
     </span><span class="s2">"web_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"web_pet_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">],</span><span class="w">
     </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"checkout_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Need proof of vaccination"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"consent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/consent_101.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stripe_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tk_8STubeEqtr8i"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/signature_101.pdf"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets an existing web request.
 Requests are assigned a unique random string which is used as the request identifier.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /web_request/:webrequestid</code></p>
 <h2 id='submit-a-complete-request'>Submit a (complete) request</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"stripe_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tk_8STubeEqtr8i"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Response example</p>
@@ -3301,9 +3328,9 @@ Requests are assigned a unique random string which is used as the request identi
 <li>If one or more pet objects are not complete, request creation will not succeed</li>
 </ul></li>
 <li>A reason for the request</li>
-<li>A completed consent form</li>
 <li>An electronic signature</li>
 <li>A place</li>
+<li>A Stripe token for payment, if it&#39;s a paid request</li>
 </ul>
 
 <p>Once the request has been validated, the following actions will be performed:</p>
@@ -3316,7 +3343,7 @@ and finish setting up their account.</li>
 <li>Create the appropriate <code>user_pet</code> relationships. These are the same as any other <code>user_pet</code> relationship in the database.</li>
 <li>Create the <code>request</code> in the database. This is the same as any other request in the database.</li>
 </ol>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /web_request/:webrequestid</code></p>
 <h3 id='post-parameters-5'>POST parameters</h3>
 <table><thead>
