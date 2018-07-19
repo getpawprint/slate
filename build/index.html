@@ -481,10 +481,10 @@
                     <a href="#get-existing-request" class="toc-h2 toc-link" data-title="get-existing-request">Get existing request</a>
                   </li>
                   <li>
-                    <a href="#submit-a-complete-request" class="toc-h2 toc-link" data-title="submit-a-complete-request">Submit a (complete) request</a>
+                    <a href="#preview-a-complete-request" class="toc-h2 toc-link" data-title="preview-a-complete-request">Preview a (complete) request</a>
                   </li>
                   <li>
-                    <a href="#submit-a-complete-request-2" class="toc-h2 toc-link" data-title="submit-a-complete-request">Submit a (complete) request</a>
+                    <a href="#submit-a-complete-request" class="toc-h2 toc-link" data-title="submit-a-complete-request">Submit a (complete) request</a>
                   </li>
               </ul>
           </li>
@@ -3436,7 +3436,8 @@ otherwise a new pet is created and linked to the <code>web_user</code>.</p>
     </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Need proof of vaccination"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"stripe_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tk_8STubeEqtr8i"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/signature_101.pdf"</span><span class="w">
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/signature_101.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"promocode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mars2018"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -3494,6 +3495,11 @@ retrieve or update the session.</p>
 <td>string?</td>
 <td>Optional. Link to the user&#39;s electronic signature.</td>
 </tr>
+<tr>
+<td>promocode</td>
+<td>string?</td>
+<td>Optional. Promotion code; its effect appears in previews and will be applied when the request is submitted.</td>
+</tr>
 </tbody></table>
 <h2 id='update-a-request'>Update a request</h2>
 <blockquote>
@@ -3505,7 +3511,8 @@ retrieve or update the session.</p>
     </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Need proof of vaccination"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"stripe_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tk_8STubeEqtr8i"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/signature_101.pdf"</span><span class="w">
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/signature_101.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"promocode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mars2018"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -3555,26 +3562,50 @@ Requests are assigned a unique random string which is used as the request identi
 <td>string?</td>
 <td>Optional. Link to the user&#39;s electronic signature.</td>
 </tr>
+<tr>
+<td>promocode</td>
+<td>string?</td>
+<td>Optional. Promotion code; its effect appears in previews and will be applied when the request is submitted.</td>
+</tr>
 </tbody></table>
 <h2 id='get-existing-request'>Get existing request</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"web_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"web_pet_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"web_user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aXc984htjlspu"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Web"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webuser@getpawprint.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bellevue"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"web_pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Webby"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dog"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chewy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dog"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F"</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
     </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Need proof of vaccination"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"stripe_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tk_8STubeEqtr8i"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/signature_101.pdf"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Gets an existing web request.
+<p>Gets an existing web request. Complete objects (instead of IDs) are returned for <code>web_user</code> and <code>web_pet</code>.
 Requests are assigned a unique random string which is used as the request identifier.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /web_request/:webrequestid</code></p>
-<h2 id='submit-a-complete-request'>Submit a (complete) request</h2>
+<h2 id='preview-a-complete-request'>Preview a (complete) request</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
@@ -3615,7 +3646,7 @@ Requests are assigned a unique random string which is used as the request identi
 <p>If the request is valid, then an order preview object is returned with a price breakdown.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /web_request/:webrequestid/preview</code></p>
-<h2 id='submit-a-complete-request-2'>Submit a (complete) request</h2>
+<h2 id='submit-a-complete-request'>Submit a (complete) request</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>

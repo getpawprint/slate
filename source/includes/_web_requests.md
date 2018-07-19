@@ -152,7 +152,8 @@ Unlinks a web_pet from its web user and web_request, then deletes it.
 	"product_id": 1,
 	"reason": "Need proof of vaccination",
 	"stripe_token": "tk_8STubeEqtr8i",
-	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf"
+	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf",
+	"promocode": "mars2018"
 }
 ```
 
@@ -181,6 +182,7 @@ product_id | int | Optional. ID from the `product` table.
 reason | string? | Optional. User's reason for the records request.
 stripe_token | string? | Optional. Payment information (not charged until the request is submitted).
 signature | string? | Optional. Link to the user's electronic signature.
+promocode | string? | Optional. Promotion code; its effect appears in previews and will be applied when the request is submitted.
 
 ## Update a request
 > Request example
@@ -192,7 +194,8 @@ signature | string? | Optional. Link to the user's electronic signature.
 	"product_id": 1,
 	"reason": "Need proof of vaccination",
 	"stripe_token": "tk_8STubeEqtr8i",
-	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf"
+	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf",
+	"promocode": "mars2018"
 }
 ```
 
@@ -217,6 +220,7 @@ product_id | int? | Optional. ID from the `product` table.
 reason | string? | Optional. User's reason for the records request.
 stripe_token | string? | Optional. Payment information (not charged until the request is submitted).
 signature | string? | Optional. Link to the user's electronic signature.
+promocode | string? | Optional. Promotion code; its effect appears in previews and will be applied when the request is submitted.
 
 ## Get existing request
 
@@ -224,23 +228,42 @@ signature | string? | Optional. Link to the user's electronic signature.
 
 ```json
 {
-	"web_user_id": 1,
-	"web_pet_ids": [ 2, 5 ],
+	"web_user": {
+		"id": "aXc984htjlspu",
+		"first_name": "Web",
+		"last_name": "User",
+		"email": "webuser@getpawprint.com",
+		"city": "Bellevue",
+		"state": "WA",
+	},
+	"web_pets": [
+		{
+			"id": 1,
+			"name": "Webby",
+			"species": "Dog",
+			"gender": "M"
+		},
+		{
+      "id": 2,
+      "name": "Chewy",
+      "species": "Dog",
+      "gender": "F"
+		}],
 	"place_id": 1337,
-	"product_id": 1,
+	"product_id": 8,
 	"reason": "Need proof of vaccination",
 	"stripe_token": "tk_8STubeEqtr8i",
 	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf"
 }
 ```
 
-Gets an existing web request.
+Gets an existing web request. Complete objects (instead of IDs) are returned for `web_user` and `web_pet`.
 Requests are assigned a unique random string which is used as the request identifier.
 
 ### HTTP Request
 `GET /web_request/:webrequestid`
 
-## Submit a (complete) request
+## Preview a (complete) request
 
 > Response example
 
