@@ -241,6 +241,47 @@ Requests are assigned a unique random string which is used as the request identi
 `GET /web_request/:webrequestid`
 
 ## Submit a (complete) request
+
+> Response example
+
+```json
+{
+  "items": [
+    {
+        "id": 9,
+        "description": "Request for full records for Apple from Animal Care Center",
+        "cost": 9.99
+    },
+    {
+        "id": 10,
+        "description": "Additional full records for Bowser from Animal Care Center",
+        "cost": 4.99
+    }
+  ],
+  "subtotal": 14.98,
+  "tax": 0,
+  "discount": -1,
+  "total": 13.98
+}
+```
+
+Previews a complete request. A request is complete if it contains:
+
+- A complete web_user object
+- One or more complete pet objects
+  - If one or more pet objects are not complete, request creation will not succeed
+- A reason for the request
+- An electronic signature
+- A place
+- A Stripe token for payment, if it's a paid request
+
+If the request is valid, then an order preview object is returned with a price breakdown.
+
+### HTTP Request
+`GET /web_request/:webrequestid/preview`
+
+
+## Submit a (complete) request
 > Request example
 
 ```json

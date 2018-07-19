@@ -483,6 +483,9 @@
                   <li>
                     <a href="#submit-a-complete-request" class="toc-h2 toc-link" data-title="submit-a-complete-request">Submit a (complete) request</a>
                   </li>
+                  <li>
+                    <a href="#submit-a-complete-request-2" class="toc-h2 toc-link" data-title="submit-a-complete-request">Submit a (complete) request</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -3573,6 +3576,47 @@ Requests are assigned a unique random string which is used as the request identi
 <p><code>GET /web_request/:webrequestid</code></p>
 <h2 id='submit-a-complete-request'>Submit a (complete) request</h2>
 <blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request for full records for Apple from Animal Care Center"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional full records for Bowser from Animal Care Center"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">14.98</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.98</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Previews a complete request. A request is complete if it contains:</p>
+
+<ul>
+<li>A complete web_user object</li>
+<li>One or more complete pet objects
+
+<ul>
+<li>If one or more pet objects are not complete, request creation will not succeed</li>
+</ul></li>
+<li>A reason for the request</li>
+<li>An electronic signature</li>
+<li>A place</li>
+<li>A Stripe token for payment, if it&#39;s a paid request</li>
+</ul>
+
+<p>If the request is valid, then an order preview object is returned with a price breakdown.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /web_request/:webrequestid/preview</code></p>
+<h2 id='submit-a-complete-request-2'>Submit a (complete) request</h2>
+<blockquote>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
@@ -3607,7 +3651,7 @@ and finish setting up their account.</li>
 <li>Create the appropriate <code>user_pet</code> relationships. These are the same as any other <code>user_pet</code> relationship in the database.</li>
 <li>Create the <code>request</code> in the database. This is the same as any other request in the database.</li>
 </ol>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST /web_request/:webrequestid</code></p>
 <h3 id='post-parameters-5'>POST parameters</h3>
 <table><thead>
