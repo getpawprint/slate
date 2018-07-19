@@ -381,6 +381,182 @@ signature | string |  URL to the image file containing the client's signature.
 checkout_notes | string | Checkout note to Pawprint.
 promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
 
+## Web basic order - preview
+> Request example
+
+```json
+{
+  "vets": {
+    "2037": {
+      "pets": [ 1 ]
+    }
+  },
+  "promocode": "mars"
+}
+```
+
+> Response example
+
+```json
+{
+    "items": [
+        {
+            "id": 8,
+            "description": "Request for basic records for Apple and Bowser from Animal Care Center",
+            "cost": 4.99
+        }
+    ],
+    "subtotal": 4.99,
+    "discount": -1,
+    "total": 3.99
+}
+```
+
+Returns the order preview for basic record requests submitted from the web. Price is a flat $4.99 for unlimited pets from a vet.
+
+### HTTP Request
+`POST /user/v2/request/web_basic/preview`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+vets | object | Keys are IDs from the `place` table; values are objects as described below
+vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
+promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+
+## Web basic order - execute
+> Request example
+
+```json
+{
+  "vets": {
+    "2037": {
+      "pets": [ 1, 20 ],
+      "note": "May be under my maiden name (Wilson)"
+    }
+  },
+	"signature": "https://s3.aws.amazon.com/pawprint/sig.png",
+	"checkout_notes": "Checkout note to Pawprint",
+	"promocode": "mars"
+}
+```
+
+> Response example
+
+```json
+[
+    18617,
+    18618
+]
+```
+
+Charges the customer's credit/debit card (see Payment section) and creates the record requests.
+Returns array of the newly created request IDs.
+
+### HTTP Request
+`POST /user/v2/request/web_basic/order`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+vets | object | Keys are IDs from the `place` table; values are objects as described below
+vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
+vets\[place_id\].note | string | Note to this particular vet.
+signature | string |  URL to the image file containing the client's signature.
+checkout_notes | string | Checkout note to Pawprint.
+promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+
+## Web full order - preview
+> Request example
+
+```json
+{
+  "vets": {
+    "2037": {
+      "pets": [ 1, 20 ]
+    }
+  },
+  "promocode": "mars"
+}
+```
+
+> Response example
+
+```json
+{
+  "items": [
+    {
+        "id": 9,
+        "description": "Request for full records for Apple from Animal Care Center",
+        "cost": 9.99
+    },
+    {
+        "id": 10,
+        "description": "Additional full records for Bowser from Animal Care Center",
+        "cost": 4.99
+    }
+  ],
+  "subtotal": 14.98,
+  "discount": -1,
+  "total": 13.98
+}
+```
+
+Returns the order preview for basic record requests submitted from the web. Price is a flat $9.99 for a pet at a vet
+and $4.99 for additional pets.
+
+### HTTP Request
+`POST /user/v2/request/web_full/preview`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+vets | object | Keys are IDs from the `place` table; values are objects as described below
+vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
+promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+
+## Web full order - execute
+> Request example
+
+```json
+{
+  "vets": {
+    "2037": {
+      "pets": [ 1, 20 ],
+      "note": "May be under my maiden name (Wilson)"
+    }
+  },
+	"signature": "https://s3.aws.amazon.com/pawprint/sig.png",
+	"checkout_notes": "Checkout note to Pawprint",
+	"promocode": "mars"
+}
+```
+
+> Response example
+
+```json
+[
+    18617,
+    18618
+]
+```
+
+Charges the customer's credit/debit card (see Payment section) and creates the record requests.
+Returns array of the newly created request IDs.
+
+### HTTP Request
+`POST /user/v2/request/web_full/order`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+vets | object | Keys are IDs from the `place` table; values are objects as described below
+vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
+vets\[place_id\].note | string | Note to this particular vet.
+signature | string |  URL to the image file containing the client's signature.
+checkout_notes | string | Checkout note to Pawprint.
+promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+
 ## Is pet linked
 > Response example
 

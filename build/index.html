@@ -423,6 +423,18 @@
                     <a href="#full-order-new-pricing-execute" class="toc-h2 toc-link" data-title="full-order-new-pricing-execute">Full order (new pricing) - execute</a>
                   </li>
                   <li>
+                    <a href="#web-basic-order-preview" class="toc-h2 toc-link" data-title="web-basic-order-preview">Web basic order - preview</a>
+                  </li>
+                  <li>
+                    <a href="#web-basic-order-execute" class="toc-h2 toc-link" data-title="web-basic-order-execute">Web basic order - execute</a>
+                  </li>
+                  <li>
+                    <a href="#web-full-order-preview" class="toc-h2 toc-link" data-title="web-full-order-preview">Web full order - preview</a>
+                  </li>
+                  <li>
+                    <a href="#web-full-order-execute" class="toc-h2 toc-link" data-title="web-full-order-execute">Web full order - execute</a>
+                  </li>
+                  <li>
                     <a href="#is-pet-linked" class="toc-h2 toc-link" data-title="is-pet-linked">Is pet linked</a>
                   </li>
               </ul>
@@ -2828,6 +2840,258 @@ Returns array of the newly created request IDs.</p>
 <td>If specified, attempts to apply the promo code to the order. If the promo code didn&#39;t work, HTTP 400 is returned along with an error message.</td>
 </tr>
 </tbody></table>
+<h2 id='web-basic-order-preview'>Web basic order - preview</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"2037"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"promocode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mars"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request for basic records for Apple and Bowser from Animal Care Center"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.99</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the order preview for basic record requests submitted from the web. Price is a flat $4.99 for unlimited pets from a vet.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>POST /user/v2/request/web_basic/preview</code></p>
+<h3 id='post-parameters-9'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vets</td>
+<td>object</td>
+<td>Keys are IDs from the <code>place</code> table; values are objects as described below</td>
+</tr>
+<tr>
+<td>vets[place_id].pets</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>pet</code> table.</td>
+</tr>
+<tr>
+<td>promocode</td>
+<td>string</td>
+<td>If specified, attempts to apply the promo code to the order. If the promo code didn&#39;t work, HTTP 400 is returned along with an error message.</td>
+</tr>
+</tbody></table>
+<h2 id='web-basic-order-execute'>Web basic order - execute</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"2037"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"May be under my maiden name (Wilson)"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/sig.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkout note to Pawprint"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"promocode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mars"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="mi">18617</span><span class="p">,</span><span class="w">
+    </span><span class="mi">18618</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Charges the customer&#39;s credit/debit card (see Payment section) and creates the record requests.
+Returns array of the newly created request IDs.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>POST /user/v2/request/web_basic/order</code></p>
+<h3 id='post-parameters-10'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vets</td>
+<td>object</td>
+<td>Keys are IDs from the <code>place</code> table; values are objects as described below</td>
+</tr>
+<tr>
+<td>vets[place_id].pets</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>pet</code> table.</td>
+</tr>
+<tr>
+<td>vets[place_id].note</td>
+<td>string</td>
+<td>Note to this particular vet.</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string</td>
+<td>URL to the image file containing the client&#39;s signature.</td>
+</tr>
+<tr>
+<td>checkout_notes</td>
+<td>string</td>
+<td>Checkout note to Pawprint.</td>
+</tr>
+<tr>
+<td>promocode</td>
+<td>string</td>
+<td>If specified, attempts to apply the promo code to the order. If the promo code didn&#39;t work, HTTP 400 is returned along with an error message.</td>
+</tr>
+</tbody></table>
+<h2 id='web-full-order-preview'>Web full order - preview</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"2037"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"promocode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mars"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request for full records for Apple from Animal Care Center"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Additional full records for Bowser from Animal Care Center"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">14.98</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.98</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns the order preview for basic record requests submitted from the web. Price is a flat $9.99 for a pet at a vet
+and $4.99 for additional pets.</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>POST /user/v2/request/web_full/preview</code></p>
+<h3 id='post-parameters-11'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vets</td>
+<td>object</td>
+<td>Keys are IDs from the <code>place</code> table; values are objects as described below</td>
+</tr>
+<tr>
+<td>vets[place_id].pets</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>pet</code> table.</td>
+</tr>
+<tr>
+<td>promocode</td>
+<td>string</td>
+<td>If specified, attempts to apply the promo code to the order. If the promo code didn&#39;t work, HTTP 400 is returned along with an error message.</td>
+</tr>
+</tbody></table>
+<h2 id='web-full-order-execute'>Web full order - execute</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"2037"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"May be under my maiden name (Wilson)"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/sig.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkout note to Pawprint"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"promocode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mars"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="mi">18617</span><span class="p">,</span><span class="w">
+    </span><span class="mi">18618</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Charges the customer&#39;s credit/debit card (see Payment section) and creates the record requests.
+Returns array of the newly created request IDs.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>POST /user/v2/request/web_full/order</code></p>
+<h3 id='post-parameters-12'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>vets</td>
+<td>object</td>
+<td>Keys are IDs from the <code>place</code> table; values are objects as described below</td>
+</tr>
+<tr>
+<td>vets[place_id].pets</td>
+<td>array of ints</td>
+<td>Array of IDs from the <code>pet</code> table.</td>
+</tr>
+<tr>
+<td>vets[place_id].note</td>
+<td>string</td>
+<td>Note to this particular vet.</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string</td>
+<td>URL to the image file containing the client&#39;s signature.</td>
+</tr>
+<tr>
+<td>checkout_notes</td>
+<td>string</td>
+<td>Checkout note to Pawprint.</td>
+</tr>
+<tr>
+<td>promocode</td>
+<td>string</td>
+<td>If specified, attempts to apply the promo code to the order. If the promo code didn&#39;t work, HTTP 400 is returned along with an error message.</td>
+</tr>
+</tbody></table>
 <h2 id='is-pet-linked'>Is pet linked</h2>
 <blockquote>
 <p>Response example</p>
@@ -2838,7 +3102,7 @@ Returns array of the newly created request IDs.</p>
 </span></code></pre>
 <p>Checks if a pet is linked to a Pawprint vet associated with the given place.
 Also handles cases where the Pawprint vet has multiple places/locations.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET /user/pets/is_pet_linked/:petid/:placeid</code></p>
 <h1 id='sharing'>Sharing</h1>
 <p>For inviting, onboarding and account linking.</p>
