@@ -97,7 +97,8 @@ country | string? | User's country.
 	"name": "Gizmo",
 	"species": "Dog",
 	"breed": "Yorkshire Terrier",
-	"gender": "M"
+	"gender": "M",
+	"birthdate": "2018-01-01"
 }
 ```
 
@@ -122,6 +123,7 @@ name | string | Required. Pet's name.
 species | string? | Pet's species, e.g. "Dog", "Cat", "Rabbit", etc.
 breed | string? | Pet's breed, e.g. "Chihuahua" or "Domestic Short Hair"
 gender| string? | 'M' for male or 'F' for female.
+birthdate | datetime? | Pet's birth date
 
 ## Delete a web pet from a request
 > Request example
