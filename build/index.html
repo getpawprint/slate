@@ -481,6 +481,9 @@
                     <a href="#get-existing-request" class="toc-h2 toc-link" data-title="get-existing-request">Get existing request</a>
                   </li>
                   <li>
+                    <a href="#get-consent-form" class="toc-h2 toc-link" data-title="get-consent-form">Get consent form</a>
+                  </li>
+                  <li>
                     <a href="#preview-a-complete-request" class="toc-h2 toc-link" data-title="preview-a-complete-request">Preview a (complete) request</a>
                   </li>
                   <li>
@@ -3382,7 +3385,7 @@ this is so people can&#39;t easily guess random <code>web_user</code>s and modif
 <p>Returns the ID of the <code>web_pet</code>. If the <code>name</code> parameter matches an existing pet owned by the user, it is updated;
 otherwise a new pet is created and linked to the <code>web_user</code>.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST /web_request/:web_user_external_id/pets</code></p>
+<p><code>POST /web_request/user/:web_user_external_id/pets</code></p>
 <h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -3436,7 +3439,7 @@ otherwise a new pet is created and linked to the <code>web_user</code>.</p>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"web_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"web_user_external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aXdJG09jq1sTpiV"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"web_pet_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">],</span><span class="w">
     </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1337</span><span class="p">,</span><span class="w">
     </span><span class="s2">"product_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -3611,6 +3614,29 @@ Requests are assigned a unique random string which is used as the request identi
 Requests are assigned a unique random string which is used as the request identifier.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /web_request/:webrequestid</code></p>
+<h2 id='get-consent-form'>Get consent form</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/buckets/pawprint/consent/consent_4253478.pdf"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Generates a consent form for a complete request. A request is complete if it contains:</p>
+
+<ul>
+<li>A complete web_user object</li>
+<li>One or more complete pet objects
+
+<ul>
+<li>If one or more pet objects are not complete, request creation will not succeed</li>
+</ul></li>
+<li>A reason for the request</li>
+<li>An electronic signature</li>
+<li>A place</li>
+</ul>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /web_request/:webrequestid/consent</code></p>
 <h2 id='preview-a-complete-request'>Preview a (complete) request</h2>
 <blockquote>
 <p>Response example</p>
@@ -3650,7 +3676,7 @@ Requests are assigned a unique random string which is used as the request identi
 </ul>
 
 <p>If the request is valid, then an order preview object is returned with a price breakdown.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /web_request/:webrequestid/preview</code></p>
 <h2 id='submit-a-complete-request'>Submit a (complete) request</h2>
 <blockquote>
@@ -3688,7 +3714,7 @@ and finish setting up their account.</li>
 <li>Create the appropriate <code>user_pet</code> relationships. These are the same as any other <code>user_pet</code> relationship in the database.</li>
 <li>Create the <code>request</code> in the database. This is the same as any other request in the database.</li>
 </ol>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST /web_request/:webrequestid</code></p>
 <h3 id='post-parameters-5'>POST parameters</h3>
 <table><thead>

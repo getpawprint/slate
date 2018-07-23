@@ -114,7 +114,7 @@ Returns the ID of the `web_pet`. If the `name` parameter matches an existing pet
 otherwise a new pet is created and linked to the `web_user`.
 
 ### HTTP Request
-`POST /web_request/:web_user_external_id/pets`
+`POST /web_request/user/:web_user_external_id/pets`
 
 ### POST parameters
 Parameter | Type | Description
@@ -148,7 +148,7 @@ Unlinks a web_pet from its web user and web_request, then deletes it.
 
 ```json
 {
-	"web_user_id": 1,
+	"web_user_external_id": "aXdJG09jq1sTpiV",
 	"web_pet_ids": [ 2, 5 ],
 	"place_id": 1337,
 	"product_id": 1,
@@ -265,6 +265,28 @@ Requests are assigned a unique random string which is used as the request identi
 ### HTTP Request
 `GET /web_request/:webrequestid`
 
+## Get consent form
+
+> Response example
+
+```json
+{
+  "url": "https://s3.aws.amazon.com/buckets/pawprint/consent/consent_4253478.pdf"
+}
+```
+
+Generates a consent form for a complete request. A request is complete if it contains:
+
+- A complete web_user object
+- One or more complete pet objects
+  - If one or more pet objects are not complete, request creation will not succeed
+- A reason for the request
+- An electronic signature
+- A place
+
+### HTTP Request
+`GET /web_request/:webrequestid/consent`
+
 ## Preview a (complete) request
 
 > Response example
@@ -298,12 +320,26 @@ Previews a complete request. A request is complete if it contains:
 - A reason for the request
 - An electronic signature
 - A place
-- A Stripe token for payment, if it's a paid request
 
 If the request is valid, then an order preview object is returned with a price breakdown.
 
 ### HTTP Request
 `GET /web_request/:webrequestid/preview`
+
+## Get consent form for a (complete) request
+
+> Response example
+
+```json
+{
+  "url": "https://pawprint-web-request-consent.s3.amazonaws.com/5HhfWf_34JyX_lzFjCrJ5rWWivpZJstM.pdf"
+```
+
+Validates a request (see above for rules), generates a consent form and returns the URL to the consent form. Subsequent calls
+will overwrite the previous consent form for the request.
+
+### HTTP Request
+`GET /web_request/:webrequestid/consent`
 
 
 ## Submit a (complete) request
@@ -319,24 +355,15 @@ If the request is valid, then an order preview object is returned with a price b
 (none)
 ```
 
-Submits a complete request. A request is complete if it contains:
+Validates a request (see above for rules), and performs the following actions:
 
-- A complete web_user object
-- One or more complete pet objects
-  - If one or more pet objects are not complete, request creation will not succeed
-- A reason for the request
-- An electronic signature
-- A place
-- A Stripe token for payment, if it's a paid request
-
-Once the request has been validated, the following actions will be performed:
-
-1. Create a "ghost" `user` from the `web_user` in the request. This has the same attributes as a regular user account, except the `type` is 5
+1. Checks for a Stripe token for payment, if it's a paid request
+2. Create a "ghost" `user` from the `web_user` in the request. This has the same attributes as a regular user account, except the `type` is 5
 and the user has no password. Hence, they will not be able to log in to the app, but they should be prompted to set a password
 and finish setting up their account.
-2. Create `pet`s from the `web_pet`s in the request. These are the same as any other pet in the database.
-3. Create the appropriate `user_pet` relationships. These are the same as any other `user_pet` relationship in the database.
-4. Create the `request` in the database. This is the same as any other request in the database.
+3. Create `pet`s from the `web_pet`s in the request. These are the same as any other pet in the database.
+4. Create the appropriate `user_pet` relationships. These are the same as any other `user_pet` relationship in the database.
+5. Create the `request` in the database. This is the same as any other request in the database.
 
 ### HTTP Request
 `POST /web_request/:webrequestid`
