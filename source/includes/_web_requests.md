@@ -177,7 +177,7 @@ retrieve or update the session.
 ### POST parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-web_user_id | int | Required. User ID created by the `/web_request/user` call.
+web_user_external_id | int | Required. User ID created by the `/web_request/user` call.
 web_pet_ids | array of ints | Optional. List of web_pet IDs.
 place_id | int | Optional. ID from the `place` table.
 product_id | int | Optional. ID from the `product` table.

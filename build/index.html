@@ -487,6 +487,9 @@
                     <a href="#preview-a-complete-request" class="toc-h2 toc-link" data-title="preview-a-complete-request">Preview a (complete) request</a>
                   </li>
                   <li>
+                    <a href="#get-consent-form-for-a-complete-request" class="toc-h2 toc-link" data-title="get-consent-form-for-a-complete-request">Get consent form for a (complete) request</a>
+                  </li>
+                  <li>
                     <a href="#submit-a-complete-request" class="toc-h2 toc-link" data-title="submit-a-complete-request">Submit a (complete) request</a>
                   </li>
               </ul>
@@ -3470,7 +3473,7 @@ retrieve or update the session.</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>web_user_id</td>
+<td>web_user_external_id</td>
 <td>int</td>
 <td>Required. User ID created by the <code>/web_request/user</code> call.</td>
 </tr>
@@ -3672,12 +3675,22 @@ Requests are assigned a unique random string which is used as the request identi
 <li>A reason for the request</li>
 <li>An electronic signature</li>
 <li>A place</li>
-<li>A Stripe token for payment, if it&#39;s a paid request</li>
 </ul>
 
 <p>If the request is valid, then an order preview object is returned with a price breakdown.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /web_request/:webrequestid/preview</code></p>
+<h2 id='get-consent-form-for-a-complete-request'>Get consent form for a (complete) request</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-web-request-consent.s3.amazonaws.com/5HhfWf_34JyX_lzFjCrJ5rWWivpZJstM.pdf"</span><span class="w">
+</span></code></pre>
+<p>Validates a request (see above for rules), generates a consent form and returns the URL to the consent form. Subsequent calls
+will overwrite the previous consent form for the request.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET /web_request/:webrequestid/consent</code></p>
 <h2 id='submit-a-complete-request'>Submit a (complete) request</h2>
 <blockquote>
 <p>Request example</p>
@@ -3689,24 +3702,10 @@ Requests are assigned a unique random string which is used as the request identi
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Submits a complete request. A request is complete if it contains:</p>
-
-<ul>
-<li>A complete web_user object</li>
-<li>One or more complete pet objects
-
-<ul>
-<li>If one or more pet objects are not complete, request creation will not succeed</li>
-</ul></li>
-<li>A reason for the request</li>
-<li>An electronic signature</li>
-<li>A place</li>
-<li>A Stripe token for payment, if it&#39;s a paid request</li>
-</ul>
-
-<p>Once the request has been validated, the following actions will be performed:</p>
+<p>Validates a request (see above for rules), and performs the following actions:</p>
 
 <ol>
+<li>Checks for a Stripe token for payment, if it&#39;s a paid request</li>
 <li>Create a &quot;ghost&quot; <code>user</code> from the <code>web_user</code> in the request. This has the same attributes as a regular user account, except the <code>type</code> is 5
 and the user has no password. Hence, they will not be able to log in to the app, but they should be prompted to set a password
 and finish setting up their account.</li>
@@ -3714,7 +3713,7 @@ and finish setting up their account.</li>
 <li>Create the appropriate <code>user_pet</code> relationships. These are the same as any other <code>user_pet</code> relationship in the database.</li>
 <li>Create the <code>request</code> in the database. This is the same as any other request in the database.</li>
 </ol>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST /web_request/:webrequestid</code></p>
 <h3 id='post-parameters-5'>POST parameters</h3>
 <table><thead>
