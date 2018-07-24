@@ -155,7 +155,8 @@ Unlinks a web_pet from its web user and web_request, then deletes it.
 	"reason": "Need proof of vaccination",
 	"stripe_token": "tk_8STubeEqtr8i",
 	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf",
-	"promocode": "mars2018"
+	"promocode": "mars2018",
+	"note": "Used to be named Russell"
 }
 ```
 
@@ -185,6 +186,7 @@ reason | string? | Optional. User's reason for the records request.
 stripe_token | string? | Optional. Payment information (not charged until the request is submitted).
 signature | string? | Optional. Link to the user's electronic signature.
 promocode | string? | Optional. Promotion code; its effect appears in previews and will be applied when the request is submitted.
+note | string? | Optional. Note to vet.
 
 ## Update a request
 > Request example
@@ -197,7 +199,8 @@ promocode | string? | Optional. Promotion code; its effect appears in previews a
 	"reason": "Need proof of vaccination",
 	"stripe_token": "tk_8STubeEqtr8i",
 	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf",
-	"promocode": "mars2018"
+	"promocode": "mars2018",
+	"note": "Used to be named Russell"
 }
 ```
 
@@ -223,6 +226,7 @@ reason | string? | Optional. User's reason for the records request.
 stripe_token | string? | Optional. Payment information (not charged until the request is submitted).
 signature | string? | Optional. Link to the user's electronic signature.
 promocode | string? | Optional. Promotion code; its effect appears in previews and will be applied when the request is submitted.
+note | string? | Optional. Note to vet.
 
 ## Get existing request
 
@@ -358,12 +362,13 @@ will overwrite the previous consent form for the request.
 Validates a request (see above for rules), and performs the following actions:
 
 1. Checks for a Stripe token for payment, if it's a paid request
-2. Create a "ghost" `user` from the `web_user` in the request. This has the same attributes as a regular user account, except the `type` is 5
+2. Charges the Stripe token (if applicable)
+3. Create a "ghost" `user` from the `web_user` in the request. This has the same attributes as a regular user account, except the `type` is 5
 and the user has no password. Hence, they will not be able to log in to the app, but they should be prompted to set a password
 and finish setting up their account.
-3. Create `pet`s from the `web_pet`s in the request. These are the same as any other pet in the database.
-4. Create the appropriate `user_pet` relationships. These are the same as any other `user_pet` relationship in the database.
-5. Create the `request` in the database. This is the same as any other request in the database.
+4. Create `pet`s from the `web_pet`s in the request. These are the same as any other pet in the database.
+5. Create the appropriate `user_pet` relationships. These are the same as any other `user_pet` relationship in the database.
+6. Create the `request` in the database, unless the DIY option was selected. This is the same as any other request in the database.
 
 ### HTTP Request
 `POST /web_request/:webrequestid`
