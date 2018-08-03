@@ -89,7 +89,7 @@ city | string? | User's city.
 state | string? | User's state.
 country | string? | User's country.
 
-## Create or update pet
+## Create a pet
 > Request example
 
 ```json
@@ -110,8 +110,7 @@ country | string? | User's country.
 }
 ```
 
-Returns the ID of the `web_pet`. If the `name` parameter matches an existing pet owned by the user, it is updated;
-otherwise a new pet is created and linked to the `web_user`.
+Creates a pet and returns the ID from `web_pet`.
 
 ### HTTP Request
 `POST /web_request/user/:web_user_external_id/pets`
@@ -124,6 +123,59 @@ species | string? | Pet's species, e.g. "Dog", "Cat", "Rabbit", etc.
 breed | string? | Pet's breed, e.g. "Chihuahua" or "Domestic Short Hair"
 gender| string? | 'M' for male or 'F' for female.
 birthdate | datetime? | Pet's birth date
+
+## Update a pet
+> Request example
+
+```json
+{
+	"name": "Gizmo",
+	"species": "Dog",
+	"breed": "Yorkshire Terrier",
+	"gender": "M",
+	"birthdate": "2018-01-01"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Updates an existing pet by web_pet_id. If the user doesn't own the pet, then HTTP 403/Forbidden is returned.
+
+### HTTP Request
+`PUT /web_request/user/:web_user_external_id/pets/:web_pet_id`
+
+### PUT parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+name | string? | Pet's name.
+species | string? | Pet's species, e.g. "Dog", "Cat", "Rabbit", etc.
+breed | string? | Pet's breed, e.g. "Chihuahua" or "Domestic Short Hair"
+gender| string? | 'M' for male or 'F' for female.
+birthdate | datetime? | Pet's birth date
+
+## Get user's pets
+
+> Response example
+
+```json
+[{
+	"name": "Gizmo",
+	"species": "Dog",
+	"breed": "Yorkshire Terrier",
+	"gender": "M",
+	"birthdate": "2018-01-01"
+}]
+```
+
+Returns a list of the user's existing pets.
+
+### HTTP Request
+`GET /web_request/user/:web_user_external_id/pets`
+
 
 ## Delete a web pet from a request
 > Request example
