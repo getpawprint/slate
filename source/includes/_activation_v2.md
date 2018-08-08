@@ -145,7 +145,9 @@ token | string | Verification token from the Branch link (emailed or SMSed by an
 	"users": [{
 		"vet_user_id": 101,
 		"first_name": "John",
-		"already_linked": false
+		"already_linked": false,
+		"has_email": true,
+		"can_sms": true
 	 }]
 }]
 ```
@@ -172,6 +174,8 @@ Parameter | Type | Description
 --------- | ---- | -----------
 email | string? | Email address
 phone | string? | Phone number
+place_id | integer? | Filters search to a single vet (root level array will have at most 1 element)
+email_records | boolean? | If true, and there is exactly 1 account with an email address, sends records to the email on file.
 
 ## Send account creation token
 > Request example

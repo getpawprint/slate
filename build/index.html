@@ -500,6 +500,23 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#web-requests-onboarded-vets" class="toc-h1 toc-link" data-title="web-requests-onboarded-vets">Web requests - Onboarded vets</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#send-records-amp-recruiting-email" class="toc-h2 toc-link" data-title="send-records-amp-recruiting-email">Send records &amp; recruiting email</a>
+                  </li>
+                  <li>
+                    <a href="#find-vet-integrations-for-email-phone" class="toc-h2 toc-link" data-title="find-vet-integrations-for-email-phone">Find vet integrations for email/phone</a>
+                  </li>
+                  <li>
+                    <a href="#create-vet_user-pin" class="toc-h2 toc-link" data-title="create-vet_user-pin">Create vet_user PIN</a>
+                  </li>
+                  <li>
+                    <a href="#verify-pin-and-send-pet-records" class="toc-h2 toc-link" data-title="verify-pin-and-send-pet-records">Verify PIN and send pet records</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
@@ -1111,6 +1128,16 @@ then the root-level array will contain multiple elements.</p>
 <td>phone</td>
 <td>string?</td>
 <td>Phone number</td>
+</tr>
+<tr>
+<td>place_id</td>
+<td>integer?</td>
+<td>Filters search to a single vet (root level array will have at most 1 element)</td>
+</tr>
+<tr>
+<td>email_records</td>
+<td>boolean?</td>
+<td>If true, and there is exactly 1 account with an email address, sends records to the email on file.</td>
 </tr>
 </tbody></table>
 <h2 id='send-account-creation-token'>Send account creation token</h2>
@@ -3814,6 +3841,97 @@ and finish setting up their account.</li>
 <td>stripe_token</td>
 <td>string?</td>
 <td>Optional. Stripe token to charge if this was a paid request.</td>
+</tr>
+</tbody></table>
+<h1 id='web-requests-onboarded-vets'>Web requests - Onboarded vets</h1>
+<p>For making web requests for vets that have onboarded with Pawprint. Their accounts
+should be linked, so we don&#39;t need to submit a request; we only need to verify the user
+and then email the records.</p>
+<h2 id='send-records-amp-recruiting-email'>Send records &amp; recruiting email</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Sends an email to the vet user, with 1 of 2 possible payloads.</p>
+
+<p><strong>When the vet_user is not linked to a Pawprint user:</strong>
+- Vaccination records from the <code>vet_pet_history</code> table and items from the <code>vet_invoice</code> table
+- CTA message to download the Pawprint app
+- Branch link with the following:
+  - <code>context</code>: <code>web_request_signup</code>
+  - <code>email</code>: email address to prepopulate in the account creation page in the app
+  - <code>vet_user_id</code>: <code>vet_user.id</code> value</p>
+
+<p><strong>When the vet_user is linked to a Pawprint user:</strong>
+- Same email as going into the app and selecting &quot;Share medical records&quot; on the home screen</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /vet_user/:vet_user_id/send_records</code></p>
+<h2 id='find-vet-integrations-for-email-phone'>Find vet integrations for email/phone</h2>
+<p>See &quot;Find vet integrations for email/phone&quot; in Activation V2.</p>
+<h2 id='create-vet_user-pin'>Create vet_user PIN</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Creates a PIN for the vet_user account, valid for 1 hour, and then sends it via SMS to the vet_user&#39;s
+phone number on file.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /vet_user/:vet_user_id/pin</code></p>
+<h2 id='verify-pin-and-send-pet-records'>Verify PIN and send pet records</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"012345"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Submits a PIN for verification. If the PIN matches the PIN on the given vet_user account and isn&#39;t expired,
+pet health records are sent to the given email.</p>
+
+<p>If the PIN doesn&#39;t match or is expired, HTTP 401 is returned.</p>
+
+<aside class="notice">
+We don't have writeback access to vet PMSes to update the email address. However, the records email
+will contain a Branch link encouraging the user to sign up, and they can sign up for a Pawprint account
+with any email they want.
+</aside>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>PUT /vet_user/:vet_user_id/pin</code></p>
+<h3 id='put-parameters'>PUT parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pin</td>
+<td>string</td>
+<td>PIN that was generated</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Email address to send records to.</td>
 </tr>
 </tbody></table>
 
