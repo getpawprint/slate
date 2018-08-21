@@ -262,6 +262,9 @@
                     <a href="#find-available-vet-integrations-for-user" class="toc-h2 toc-link" data-title="find-available-vet-integrations-for-user">Find available vet integrations for user</a>
                   </li>
                   <li>
+                    <a href="#search-for-email-address" class="toc-h2 toc-link" data-title="search-for-email-address">Search for email address</a>
+                  </li>
+                  <li>
                     <a href="#link-user-with-vet_user" class="toc-h2 toc-link" data-title="link-user-with-vet_user">Link user with vet_user</a>
                   </li>
                   <li>
@@ -969,6 +972,46 @@ If the same email address or phone number is used for multiple accounts across d
 then the root-level array will contain multiple elements.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /user/v2/activation/vet_integrations</code></p>
+<h2 id='search-for-email-address'>Search for email address</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"vet_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Check for the email&#39;s existence in various Pawprint and vet tables. Fieds searched:</p>
+
+<ul>
+<li><code>user.email</code> - Primary email on a user account. Sets <code>user</code> = <code>true</code> in the response.</li>
+<li><code>verified_email</code> - Secondary email(s) on a user account. Sets <code>user</code> = <code>true</code> in the response.</li>
+<li><code>vet_user.email</code> - Primary email on a vet PMS account. Sets <code>vet_user</code> = <code>true</code> in the response.</li>
+<li><code>vet_user_email</code> - Secondary email(s) on a vet PMS account (Vetdata only; Vetter supports only 1 email). Sets <code>user</code> = <code>true</code> in the response.</li>
+</ul>
+
+<p>If <code>user</code> is true and <code>vet_user</code> is false, then the email address is associated with a Pawprint account, and cannot be used to create a new account.
+If <code>user</code> is false and <code>vet_user</code> is true, then the email address is associated with a <code>vet_user</code> account,
+and the email can be used to create a new Pawprint account, which should then be linked to the <code>vet_user</code> account.
+If both <code>user</code> and <code>vet_user</code> are true, then the email address is associated with a Pawprint account that is linked to a <code>vet_user</code> account,
+and cannot be used to create a new account.
+If both <code>user</code> and <code>vet_user</code> are false, then we have never seen that email address before, and it can be used to create a new account.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /user/v2/activation/email</code></p>
+<h3 id='get-parameters'>GET parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Required. The email address to check.</td>
+</tr>
+</tbody></table>
 <h2 id='link-user-with-vet_user'>Link user with vet_user</h2>
 <blockquote>
 <p>Request example</p>
@@ -985,7 +1028,7 @@ then the root-level array will contain multiple elements.</p>
 <p><strong>For an existing user.</strong> Links a user with a vet_user, not including pets. Each user account has a list of verified email addresses and phone numbers;
 if this list does not contain the <code>vet_user.email</code> or <code>vet_user.phone</code>, HTTP 403 is returned. Emails and phones can be added to the
 list of verified emails/phones with other API calls in this section.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /user/v2/activation/link_vet_user</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
@@ -1021,7 +1064,7 @@ specified email/phone. Only one of <code>&quot;email&quot;</code> or <code>&quot
 
 <p>The Branch link will contain <code>context: account_link</code>, <code>vet_user_id</code> and <code>verificationToken</code> in its payload. <code>context</code> can be used
 for navigation, and <code>verificationToken</code> should be saved and sent for the next call in the flow.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /user/v2/activation/send_link_token</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
@@ -1066,7 +1109,7 @@ for navigation, and <code>verificationToken</code> should be saved and sent for 
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p><strong>For an existing user.</strong> Verifies a token and adds the user&#39;s email and/or phone to the list of verified emails/phones.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /user/v2/activation/validate</code></p>
 <h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
@@ -1092,7 +1135,9 @@ for navigation, and <code>verificationToken</code> should be saved and sent for 
     </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
         </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"already_linked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="s2">"already_linked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"has_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"can_sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
      </span><span class="p">}]</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
@@ -1109,9 +1154,9 @@ Only the `vet_user`'s `vet_user_id`, first name and account linking status are r
 then the &quot;users&quot; array will contain multiple elements.
 If the same email address or phone number is used for multiple accounts across different vets, (e.g. one pet, multiple vets)
 then the root-level array will contain multiple elements.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /activation/vet_integrations</code></p>
-<h3 id='get-parameters'>GET parameters</h3>
+<h3 id='get-parameters-2'>GET parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1168,7 +1213,7 @@ Same behavior for <code>type: phone</code>.</p>
 <aside class="notice">
 This is a public API and does not require authentication.
 </aside>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /user/v2/activation/send_create_token</code></p>
 <h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>
@@ -1213,7 +1258,7 @@ a new user account is created and the token is consumed. An auth token is return
 <aside class="notice">
 This is a public API and does not require authentication.
 </aside>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /user/v2/activation/create_from_vet_account</code></p>
 <h3 id='post-parameters-5'>POST parameters</h3>
 <table><thead>
