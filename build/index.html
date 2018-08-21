@@ -977,28 +977,23 @@ then the root-level array will contain multiple elements.</p>
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"vet_user"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_needs_password"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Check for the email&#39;s existence in various Pawprint and vet tables. Fieds searched:</p>
+<p>Check for the email&#39;s existence in various Pawprint and vet tables. Fields searched:</p>
 
 <ul>
-<li><code>user.email</code> - Primary email on a user account. Sets <code>user</code> = <code>true</code> in the response.</li>
+<li><code>user.email</code> - Primary email on a user account. Sets <code>user</code> = <code>true</code> and <code>needs_password</code> in the response.</li>
 <li><code>verified_email</code> - Secondary email(s) on a user account. Sets <code>user</code> = <code>true</code> in the response.</li>
 <li><code>vet_user.email</code> - Primary email on a vet PMS account. Sets <code>vet_user</code> = <code>true</code> in the response.</li>
 <li><code>vet_user_email</code> - Secondary email(s) on a vet PMS account (Vetdata only; Vetter supports only 1 email). Sets <code>user</code> = <code>true</code> in the response.</li>
 </ul>
 
-<p>If <code>user</code> is true and <code>vet_user</code> is false, then the email address is associated with a Pawprint account, and cannot be used to create a new account.</p>
-
-<p>If <code>user</code> is false and <code>vet_user</code> is true, then the email address is associated with a <code>vet_user</code> account,
-and the email can be used to create a new Pawprint account, which should then be linked to the <code>vet_user</code> account.</p>
-
-<p>If both <code>user</code> and <code>vet_user</code> are true, then the email address is associated with a Pawprint account that is linked to a <code>vet_user</code> account,
-and cannot be used to create a new account.</p>
-
-<p>If both <code>user</code> and <code>vet_user</code> are false, then we have never seen that email address before, and it can be used to create a new account.</p>
+<p>Possible statuses:
+- <code>user</code> - email exists in the <code>user</code> table and has a password, or email is in the <code>verified_email</code> table. User should sign in with the account.
+- <code>user_needs_password</code> - email exists in the <code>user</code> table and does not have a password (aka &quot;ghost user&quot;). Password should be set for the account.
+- <code>vet_user</code> - email exists in the <code>vet_user</code> table or the <code>vet_user_email</code> table. A new Pawprint count should be created, linked to the <code>vet_user</code> account.
+- <code>unused</code> - email does not exist anywhere in the Pawprint database and can be used to create a new account.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /activation/email</code></p>
 <h3 id='get-parameters'>GET parameters</h3>
