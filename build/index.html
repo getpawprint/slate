@@ -990,14 +990,17 @@ then the root-level array will contain multiple elements.</p>
 <li><code>vet_user_email</code> - Secondary email(s) on a vet PMS account (Vetdata only; Vetter supports only 1 email). Sets <code>user</code> = <code>true</code> in the response.</li>
 </ul>
 
-<p>If <code>user</code> is true and <code>vet_user</code> is false, then the email address is associated with a Pawprint account, and cannot be used to create a new account.
-If <code>user</code> is false and <code>vet_user</code> is true, then the email address is associated with a <code>vet_user</code> account,
-and the email can be used to create a new Pawprint account, which should then be linked to the <code>vet_user</code> account.
-If both <code>user</code> and <code>vet_user</code> are true, then the email address is associated with a Pawprint account that is linked to a <code>vet_user</code> account,
-and cannot be used to create a new account.
-If both <code>user</code> and <code>vet_user</code> are false, then we have never seen that email address before, and it can be used to create a new account.</p>
+<p>If <code>user</code> is true and <code>vet_user</code> is false, then the email address is associated with a Pawprint account, and cannot be used to create a new account.</p>
+
+<p>If <code>user</code> is false and <code>vet_user</code> is true, then the email address is associated with a <code>vet_user</code> account,
+and the email can be used to create a new Pawprint account, which should then be linked to the <code>vet_user</code> account.</p>
+
+<p>If both <code>user</code> and <code>vet_user</code> are true, then the email address is associated with a Pawprint account that is linked to a <code>vet_user</code> account,
+and cannot be used to create a new account.</p>
+
+<p>If both <code>user</code> and <code>vet_user</code> are false, then we have never seen that email address before, and it can be used to create a new account.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET /user/v2/activation/email</code></p>
+<p><code>GET /activation/email</code></p>
 <h3 id='get-parameters'>GET parameters</h3>
 <table><thead>
 <tr>
