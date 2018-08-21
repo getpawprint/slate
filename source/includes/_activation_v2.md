@@ -48,6 +48,39 @@ then the root-level array will contain multiple elements.
 ### HTTP Request
 `GET /user/v2/activation/vet_integrations`
 
+## Search for email address
+
+> Response example
+
+```json
+{
+  "user": true,
+  "vet_user": true
+}
+```
+
+Check for the email's existence in various Pawprint and vet tables. Fieds searched:
+
+- `user.email` - Primary email on a user account. Sets `user` = `true` in the response.
+- `verified_email` - Secondary email(s) on a user account. Sets `user` = `true` in the response.
+- `vet_user.email` - Primary email on a vet PMS account. Sets `vet_user` = `true` in the response.
+- `vet_user_email` - Secondary email(s) on a vet PMS account (Vetdata only; Vetter supports only 1 email). Sets `user` = `true` in the response.
+
+If `user` is true and `vet_user` is false, then the email address is associated with a Pawprint account, and cannot be used to create a new account.
+If `user` is false and `vet_user` is true, then the email address is associated with a `vet_user` account,
+and the email can be used to create a new Pawprint account, which should then be linked to the `vet_user` account.
+If both `user` and `vet_user` are true, then the email address is associated with a Pawprint account that is linked to a `vet_user` account,
+and cannot be used to create a new account.
+If both `user` and `vet_user` are false, then we have never seen that email address before, and it can be used to create a new account.
+
+### HTTP Request
+`GET /user/v2/activation/email`
+
+### GET parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+email | string | Required. The email address to check.
+
 ## Link user with vet_user
 > Request example
 
