@@ -66,9 +66,11 @@ Check for the email's existence in various Pawprint and vet tables. Fields searc
 - `vet_user_email` - Secondary email(s) on a vet PMS account (Vetdata only; Vetter supports only 1 email). Sets `user` = `true` in the response.
 
 Possible statuses:
+
 - `user` - email exists in the `user` table and has a password, or email is in the `verified_email` table. User should sign in with the account.
 - `user_needs_password` - email exists in the `user` table and does not have a password (aka "ghost user"). Password should be set for the account.
 - `vet_user` - email exists in the `vet_user` table or the `vet_user_email` table. A new Pawprint count should be created, linked to the `vet_user` account.
+See "Send account creation token" and "Create user account from vet_user account".
 - `unused` - email does not exist anywhere in the Pawprint database and can be used to create a new account.
 
 ### HTTP Request
@@ -79,7 +81,78 @@ Parameter | Type | Description
 --------- | ---- | -----------
 email | string | Required. The email address to check.
 
-## Link user with vet_user
+## Send activation link to vet_user
+
+> Request example
+
+```json
+{
+  "type": "email",
+  "email": "demo@getpawprint.com",
+  "phone": "4255556172
+}
+```
+
+> Response example
+
+```json
+{
+  (none)
+}
+```
+
+Sends an email to given email address, or SMS to the given phone number, with a Branch link to create
+a new Pawprint account based on an existing `vet_user` account. The Branch link will contain:
+
+- verification_token
+- The vet_user ID
+- `context: vet_user_activation`
+
+### HTTP Request
+`POST /activation/vet_user/:vet_user_id/send_token`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+type | string | Either `email` or `phone`.
+email | string? | Send verification link to this email address.
+phone | string? | Send verification link via SMS to this phone number.
+
+## Create Pawprint user from vet user via token
+
+> Request example
+
+```json
+{
+  "verification_token": "Qrrbrbirlbel",
+  "email": "demo2@getpawprint.com",
+  "password": "passw3rd"
+}
+```
+
+> Response example
+
+```json
+{
+  (none)
+}
+```
+
+Creates a Pawprint user by copying data from the given `vet_user`. `verification_token` comes from
+a Branch link in the previous verification step, and `email` lets the user pick a different sign-in
+email from the one on the `vet_user` account. `password` is required to set up the account.
+
+### HTTP Request
+`POST /activation/vet_user/:vet_user_id/verify_token`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+verification_token | string | Either `email` or `phone`.
+email | string? | Optional. Allows the user to log in with a different email from their `vet_user` account.
+password | string | Password on the new account.
+
+## Link existing user with vet_user
 > Request example
 
 ```json
