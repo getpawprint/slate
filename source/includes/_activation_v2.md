@@ -24,6 +24,7 @@ Expected scenarios:
 [{
 	"vet_name": "Pawprint Demo Veterinary",
 	"vet_banner": "https://s3.aws.amazon.com/pawprint/banner.png",
+	"place_id": 27015,
 	"users": [{
 		"vet_user_id": 101,
 		"first_name": "John",
