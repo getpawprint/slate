@@ -73,14 +73,15 @@ type | String | "vet" if it's a vet (so far the only values in the database are 
         "googlePlaceID": "ChIJ08cxkN1oYogRJfpZbg5DPHM",
         "name": "Trusty Vet - Affordable Pet Care - Research Park",
         "practiceName": "Trusty Vet - Affordable Pet Care - Research Park",
-        "address": "6945 Highway 72 West, Huntsville, AL 35806undefined",
+        "address": "6945 Highway 72 West, Huntsville, AL 35806",
         "phone": "2564898387",
         "fax": "2564898353",
         "website": "http://www.trustyvet.com/",
         "unformattedPhone": "2564898387",
         "twilio_phone": "2564898387",
         "custom_message": null,
-        "canFormatPhone": true
+        "canFormatPhone": true,
+        "pawprint_vet": false
     },
     {
         "id": 11748,
@@ -94,7 +95,8 @@ type | String | "vet" if it's a vet (so far the only values in the database are 
         "website": "http://affordableveterinaryservices.com/",
         "unformattedPhone": "907-745-3219",
         "twilio_phone": null,
-        "custom_message": "This vet is walk-in only."
+        "custom_message": "This vet is walk-in only.",
+        "pawprint_vet": true
     },
     {
         "id": "ChIJv7y3eRQ-ZIgRIa8WUeIUzwo",
@@ -106,7 +108,8 @@ type | String | "vet" if it's a vet (so far the only values in the database are 
         "phone": "16157888008",
         "website": "http://www.veterinarianmtjuliet.com/",
         "unformattedPhone": "+1 615-788-8008",
-        "canFormatPhone": true
+        "canFormatPhone": true,
+        "pawprint_vet": false
     }
 ]
 ```
