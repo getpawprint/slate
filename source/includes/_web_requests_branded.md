@@ -54,7 +54,36 @@ phone number on file.
 ### HTTP Request
 `POST /vet_user/:vet_user_id/pin`
 
-## Verify PIN and send pet records
+## Verify PIN and send pet records to email on file
+> Request example
+
+```json
+{
+	"pin": "012345"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Submits a PIN for verification. If the PIN matches the PIN on the given `vet_user` account and isn't expired,
+and if the `vet_user` has an email on file, then records are sent to that email. If the `vet_user` does not have
+an email on file, then HTTP 404 is returned.
+
+If the PIN doesn't match or is expired, HTTP 401 is returned.
+
+### HTTP Request
+`PUT /vet_user/:vet_user_id/pin_email`
+
+### PUT parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+pin | string | PIN that was generated
+
+## Verify PIN and send pet records to given email
 > Request example
 
 ```json
