@@ -530,10 +530,7 @@
                     <a href="#create-vet_user-pin" class="toc-h2 toc-link" data-title="create-vet_user-pin">Create vet_user PIN</a>
                   </li>
                   <li>
-                    <a href="#verify-pin-and-send-pet-records-to-email-on-file" class="toc-h2 toc-link" data-title="verify-pin-and-send-pet-records-to-email-on-file">Verify PIN and send pet records to email on file</a>
-                  </li>
-                  <li>
-                    <a href="#verify-pin-and-send-pet-records-to-given-email" class="toc-h2 toc-link" data-title="verify-pin-and-send-pet-records-to-given-email">Verify PIN and send pet records to given email</a>
+                    <a href="#verify-pin-and-send-pet-records" class="toc-h2 toc-link" data-title="verify-pin-and-send-pet-records">Verify PIN and send pet records</a>
                   </li>
               </ul>
           </li>
@@ -4093,41 +4090,7 @@ and then email the records.</p>
 phone number on file.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST /vet_user/:vet_user_id/pin</code></p>
-<h2 id='verify-pin-and-send-pet-records-to-email-on-file'>Verify PIN and send pet records to email on file</h2>
-<blockquote>
-<p>Request example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"pin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"012345"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
-</span></code></pre>
-<p>Submits a PIN for verification. If the PIN matches the PIN on the given <code>vet_user</code> account and isn&#39;t expired,
-and if the <code>vet_user</code> has an email on file, then records are sent to that email. If the <code>vet_user</code> does not have
-an email on file, then HTTP 404 is returned.</p>
-
-<p>If the PIN doesn&#39;t match or is expired, HTTP 401 is returned.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>PUT /vet_user/:vet_user_id/pin_email</code></p>
-<h3 id='put-parameters'>PUT parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>pin</td>
-<td>string</td>
-<td>PIN that was generated</td>
-</tr>
-</tbody></table>
-<h2 id='verify-pin-and-send-pet-records-to-given-email'>Verify PIN and send pet records to given email</h2>
+<h2 id='verify-pin-and-send-pet-records'>Verify PIN and send pet records</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
@@ -4144,6 +4107,9 @@ an email on file, then HTTP 404 is returned.</p>
 <p>Submits a PIN for verification. If the PIN matches the PIN on the given vet_user account and isn&#39;t expired,
 pet health records are sent to the given email.</p>
 
+<p>If the <code>email</code> parameter was not specified, the <code>vet_user</code> is checked for an email address, and records are sent to that email.
+If no email address was found for the <code>vet_user</code>, then HTTP 204 is returned.</p>
+
 <p>If the PIN doesn&#39;t match or is expired, HTTP 401 is returned.</p>
 
 <aside class="notice">
@@ -4151,9 +4117,9 @@ We don't have writeback access to vet PMSes to update the email address. However
 will contain a Branch link encouraging the user to sign up, and they can sign up for a Pawprint account
 with any email they want.
 </aside>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>PUT /vet_user/:vet_user_id/pin</code></p>
-<h3 id='put-parameters-2'>PUT parameters</h3>
+<h3 id='put-parameters'>PUT parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4168,7 +4134,7 @@ with any email they want.
 </tr>
 <tr>
 <td>email</td>
-<td>string</td>
+<td>string?</td>
 <td>Email address to send records to.</td>
 </tr>
 </tbody></table>
