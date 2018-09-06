@@ -1249,9 +1249,8 @@ for navigation, and <code>verificationToken</code> should be saved and sent for 
     </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
         </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Rover"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Charlie"</span><span class="w"> </span><span class="p">],</span><span class="w">
         </span><span class="s2">"already_linked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"has_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"can_sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
      </span><span class="p">}]</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
@@ -4102,15 +4101,28 @@ phone number on file.</p>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email_sent"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_pin"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no_email"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Submits a PIN for verification. If the PIN matches the PIN on the given vet_user account and isn&#39;t expired,
-pet health records are sent to the given email.</p>
+pet health records are sent to the given email.
+If the <code>email</code> parameter was not specified, the <code>vet_user</code> is checked for an email address, and records are sent to that email.</p>
 
-<p>If the <code>email</code> parameter was not specified, the <code>vet_user</code> is checked for an email address, and records are sent to that email.
-If no email address was found for the <code>vet_user</code>, then HTTP 204 is returned.</p>
+<p>If the PIN doesn&#39;t match or is expired, HTTP 401 is returned with <code>status: invalid</code>.</p>
 
-<p>If the PIN doesn&#39;t match or is expired, HTTP 401 is returned.</p>
+<p>The response</p>
 
 <aside class="notice">
 We don't have writeback access to vet PMSes to update the email address. However, the records email

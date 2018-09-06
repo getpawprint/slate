@@ -250,9 +250,8 @@ token | string | Verification token from the Branch link (emailed or SMSed by an
 	"users": [{
 		"vet_user_id": 101,
 		"first_name": "John",
+		"pets": [ "Rover", "Charlie" ],
 		"already_linked": false,
-		"has_email": true,
-		"can_sms": true
 	 }]
 }]
 ```

@@ -67,16 +67,29 @@ phone number on file.
 > Response example
 
 ```json
-(none)
+{
+	"status": "email_sent",
+	"email": "demo@getpawprint.com"
+}
+
+{
+"status": "invalid_pin",
+"email": null
+}
+
+{
+"status": "no_email",
+"email": null
+}
 ```
 
 Submits a PIN for verification. If the PIN matches the PIN on the given vet_user account and isn't expired,
 pet health records are sent to the given email.
-
 If the `email` parameter was not specified, the `vet_user` is checked for an email address, and records are sent to that email.
-If no email address was found for the `vet_user`, then HTTP 204 is returned.
 
-If the PIN doesn't match or is expired, HTTP 401 is returned.
+If the PIN doesn't match or is expired, HTTP 401 is returned with `status: invalid`.
+
+The response
 
 <aside class="notice">
 We don't have writeback access to vet PMSes to update the email address. However, the records email
