@@ -120,7 +120,7 @@ the results are de-duped by ID, address, phone number, and name,
 with a preference for keeping items from the `place` table over Google results.
 
 ### HTTP Request
-`GET /user/places`
+`GET /user/places` (authenticated) or `GET /place` (public)
 
 ### GET parameters
 Parameter | Type | Description
@@ -183,3 +183,30 @@ appointment_type_id | int | Appointment type ID from the `appointment_type` tabl
 time | json | JSON list of requested times
 notes | String? | Note to vet
 
+## Create place entry from Google Place ID
+> Request example
+
+```json
+{
+	"placesid": "ChIJaxv59CO4t4kReMLN8Lgbqzo"
+}
+```
+
+> Response example
+
+```json
+{
+	"place_id": 16501
+}
+```
+
+Takes a Google Places ID and creates a `place` table entry for it, then returns the `place.id` of the newly created place.
+If the Google Places ID already existed in the `place` table, then the existing `place.id` is returned.
+
+### HTTP Request
+`POST /place/google`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+placesid | String | A Google Place ID.

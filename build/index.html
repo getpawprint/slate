@@ -373,6 +373,9 @@
                   <li>
                     <a href="#create-appointment-request-at-a-place" class="toc-h2 toc-link" data-title="create-appointment-request-at-a-place">Create appointment request at a place</a>
                   </li>
+                  <li>
+                    <a href="#create-place-entry-from-google-place-id" class="toc-h2 toc-link" data-title="create-place-entry-from-google-place-id">Create place entry from Google Place ID</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2157,7 +2160,7 @@ into a single format, then certains fields like phone and address are formatted,
 the results are de-duped by ID, address, phone number, and name,
 with a preference for keeping items from the <code>place</code> table over Google results.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET /user/places</code></p>
+<p><code>GET /user/places</code> (authenticated) or <code>GET /place</code> (public)</p>
 <h3 id='get-parameters'>GET parameters</h3>
 <table><thead>
 <tr>
@@ -2271,6 +2274,39 @@ the accepted time will appear as US/Pacific.
 <td>notes</td>
 <td>String?</td>
 <td>Note to vet</td>
+</tr>
+</tbody></table>
+<h2 id='create-place-entry-from-google-place-id'>Create place entry from Google Place ID</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJaxv59CO4t4kReMLN8Lgbqzo"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16501</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Takes a Google Places ID and creates a <code>place</code> table entry for it, then returns the <code>place.id</code> of the newly created place.
+If the Google Places ID already existed in the <code>place</code> table, then the existing <code>place.id</code> is returned.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /place/google</code></p>
+<h3 id='post-parameters-3'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>placesid</td>
+<td>String</td>
+<td>A Google Place ID.</td>
 </tr>
 </tbody></table>
 <h1 id='reminders-v2'>Reminders v2</h1>
