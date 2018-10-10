@@ -10,6 +10,7 @@ toc_footers:
 includes:
   - activation
   - activation_v2
+  - admin
   - followups
   - machine_learning
   - medication

@@ -291,6 +291,83 @@
               </ul>
           </li>
           <li>
+            <a href="#admin-portal" class="toc-h1 toc-link" data-title="admin-portal">Admin portal</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-list-of-admins" class="toc-h2 toc-link" data-title="get-list-of-admins">Get list of admins</a>
+                  </li>
+                  <li>
+                    <a href="#get-request-counts-by-status" class="toc-h2 toc-link" data-title="get-request-counts-by-status">Get request counts by status</a>
+                  </li>
+                  <li>
+                    <a href="#get-list-of-requests" class="toc-h2 toc-link" data-title="get-list-of-requests">Get list of requests</a>
+                  </li>
+                  <li>
+                    <a href="#get-an-individual-request" class="toc-h2 toc-link" data-title="get-an-individual-request">Get an individual request</a>
+                  </li>
+                  <li>
+                    <a href="#update-request" class="toc-h2 toc-link" data-title="update-request">Update request</a>
+                  </li>
+                  <li>
+                    <a href="#notify-user-of-request-completion" class="toc-h2 toc-link" data-title="notify-user-of-request-completion">Notify user of request completion</a>
+                  </li>
+                  <li>
+                    <a href="#get-update-any-user" class="toc-h2 toc-link" data-title="get-update-any-user">Get/Update any user</a>
+                  </li>
+                  <li>
+                    <a href="#get-update-any-pet" class="toc-h2 toc-link" data-title="get-update-any-pet">Get/Update any pet</a>
+                  </li>
+                  <li>
+                    <a href="#get-update-any-place" class="toc-h2 toc-link" data-title="get-update-any-place">Get/Update any place</a>
+                  </li>
+                  <li>
+                    <a href="#get-contact-history-for-a-request" class="toc-h2 toc-link" data-title="get-contact-history-for-a-request">Get contact history for a request</a>
+                  </li>
+                  <li>
+                    <a href="#add-to-contact-history-for-a-request" class="toc-h2 toc-link" data-title="add-to-contact-history-for-a-request">Add to contact history for a request</a>
+                  </li>
+                  <li>
+                    <a href="#update-contact-history-log-entry" class="toc-h2 toc-link" data-title="update-contact-history-log-entry">Update contact history log entry</a>
+                  </li>
+                  <li>
+                    <a href="#delete-contact-history-log-entry" class="toc-h2 toc-link" data-title="delete-contact-history-log-entry">Delete contact history log entry</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-contact-history-regarding-a-certain-user-pet-place" class="toc-h2 toc-link" data-title="get-all-contact-history-regarding-a-certain-user-pet-place">Get all contact history regarding a certain user/pet/place</a>
+                  </li>
+                  <li>
+                    <a href="#get-pdf-records-from-a-request" class="toc-h2 toc-link" data-title="get-pdf-records-from-a-request">Get PDF records from a request</a>
+                  </li>
+                  <li>
+                    <a href="#upload-pdf-record-to-a-request" class="toc-h2 toc-link" data-title="upload-pdf-record-to-a-request">Upload PDF record to a request</a>
+                  </li>
+                  <li>
+                    <a href="#delete-pdf-record-to-a-request" class="toc-h2 toc-link" data-title="delete-pdf-record-to-a-request">Delete PDF record to a request</a>
+                  </li>
+                  <li>
+                    <a href="#update-regenerate-consent-form" class="toc-h2 toc-link" data-title="update-regenerate-consent-form">Update/regenerate consent form</a>
+                  </li>
+                  <li>
+                    <a href="#send-request-to-vet-via-email" class="toc-h2 toc-link" data-title="send-request-to-vet-via-email">Send request to vet via email</a>
+                  </li>
+                  <li>
+                    <a href="#send-request-to-vet-via-fax" class="toc-h2 toc-link" data-title="send-request-to-vet-via-fax">Send request to vet via fax</a>
+                  </li>
+                  <li>
+                    <a href="#get-contacts-for-a-vet" class="toc-h2 toc-link" data-title="get-contacts-for-a-vet">Get contacts for a vet</a>
+                  </li>
+                  <li>
+                    <a href="#add-contact-at-a-vet" class="toc-h2 toc-link" data-title="add-contact-at-a-vet">Add contact at a vet</a>
+                  </li>
+                  <li>
+                    <a href="#update-contact" class="toc-h2 toc-link" data-title="update-contact">Update contact</a>
+                  </li>
+                  <li>
+                    <a href="#delete-contact" class="toc-h2 toc-link" data-title="delete-contact">Delete contact</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#followup-surveys" class="toc-h1 toc-link" data-title="followup-surveys">Followup surveys</a>
               <ul class="toc-list-h2">
                   <li>
@@ -1400,6 +1477,660 @@ This is a public API and does not require authentication.
 <td>Verification token included with the Branch link sent from a previous call in the flow.</td>
 </tr>
 </tbody></table>
+<h1 id='admin-portal'>Admin portal</h1>
+<p>APIs that are used by the admin portal. You can find everything in
+pawprint-backend/client/admin/app/common/services/utils.srv.js.</p>
+<h2 id='get-list-of-admins'>Get list of admins</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Lennon"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paul McCartney"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"George Harrison"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ringo Starr"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets the list of all admins, which are defined as having <code>&quot;user&quot;.type=0</code>.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /admin/admins</code></p>
+<h2 id='get-request-counts-by-status'>Get request counts by status</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="mi">174</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending user"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending vet"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cancelled"</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"268"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending_all"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets request counts by status - <code>new</code>, <code>pending user</code>, <code>pending vet</code>, etc.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /admin/requests/counts</code></p>
+<h2 id='get-list-of-requests'>Get list of requests</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17237</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong, Emily"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Emily"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bowser"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Irving Pet Hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-17T02:00:30.935Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"stripe_charge_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-17T02:00:31.572Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paid Full History"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User paid for full history plus rush service"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"request_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Records"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17241</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7881</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong, Emily"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Emily"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dong"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bowser"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"North 10th Street Animal Hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-17T02:22:35.875Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"stripe_charge_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ch_19yAk9EBVec3KZrs0NBW60L3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-17T02:22:36.333Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paid Rush Service"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rush"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User paid for rush service"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"request_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Records"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17748</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HatsS, Emma"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Emma"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HatsS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Irving Pet Hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-07T22:13:07.026Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"stripe_charge_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-07T22:13:12.501Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">226</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"code_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Basic Record Retrieval"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_display"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No add-ons purchased"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"request_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Records"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets a list of requests. This API is NOT PAGINATED so be careful about calling with statuses that have
+a lot of requests, like &quot;complete&quot;.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /admin/requests</code></p>
+<h3 id='query-string-parameters'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>request.status</td>
+<td>string?</td>
+<td>Filters by status, e.g. &quot;new&quot;, &quot;pending vet&quot;, &quot;received&quot;, etc.</td>
+</tr>
+</tbody></table>
+<h2 id='get-an-individual-request'>Get an individual request</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3413</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-25T01:12:21.343Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-27T22:48:39.615Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"consent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-request-consent.s3.amazonaws.com/1-3413-1448413942761.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">226</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stripe_charge_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code_notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Basic Record Retrieval"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type_display"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type_priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No add-ons purchased"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets an individual request by <code>request.id</code>.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /admin/requests/:requestid</code></p>
+<h2 id='update-request'>Update request</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3413</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-25T01:12:21.343Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-27T22:48:39.615Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"consent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-request-consent.s3.amazonaws.com/1-3413-1448413942761.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stripe_charge_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code_notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code_description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Basic Record Retrieval"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type_display"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type_priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No add-ons purchased"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates an individual request by patching the <code>request</code> row with the properties specified in the PUT body.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>PUT /admin/requests/:requestid</code></p>
+<h2 id='notify-user-of-request-completion'>Notify user of request completion</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3314</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Sends a notification to the user that their request is complete. The notification is
+sent via push, email and/or SMS based on the user&#39;s preferences, which are set in the mobile app.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST /admin/notify/request</code></p>
+<h3 id='post-body-parameters'>POST body parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>int</td>
+<td>ID of the user to notify.</td>
+</tr>
+<tr>
+<td>request_id</td>
+<td>int</td>
+<td>ID of the request.</td>
+</tr>
+<tr>
+<td>pet_id</td>
+<td>int</td>
+<td>ID of the pet in the request.</td>
+</tr>
+<tr>
+<td>place_id</td>
+<td>int</td>
+<td>ID of the place in the request.</td>
+</tr>
+</tbody></table>
+<h2 id='get-update-any-user'>Get/Update any user</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Russell"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wilson"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(newly</span><span class="w"> </span><span class="err">updated</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">row)</span><span class="w">
+</span></code></pre>
+<p>Gets ANY user (if called with GET),
+or updates ANY user by patching the <code>user</code> row with the properties specified in the PUT body.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET /admin/users/:userid</code></p>
+
+<p><code>PUT /admin/users/:userid</code></p>
+<h2 id='get-update-any-pet'>Get/Update any pet</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chewy"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(newly</span><span class="w"> </span><span class="err">updated</span><span class="w"> </span><span class="err">pet</span><span class="w"> </span><span class="err">row)</span><span class="w">
+</span></code></pre>
+<p>Gets ANY pet (if called with GET),
+or updates ANY pet by patching the <code>pet</code> row with the properties specified in the PUT body.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /admin/pets/:petid</code></p>
+
+<p><code>PUT /admin/pets/:petid</code></p>
+<h2 id='get-update-any-place'>Get/Update any place</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Bellevue, WA 98004"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(newly</span><span class="w"> </span><span class="err">updated</span><span class="w"> </span><span class="err">place</span><span class="w"> </span><span class="err">row)</span><span class="w">
+</span></code></pre>
+<p>Gets ANY vet/place (if called with GET),
+or updates ANY vet/place by patching the <code>place</code> row with the properties specified in the PUT body.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>GET /admin/places/:petid</code></p>
+
+<p><code>PUT /admin/places/:petid</code></p>
+<h2 id='get-contact-history-for-a-request'>Get contact history for a request</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43189</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"adminUser_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Email"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Template email sent"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17773</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contact_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-31T08:45:48.986Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-31T08:45:48.987Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"appointment_request_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets contact history for a request.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET /admin/requests/:requestid/logs</code></p>
+<h2 id='add-to-contact-history-for-a-request'>Add to contact history for a request</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"adminUser_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Records were received and uploaded"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Records received"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-31T08:45:48.986Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Adds a new contact history log item to the request.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>POST /admin/requests/:requestid/logs</code></p>
+<h3 id='post-body-parameters-2'>POST body parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>adminUser_id</td>
+<td>int?</td>
+<td>Admin&#39;s user ID who is making the post, otherwise the currently logged in user.</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Log entry content - freeform string.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Category of communication - freeform string.</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>datetime</td>
+<td>When the addition was made.</td>
+</tr>
+</tbody></table>
+<h2 id='update-contact-history-log-entry'>Update contact history log entry</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Amended message content"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(newly</span><span class="w"> </span><span class="err">updated</span><span class="w"> </span><span class="err">contactHistory</span><span class="w"> </span><span class="err">row)</span><span class="w">
+</span></code></pre>
+<p>Updates an individual request by patching the <code>contactHistory</code> row with the properties specified in the PUT body.</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>PUT /admin/requests/:requestid/logs/:logid</code></p>
+<h2 id='delete-contact-history-log-entry'>Delete contact history log entry</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Deletes a contact history log entry.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>DELETE /admin/requests/:requestid/logs/:logid</code></p>
+<h2 id='get-all-contact-history-regarding-a-certain-user-pet-place'>Get all contact history regarding a certain user/pet/place</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17785</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Template email sent"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Email"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"adminFirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Emily"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"adminId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-31T08:46:41.069Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clientFirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clientLastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clientId"</span><span class="p">:</span><span class="w"> </span><span class="mi">36486</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"petName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rover"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"petId"</span><span class="p">:</span><span class="w"> </span><span class="mi">65388</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test place"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">8443</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all contact history regarding a certain user/pet/place. DO NOT CALL WITHOUT QUERY PARAMETERS or
+else the response will be really long.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>GET /admin/logs</code></p>
+<h3 id='query-string-parameters-2'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>request.user_id</td>
+<td>int?</td>
+<td>Filters by user</td>
+</tr>
+<tr>
+<td>request.pet_id</td>
+<td>int?</td>
+<td>Filters by pet</td>
+</tr>
+<tr>
+<td>request.place_id</td>
+<td>int?</td>
+<td>Filters by place</td>
+</tr>
+</tbody></table>
+<h2 id='get-pdf-records-from-a-request'>Get PDF records from a request</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14835</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-request-pdf.s3.amazonaws.com/17773-123456789.pdf"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17773</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-05T22:56:12.257Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-05T22:56:12.257Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"undefined"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-05T07:00:00.000Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all PDF records that were uploaded to a request.</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>GET /admin/requests/:requestid/pdfs</code></p>
+<h2 id='upload-pdf-record-to-a-request'>Upload PDF record to a request</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Uploads a PDF to our Amazon S3 pdfBucket and saves the link in the <code>pdfRecord</code> table.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>POST /admin/requests/:requestid/pdfs</code></p>
+<h2 id='delete-pdf-record-to-a-request'>Delete PDF record to a request</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Soft-deletes the link to the PDF record from the <code>pdfRecord</code>; however, the actual PDF will remain in Amazon S3.</p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>DELETE /admin/requests/:requestid/pdfs/:pdfid</code></p>
+<h2 id='update-regenerate-consent-form'>Update/regenerate consent form</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Regenerates the consent PDF attached to the request, in case the request had something changed.</p>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>POST /admin/requests/:requestid/consents</code></p>
+<h2 id='send-request-to-vet-via-email'>Send request to vet via email</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Emails a message and consent form to the vet associated with the request. <strong>THIS EMAIL WILL APPEAR
+TO BE FROM CASSIE MOSS</strong>. This only works if the vet has an email address in the place table.</p>
+<h3 id='http-request-19'>HTTP Request</h3>
+<p><code>POST /admin/requests/:requestid/emails</code></p>
+<h2 id='send-request-to-vet-via-fax'>Send request to vet via fax</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Faxes a message and consent form to the vet associated with the request. This only works if the vet has a fax number in the place table.</p>
+<h3 id='http-request-20'>HTTP Request</h3>
+<p><code>POST /admin/requests/:requestid/faxes</code></p>
+<h2 id='get-contacts-for-a-vet'>Get contacts for a vet</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1214</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Olivia"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-09T14:32:23.371Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-09T14:32:23.371Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2823</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Katheryn"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-10T22:28:13.095Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-10-10T22:28:13.095Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets the contact information for people who work at a particular place.</p>
+<h3 id='http-request-21'>HTTP Request</h3>
+<p><code>GET /admin/places/:placeid/contacts</code></p>
+<h2 id='add-contact-at-a-vet'>Add contact at a vet</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Morgan Lee"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manager"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@getpawprint.com,
+    "</span><span class="err">phone</span><span class="s2">": "</span><span class="mi">19145555555</span><span class="s2">"
+}
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Adds contact information about someone who works at a particular place.</p>
+<h3 id='http-request-22'>HTTP Request</h3>
+<p><code>POST /admin/places/:placeid/contacts</code></p>
+<h3 id='post-body-parameters-3'>POST body parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The person&#39;s name.</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string?</td>
+<td>The person&#39;s title.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string?</td>
+<td>The person&#39;s email address.</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string?</td>
+<td>The person&#39;s phone number.</td>
+</tr>
+</tbody></table>
+<h2 id='update-contact'>Update contact</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Morgan Smith"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(newly</span><span class="w"> </span><span class="err">updated</span><span class="w"> </span><span class="err">contact</span><span class="w"> </span><span class="err">row)</span><span class="w">
+</span></code></pre>
+<p>Updates contact information about someone who works at a particular place.</p>
+<h3 id='http-request-23'>HTTP Request</h3>
+<p><code>PUT /admin/places/:placeid/contacts/:contactid</code></p>
+<h2 id='delete-contact'>Delete contact</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Deletes a contact from a place.</p>
+<h3 id='http-request-24'>HTTP Request</h3>
+<p><code>DELETE /admin/places/:placeid/contacts/:contactid</code></p>
 <h1 id='followup-surveys'>Followup surveys</h1>
 <p>Use these as a template by copying and pasting them.</p>
 <h2 id='update-a-followup-survey'>Update a followup survey</h2>
