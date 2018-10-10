@@ -672,3 +672,243 @@ Deletes a contact from a place.
 
 ### HTTP Request
 `DELETE /admin/places/:placeid/contacts/:contactid`
+
+## Get all medications
+
+> Response example
+
+```json
+[
+    {
+        "id": 485,
+        "name": "Seresto",
+        "description": "Flea/tick collar",
+        "active_ingredient": "imidacloprid, flumethrin"
+    },
+    {
+        "id": 284,
+        "name": "ProHeart 6",
+        "description": "Heartworm preventative",
+        "active_ingredient": "moxidectin"
+    }
+]
+```
+
+Gets the list of all medications.
+
+### HTTP Request
+`GET /admin/medications`
+
+## Get all reminder events
+
+> Response example
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Bordetella",
+        "primary_condition": "Bordetella",
+        "type": "vaccine"
+    },
+    {
+        "id": 2,
+        "name": "Chlamydia",
+        "primary_condition": "Chlamydia",
+        "type": "vaccine"
+    }
+]
+```
+
+Gets the list of all reminder events.
+
+### HTTP Request
+`GET /admin/reminder_events`
+
+## Get events in pet record
+
+> Response example
+
+```json
+[
+    {
+        "id": 18487291,
+        "pet_id": 1,
+        "data": null,
+        "vaccine_id": null,
+        "request_id": null,
+        "place_id": null,
+        "placesid": null,
+        "timestamp": "2018-06-03T04:00:00.000Z",
+        "expiry": null,
+        "serial": null,
+        "tagnumber": null,
+        "status": "Nexguard administered",
+        "creator": 1863,
+        "verified": false,
+        "historic": false,
+        "type": 1,
+        "images": [],
+        "mood": null,
+        "show_time": true,
+        "autoimport": false,
+        "reminder_event_id": null,
+        "created_at": "2018-06-03T04:11:09.153Z",
+        "updated_at": "2018-06-03T04:11:09.153Z",
+        "vaccineType": 0,
+        "user_ignored_at": null,
+        "name": null,
+        "reminderEventName": null,
+        "primary_condition": null,
+        "reminderEventType": null,
+        "firstName": "Joshua",
+        "lastName": "Lu"
+    },
+    {
+        "id": 18440184,
+        "pet_id": 1,
+        "data": null,
+        "vaccine_id": null,
+        "request_id": null,
+        "place_id": null,
+        "placesid": null,
+        "timestamp": "2018-02-02T07:40:25.000Z",
+        "expiry": null,
+        "serial": null,
+        "tagnumber": null,
+        "status": "Flea medication",
+        "creator": 1,
+        "verified": false,
+        "historic": false,
+        "type": 1,
+        "images": [],
+        "mood": null,
+        "show_time": true,
+        "autoimport": false,
+        "reminder_event_id": null,
+        "created_at": "2018-02-02T07:40:35.505Z",
+        "updated_at": "2018-02-02T07:40:35.505Z",
+        "vaccineType": 0,
+        "user_ignored_at": null,
+        "name": null,
+        "reminderEventName": null,
+        "primary_condition": null,
+        "reminderEventType": null,
+        "firstName": "John",
+        "lastName": "Smith"
+    },
+    {
+        "id": 18387474,
+        "pet_id": 1,
+        "data": null,
+        "vaccine_id": null,
+        "request_id": null,
+        "place_id": null,
+        "placesid": null,
+        "timestamp": "2017-09-16T19:11:02.000Z",
+        "expiry": null,
+        "serial": null,
+        "tagnumber": null,
+        "status": "Flea medication, nexgard",
+        "creator": 1,
+        "verified": false,
+        "historic": false,
+        "type": 1,
+        "images": [],
+        "mood": null,
+        "show_time": true,
+        "autoimport": false,
+        "reminder_event_id": null,
+        "created_at": "2017-09-16T19:11:23.043Z",
+        "updated_at": "2017-09-16T19:11:23.043Z",
+        "vaccineType": 0,
+        "user_ignored_at": null,
+        "name": null,
+        "reminderEventName": null,
+        "primary_condition": null,
+        "reminderEventType": null,
+        "firstName": "John",
+        "lastName": "Smith"
+    }
+]
+```
+
+Gets all events in a pet record, filtered by `event.type` (currently 1-10;
+all values can be found in the `eventtype` table).
+
+### HTTP Request
+`GET /admin/requests/:petid/events/:filter*?`
+
+## Add event to pet record
+
+> Request example
+
+```json
+{
+    "reminder_event_id": 2,
+    "timestamp": "2018-07-01T15:00:00Z",
+    "expiry": "2018-07-01T15:00:00Z"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Adds an event to a pet record.
+
+### HTTP Request
+`POST /admin/requests/:requestid/events`
+
+### POST body parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+reminder_event_id | int | reminder_event ID - represents the vaccine or procedure that happened.
+timestamp | datetime | When the vaccine or procedure happened.
+expiry| datetime? | Optional - how long the vaccine or procedure is valid.
+
+## Update event in pet record
+
+> Request example
+
+```json
+{
+    "reminder_event_id": 3,
+    "timestamp": "2018-07-04T15:00:00Z",
+    "expiry": "2018-07-04T15:00:00Z"
+}
+```
+
+> Response example
+
+```json
+(newly updated event row)
+```
+
+Updates an event in a pet record.
+
+### HTTP Request
+`PUT /admin/requests/:requestid/events/:eventid`
+
+### PUT body parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+reminder_event_id | int | reminder_event ID - represents the vaccine or procedure that happened.
+timestamp | datetime | When the vaccine or procedure happened.
+expiry| datetime? | Optional - how long the vaccine or procedure is valid.
+
+## Delete event from pet record
+
+> Response example
+
+```json
+(none)
+```
+
+Deletes an event from a pet record. Although :requestid is a parameter, it is not used. :eventid
+is the ID in the event table that should be deleted.
+
+### HTTP Request
+`DELETE /admin/requests/:requestid/events/:eventid`
