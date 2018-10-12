@@ -613,7 +613,7 @@ Gets the contact information for people who work at a particular place.
 
 ```json
 {
-    "name": "Morgan Lee",
+    "name": "Russell Wilson",
     "title": "Manager",
     "email": "example@getpawprint.com,
     "phone": "19145555555"
@@ -645,7 +645,7 @@ phone | string? | The person's phone number.
 
 ```json
 {
-    "name": "Morgan Smith",
+    "name": "Fred Rogers",
 }
 ```
 
