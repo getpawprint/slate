@@ -49,6 +49,11 @@ then the root-level array will contain multiple elements.
 ### HTTP Request
 `GET /user/v2/activation/vet_integrations`
 
+### GET parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+place_id | integer? | Filters search to a single vet (root level array will have at most 1 element)
+
 ## Search for email address
 
 > Response example
@@ -115,7 +120,7 @@ a new Pawprint account based on an existing `vet_user` account. The Branch link 
 ### POST parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-type | string | Either `email` or `phone`.
+type | string | Either `email` or `phone`. (will be deprecated soon)
 email | string? | Send verification link to this email address.
 phone | string? | Send verification link via SMS to this phone number.
 

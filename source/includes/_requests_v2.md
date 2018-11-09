@@ -255,7 +255,8 @@ request_ids | array of ints | Array of IDs from the `request` table.
 
 ```json
 {
-	"request_ids": [ 17767, 17768 ]
+	"request_ids": [ 17767, 17768 ],
+	"strike_token": "tk_421"
 }
 ```
 
@@ -265,7 +266,8 @@ request_ids | array of ints | Array of IDs from the `request` table.
 (none)
 ```
 
-Charges the customer's credit/debit card (see Payment section) and prioritizes the given requests.
+Prioritizes the given requests and charges the customer's credit/debit card (see Payment section).
+If `stripe_token` was passed, it is charged instead of the Stripe customer account tied to the user.
 
 ### HTTP Request
 `POST /user/v2/pets/:petid/request/rush/order`
@@ -332,7 +334,8 @@ Parameter | Type | Description
 --------- | ---- | -----------
 vets | object | Keys are IDs from the `place` table; values are objects as described below
 vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
-promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+promocode | string? | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+stripe_token | string? | Stripe token that will be charged for payment (one-time use)
 
 ## Full order (new pricing) - execute
 > Request example
@@ -351,7 +354,8 @@ promocode | string | If specified, attempts to apply the promo code to the order
   },
 	"signature": "https://s3.aws.amazon.com/pawprint/sig.png",
 	"checkout_notes": "Checkout note to Pawprint",
-	"promocode": "mars"
+	"promocode": "mars",
+	"stripe_token": "tk_421"
 }
 ```
 
@@ -365,7 +369,8 @@ promocode | string | If specified, attempts to apply the promo code to the order
 ]
 ```
 
-Charges the customer's credit/debit card (see Payment section) and creates the record requests.
+Creates the request, which will show up in the admin portal as 'new'. If `stripe_token` was passed,
+the Stripe token is charged. Otherwise, the customer's credit/debit card (see Payment section) is charged.
 Returns array of the newly created request IDs.
 
 ### HTTP Request
@@ -378,8 +383,9 @@ vets | object | Keys are IDs from the `place` table; values are objects as descr
 vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
 vets\[place_id\].note | string | Note to this particular vet.
 signature | string |  URL to the image file containing the client's signature.
-checkout_notes | string | Checkout note to Pawprint.
-promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+checkout_notes | string? | Checkout note to Pawprint.
+promocode | string? | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+stripe_token | string? | Stripe token that will be charged for payment (one-time use)
 
 ## Web basic order - preview
 > Request example
@@ -528,7 +534,8 @@ promocode | string | If specified, attempts to apply the promo code to the order
   },
 	"signature": "https://s3.aws.amazon.com/pawprint/sig.png",
 	"checkout_notes": "Checkout note to Pawprint",
-	"promocode": "mars"
+	"promocode": "mars",
+	"stripe_token": "tk_421"
 }
 ```
 
@@ -541,7 +548,8 @@ promocode | string | If specified, attempts to apply the promo code to the order
 ]
 ```
 
-Charges the customer's credit/debit card (see Payment section) and creates the record requests.
+Creates the request, which will show up in the admin portal as 'new'. If `stripe_token` was passed,
+the Stripe token is charged. Otherwise, the customer's credit/debit card (see Payment section) is charged.
 Returns array of the newly created request IDs.
 
 ### HTTP Request
@@ -555,7 +563,8 @@ vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
 vets\[place_id\].note | string | Note to this particular vet.
 signature | string |  URL to the image file containing the client's signature.
 checkout_notes | string | Checkout note to Pawprint.
-promocode | string | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+promocode | string? | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+stripe_token | string? | Stripe token that will be charged for payment (one-time use)
 
 ## Is pet linked
 > Response example
