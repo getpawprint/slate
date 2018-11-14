@@ -3465,7 +3465,7 @@ for day-of-week reminders while <code>frequency_unit</code> and <code>frequency_
 <tr>
 <td>until_date</td>
 <td>string</td>
-<td>When the reminder should end; leave this null for a one-shot reminder. For time zone reasons, this is a pass-through string.</td>
+<td>When the reminder should end. For a one-shot reminder, leave this null and frequency_count=0. For a forever repeating reminder, leave this null and frequency_count&gt;0. For time zone reasons, this is a pass-through string.</td>
 </tr>
 <tr>
 <td>frequency_unit</td>
@@ -3537,7 +3537,7 @@ for day-of-week reminders while <code>frequency_unit</code> and <code>frequency_
 <tr>
 <td>until_date</td>
 <td>string</td>
-<td>When the reminder should end; leave this null for a one-shot reminder. For time zone reasons, this is a pass-through string.</td>
+<td>When the reminder should end. For a one-shot reminder, leave this null and frequency_count=0. For a forever repeating reminder, leave this null and frequency_count&gt;0. For time zone reasons, this is a pass-through string.</td>
 </tr>
 <tr>
 <td>frequency_unit</td>

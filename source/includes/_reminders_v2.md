@@ -138,7 +138,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 pet_id | int | ID from the `pet` table.
 start_date | string | When the first reminder should go off. For time zone reasons, this is a pass-through string.
-until_date | string| When the reminder should end; leave this null for a one-shot reminder. For time zone reasons, this is a pass-through string.
+until_date | string| When the reminder should end. For a one-shot reminder, leave this null and frequency_count=0. For a forever repeating reminder, leave this null and frequency_count>0. For time zone reasons, this is a pass-through string.
 frequency_unit | string | Unit of measure for `frequency_count`, e.g. `days`.
 frequency_count | int | How often the reminder should repeat; combined with `frequency_unit`.
 schedule | string | JSON object parsable by [later.js](https://bunkat.github.io/later/).
@@ -177,7 +177,7 @@ Updates a reminder. Only the creator can update a reminder; otherwise HTTP 403/F
 Parameter | Type | Description
 --------- | ---- | -----------
 start_date | string | When the first reminder should go off. For time zone reasons, this is a pass-through string.
-until_date | string| When the reminder should end; leave this null for a one-shot reminder. For time zone reasons, this is a pass-through string.
+until_date | string| When the reminder should end. For a one-shot reminder, leave this null and frequency_count=0. For a forever repeating reminder, leave this null and frequency_count>0. For time zone reasons, this is a pass-through string.
 frequency_unit | string | Unit of measure for `frequency_count`, e.g. `days`.
 frequency_count | int | How often the reminder should repeat; combined with `frequency_unit`.
 schedule | string | JSON object parsable by [later.js](https://bunkat.github.io/later/).
