@@ -4470,7 +4470,7 @@ then a follow-up POST /request/{producttype}/order with the same request object 
 but only 1 product per slug will be returned. This allows us to change pricing or add new SKUs in the back-end
 without having to reconfigure the front-end with new product IDs.</p>
 
-<p>Current slugs are <code>basic</code>, <code>full</code>, <code>web_basic</code>, <code>web_full</code>.</p>
+<p>Current slugs are <code>basic</code>, <code>full</code>, <code>web_basic</code>, <code>web_full</code>, <code>wag</code>.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET /v3/products</code></p>
 <h2 id='preview-order'>Preview order</h2>
@@ -4577,7 +4577,7 @@ without having to reconfigure the front-end with new product IDs.</p>
 </span></code></pre>
 <p>Creates the requests, which will show up in the admin portal as &#39;new&#39;. In v3, <code>stripe_token</code> is required, and
 we won&#39;t be creating or charging Stripe customer accounts. If a promocode is supplied but the total comes out to $0.00,
-then <code>stripe_token</code> is neither required nor charged.
+or if the product is free (e.g. <code>wag</code> request), then <code>stripe_token</code> is neither required nor charged.
 Returns an array of the newly created request IDs.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /user/v3/request/order</code></p>
@@ -4626,7 +4626,7 @@ Returns an array of the newly created request IDs.</p>
 </tr>
 <tr>
 <td>stripe_token</td>
-<td>string</td>
+<td>string?</td>
 <td>Stripe token that will be charged for payment (one-time use)</td>
 </tr>
 </tbody></table>

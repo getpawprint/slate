@@ -42,7 +42,7 @@ Gets current products in the product catalog. Each slug can have multiple produc
 but only 1 product per slug will be returned. This allows us to change pricing or add new SKUs in the back-end
 without having to reconfigure the front-end with new product IDs.
 
-Current slugs are `basic`, `full`, `web_basic`, `web_full`.
+Current slugs are `basic`, `full`, `web_basic`, `web_full`, `wag`.
 
 ### HTTP Request
 `GET /v3/products`
@@ -140,7 +140,7 @@ promocode | string? | If specified, attempts to apply the promo code to the orde
 
 Creates the requests, which will show up in the admin portal as 'new'. In v3, `stripe_token` is required, and
 we won't be creating or charging Stripe customer accounts. If a promocode is supplied but the total comes out to $0.00,
-then `stripe_token` is neither required nor charged.
+or if the product is free (e.g. `wag` request), then `stripe_token` is neither required nor charged.
 Returns an array of the newly created request IDs.
 
 ### HTTP Request
@@ -156,4 +156,4 @@ vets\[place_id\].note | string | Note to this particular vet.
 signature | string | URL to the image file containing the client's signature.
 checkout_notes | string? | Checkout note to Pawprint.
 promocode | string? | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
-stripe_token | string | Stripe token that will be charged for payment (one-time use)
+stripe_token | string? | Stripe token that will be charged for payment (one-time use)
