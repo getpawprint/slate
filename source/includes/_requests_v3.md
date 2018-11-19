@@ -7,34 +7,34 @@ then a follow-up POST /request/{producttype}/order with the same request object 
 
 ```json
 [
-    {
-        "id": 3,
-        "slug": "basic",
-        "title": "Basic vaccination records",
-        "description": "Basic vaccination records for 1 pet at 1 vet",
-        "cost": "4.99"
-    },
-    {
-        "id": 6,
-        "slug": "full",
-        "title": "Full medical records",
-        "description": "Full medical records for 1 pet at 1 vet",
-        "cost": "9.99"
-    },
-    {
-        "id": 8,
-        "slug": "web_basic",
-        "title": "Basic vaccination records",
-        "description": "Basic vaccination records for 1 pet at 1 vet (submitted via web)",
-        "cost": "4.99"
-    },
-    {
-        "id": 9,
-        "slug": "web_full",
-        "title": "Full vaccination records",
-        "description": "Full medical records for 1 pet at 1 vet (submitted via web)",
-        "cost": "9.99"
-    }
+	{
+		"id": 3,
+		"slug": "basic",
+		"title": "Basic vaccination records",
+		"description": "Basic vaccination records for 1 pet at 1 vet",
+		"cost": "4.99"
+	},
+	{
+		"id": 6,
+		"slug": "full",
+		"title": "Full medical records",
+		"description": "Full medical records for 1 pet at 1 vet",
+		"cost": "9.99"
+	},
+	{
+		"id": 8,
+		"slug": "web_basic",
+		"title": "Basic vaccination records",
+		"description": "Basic vaccination records for 1 pet at 1 vet (submitted via web)",
+		"cost": "4.99"
+	},
+	{
+		"id": 9,
+		"slug": "web_full",
+		"title": "Full vaccination records",
+		"description": "Full medical records for 1 pet at 1 vet (submitted via web)",
+		"cost": "9.99"
+	}
 ]
 ```
 
@@ -52,16 +52,16 @@ Current slugs are `basic`, `full`, `web_basic`, `web_full`.
 
 ```json
 {
-  "vets": {
-    "2037": {
-      "pets": [ 1 ]
-    },
-    "1984": {
-      "pets": [ 1, 10 ]
-    }
-  },
-  "slug": "full",
-  "promocode": "mars"
+	"vets": {
+		"2037": {
+			"pets": [ 1 ]
+		},
+		"1984": {
+			"pets": [ 1, 10 ]
+		}
+	},
+	"slug": "full",
+	"promocode": "mars"
 }
 ```
 
@@ -69,27 +69,27 @@ Current slugs are `basic`, `full`, `web_basic`, `web_full`.
 
 ```json
 {
-    "items": [
-        {
-            "id": 6,
-            "description": "Request for full medical records for Apple from Yorktown Animal Hospital: Gariboldi Rita T DVM",
-            "cost": 9.99
-        },
-        {
-            "id": 6,
-            "description": "Request for full medical records for Apple from Animal Kind Veterinary Hospital",
-            "cost": 9.99
-        },
-        {
-            "id": 6,
-            "description": "Request for full medical records for Bowser from Animal Kind Veterinary Hospital",
-            "cost": 9.99
-        }
-    ],
-    "subtotal": 29.97,
-    "tax": 3.00,
-    "discount": -5
-    "total": 27.97
+	"items": [
+		{
+			"id": 6,
+			"description": "Request for full medical records for Apple from Yorktown Animal Hospital: Gariboldi Rita T DVM",
+			"cost": 9.99
+		},
+		{
+			"id": 6,
+			"description": "Request for full medical records for Apple from Animal Kind Veterinary Hospital",
+			"cost": 9.99
+		},
+		{
+			"id": 6,
+			"description": "Request for full medical records for Bowser from Animal Kind Veterinary Hospital",
+			"cost": 9.99
+		}
+	],
+	"subtotal": 29.97,
+	"tax": 3.00,
+	"discount": -5
+	"total": 27.97
 }
 ```
 
@@ -110,17 +110,17 @@ promocode | string? | If specified, attempts to apply the promo code to the orde
 
 ```json
 {
-  "vets": {
-    "2037": {
-      "pets": [ 1 ],
-      "note": "May be under my maiden name (Wilson)"
-    },
-    "1984": {
-      "pets": [ 1, 10 ],
-      "note": "May be under my husband's name (Russell)"
-    }
-  },
-  "slug": "full",
+	"vets": {
+		"2037": {
+			"pets": [ 1 ],
+			"note": "May be under my maiden name (Wilson)"
+		},
+		"1984": {
+			"pets": [ 1, 10 ],
+			"note": "May be under my husband's name (Russell)"
+		}
+	},
+	"slug": "full",
 	"signature": "https://s3.aws.amazon.com/pawprint/sig.png",
 	"checkout_notes": "Checkout note to Pawprint",
 	"promocode": "mars",
@@ -132,9 +132,9 @@ promocode | string? | If specified, attempts to apply the promo code to the orde
 
 ```json
 [
-    18617,
-    18618,
-    18619
+	18617,
+	18618,
+	18619
 ]
 ```
 
@@ -153,7 +153,7 @@ slug | string | Name of the product type, e.g. `basic`, `full, `web_basic`, etc.
 vets | object | Keys are IDs from the `place` table; values are objects as described below
 vets\[place_id\].pets | array of ints | Array of IDs from the `pet` table.
 vets\[place_id\].note | string | Note to this particular vet.
-signature | string |  URL to the image file containing the client's signature.
+signature | string | URL to the image file containing the client's signature.
 checkout_notes | string? | Checkout note to Pawprint.
 promocode | string? | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
 stripe_token | string | Stripe token that will be charged for payment (one-time use)
