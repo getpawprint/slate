@@ -19,6 +19,7 @@ includes:
   - reminders_v2
   - requests_v1
   - requests_v2
+  - requests_v3
   - sharing
   - web_requests
   - web_requests_branded
