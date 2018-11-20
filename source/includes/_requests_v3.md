@@ -138,8 +138,8 @@ promocode | string? | If specified, attempts to apply the promo code to the orde
 ]
 ```
 
-Creates the requests, which will show up in the admin portal as 'new'. In v3, `stripe_token` is required, and
-we won't be creating or charging Stripe customer accounts. If a promocode is supplied but the total comes out to $0.00,
+Creates the requests, which will show up in the admin portal as 'new'. In v3, `stripe_token` is mostly required, and
+we won't be creating or charging Stripe Customer accounts. If a promocode is supplied but the total comes out to $0.00,
 or if the product is free (e.g. `wag` request), then `stripe_token` is neither required nor charged.
 Returns an array of the newly created request IDs.
 

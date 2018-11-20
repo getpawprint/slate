@@ -4575,8 +4575,8 @@ without having to reconfigure the front-end with new product IDs.</p>
     </span><span class="mi">18619</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>Creates the requests, which will show up in the admin portal as &#39;new&#39;. In v3, <code>stripe_token</code> is required, and
-we won&#39;t be creating or charging Stripe customer accounts. If a promocode is supplied but the total comes out to $0.00,
+<p>Creates the requests, which will show up in the admin portal as &#39;new&#39;. In v3, <code>stripe_token</code> is mostly required, and
+we won&#39;t be creating or charging Stripe Customer accounts. If a promocode is supplied but the total comes out to $0.00,
 or if the product is free (e.g. <code>wag</code> request), then <code>stripe_token</code> is neither required nor charged.
 Returns an array of the newly created request IDs.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
