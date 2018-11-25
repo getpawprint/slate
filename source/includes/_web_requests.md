@@ -203,7 +203,7 @@ Unlinks a web_pet from its web user and web_request, then deletes it.
 	"web_user_external_id": "aXdJG09jq1sTpiV",
 	"web_pet_ids": [ 2, 5 ],
 	"place_id": 1337,
-	"product_id": 1,
+	"slug": "web_basic",
 	"reason": "Need proof of vaccination",
 	"stripe_token": "tk_8STubeEqtr8i",
 	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf",
@@ -233,7 +233,8 @@ Parameter | Type | Description
 web_user_external_id | int | Required. User ID created by the `/web_request/user` call.
 web_pet_ids | array of ints | Optional. List of web_pet IDs.
 place_id | int | Optional. ID from the `place` table.
-product_id | int | Optional. ID from the `product` table.
+slug | string | Optional. Slug from the `product` table.
+product_id | int | (deprecated) Optional. ID from the `product` table.
 reason | string? | Optional. User's reason for the records request.
 stripe_token | string? | Optional. Payment information (not charged until the request is submitted).
 signature | string? | Optional. Link to the user's electronic signature.
@@ -247,7 +248,7 @@ note | string? | Optional. Note to vet.
 {
 	"web_pet_ids": [ 2, 5 ],
 	"place_id": 1337,
-	"product_id": 1,
+	"slug": "web_basic",
 	"reason": "Need proof of vaccination",
 	"stripe_token": "tk_8STubeEqtr8i",
 	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf",
@@ -273,7 +274,8 @@ Parameter | Type | Description
 --------- | ---- | -----------
 web_pet_ids | array of ints? | Optional. List of web_pet IDs. The previously stored list is completely overwritten by this list.
 place_id | int? | Optional. ID from the `place` table.
-product_id | int? | Optional. ID from the `product` table.
+slug | string? | Optional. Slug from the `product` table.
+product_id | int? | (deprecated) Optional. ID from the `product` table.
 reason | string? | Optional. User's reason for the records request.
 stripe_token | string? | Optional. Payment information (not charged until the request is submitted).
 signature | string? | Optional. Link to the user's electronic signature.
@@ -309,6 +311,7 @@ note | string? | Optional. Note to vet.
 		}],
 	"place_id": 1337,
 	"product_id": 8,
+	"slug": "web_basic",
 	"reason": "Need proof of vaccination",
 	"stripe_token": "tk_8STubeEqtr8i",
 	"signature": "https://s3.aws.amazon.com/pawprint/signature_101.pdf"
