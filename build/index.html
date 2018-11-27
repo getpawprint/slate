@@ -2506,7 +2506,7 @@ a randomized external ID) is emailed out to users. It can be updated an arbitrar
 <tr>
 <td>show_all</td>
 <td>bool?</td>
-<td>Whether or not to return all (approved, rejected and pending) followup surveys.</td>
+<td>Whether or not to return all (approved, rejected and pending) followup surveys. Only pending surveys are returned by default.</td>
 </tr>
 <tr>
 <td>dir</td>
@@ -2530,7 +2530,7 @@ a randomized external ID) is emailed out to users. It can be updated an arbitrar
 <p>Vet API. Approves or rejects a followup survey. Approval will trigger the email to be sent.
 Rejection will prevent the survey from showing up again.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p>`POST /vet/followup/:followup_id</p>
+<p><code>POST /vet/followup/:followup_id</code></p>
 <h3 id='put-parameters-2'>PUT parameters</h3>
 <table><thead>
 <tr>

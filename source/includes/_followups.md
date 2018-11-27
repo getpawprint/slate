@@ -62,7 +62,7 @@ Vet API. Gets all pending followup surveys for approval, from newest to oldest.
 ### GET parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-show_all | bool? | Whether or not to return all (approved, rejected and pending) followup surveys.
+show_all | bool? | Whether or not to return all (approved, rejected and pending) followup surveys. Only pending surveys are returned by default.
 dir | string? | Sort order for date. `asc` or `desc`. Defaults to `desc`.
 
 ## Approve or reject a followup survey
@@ -84,7 +84,7 @@ Vet API. Approves or rejects a followup survey. Approval will trigger the email 
 Rejection will prevent the survey from showing up again.
 
 ### HTTP Request
-`POST /vet/followup/:followup_id
+`POST /vet/followup/:followup_id`
 
 ### PUT parameters
 Parameter | Type | Description
