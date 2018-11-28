@@ -21,6 +21,7 @@ includes:
   - requests_v2
   - requests_v3
   - sharing
+  - user
   - web_requests
   - web_requests_branded
 

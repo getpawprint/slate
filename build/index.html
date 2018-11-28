@@ -592,6 +592,23 @@
               </ul>
           </li>
           <li>
+            <a href="#user" class="toc-h1 toc-link" data-title="user">User</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-and-email-password-reset-token-v1" class="toc-h2 toc-link" data-title="create-and-email-password-reset-token-v1">Create and email password reset token (v1)</a>
+                  </li>
+                  <li>
+                    <a href="#create-and-email-password-reset-token-v2" class="toc-h2 toc-link" data-title="create-and-email-password-reset-token-v2">Create and email password reset token (v2)</a>
+                  </li>
+                  <li>
+                    <a href="#render-reset-page-for-token" class="toc-h2 toc-link" data-title="render-reset-page-for-token">Render reset page for token</a>
+                  </li>
+                  <li>
+                    <a href="#reset-password" class="toc-h2 toc-link" data-title="reset-password">Reset password</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#web-requests" class="toc-h1 toc-link" data-title="web-requests">Web requests</a>
               <ul class="toc-list-h2">
                   <li>
@@ -4804,6 +4821,126 @@ and the calling user, and all pet reminders are copied to the user&#39;s reminde
 The proper design would specify this as a POST and v2 may change the verb in the future.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /user/invite_code/:code</code></p>
+<h1 id='user'>User</h1>
+<p>Functions that have to do with managing users&#39; profiles and settings.</p>
+<h2 id='create-and-email-password-reset-token-v1'>Create and email password reset token (v1)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@getpawprint.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">success</span><span class="w">
+</span></code></pre>
+<p>Sets a reset token on the account specified by the <code>email</code> parameter and sends a reset link to it.
+The reset token is valid for <strong><em>1 hour</em></strong>.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /user/forgot</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Email address on the user&#39;s account</td>
+</tr>
+</tbody></table>
+<h2 id='create-and-email-password-reset-token-v2'>Create and email password reset token (v2)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"scenario"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web_request"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">success</span><span class="w">
+</span></code></pre>
+<p>Sets a reset token on the account specified by the <code>email</code> parameter and sends a reset Branch link to it.
+The reset token is valid for <strong><em>7 days</em></strong>.</p>
+
+<p>The Branch link contains:
+- <code>context</code>: <code>&#39;reset_password&#39;</code>, intended for app navigation
+- <code>scenario</code>: optional parameter from the caller; allows for more flexibility in rendering/navigation. Defaults to <code>user_forgot</code>.
+- <code>email</code>: Intended for rendering; not required to call the password reset endpoint.
+- <code>resetPasswordToken</code></p>
+
+<p>If the Branch link is opened on a phone, either the app will be launched or the user will be redirected to the app store.
+If it is opened on a desktop browser, the user will be redirected to <code>/getmobile?resetPasswordToken=${resetPasswordToken}</code>,
+which in turn redirects to <code>/reset/${resetPasswordToken}</code> (triggered by the query string parameter).</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /reset</code></p>
+<h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Email address on the user&#39;s account</td>
+</tr>
+<tr>
+<td>scenario</td>
+<td>string?</td>
+<td>Caller-defined optional parameter. Allows for more flexibility in rendering/navigation of password reset UIs. Defaults to <code>user_forgot</code>.</td>
+</tr>
+</tbody></table>
+<h2 id='render-reset-page-for-token'>Render reset page for token</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight plaintext"><code>(an HTML web page)
+</code></pre>
+<p>Checks the token specified in the <code>:token</code> parameter. If it is valid, the rendered web page
+allows the user to reset their password. If not, then an error message is displayed.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /reset/:token</code></p>
+<h2 id='reset-password'>Reset password</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"passw0rd123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">Password</span><span class="w"> </span><span class="err">updated</span><span class="w">
+</span></code></pre>
+<p>Sets a new password on the user account specified by <code>:token</code> (compares to <code>user.resetPasswordToken</code> field).</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /reset/:token</code></p>
+<h3 id='post-parameters-3'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>The new password</td>
+</tr>
+</tbody></table>
 <h1 id='web-requests'>Web requests</h1>
 <p>Save and retrieve progress for creating a web request</p>
 <h2 id='create-a-user'>Create a user</h2>
