@@ -48,7 +48,7 @@ The reset token is valid for ***7 days***.
 
 The Branch link contains:
 - `context`: `'reset_password'`, intended for app navigation
-- `scenario`: optional parameter from the caller; allows for more flexibility in rendering/navigation. Defaults to `user_forgot`.
+- `scenario`: optional parameter from the caller; allows for more flexibility in rendering/navigation. Defaults to `user_reset`.
 - `email`: Intended for rendering; not required to call the password reset endpoint.
 - `resetPasswordToken`
 
@@ -63,7 +63,7 @@ which in turn redirects to `/reset/${resetPasswordToken}` (triggered by the quer
 Parameter | Type | Description
 --------- | ---- | -----------
 email | string | Email address on the user's account
-scenario | string? | Caller-defined optional parameter. Allows for more flexibility in rendering/navigation of password reset UIs. Defaults to `user_forgot`.
+scenario | string? | Caller-defined optional parameter. Allows for more flexibility in rendering/navigation of password reset UIs. Defaults to `user_reset`.
 
 ## Render reset page for token
 

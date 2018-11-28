@@ -4873,7 +4873,7 @@ The reset token is valid for <strong><em>7 days</em></strong>.</p>
 
 <p>The Branch link contains:
 - <code>context</code>: <code>&#39;reset_password&#39;</code>, intended for app navigation
-- <code>scenario</code>: optional parameter from the caller; allows for more flexibility in rendering/navigation. Defaults to <code>user_forgot</code>.
+- <code>scenario</code>: optional parameter from the caller; allows for more flexibility in rendering/navigation. Defaults to <code>user_reset</code>.
 - <code>email</code>: Intended for rendering; not required to call the password reset endpoint.
 - <code>resetPasswordToken</code></p>
 
@@ -4898,7 +4898,7 @@ which in turn redirects to <code>/reset/${resetPasswordToken}</code> (triggered 
 <tr>
 <td>scenario</td>
 <td>string?</td>
-<td>Caller-defined optional parameter. Allows for more flexibility in rendering/navigation of password reset UIs. Defaults to <code>user_forgot</code>.</td>
+<td>Caller-defined optional parameter. Allows for more flexibility in rendering/navigation of password reset UIs. Defaults to <code>user_reset</code>.</td>
 </tr>
 </tbody></table>
 <h2 id='render-reset-page-for-token'>Render reset page for token</h2>
