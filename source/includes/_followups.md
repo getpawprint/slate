@@ -36,6 +36,7 @@ feedback | string? | Text review string
 
 ```json
 [{
+	"id": 48,
 	"first_name": "Eric",
 	"last_name": "Choi",
 	"vet_user_id": 123456,
@@ -57,7 +58,7 @@ feedback | string? | Text review string
 Vet API. Gets all pending followup surveys for approval, from newest to oldest.
 
 ### HTTP Request
-`GET /vet/followup`
+`GET /vet/followup/queue`
 
 ### GET parameters
 Parameter | Type | Description
@@ -84,7 +85,7 @@ Vet API. Approves or rejects a followup survey. Approval will trigger the email 
 Rejection will prevent the survey from showing up again.
 
 ### HTTP Request
-`POST /vet/followup/:followup_id`
+`POST /vet/followup/queue/:followup_id`
 
 ### PUT parameters
 Parameter | Type | Description
