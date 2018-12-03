@@ -125,7 +125,7 @@ with a preference for keeping items from the `place` table over Google results.
 ### GET parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-0 | String | Search term
+0 | string | Search term
 
 ## Create appointment request at a place
 > Request example

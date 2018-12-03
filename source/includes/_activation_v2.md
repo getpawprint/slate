@@ -362,3 +362,5 @@ Parameter | Type | Description
 email | string | Email address to be used as the login email.
 password | string | New password. This is stored in salted and hashed form on the server.
 token | string | Verification token included with the Branch link sent from a previous call in the flow.
+firstName | string? | New first name, if the user wants a different one from the vet account
+lastName | string? | New last name, if the user wants a different one from the vet account
