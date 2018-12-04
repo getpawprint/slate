@@ -100,7 +100,7 @@ the client is expected to populate fields based on the user and pet profile.
 </aside>
 
 ### HTTP Request
-`POST /user/appointment_requests/:id`
+`POST /user/appointment_requests`
 
 ### POST parameters
 Parameter | Type | Description
@@ -202,3 +202,24 @@ Cancels an appointment request.
 Parameter | Type | Description
 --------- | ---- | -----------
 id | int | ID from the `appointment_request` table.
+
+## Confirm a Pawprint vet appointment
+
+> Response example
+
+```json
+(none)
+```
+
+Confirms a pending Pawprint vet appointment via confirmation code. Appointment confirmations are emailed or SMSed to clients
+up to 48 hours in advance. SMS clients can either respond '1' to confirm an appointment, or can cancel with '2'.
+Email clients can click the confirmation link that goes to https://www.getpawprint.com/appointment_confirmation/:code.
+Confirmation codes are randomly generated and stored in the `vet_schedule.confirmation_code` field. One confirmation code
+can cover multiple appointments if a client has multiple appointments with the same vet on the same day.
+
+<aside class="notice">
+This is a public API and does not require authentication.
+</aside>
+
+### HTTP Request
+`GET /appointment_confirmation/:code`

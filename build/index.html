@@ -403,6 +403,9 @@
                   <li>
                     <a href="#cancel-an-appointment-request" class="toc-h2 toc-link" data-title="cancel-an-appointment-request">Cancel an appointment request</a>
                   </li>
+                  <li>
+                    <a href="#confirm-a-pawprint-vet-appointment" class="toc-h2 toc-link" data-title="confirm-a-pawprint-vet-appointment">Confirm a Pawprint vet appointment</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2571,7 +2574,7 @@ This is a public API and does not require authentication. If this is called on b
 the client is expected to populate fields based on the user and pet profile.
 </aside>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST /user/appointment_requests/:id</code></p>
+<p><code>POST /user/appointment_requests</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -2714,6 +2717,23 @@ and excludes appointment requests that haven&#39;t been completed by an admin ye
 <td>ID from the <code>appointment_request</code> table.</td>
 </tr>
 </tbody></table>
+<h2 id='confirm-a-pawprint-vet-appointment'>Confirm a Pawprint vet appointment</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Confirms a pending Pawprint vet appointment via confirmation code. Appointment confirmations are emailed or SMSed to clients
+up to 48 hours in advance. SMS clients can either respond &#39;1&#39; to confirm an appointment, or can cancel with &#39;2&#39;.
+Email clients can click the confirmation link that goes to https://www.getpawprint.com/appointment_confirmation/:code.
+Confirmation codes are randomly generated and stored in the <code>vet_schedule.confirmation_code</code> field. One confirmation code
+can cover multiple appointments if a client has multiple appointments with the same vet on the same day.</p>
+
+<aside class="notice">
+This is a public API and does not require authentication.
+</aside>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET /appointment_confirmation/:code</code></p>
 <h1 id='followup-surveys'>Followup surveys</h1>
 <p>Use these as a template by copying and pasting them.</p>
 <h2 id='update-a-followup-survey'>Update a followup survey</h2>
