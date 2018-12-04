@@ -11,6 +11,7 @@ includes:
   - activation
   - activation_v2
   - admin
+  - appointment_requests
   - followups
   - machine_learning
   - medication

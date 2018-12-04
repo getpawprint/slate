@@ -386,6 +386,26 @@
               </ul>
           </li>
           <li>
+            <a href="#appointments" class="toc-h1 toc-link" data-title="appointments">Appointments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-appointment-types" class="toc-h2 toc-link" data-title="get-appointment-types">Get appointment types</a>
+                  </li>
+                  <li>
+                    <a href="#book-an-appointment" class="toc-h2 toc-link" data-title="book-an-appointment">Book an appointment</a>
+                  </li>
+                  <li>
+                    <a href="#get-appointment-requests" class="toc-h2 toc-link" data-title="get-appointment-requests">Get appointment requests</a>
+                  </li>
+                  <li>
+                    <a href="#get-upcoming-appointments" class="toc-h2 toc-link" data-title="get-upcoming-appointments">Get upcoming appointments</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-an-appointment-request" class="toc-h2 toc-link" data-title="cancel-an-appointment-request">Cancel an appointment request</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#followup-surveys" class="toc-h1 toc-link" data-title="followup-surveys">Followup surveys</a>
               <ul class="toc-list-h2">
                   <li>
@@ -2458,6 +2478,242 @@ all values can be found in the <code>eventtype</code> table).</p>
 is the ID in the event table that should be deleted.</p>
 <h3 id='http-request-30'>HTTP Request</h3>
 <p><code>DELETE /admin/requests/:requestid/events/:eventid</code></p>
+<h1 id='appointments'>Appointments</h1>
+<p>Appointment booking, cancellations and status.</p>
+<h2 id='get-appointment-types'>Get appointment types</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness exam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Illness/injury"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vaccines"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New client"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tech visit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dental"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Emergency"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-11T00:53:50.425Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets appointment types from the <code>appointment_type</code> table. <code>place_id</code> null is the default set of appointment types.
+There used to be plans to support Pawprint vets customizing their own appointment types, but that didn&#39;t happen.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /place/appointment_type_options</code></p>
+<h2 id='book-an-appointment'>Book an appointment</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">email</span><span class="p">:</span><span class="w"> </span><span class="err">'john@getpawprint.com'</span><span class="p">,</span><span class="w">
+  </span><span class="err">phone</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">425-555-1234</span><span class="err">'</span><span class="p">,</span><span class="w">
+  </span><span class="err">pet_name</span><span class="p">:</span><span class="w"> </span><span class="err">'Pumpkin'</span><span class="p">,</span><span class="w">
+  </span><span class="err">pet_species</span><span class="p">:</span><span class="w"> </span><span class="err">'Cat'</span><span class="p">,</span><span class="w">
+  </span><span class="err">pet_breed</span><span class="p">:</span><span class="w"> </span><span class="err">'Domestic</span><span class="w"> </span><span class="err">shorthair'</span><span class="p">,</span><span class="w">
+  </span><span class="err">appointment_type_id</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="err">time</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">'</span><span class="mi">2017-12-15</span><span class="err">T</span><span class="mi">08</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00-06</span><span class="p">:</span><span class="mi">00</span><span class="err">'</span><span class="p">],</span><span class="w">
+  </span><span class="err">notes</span><span class="p">:</span><span class="w"> </span><span class="err">'Testing'</span><span class="p">,</span><span class="w">
+  </span><span class="err">user_name</span><span class="p">:</span><span class="w"> </span><span class="err">'John</span><span class="w"> </span><span class="err">Smith'</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Creates an appointment request in the <code>appointment_request</code> table. If the vet is a Pawprint vet, an email is automatically sent to the vet.
+Otherwise, the appointment request will appear on the admin dashboard for someone to handle. Some Pawprint
+vets are walk-in only, so the app should block appointment requests for these places and display the
+<code>place.custom_message</code> message for that vet.</p>
+
+<aside class="notice">
+This is a public API and does not require authentication. If this is called on behalf of a logged in user,
+the client is expected to populate fields based on the user and pet profile.
+</aside>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /user/appointment_requests/:id</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Requester&#39;s email address</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>Requester&#39;s phone number</td>
+</tr>
+<tr>
+<td>pet_id</td>
+<td>int?</td>
+<td>ID from the <code>pet</code> table, if available.</td>
+</tr>
+<tr>
+<td>pet_name</td>
+<td>string</td>
+<td>Pet&#39;s name</td>
+</tr>
+<tr>
+<td>pet_species</td>
+<td>string</td>
+<td>Cat, dog, rabbit, etc.</td>
+</tr>
+<tr>
+<td>pet_breed</td>
+<td>string</td>
+<td>Pet breed, e.g. Chihuahua, Persian, Angora</td>
+</tr>
+<tr>
+<td>appointment_type_id</td>
+<td>int</td>
+<td>ID from the <code>appointment_type</code> table (see above).</td>
+</tr>
+<tr>
+<td>time</td>
+<td>array of datetimes</td>
+<td>Requester&#39;s desired times (vet/admin should pick one)</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string?</td>
+<td>Notes to the vet</td>
+</tr>
+<tr>
+<td>user_name</td>
+<td>string</td>
+<td>Requester&#39;s name</td>
+</tr>
+</tbody></table>
+<h2 id='get-appointment-requests'>Get appointment requests</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Super Test Vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main Street, Ligonier, IN 46767"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"2018-12-07T10:00:00-05:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"2018-12-07T11:00:00-05:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"2018-12-07T12:00:00-05:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"2018-12-07T13:00:00-05:00"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr. Peabody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accepted_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vaccines"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets appointment requests for the &quot;Book an appointment&quot; feature,
+regardless of new/pending/complete/cancelled status.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /user/appointment_requests</code></p>
+<h2 id='get-upcoming-appointments'>Get upcoming appointments</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">309185</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cuddles"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Demo Vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1020 NW 192nd St Suite L, Edmond, OK 73012"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-20T16:00:00"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">309642</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">612</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Demo Vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1020 NW 192nd St Suite L, Edmond, OK 73012"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-20T16:00:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all upcoming appointments, including from the vet_schedule table. Excludes cancelled or rescheduled appointments
+and excludes appointment requests that haven&#39;t been completed by an admin yet.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /user/upcoming_appointments</code></p>
+<h2 id='cancel-an-appointment-request'>Cancel an appointment request</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Cancels an appointment request.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST /user/appointment_requests/:id</code></p>
+<h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>ID from the <code>appointment_request</code> table.</td>
+</tr>
+</tbody></table>
 <h1 id='followup-surveys'>Followup surveys</h1>
 <p>Use these as a template by copying and pasting them.</p>
 <h2 id='update-a-followup-survey'>Update a followup survey</h2>
@@ -2502,7 +2758,7 @@ a randomized external ID) is emailed out to users. It can be updated an arbitrar
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
-    </span><span class="err">`</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eric"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Choi"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
