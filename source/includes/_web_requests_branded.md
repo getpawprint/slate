@@ -105,3 +105,37 @@ Parameter | Type | Description
 --------- | ---- | -----------
 pin | string | PIN that was generated
 email | string? | Email address to send records to.
+
+## Send records for Wag user
+> Request example
+
+```json
+{
+  "slug": "wag_full",
+  "signature": "https://s3.aws.amazon.com/pawprint/signature.png"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Possibilities:
+***`slug` is `wag_basic`***
+Sends an email containing records of each active vet_pet associated with the vet_user account
+and logs an item for each pet in the `wag_request` table
+
+***`slug` is `wag_full`:***
+A consent signature URL is required in the `signature` parameter.
+- vet_user_id is linked to an Pawprint account: Creates a records request for each linked pet
+- vet_user_id is not linked to a Pawprint account but matches the email on one:
+Returns an error message telling the user to contact us to resolve the situation manually
+- vet_user_id is not linked to a Pawprint account and no email match:
+Creates a Pawprint account and onboards all their active pets, then creates a records request for each pet.
+
+Logs an item for each request created into the `wag_request` table.
+
+### HTTP Request
+`POST /vet_user/:vet_user_id/send_records/wag`

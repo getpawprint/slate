@@ -64,16 +64,11 @@ place_id | integer? | Filters search to a single vet (root level array will have
 }
 ```
 
-Check for the email's existence in various Pawprint and vet tables. Fields searched:
-
-- `user.email` - Primary email on a user account. Sets `user` = `true` and `needs_password` in the response.
-- `verified_email` - Secondary email(s) on a user account. Sets `user` = `true` in the response.
-- `vet_user.email` - Primary email on a vet PMS account. Sets `vet_user` = `true` in the response.
-- `vet_user_email` - Secondary email(s) on a vet PMS account (Vetdata only; Vetter supports only 1 email). Sets `user` = `true` in the response.
+Check for the email's existence in various Pawprint and vet tables.
 
 Possible statuses:
 
-- `user` - email exists in the `user` table and has a password, or email is in the `verified_email` table. User should sign in with the account.
+- `user` - email exists in the `user` table and has a password. User should sign in with the account. TODO: what to do about emails in `verified_email`
 - `user_needs_password` - email exists in the `user` table and does not have a password (aka "ghost user"). Password should be set for the account.
 - `vet_user` - email exists in the `vet_user` table or the `vet_user_email` table. A new Pawprint count should be created, linked to the `vet_user` account.
 See "Send account creation token" and "Create user account from vet_user account".

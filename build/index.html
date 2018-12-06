@@ -690,6 +690,9 @@
                   <li>
                     <a href="#verify-pin-and-send-pet-records" class="toc-h2 toc-link" data-title="verify-pin-and-send-pet-records">Verify PIN and send pet records</a>
                   </li>
+                  <li>
+                    <a href="#send-records-for-wag-user" class="toc-h2 toc-link" data-title="send-records-for-wag-user">Send records for Wag user</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -1167,19 +1170,12 @@ then the root-level array will contain multiple elements.</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_needs_password"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Check for the email&#39;s existence in various Pawprint and vet tables. Fields searched:</p>
-
-<ul>
-<li><code>user.email</code> - Primary email on a user account. Sets <code>user</code> = <code>true</code> and <code>needs_password</code> in the response.</li>
-<li><code>verified_email</code> - Secondary email(s) on a user account. Sets <code>user</code> = <code>true</code> in the response.</li>
-<li><code>vet_user.email</code> - Primary email on a vet PMS account. Sets <code>vet_user</code> = <code>true</code> in the response.</li>
-<li><code>vet_user_email</code> - Secondary email(s) on a vet PMS account (Vetdata only; Vetter supports only 1 email). Sets <code>user</code> = <code>true</code> in the response.</li>
-</ul>
+<p>Check for the email&#39;s existence in various Pawprint and vet tables.</p>
 
 <p>Possible statuses:</p>
 
 <ul>
-<li><code>user</code> - email exists in the <code>user</code> table and has a password, or email is in the <code>verified_email</code> table. User should sign in with the account.</li>
+<li><code>user</code> - email exists in the <code>user</code> table and has a password. User should sign in with the account. TODO: what to do about emails in <code>verified_email</code></li>
 <li><code>user_needs_password</code> - email exists in the <code>user</code> table and does not have a password (aka &quot;ghost user&quot;). Password should be set for the account.</li>
 <li><code>vet_user</code> - email exists in the <code>vet_user</code> table or the <code>vet_user_email</code> table. A new Pawprint count should be created, linked to the <code>vet_user</code> account.
 See &quot;Send account creation token&quot; and &quot;Create user account from vet_user account&quot;.</li>
@@ -5954,6 +5950,36 @@ with any email they want.
 <td>Email address to send records to.</td>
 </tr>
 </tbody></table>
+<h2 id='send-records-for-wag-user'>Send records for Wag user</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wag_full"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/signature.png"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Possibilities:
+<strong><em><code>slug</code> is <code>wag_basic</code></em></strong>
+Sends an email containing records of each active vet_pet associated with the vet_user account
+and logs an item for each pet in the <code>wag_request</code> table</p>
+
+<p><strong><em><code>slug</code> is <code>wag_full</code>:</em></strong>
+A consent signature URL is required in the <code>signature</code> parameter.
+- vet_user_id is linked to an Pawprint account: Creates a records request for each linked pet
+- vet_user_id is not linked to a Pawprint account but matches the email on one:
+Returns an error message telling the user to contact us to resolve the situation manually
+- vet_user_id is not linked to a Pawprint account and no email match:
+Creates a Pawprint account and onboards all their active pets, then creates a records request for each pet.</p>
+
+<p>Logs an item for each request created into the <code>wag_request</code> table.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /vet_user/:vet_user_id/send_records/wag</code></p>
 
       </div>
       <div class="dark-box">
