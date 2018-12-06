@@ -3,7 +3,7 @@ For making web requests for vets that have onboarded with Pawprint. Their accoun
 should be linked, so we don't need to submit a request; we only need to verify the user
 and then email the records.
 
-## Send records & recruiting email
+## Send records & recruiting email (Deprecated)
 > Request example
 
 ```json
@@ -104,7 +104,7 @@ Parameter | Type | Description
 pin | string | PIN that was generated
 email | string? | Email address to send records to.
 
-## Send records for Wag user
+## Submit branded request
 > Request example
 
 ```json
@@ -122,23 +122,31 @@ email | string? | Email address to send records to.
 
 Possibilities:
 
-***`slug` is `wag_basic`:***
+***`slug` is `web_basic` or `wag_basic`:***
 
-Sends an email containing records of each active vet_pet associated with the vet_user account
-and logs an item for each pet in the `wag_request` table.
+Sends an email containing records of each active vet_pet associated with the vet_user account.
+No check is done on the Pawprint `user` table.
 
-***`slug` is `wag_full`:***
+***`slug` is `web_full` or `wag_full`:***
 
 A consent signature URL is required in the `signature` parameter in this case.
 
 - _vet_user is linked to a Pawprint account:_ Creates a records request for each linked pet.
 - _vet_user is not linked to a Pawprint account but matches the email on one:_
-Returns an error message telling the user to contact us to resolve the situation manually
+Returns an error message telling the user to contact us to resolve the situation manually.
+This situation can be detected before this endpoint is called by calling `GET /activation/email` to check an email
+for an existing Pawprint account, then `GET /activation/vet_integrations` for existing `vet_user` accounts.
 - _vet_user is not linked to a Pawprint account and no email match:_
-Creates a Pawprint account from the vet_user account and onboards all their active pets,
+Automatically creates a Pawprint account from the vet_user account and onboards all their active pets,
 then creates a records request for each pet that was onboarded.
 
-Each request created is logged into the `wag_request` table.
+Wag! requests stats are tracked in the `wag_request` table.
 
 ### HTTP Request
-`POST /vet_user/:vet_user_id/send_records/wag`
+`POST /vet_user/:vet_user_id/request`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+slug | string | Product slug, e.g. `web_basic` or `wag_full`.
+signature | string? | Required if slug is `web_full` or `wag_full`. URL of consent signature file.

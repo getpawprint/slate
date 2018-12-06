@@ -679,7 +679,7 @@
             <a href="#web-requests-onboarded-vets" class="toc-h1 toc-link" data-title="web-requests-onboarded-vets">Web requests - Onboarded vets</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#send-records-amp-recruiting-email" class="toc-h2 toc-link" data-title="send-records-amp-recruiting-email">Send records &amp; recruiting email</a>
+                    <a href="#send-records-amp-recruiting-email-deprecated" class="toc-h2 toc-link" data-title="send-records-amp-recruiting-email-deprecated">Send records &amp; recruiting email (Deprecated)</a>
                   </li>
                   <li>
                     <a href="#find-vet-integrations-for-email-phone" class="toc-h2 toc-link" data-title="find-vet-integrations-for-email-phone">Find vet integrations for email/phone</a>
@@ -691,7 +691,7 @@
                     <a href="#verify-pin-and-send-pet-records" class="toc-h2 toc-link" data-title="verify-pin-and-send-pet-records">Verify PIN and send pet records</a>
                   </li>
                   <li>
-                    <a href="#send-records-for-wag-user" class="toc-h2 toc-link" data-title="send-records-for-wag-user">Send records for Wag user</a>
+                    <a href="#submit-branded-request" class="toc-h2 toc-link" data-title="submit-branded-request">Submit branded request</a>
                   </li>
               </ul>
           </li>
@@ -5847,7 +5847,7 @@ and finish setting up their account.</li>
 <p>For making web requests for vets that have onboarded with Pawprint. Their accounts
 should be linked, so we don&#39;t need to submit a request; we only need to verify the user
 and then email the records.</p>
-<h2 id='send-records-amp-recruiting-email'>Send records &amp; recruiting email</h2>
+<h2 id='send-records-amp-recruiting-email-deprecated'>Send records &amp; recruiting email (Deprecated)</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
@@ -5948,7 +5948,7 @@ with any email they want.
 <td>Email address to send records to.</td>
 </tr>
 </tbody></table>
-<h2 id='send-records-for-wag-user'>Send records for Wag user</h2>
+<h2 id='submit-branded-request'>Submit branded request</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
@@ -5964,27 +5964,48 @@ with any email they want.
 </span></code></pre>
 <p>Possibilities:</p>
 
-<p><strong><em><code>slug</code> is <code>wag_basic</code>:</em></strong></p>
+<p><strong><em><code>slug</code> is <code>web_basic</code> or <code>wag_basic</code>:</em></strong></p>
 
-<p>Sends an email containing records of each active vet_pet associated with the vet_user account
-and logs an item for each pet in the <code>wag_request</code> table.</p>
+<p>Sends an email containing records of each active vet_pet associated with the vet_user account.
+No check is done on the Pawprint <code>user</code> table.</p>
 
-<p><strong><em><code>slug</code> is <code>wag_full</code>:</em></strong></p>
+<p><strong><em><code>slug</code> is <code>web_full</code> or <code>wag_full</code>:</em></strong></p>
 
 <p>A consent signature URL is required in the <code>signature</code> parameter in this case.</p>
 
 <ul>
 <li><em>vet_user is linked to a Pawprint account:</em> Creates a records request for each linked pet.</li>
 <li><em>vet_user is not linked to a Pawprint account but matches the email on one:</em>
-Returns an error message telling the user to contact us to resolve the situation manually</li>
+Returns an error message telling the user to contact us to resolve the situation manually.
+This situation can be detected before this endpoint is called by calling <code>GET /activation/email</code> to check an email
+for an existing Pawprint account, then <code>GET /activation/vet_integrations</code> for existing <code>vet_user</code> accounts.</li>
 <li><em>vet_user is not linked to a Pawprint account and no email match:</em>
-Creates a Pawprint account from the vet_user account and onboards all their active pets,
+Automatically creates a Pawprint account from the vet_user account and onboards all their active pets,
 then creates a records request for each pet that was onboarded.</li>
 </ul>
 
-<p>Each request created is logged into the <code>wag_request</code> table.</p>
+<p>Wag! requests stats are tracked in the <code>wag_request</code> table.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>POST /vet_user/:vet_user_id/send_records/wag</code></p>
+<p><code>POST /vet_user/:vet_user_id/request</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>slug</td>
+<td>string</td>
+<td>Product slug, e.g. <code>web_basic</code> or <code>wag_full</code>.</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string?</td>
+<td>Required if slug is <code>web_full</code> or <code>wag_full</code>. URL of consent signature file.</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
