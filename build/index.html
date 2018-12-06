@@ -5922,8 +5922,6 @@ If the <code>email</code> parameter was not specified, the <code>vet_user</code>
 
 <p>If the PIN doesn&#39;t match or is expired, HTTP 401 is returned with <code>status: invalid</code>.</p>
 
-<p>The response</p>
-
 <aside class="notice">
 We don't have writeback access to vet PMSes to update the email address. However, the records email
 will contain a Branch link encouraging the user to sign up, and they can sign up for a Pawprint account
@@ -5964,20 +5962,27 @@ with any email they want.
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Possibilities:
-<strong><em><code>slug</code> is <code>wag_basic</code></em></strong>
-Sends an email containing records of each active vet_pet associated with the vet_user account
-and logs an item for each pet in the <code>wag_request</code> table</p>
+<p>Possibilities:</p>
 
-<p><strong><em><code>slug</code> is <code>wag_full</code>:</em></strong>
-A consent signature URL is required in the <code>signature</code> parameter.
-- vet_user_id is linked to an Pawprint account: Creates a records request for each linked pet
-- vet_user_id is not linked to a Pawprint account but matches the email on one:
-Returns an error message telling the user to contact us to resolve the situation manually
-- vet_user_id is not linked to a Pawprint account and no email match:
-Creates a Pawprint account and onboards all their active pets, then creates a records request for each pet.</p>
+<p><strong><em><code>slug</code> is <code>wag_basic</code>:</em></strong></p>
 
-<p>Logs an item for each request created into the <code>wag_request</code> table.</p>
+<p>Sends an email containing records of each active vet_pet associated with the vet_user account
+and logs an item for each pet in the <code>wag_request</code> table.</p>
+
+<p><strong><em><code>slug</code> is <code>wag_full</code>:</em></strong></p>
+
+<p>A consent signature URL is required in the <code>signature</code> parameter in this case.</p>
+
+<ul>
+<li><em>vet_user is linked to a Pawprint account:</em> Creates a records request for each linked pet.</li>
+<li><em>vet_user is not linked to a Pawprint account but matches the email on one:</em>
+Returns an error message telling the user to contact us to resolve the situation manually</li>
+<li><em>vet_user is not linked to a Pawprint account and no email match:</em>
+Creates a Pawprint account from the vet_user account and onboards all their active pets,
+then creates a records request for each pet that was onboarded.</li>
+</ul>
+
+<p>Each request created is logged into the <code>wag_request</code> table.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /vet_user/:vet_user_id/send_records/wag</code></p>
 
