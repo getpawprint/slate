@@ -89,8 +89,6 @@ If the `email` parameter was not specified, the `vet_user` is checked for an ema
 
 If the PIN doesn't match or is expired, HTTP 401 is returned with `status: invalid`.
 
-The response
-
 <aside class="notice">
 We don't have writeback access to vet PMSes to update the email address. However, the records email
 will contain a Branch link encouraging the user to sign up, and they can sign up for a Pawprint account
@@ -123,19 +121,24 @@ email | string? | Email address to send records to.
 ```
 
 Possibilities:
-***`slug` is `wag_basic`***
+
+***`slug` is `wag_basic`:***
+
 Sends an email containing records of each active vet_pet associated with the vet_user account
-and logs an item for each pet in the `wag_request` table
+and logs an item for each pet in the `wag_request` table.
 
 ***`slug` is `wag_full`:***
-A consent signature URL is required in the `signature` parameter.
-- vet_user_id is linked to an Pawprint account: Creates a records request for each linked pet
-- vet_user_id is not linked to a Pawprint account but matches the email on one:
-Returns an error message telling the user to contact us to resolve the situation manually
-- vet_user_id is not linked to a Pawprint account and no email match:
-Creates a Pawprint account and onboards all their active pets, then creates a records request for each pet.
 
-Logs an item for each request created into the `wag_request` table.
+A consent signature URL is required in the `signature` parameter in this case.
+
+- _vet_user is linked to a Pawprint account:_ Creates a records request for each linked pet.
+- _vet_user is not linked to a Pawprint account but matches the email on one:_
+Returns an error message telling the user to contact us to resolve the situation manually
+- _vet_user is not linked to a Pawprint account and no email match:_
+Creates a Pawprint account from the vet_user account and onboards all their active pets,
+then creates a records request for each pet that was onboarded.
+
+Each request created is logged into the `wag_request` table.
 
 ### HTTP Request
 `POST /vet_user/:vet_user_id/send_records/wag`
