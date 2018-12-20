@@ -503,6 +503,17 @@
               </ul>
           </li>
           <li>
+            <a href="#postcards" class="toc-h1 toc-link" data-title="postcards">Postcards</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-pending-postcards-for-approval" class="toc-h2 toc-link" data-title="get-pending-postcards-for-approval">Get pending postcards for approval</a>
+                  </li>
+                  <li>
+                    <a href="#approve-or-reject-a-postcard" class="toc-h2 toc-link" data-title="approve-or-reject-a-postcard">Approve or reject a postcard</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#reminders-v2" class="toc-h1 toc-link" data-title="reminders-v2">Reminders v2</a>
               <ul class="toc-list-h2">
                   <li>
@@ -2735,7 +2746,7 @@ This is a public API and does not require authentication.
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /appointment_confirmation/:code</code></p>
 <h1 id='followup-surveys'>Followup surveys</h1>
-<p>Use these as a template by copying and pasting them.</p>
+<p>Followup surveys are generated the day after an appointment. The queue is necessary because we have no idea how an appointment actually went, or at all, and it could&#39;ve gone badly - e.g. a cat was too scared for a checkup and the client needed to come back later, or a checkup ended in euthanasia.</p>
 <h2 id='update-a-followup-survey'>Update a followup survey</h2>
 <blockquote>
 <p>Request example</p>
@@ -3717,6 +3728,95 @@ If the Google Places ID already existed in the <code>place</code> table, then th
 <td>placesid</td>
 <td>String</td>
 <td>A Google Place ID.</td>
+</tr>
+</tbody></table>
+<h1 id='postcards'>Postcards</h1>
+<p>Postcards are sent on the cadence specified in reminder_cadence.
+Postcards are also batched so that no client receives postcards less than 2 weeks (default) apart.</p>
+<h2 id='get-pending-postcards-for-approval'>Get pending postcards for approval</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"street_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main Street"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"street_address2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beverly Hills"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"90210"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reminders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1849713</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ein's Rabies 3 years is due on 01/03/2019"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1849714</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ein's Bordetella Oral is due on 01/02/2019"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1849715</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ein's DA2PPC is due on 01/02/2019"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-20T04:38:45.330Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Vet API. Gets all pending postcards for approval, from newest to oldest.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /vet/postcard/queue</code></p>
+<h3 id='get-parameters'>GET parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>show_all</td>
+<td>bool?</td>
+<td>Whether or not to return all (approved, rejected and pending) postcards. Only pending postcards are returned by default.</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>string?</td>
+<td>Sort order for date. <code>asc</code> or <code>desc</code>. Defaults to <code>desc</code>.</td>
+</tr>
+</tbody></table>
+<h2 id='approve-or-reject-a-postcard'>Approve or reject a postcard</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"approved"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Vet API. Approves or rejects a postcard. Approval will trigger the postcard to be mailed.
+Rejection will prevent the postcard from showing up again, unless the queue endpoint was called with <code>show_all=true</code>.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /vet/postcard/queue/:postcard_id</code></p>
+<h3 id='put-parameters'>PUT parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>approved</td>
+<td>bool</td>
+<td>Whether or not to send the postcard.</td>
 </tr>
 </tbody></table>
 <h1 id='reminders-v2'>Reminders v2</h1>

@@ -17,6 +17,7 @@ includes:
   - medication
   - payments
   - places
+  - postcards
   - reminders_v2
   - requests_v1
   - requests_v2

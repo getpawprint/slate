@@ -1,5 +1,5 @@
 # Followup surveys
-Use these as a template by copying and pasting them.
+Followup surveys are generated the day after an appointment. The queue is necessary because we have no idea how an appointment actually went, or at all, and it could've gone badly - e.g. a cat was too scared for a checkup and the client needed to come back later, or a checkup ended in euthanasia.
 
 ## Update a followup survey
 > Request example
