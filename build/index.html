@@ -2707,8 +2707,8 @@ regardless of new/pending/complete/cancelled status.</p>
 and excludes appointment requests that haven&#39;t been completed by an admin yet.</p>
 
 <p><code>date</code> values may or may not have a timezone. This is because appointments in <code>appointment_request</code> are timezone-aware (a fixed point in time),
-while appointments in the <code>vet_schedule</code> table are naive (not timezone-aware). If <code>date</code> has no timestamp, it should be assumed to be
-in the client&#39;s local time zone. If <code>date</code> does have a timestamp, it should be converted to the client&#39;s local time zone before rendering.</p>
+while appointments in the <code>vet_schedule</code> table are naive (not timezone-aware). If <code>date</code> has no time zone, it should be assumed to be
+in the client&#39;s local time zone. If <code>date</code> does have a time zone, it should be converted to the client&#39;s local time zone before rendering.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /user/upcoming_appointments</code></p>
 <h2 id='cancel-an-appointment-request'>Cancel an appointment request</h2>

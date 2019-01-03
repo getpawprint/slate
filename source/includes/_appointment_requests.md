@@ -178,8 +178,8 @@ Gets all upcoming appointments, including from the `vet_schedule` table. Exclude
 and excludes appointment requests that haven't been completed by an admin yet.
 
 `date` values may or may not have a timezone. This is because appointments in `appointment_request` are timezone-aware (a fixed point in time),
-while appointments in the `vet_schedule` table are naive (not timezone-aware). If `date` has no timestamp, it should be assumed to be
-in the client's local time zone. If `date` does have a timestamp, it should be converted to the client's local time zone before rendering.
+while appointments in the `vet_schedule` table are naive (not timezone-aware). If `date` has no time zone, it should be assumed to be
+in the client's local time zone. If `date` does have a time zone, it should be converted to the client's local time zone before rendering.
 
 ### HTTP Request
 `GET /user/upcoming_appointments`
