@@ -503,6 +503,14 @@
               </ul>
           </li>
           <li>
+            <a href="#places" class="toc-h1 toc-link" data-title="places">Places</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#location-aware-search" class="toc-h2 toc-link" data-title="location-aware-search">Location-aware search</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#postcards" class="toc-h1 toc-link" data-title="postcards">Postcards</a>
               <ul class="toc-list-h2">
                   <li>
@@ -3728,6 +3736,175 @@ If the Google Places ID already existed in the <code>place</code> table, then th
 <td>placesid</td>
 <td>String</td>
 <td>A Google Place ID.</td>
+</tr>
+</tbody></table>
+<h1 id='places'>Places</h1>
+<p>Location-aware search. Why did Place v2 get skipped? There was already an internal place V2 in the backend, and so an internal place V3 was created. The new external-facing place API was versioned to V3 to follow suit.</p>
+<h2 id='location-aware-search'>Location-aware search</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ45p0tN8UkFQR_Di6lOVS1LE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eric P. Hartmann, DVM"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ45p0tN8UkFQR_Di6lOVS1LE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.acupuncture5element.com/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contactMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026 10th Ave E, Seattle, WA 98102, USA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(206) 769-6079"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.6380563</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.3198314</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"pawprint_vet"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ2dNI-GNYkFQRVF87976znKg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auburn Veterinary Hospital Inc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ2dNI-GNYkFQRVF87976znKg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.auburnveterinaryhospital.net/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contactMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"718 Auburn Way N, Auburn, WA 98002, USA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(253) 833-4510"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.3139545</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.224466</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"pawprint_vet"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ2dNI-GNYkFQRykqimLQ-EX4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dr. Kimo Jow, DVM"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJ2dNI-GNYkFQRykqimLQ-EX4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.auburnveterinaryhospital.net/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contactMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"718 Auburn Way N, Auburn, WA 98002, USA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(253) 833-4510"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.3139545</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.224466</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"pawprint_vet"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJmxj6ASv8j1QRi25CowW_qzQ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"South Whidbey Animal Clinic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJmxj6ASv8j1QRi25CowW_qzQ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.southwhidbeyac.com/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contactMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11197 WA-525, Clinton, WA 98236, USA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(360) 341-1200"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.9917922</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.3978984</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"pawprint_vet"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJBVTlRO9UkFQRmibpVVjksj8"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dr. Anthony Brown"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJBVTlRO9UkFQRmibpVVjksj8"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.vetnorthend.com/veterinarian/wa/tacoma/veterinarians"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contactMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3819 N 25th St, Tacoma, WA 98406, USA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(253) 777-0068"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">47.2704067</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">-122.4883595</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"pawprint_vet"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27228</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eric's Place"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contactMethod"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main Street, Bellevue WA 98004"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vet_logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This is a smarter search than before. This search is optionally location-aware and user-aware.</p>
+
+<p><strong>Location awareness</strong>: If geocoordinates are passed in the <code>location</code> parameter, the search will be limited to a 50 km (30 mi) radius around that point. If not, then a global search is performed, and the results will probably not be what the user wanted.</p>
+
+<p><strong>User awareness</strong>: The search can be performed anonymously, but if an auth token is part of the request, the results will also include any custom places created by that user. For example, if a user created a place named &quot;Eric&#39;s place&quot;, and then searched for &quot;Eric&quot;, then &quot;Eric&#39;s place&quot; will be part of the search results FOR THAT USER ONLY. However, this changes if an admin verifies the existence of that vet in the admin portal.</p>
+<h4 id='nitty-gritty'>Nitty gritty</h4>
+<p><strong>Verification level</strong>: - Each place can have one of four verification levels: <code>user</code>, <code>admin</code>, <code>google</code> and <code>partner</code>. 
+Level  | Description
+------ | -----------
+user | Created by a user; not verified by an admin. These places are not showed to anyone except their creators.
+admin | Verified by an admin via the admin portal, usually when taking care of a request.
+google | The place wasn&#39;t in our database, but was added by a user and has information filled in from Google Place Details.
+partner | The place came as a result of a list supplied by a partner (e.g. Banfield) or was scraped off an authoritative website.</p>
+
+<p><strong>Merging of results</strong>: Results come from the Pawprint database and a Google Places text search. If <code>location</code> was passed, they are ordered by distance; otherwise they are ordered by Pawprint partner vets first, then Pawprint databases, then Google Places results. For the last type, <code>id</code> may be a Google Place ID instead of an row ID from the <code>place</code> table.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /v3/place</code></p>
+<h3 id='query-string-parameters'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>string</td>
+<td>The search term.</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string?</td>
+<td>Geocoordinates of the center of the search in <em>lat,lng</em> format, e.g. <code>location=47.620135,-122.19779</code></td>
 </tr>
 </tbody></table>
 <h1 id='postcards'>Postcards</h1>
