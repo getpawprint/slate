@@ -508,6 +508,9 @@
                   <li>
                     <a href="#location-aware-search" class="toc-h2 toc-link" data-title="location-aware-search">Location-aware search</a>
                   </li>
+                  <li>
+                    <a href="#suggest-a-city" class="toc-h2 toc-link" data-title="suggest-a-city">Suggest a city</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -3905,6 +3908,40 @@ partner | The place came as a result of a list supplied by a partner (e.g. Banfi
 <td>location</td>
 <td>string?</td>
 <td>Geocoordinates of the center of the search in <em>lat,lng</em> format, e.g. <code>location=47.620135,-122.19779</code></td>
+</tr>
+</tbody></table>
+<h2 id='suggest-a-city'>Suggest a city</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aberdeen, WA, USA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJxag0MH8kklQRdZl18Pnt2as"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aberdeen, MD, USA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJAeMIvYXBx4kRdLSNqBgdFj4"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Searches Google Places Autocomplete for cities for a given prefix, e.g. <code>prefix=Aberdeen</code>. Geocoordinates are not returned
+because Google Places Autocomplete doesn&#39;t return them; when performing a location aware search, pass in the <code>placesid</code> instead
+and the backend will get its coordinates automatically.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /v3/place/city</code></p>
+<h3 id='query-string-parameters-2'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>prefix</td>
+<td>string</td>
+<td>The search prefix.</td>
 </tr>
 </tbody></table>
 <h1 id='postcards'>Postcards</h1>

@@ -159,3 +159,32 @@ Parameter | Type | Description
 --------- | ---- | -----------
 0 | string | The search term.
 location | string? | Geocoordinates of the center of the search in _lat,lng_ format, e.g. `location=47.620135,-122.19779`
+
+## Suggest a city
+
+> Response example
+
+```json
+[
+    {
+        "city": "Aberdeen, WA, USA",
+        "placesid": "ChIJxag0MH8kklQRdZl18Pnt2as"
+    },
+    {
+        "city": "Aberdeen, MD, USA",
+        "placesid": "ChIJAeMIvYXBx4kRdLSNqBgdFj4"
+    }
+]
+```
+
+Searches Google Places Autocomplete for cities for a given prefix, e.g. `prefix=Aberdeen`. Geocoordinates are not returned
+because Google Places Autocomplete doesn't return them; when performing a location aware search, pass in the `placesid` instead
+and the backend will get its coordinates automatically.
+
+### HTTP Request
+`GET /v3/place/city`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+prefix | string | The search prefix.
