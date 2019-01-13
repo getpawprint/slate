@@ -159,6 +159,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 0 | string | The search term.
 location | string? | Geocoordinates of the center of the search in _lat,lng_ format, e.g. `location=47.620135,-122.19779`
+googlePlaceId | string? | Google Place ID of the center of the search. The service will get its lat/lng coordinates and search from there.
 
 ## Suggest a city
 

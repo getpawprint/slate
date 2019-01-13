@@ -12,6 +12,7 @@ includes:
   - activation_v2
   - admin
   - appointment_requests
+  - events_v2
   - followups
   - machine_learning
   - medication

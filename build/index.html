@@ -409,6 +409,14 @@
               </ul>
           </li>
           <li>
+            <a href="#events-v2" class="toc-h1 toc-link" data-title="events-v2">Events V2</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-pet-events" class="toc-h2 toc-link" data-title="get-pet-events">Get pet events</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#followup-surveys" class="toc-h1 toc-link" data-title="followup-surveys">Followup surveys</a>
               <ul class="toc-list-h2">
                   <li>
@@ -2756,6 +2764,85 @@ This is a public API and does not require authentication.
 </aside>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /appointment_confirmation/:code</code></p>
+<h1 id='events-v2'>Events V2</h1>
+<p>Use these as a template by copying and pasting them.</p>
+<h2 id='get-pet-events'>Get pet events</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">pagination</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">events</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns pet events in reverse chronological order (newest first), with optional filters applied.</p>
+<h4 id='pagination'>Pagination</h4>
+<p>Use the <code>$skip</code> and <code>$top</code> parameters. V1 events used <code>since_time</code> as the index parameter,
+but in that scheme, multiple events with the exact same timestamp would cause more than <code>$top</code> results to be returned.</p>
+<h4 id='description-of-response-fields'>Description of response fields</h4>
+<ul>
+<li><code>id</code></li>
+<li><code>type</code> - Event type; foreign key ref into the <code>eventtype</code> table.</li>
+<li><code>pet_id</code></li>
+<li><code>creator</code> - ID of the user who created the event.</li>
+<li><code>timestamp</code></li>
+<li><code>show_time</code> - Display flag; there are certain events where the time of day is significant and should be displayed (e.g. went for a walk), and other events where it is not (e.g. date of adoption).</li>
+<li><code>status</code> - Display text; a short summary of the event written by the user or a Pawprint admin.</li>
+<li><code>verified</code> - <code>true</code> only for events that were created by a Pawprint admin or vet integration; <code>false</code> otherwise.</li>
+<li><code>images</code> - Array of image URLs attached to the event; may be null.</li>
+<li><code>place</code> - Object containing information about where this event occurred; may be null.
+
+<ul>
+<li><code>id</code> - ID of the place where the event occurred.</li>
+<li><code>name</code> - Name of the place where the event occurred.</li>
+</ul></li>
+<li><code>reminder_event</code> - Object containing information about the condition or procedure associated with this event; may be null.
+
+<ul>
+<li><code>id</code> - ID of the <code>reminder_event</code> of the event; the <code>reminder_event</code> table enumerates a list of vaccines, blood tests, procedures, exams and medications that are known to Pawprint and for which reminders may be set. Reminders may be set by Pawprint admins (as part of a records request) or by users.</li>
+<li><code>name</code> - The <code>reminder_event</code>&#39;s type.</li>
+<li><code>type</code> - The <code>reminder_event</code>&#39;s type; current possible values are <code>vaccine</code>, <code>medication</code>, <code>procedure</code>, <code>exam</code>, <code>lab_blood</code> and <code>lab_stool</code>.</li>
+<li><code>primary_condition</code> - Primary condition covered by <code>vaccine</code> and <code>lab_blood</code> reminder event types. For example, &quot;Distemper-parvo&quot; is the primary condition covered by any of &quot;DA2PP&quot;, &quot;DA2PPC&quot; or &quot;Durammune Max 5&quot;.</li>
+</ul></li>
+<li><code>vaccination</code> - Object containing information about this specific vaccination; may be null.
+
+<ul>
+<li><code>expiry</code> - Vaccine expiration date (if any)</li>
+<li><code>expiryStatus</code> - <code>expired</code> if the vaccination is expired; <code>coming due</code> if the vaccination is less than 1 month away from expiration; <code>active</code> if the vaccination is not expired or coming due and also not &quot;covered&quot; by a more recent vaccination for the same primary condition; <code>historic</code> if the vaccination is still active but &quot;covered&quot; by a more recent vaccination for the same primary condition.</li>
+<li><code>serial</code> - For certain vaccinations</li>
+<li><code>tagnumber</code> - For certain vaccinations</li>
+</ul></li>
+</ul>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /user/v2/pet/:userid/events</code></p>
+<h3 id='query-string-parameters'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>event_type</td>
+<td>string?</td>
+<td>Filters by <code>event.type</code> (see <code>eventtype</code> table in the database)</td>
+</tr>
+<tr>
+<td>$skip</td>
+<td>int?</td>
+<td>0-based beginning index of events. Defaults to 0.</td>
+</tr>
+<tr>
+<td>$top</td>
+<td>int?</td>
+<td>Limits number of events in result. Defaults to 25.</td>
+</tr>
+</tbody></table>
 <h1 id='followup-surveys'>Followup surveys</h1>
 <p>Followup surveys are generated the day after an appointment. The queue is necessary because we have no idea how an appointment actually went, or at all, and it could&#39;ve gone badly - e.g. a cat was too scared for a checkup and the client needed to come back later, or a checkup ended in euthanasia.</p>
 <h2 id='update-a-followup-survey'>Update a followup survey</h2>
@@ -3908,6 +3995,11 @@ partner | The place came as a result of a list supplied by a partner (e.g. Banfi
 <td>location</td>
 <td>string?</td>
 <td>Geocoordinates of the center of the search in <em>lat,lng</em> format, e.g. <code>location=47.620135,-122.19779</code></td>
+</tr>
+<tr>
+<td>googlePlaceId</td>
+<td>string?</td>
+<td>Google Place ID of the center of the search. The service will get its lat/lng coordinates and search from there.</td>
 </tr>
 </tbody></table>
 <h2 id='suggest-a-city'>Suggest a city</h2>
