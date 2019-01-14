@@ -26,7 +26,6 @@ but in that scheme, multiple events with the exact same timestamp would cause mo
 
 - `id`
 - `type` - Event type; foreign key ref into the `eventtype` table.
-- `pet_id`
 - `creator` - ID of the user who created the event.
 - `timestamp`
 - `show_time` - Display flag; there are certain events where the time of day is significant and should be displayed (e.g. went for a walk), and other events where it is not (e.g. date of adoption).
