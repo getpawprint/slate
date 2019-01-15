@@ -7,55 +7,60 @@ Use these as a template by copying and pasting them.
 
 ```json
 {
+  "paging": {
+    "total": 9,
+    "start": 0,
+    "next": 5
+  },
   "events": [
     {
-    "id": 18429185,
-    "type": 5,
-    "creator": 37683,
-    "first_name": "Eric",
-    "last_name": "Choi",
-    "timestamp": "2018-01-08T18:37:07.000Z",
-    "show_time": true,
-    "status": null,
-    "data": {
-        "weight": 8
+      "id": 18429185,
+      "type": 5,
+      "creator": 37683,
+      "first_name": "Eric",
+      "last_name": "Choi",
+      "timestamp": "2018-01-08T18:37:07.000Z",
+      "show_time": true,
+      "status": null,
+      "data": {
+          "weight": 8
+      },
+      "verified": false,
+      "images": []
     },
-    "verified": false,
-    "images": []
-  },
-  {
-    "id": 16260729,
-    "type": 1,
-    "creator": 37683,
-    "first_name": "Eric",
-    "last_name": "Choi",
-    "timestamp": "2017-08-08T17:12:06.000Z",
-    "show_time": true,
-    "status": null,
-    "data": null,
-    "verified": false,
-    "images": [],
-    "reminder_event": {
-        "id": 1,
-        "name": "Bordetella",
-        "type": "vaccine",
-        "primary_condition": "Bordetella"
+    {
+      "id": 16260729,
+      "type": 1,
+      "creator": 37683,
+      "first_name": "Eric",
+      "last_name": "Choi",
+      "timestamp": "2017-08-08T17:12:06.000Z",
+      "show_time": true,
+      "status": null,
+      "data": null,
+      "verified": false,
+      "images": [],
+      "reminder_event": {
+          "id": 1,
+          "name": "Bordetella",
+          "type": "vaccine",
+          "primary_condition": "Bordetella"
+      },
+      "vaccination": {
+          "expiry": "2018-08-08T07:00:00.000Z",
+          "tagnumber": "43245",
+          "expiryStatus": "expired"
+      }
     },
-    "vaccination": {
-        "expiry": "2018-08-08T07:00:00.000Z",
-        "tagnumber": "43245",
-        "expiryStatus": "expired"
-    }
-  },
-  {
-    "id": 16260728,
-    "type": 6,
-    "creator": 37683,
-    "first_name": "Eric",
-    "last_name": "Choi",
-    "timestamp": "2017-08-08T17:11:13.000Z",
-    "show_time": true,
-    "status": "Type 2 poo",
+    {
+      "id": 16260728,
+      "type": 6,
+      "creator": 37683,
+      "first_name": "Eric",
+      "last_name": "Choi",
+      "timestamp": "2017-08-08T17:11:13.000Z",
+      "show_time": true,
+      "status": "Type 2 poo",
     "data": null,
     "verified": false,
     "images": []
@@ -97,6 +102,8 @@ Returns pet events in reverse chronological order (newest first), with optional 
 #### Pagination
 Use the `$skip` and `$top` parameters. V1 events used `since_time` as the index parameter,
 but in that scheme, multiple events with the exact same timestamp would cause more than `$top` results to be returned.
+Paging information is in the `paging` object of the response; in particular, `paging.next` should be passed directly as the
+`$skip` parameter of the call to get the next page, and paging should be stopped when `paging.next` >= `paging.total`.
 
 #### Description of response fields
 
