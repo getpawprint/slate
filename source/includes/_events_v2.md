@@ -133,7 +133,7 @@ Paging information is in the `paging` object of the response; in particular, `pa
   - `tagnumber` - For certain vaccinations
 
 ### HTTP Request
-`GET /user/v2/pet/:userid/events`
+`GET /user/v2/pet/:pet_id/events`
 
 ### Query string parameters
 Parameter | Type | Description
