@@ -107,7 +107,8 @@ activation_code | string? | Activation code
         "breed": "Corgi (Pembroke)",
         "weight": null,
         "neuter": true,
-        "microchip": "3258889"
+        "microchip": "3258889",
+        "pet_id": 7838
     }
 ]
 ```
