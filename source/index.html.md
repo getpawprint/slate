@@ -14,6 +14,7 @@ includes:
   - appointment_requests
   - events_v2
   - followups
+  - insurance
   - machine_learning
   - medication
   - payments
