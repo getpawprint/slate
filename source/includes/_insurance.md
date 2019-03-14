@@ -25,7 +25,7 @@ API to create an insurance claim. Each claim consists of a user, pet, place, cla
 Creates a claim, which uses the information to create a row in the database and reserves an ID.
 
 ### HTTP Request
-`POST /user/claim`
+`POST /user/claims`
 
 ### POST parameters
 Parameter | Type | Description
@@ -72,7 +72,7 @@ files | integer[]? | `file_id`s to attach to the insurance claim
 Gets a summary of all of the user's existing insurance claims.
 
 ### HTTP Request
-`GET /user/claim`
+`GET /user/claims`
 
 ## Get existing claim details
 
@@ -115,4 +115,4 @@ Gets a summary of all of the user's existing insurance claims.
 Gets a specific claim.
 
 ### HTTP Request
-`GET /user/claim/1345`
+`GET /user/claims/1345`
