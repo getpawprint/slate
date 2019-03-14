@@ -22,7 +22,7 @@ API to create an insurance claim. Each claim consists of a user, pet, place, cla
 }
 ```
 
-Creates a claim, which uses the information to create a skeleton row in the database and reserves an ID.
+Creates a claim, which uses the information to create a row in the database and reserves an ID.
 
 ### HTTP Request
 `POST /user/claim`
@@ -32,81 +32,6 @@ Parameter | Type | Description
 --------- | ---- | -----------
 user_id | int | ID from the `user` table.
 pet_id | int| ID from the `pet` table. The user must be the pet's owner (`pet.owner`)...?
-place_id | int | The vet where invoices are coming from for this claim.
-pet_insurance_id | int | ID from the `pet_insurance` table.
-
-## Update claim
-
-> Request example
-
-```json
-{
-  "place_id": 27015,
-  "pet_insurance_id": 66,
-  "visit_type": "wellness exam",
-  "symptoms_start_date": "2018-11-01",
-  "diagnosis": "Diabetes Mellitus",
-  "is_new_claim": true,
-  "was_claimed_before": false,
-  "should_create_request": true,
-  "signature": "https://s3.aws.amazon.com/pawprint-claims/sig.png",
-  "invoice": {
-    "number": "6425537",
-    "date": "2018-11-10",
-    "total": 253.87
-  },
-  "files": [
-    "https://s3.aws.amazon.com/pawprint-files/urinalysis-2345-105617.pdf",
-    "https://s3.aws.amazon.com/pawprint-files/invoice-1345-023489.pdf"
-  ]
-}
-```
-
-> Response example
-
-```json
-{
-  "user_id": 101,
-  "pet_id": 2345,
-  "place_id": 27015,
-  "pet_insurance_id": 66,
-  "visit_type": "wellness exam",
-  "symptoms_start_date": "2018-11-01",
-  "symptoms": [ "Vomiting", "Diarrhea", "Loss of appetite" ],
-  "diagnosis": "Diabetes Mellitus",
-  "is_new_claim": true,
-  "was_claimed_before": false,
-  "should_create_request": true,
-  "signature": "https://s3.aws.amazon.com/pawprint-claims/sig.png",
-  "invoices": [
-    {
-      "number": "6425537",
-      "date": "2018-11-10",
-      "total": 253.87
-    },
-    {
-      "number": "6425540",
-      "date": "2018-11-12",
-      "total": 160.00
-    }  
-  ],
-  "files": [
-    "https://s3.aws.amazon.com/pawprint-files/urinalysis-2345-105617.pdf",
-    "https://s3.aws.amazon.com/pawprint-files/invoice-1345-023489.pdf"
-  ]
-}
-```
-
-Searches Google Places Autocomplete for cities for a given prefix, e.g. `prefix=Aberdeen`. Geocoordinates are not returned
-because Google Places Autocomplete doesn't return them; when performing a location aware search, pass in the `placesid` instead
-and the backend will get its coordinates automatically.
-
-### HTTP Request
-`PUT /user/claim/1345`
-
-### PUT parameters
-Parameter | Type | Description
---------- | ---- | -----------
 place_id | int? | The vet where invoices are coming from for this claim.
 pet_insurance_id | int? | ID from the `pet_insurance` table.
 visit_type | string? | One of "wellness", "injury", "accident", or... Freeform string?
@@ -121,7 +46,7 @@ invoices | object[]? | Invoice(s) from the vet
 invoice.number | string | Invoice number
 invoice.date | datetime or string | If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database.
 invoice.total | number | Grand total on the invoice; claim amount
-files | string[]? | Documents to attach to the insurance claim
+files | integer[]? | `file_id`s to attach to the insurance claim
 
 ## Get user's existing claims
 
@@ -144,7 +69,7 @@ files | string[]? | Documents to attach to the insurance claim
 ]
 ```
 
-Gets a summary of the user's existing insurance claims.
+Gets a summary of all of the user's existing insurance claims.
 
 ### HTTP Request
 `GET /user/claim`
