@@ -434,6 +434,15 @@
             <a href="#insurance-claims" class="toc-h1 toc-link" data-title="insurance-claims">Insurance claims</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#get-insurance-companies" class="toc-h2 toc-link" data-title="get-insurance-companies">Get insurance companies</a>
+                  </li>
+                  <li>
+                    <a href="#add-a-pet-insurance-policy" class="toc-h2 toc-link" data-title="add-a-pet-insurance-policy">Add a pet insurance policy</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-pet-39-s-insurance-policies" class="toc-h2 toc-link" data-title="delete-a-pet-s-insurance-policies">Delete a pet's insurance policies</a>
+                  </li>
+                  <li>
                     <a href="#create-a-claim" class="toc-h2 toc-link" data-title="create-a-claim">Create a claim</a>
                   </li>
                   <li>
@@ -3060,6 +3069,75 @@ Rejection will prevent the survey from showing up again.</p>
 </tbody></table>
 <h1 id='insurance-claims'>Insurance claims</h1>
 <p>API to create an insurance claim. Each claim consists of a user, pet, place, claim-specific information, and one or more invoice documents. The user may create a record request while filling out the claim; the claim will then only be submitted after the record request is complete. If the user opts out of the record request, then the claim will be submitted as soon as the user is finished filling it out.</p>
+<h2 id='get-insurance-companies'>Get insurance companies</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24PetWatch"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"integrated"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AKC Pet Healthcare Plan"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"integrated"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets the list of all insurance companies known to Pawprint.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /user/insurance</code></p>
+<h2 id='add-a-pet-insurance-policy'>Add a pet insurance policy</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A10358"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Adds a pet insurance policy.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /pets/:petid/insurance</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>policy_number</td>
+<td>string</td>
+<td>Pet insurance policy number.</td>
+</tr>
+<tr>
+<td>insurance_id</td>
+<td>int</td>
+<td>ID from the</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-pet-39-s-insurance-policies'>Delete a pet&#39;s insurance policies</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Deletes a pet&#39;s insurance policies. Typically a pet has only 1.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>DELETE /pets/:petid/insurance</code></p>
 <h2 id='create-a-claim'>Create a claim</h2>
 <blockquote>
 <p>Request example</p>
@@ -3068,7 +3146,21 @@ Rejection will prevent the survey from showing up again.</p>
   </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
   </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
   </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pet_insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="w">
+  </span><span class="s2">"pet_insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w">   
+  </span><span class="s2">"visit_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wellness exam"</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"symptoms_start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01"</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"symnptoms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Diarrhea"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Vomiting"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Lack of appetite"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"diagnosis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gastroenteritis"</span><span class="p">,</span><span class="w">   
+  </span><span class="s2">"is_new_claim"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"was_claimed_before"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"should_create_request"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint-claims/sig.png"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">    
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6425537"</span><span class="p">,</span><span class="w">    
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-10"</span><span class="p">,</span><span class="w">   
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">253.87</span><span class="w"> 
+  </span><span class="p">}],</span><span class="w">   
+  </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">167</span><span class="p">,</span><span class="w">   </span><span class="mi">168</span><span class="w"> </span><span class="p">]</span><span class="w">   
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -3079,9 +3171,9 @@ Rejection will prevent the survey from showing up again.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Creates a claim, which uses the information to create a row in the database and reserves an ID.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /user/claims</code></p>
-<h3 id='post-parameters'>POST parameters</h3>
+<h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3101,17 +3193,17 @@ Rejection will prevent the survey from showing up again.</p>
 </tr>
 <tr>
 <td>place_id</td>
-<td>int?</td>
+<td>int</td>
 <td>The vet where invoices are coming from for this claim.</td>
 </tr>
 <tr>
 <td>pet_insurance_id</td>
-<td>int?</td>
+<td>int</td>
 <td>ID from the <code>pet_insurance</code> table.</td>
 </tr>
 <tr>
 <td>visit_type</td>
-<td>string?</td>
+<td>string</td>
 <td>One of &quot;wellness&quot;, &quot;injury&quot;, &quot;accident&quot;, or... Freeform string?</td>
 </tr>
 <tr>
@@ -3121,7 +3213,7 @@ Rejection will prevent the survey from showing up again.</p>
 </tr>
 <tr>
 <td>symptoms</td>
-<td>string[]?</td>
+<td>string[]</td>
 <td>List of symptoms</td>
 </tr>
 <tr>
@@ -3131,28 +3223,28 @@ Rejection will prevent the survey from showing up again.</p>
 </tr>
 <tr>
 <td>is_new_condition</td>
-<td>bool?</td>
+<td>bool</td>
 <td>Answer to &quot;This is a new condition&quot;</td>
 </tr>
 <tr>
 <td>was_claimed_before</td>
-<td>bool?</td>
+<td>bool</td>
 <td>Answer to &quot;I have filed a claim for this condition previously&quot;</td>
 </tr>
 <tr>
 <td>should_create_request</td>
-<td>bool?</td>
+<td>bool</td>
 <td>Answer to &quot;Request records from my vet for this visit&quot;; will not submit claim until request is complete</td>
 </tr>
 <tr>
 <td>signature</td>
-<td>string?</td>
+<td>string</td>
 <td>URL to signature file</td>
 </tr>
 <tr>
 <td>invoices</td>
-<td>object[]?</td>
-<td>Invoice(s) from the vet</td>
+<td>object[]</td>
+<td>Invoice(s) from the vet. At least one invoice must be submitted with the claim</td>
 </tr>
 <tr>
 <td>invoice.number</td>
@@ -3171,8 +3263,8 @@ Rejection will prevent the survey from showing up again.</p>
 </tr>
 <tr>
 <td>files</td>
-<td>integer[]?</td>
-<td><code>file_id</code>s to attach to the insurance claim</td>
+<td>integer[]</td>
+<td><code>file_id</code>s to attach to the insurance claim. At least one file must be submitted with the claim.</td>
 </tr>
 </tbody></table>
 <h2 id='get-user-39-s-existing-claims'>Get user&#39;s existing claims</h2>
@@ -3195,7 +3287,7 @@ Rejection will prevent the survey from showing up again.</p>
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Gets a summary of all of the user&#39;s existing insurance claims.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /user/claims</code></p>
 <h2 id='get-existing-claim-details'>Get existing claim details</h2>
 <blockquote>
@@ -3234,7 +3326,7 @@ Rejection will prevent the survey from showing up again.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets a specific claim.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /user/claims/1345</code></p>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
