@@ -82,7 +82,7 @@ Deletes a pet's insurance policies. Typically a pet has only 1.
   "pet_insurance_id": 66,	
   "visit_type": "wellness exam",	
   "symptoms_start_date": "2018-11-01",	
-  "symnptoms": [ "Diarrhea", "Vomiting", "Lack of appetite" ],
+  "symptoms": [ "Diarrhea", "Vomiting", "Lack of appetite" ],
   "diagnosis": "Gastroenteritis",	
   "is_new_claim": true,	
   "was_claimed_before": false,	
