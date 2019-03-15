@@ -446,10 +446,10 @@
                     <a href="#create-a-claim" class="toc-h2 toc-link" data-title="create-a-claim">Create a claim</a>
                   </li>
                   <li>
-                    <a href="#get-user-39-s-existing-claims" class="toc-h2 toc-link" data-title="get-user-s-existing-claims">Get user's existing claims</a>
+                    <a href="#get-user-39-s-existing-claims-summary" class="toc-h2 toc-link" data-title="get-user-s-existing-claims-summary">Get user's existing claims (summary)</a>
                   </li>
                   <li>
-                    <a href="#get-existing-claim-details" class="toc-h2 toc-link" data-title="get-existing-claim-details">Get existing claim details</a>
+                    <a href="#get-specific-claim-details" class="toc-h2 toc-link" data-title="get-specific-claim-details">Get specific claim details</a>
                   </li>
               </ul>
           </li>
@@ -3155,11 +3155,9 @@ Rejection will prevent the survey from showing up again.</p>
   </span><span class="s2">"was_claimed_before"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  
   </span><span class="s2">"should_create_request"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">    
   </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint-claims/sig.png"</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">    
-    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6425537"</span><span class="p">,</span><span class="w">    
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-10"</span><span class="p">,</span><span class="w">   
-    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">253.87</span><span class="w"> 
-  </span><span class="p">}],</span><span class="w">   
+  </span><span class="s2">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6425537"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"invoice_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-10"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"invoice_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">253.87</span><span class="p">,</span><span class="w">
   </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">167</span><span class="p">,</span><span class="w">   </span><span class="mi">168</span><span class="w"> </span><span class="p">]</span><span class="w">   
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3242,24 +3240,19 @@ Rejection will prevent the survey from showing up again.</p>
 <td>URL to signature file</td>
 </tr>
 <tr>
-<td>invoices</td>
-<td>object[]</td>
-<td>Invoice(s) from the vet. At least one invoice must be submitted with the claim</td>
-</tr>
-<tr>
-<td>invoice.number</td>
+<td>invoice_number</td>
 <td>string</td>
-<td>Invoice number</td>
+<td>invoice number; pick one if the user submitted multiple</td>
 </tr>
 <tr>
-<td>invoice.date</td>
+<td>invoice_date</td>
 <td>datetime or string</td>
-<td>If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database.</td>
+<td>invoice date; pick one if the user submitted multiple</td>
 </tr>
 <tr>
-<td>invoice.total</td>
+<td>invoice_total</td>
 <td>number</td>
-<td>Grand total on the invoice; claim amount</td>
+<td>Sum of all invoice amounts</td>
 </tr>
 <tr>
 <td>files</td>
@@ -3267,7 +3260,7 @@ Rejection will prevent the survey from showing up again.</p>
 <td><code>file_id</code>s to attach to the insurance claim. At least one file must be submitted with the claim.</td>
 </tr>
 </tbody></table>
-<h2 id='get-user-39-s-existing-claims'>Get user&#39;s existing claims</h2>
+<h2 id='get-user-39-s-existing-claims-summary'>Get user&#39;s existing claims (summary)</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
@@ -3276,11 +3269,11 @@ Rejection will prevent the survey from showing up again.</p>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
     </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint, Inc."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"insurance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Insurance Co."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"insurance_policy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A000007"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A000007"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"invoice_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">456.78</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Waiting for records"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-01"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-01"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -3289,7 +3282,7 @@ Rejection will prevent the survey from showing up again.</p>
 <p>Gets a summary of all of the user&#39;s existing insurance claims.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /user/claims</code></p>
-<h2 id='get-existing-claim-details'>Get existing claim details</h2>
+<h2 id='get-specific-claim-details'>Get specific claim details</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
@@ -3301,24 +3294,15 @@ Rejection will prevent the survey from showing up again.</p>
   </span><span class="s2">"visit_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wellness exam"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"symptoms_start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"symptoms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Vomiting"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Diarrhea"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Loss of appetite"</span><span class="w"> </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"diagnosis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Diabetes Mellitus"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"is_new_claim"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"diagnosis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gastroenteritis"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_new_condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"was_claimed_before"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"should_create_request"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint-claims/sig.png"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"invoices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6425537"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-10"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">253.87</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6425540"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-12"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">160.00</span><span class="w">
-    </span><span class="p">}</span><span class="w">  
-  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6425537"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"invoice_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-10"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"invoice_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">456.78</span><span class="p">,</span><span class="w">
   </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="s2">"https://s3.aws.amazon.com/pawprint-files/urinalysis-2345-105617.pdf"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"https://s3.aws.amazon.com/pawprint-files/invoice-1345-023489.pdf"</span><span class="w">
