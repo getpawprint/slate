@@ -3154,6 +3154,8 @@ Rejection will prevent the survey from showing up again.</p>
   </span><span class="s2">"is_new_claim"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"was_claimed_before"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  
   </span><span class="s2">"should_create_request"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"treatment_start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"treatment_end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-08"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint-claims/sig.png"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6425537"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"invoice_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-10"</span><span class="p">,</span><span class="w">
@@ -3206,7 +3208,7 @@ Rejection will prevent the survey from showing up again.</p>
 </tr>
 <tr>
 <td>symptoms_start_date</td>
-<td>datetime? or string?</td>
+<td>datetime or string</td>
 <td>If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database.</td>
 </tr>
 <tr>
@@ -3228,6 +3230,16 @@ Rejection will prevent the survey from showing up again.</p>
 <td>was_claimed_before</td>
 <td>bool</td>
 <td>Answer to &quot;I have filed a claim for this condition previously&quot;</td>
+</tr>
+<tr>
+<td>treatment_start_date</td>
+<td>datetime or string</td>
+<td>If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database.</td>
+</tr>
+<tr>
+<td>treatment_start_date</td>
+<td>datetime? or string?</td>
+<td>If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database. This field is optional and a null value represents an ongoing treatment.</td>
 </tr>
 <tr>
 <td>should_create_request</td>
@@ -3297,6 +3309,8 @@ Rejection will prevent the survey from showing up again.</p>
   </span><span class="s2">"diagnosis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gastroenteritis"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"is_new_condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"was_claimed_before"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"treatment_start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"treatment_end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-08"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"should_create_request"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint-claims/sig.png"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">

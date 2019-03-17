@@ -87,6 +87,8 @@ Deletes a pet's insurance policies. Typically a pet has only 1.
   "is_new_claim": true,	
   "was_claimed_before": false,	
   "should_create_request": true,	
+  "treatment_start_date": "2018-11-01",
+  "treatment_end_date": "2018-11-08",
   "signature": "https://s3.aws.amazon.com/pawprint-claims/sig.png",	
   "invoice_number": "6425537",
   "invoice_date": "2018-11-10",
@@ -116,11 +118,13 @@ pet_id | int| ID from the `pet` table. The user must be the pet's owner (`pet.ow
 place_id | int | The vet where invoices are coming from for this claim.
 pet_insurance_id | int | ID from the `pet_insurance` table.
 visit_type | string | One of "wellness", "injury", "accident", or... Freeform string?
-symptoms_start_date | datetime? or string? | If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database.
+symptoms_start_date | datetime or string | If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database.
 symptoms | string[] | List of symptoms
 diagnosis | string | Freeform string of the vet's diagnosis
 is_new_condition | bool | Answer to "This is a new condition"
 was_claimed_before | bool | Answer to "I have filed a claim for this condition previously"
+treatment_start_date | datetime or string | If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database.
+treatment_start_date | datetime? or string? | If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database. This field is optional and a null value represents an ongoing treatment.
 should_create_request | bool | Answer to "Request records from my vet for this visit"; will not submit claim until request is complete
 signature | string | URL to signature file
 invoice_number | string | invoice number; pick one if the user submitted multiple
@@ -170,6 +174,8 @@ Gets a summary of all of the user's existing insurance claims.
   "diagnosis": "Gastroenteritis",
   "is_new_condition": true,
   "was_claimed_before": false,
+  "treatment_start_date": "2018-11-01",
+  "treatment_end_date": "2018-11-08",
   "should_create_request": true,
   "signature": "https://s3.aws.amazon.com/pawprint-claims/sig.png",
   "status": "submitted",
