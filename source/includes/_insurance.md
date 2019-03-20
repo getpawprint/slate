@@ -84,7 +84,7 @@ Deletes a pet's insurance policies. Typically a pet has only 1.
   "symptoms_start_date": "2018-11-01",	
   "symptoms": [ "Diarrhea", "Vomiting", "Lack of appetite" ],
   "diagnosis": "Gastroenteritis",	
-  "is_new_claim": true,	
+  "is_new_condition": true,	
   "was_claimed_before": false,	
   "should_create_request": true,	
   "treatment_start_date": "2018-11-01",
