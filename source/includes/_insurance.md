@@ -93,7 +93,16 @@ Deletes a pet's insurance policies. Typically a pet has only 1.
   "invoice_number": "6425537",
   "invoice_date": "2018-11-10",
   "invoice_total": 253.87,
-  "files": [ 167,	168 ]	
+  "files": [
+      {
+        "type": "file",
+        "id": 167
+      },	
+      {
+        "type": "pdfRecord",
+        "id": 4543
+      }
+    ]	
 }
 ```
 
@@ -130,7 +139,9 @@ signature | string | URL to signature file
 invoice_number | string | invoice number; pick one if the user submitted multiple
 invoice_date | datetime or string | invoice date; pick one if the user submitted multiple
 invoice_total | number | Sum of all invoice amounts
-files | integer[] | `file_id`s to attach to the insurance claim. At least one file must be submitted with the claim.
+files | object[] | Files to attach to the insurance claim. At least one file must be submitted with the claim. Files may come from the `file` table or the `pdfRecord` table.
+files.type | string | If it's a user file (`file`) or an official records PDF (uploaded by an admin).
+files.id | int | ID from the `file` or `pdfRecord` table, depending on `files.type`.
 
 ## Get user's existing claims (summary)
 

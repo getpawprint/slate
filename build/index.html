@@ -3160,7 +3160,16 @@ Rejection will prevent the survey from showing up again.</p>
   </span><span class="s2">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6425537"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"invoice_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-10"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"invoice_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">253.87</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">167</span><span class="p">,</span><span class="w">   </span><span class="mi">168</span><span class="w"> </span><span class="p">]</span><span class="w">   
+  </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">167</span><span class="w">
+      </span><span class="p">},</span><span class="w">    
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pdfRecord"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4543</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">   
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -3268,8 +3277,18 @@ Rejection will prevent the survey from showing up again.</p>
 </tr>
 <tr>
 <td>files</td>
-<td>integer[]</td>
-<td><code>file_id</code>s to attach to the insurance claim. At least one file must be submitted with the claim.</td>
+<td>object[]</td>
+<td>Files to attach to the insurance claim. At least one file must be submitted with the claim. Files may come from the <code>file</code> table or the <code>pdfRecord</code> table.</td>
+</tr>
+<tr>
+<td>files.type</td>
+<td>string</td>
+<td>If it&#39;s a user file (<code>file</code>) or an official records PDF (uploaded by an admin).</td>
+</tr>
+<tr>
+<td>files.id</td>
+<td>int</td>
+<td>ID from the <code>file</code> or <code>pdfRecord</code> table, depending on <code>files.type</code>.</td>
 </tr>
 </tbody></table>
 <h2 id='get-user-39-s-existing-claims-summary'>Get user&#39;s existing claims (summary)</h2>
