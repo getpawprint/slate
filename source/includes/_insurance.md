@@ -194,8 +194,14 @@ Gets a summary of all of the user's existing insurance claims.
   "invoice_date": "2018-11-10",
   "invoice_total": 456.78,
   "files": [
-    "https://s3.aws.amazon.com/pawprint-files/urinalysis-2345-105617.pdf",
-    "https://s3.aws.amazon.com/pawprint-files/invoice-1345-023489.pdf"
+    {
+      "link": "https://pawprint-file-upload.s3-us-west-2.amazonaws.com/84080-37683-1536632601600.jpg",
+      "name": "image"
+    },
+    {
+      "link": "https://pawprint-file-upload.s3-us-west-2.amazonaws.com/104048-37683-1553621977158.pdf",
+      "name": "PDF"
+    }
   ]
 }
 ```
