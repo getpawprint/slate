@@ -1,4 +1,4 @@
-# Places
+# Places V3
 Location-aware search. Why did Place v2 get skipped? There was already an internal place V2 in the backend, and so an internal place V3 was created. The new external-facing place API was versioned to V3 to follow suit.
 
 ## Location-aware search

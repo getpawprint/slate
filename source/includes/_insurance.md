@@ -199,3 +199,77 @@ Gets a specific claim.
 
 ### HTTP Request
 `GET /user/claims/1345`
+
+## Record request preview from a claim
+> Request example
+
+```json
+{
+	"promocode": "mars"
+}
+```
+
+> Response example
+
+```json
+{
+	"items": [
+		{
+			"id": 6,
+			"description": "Request for full medical records for Apple from Yorktown Animal Hospital: Gariboldi Rita T DVM",
+			"cost": 9.99
+		}
+	],
+	"subtotal": 9.99,
+	"discount": -5
+	"total": 4.99
+}
+```
+
+Generates an order preview for creating a record request from an insurance claim.
+The pet and vet information is known from the claim, and the product ID is automatically
+selected based on the insurance company in the claim.
+
+### HTTP Request
+`GET /user/claims/1345/preview`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+promocode | string? | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+
+## Record request order from a claim
+> Request example
+
+```json
+{
+	"signature": "https://s3.aws.amazon.com/pawprint/sig.png",
+	"checkout_notes": "Checkout note to Pawprint",
+	"promocode": "mars",
+	"stripe_token": "tk_421"
+}
+```
+
+> Response example
+
+```json
+[
+	18617
+]
+```
+
+Executes an order.
+Creates the requests, which will show up in the admin portal as 'new'. `stripe_token` is mostly required, and
+we won't be creating or charging Stripe Customer accounts. If a promocode is supplied but the total comes out to $0.00,
+or if the product is free (e.g. `wag` request), then `stripe_token` is neither required nor charged.
+Returns an array of the newly created request IDs.
+
+### HTTP Request
+`GET /user/claims/1345/order`
+
+Parameter | Type | Description
+--------- | ---- | -----------
+signature | string | URL to the image file containing the client's signature.
+checkout_notes | string? | Checkout note to Pawprint.
+promocode | string? | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
+stripe_token | string? | Stripe token that will be charged for payment (one-time use)
