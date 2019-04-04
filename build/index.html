@@ -3154,7 +3154,7 @@ Rejection will prevent the survey from showing up again.</p>
   </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
   </span><span class="s2">"pet_insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"visit_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wellness exam"</span><span class="p">,</span><span class="w">    
-  </span><span class="s2">"symptoms_start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01"</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"symptoms_start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"symptoms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Diarrhea"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Vomiting"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Lack of appetite"</span><span class="w"> </span><span class="p">],</span><span class="w">
   </span><span class="s2">"diagnosis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gastroenteritis"</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"is_new_condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
@@ -3166,7 +3166,11 @@ Rejection will prevent the survey from showing up again.</p>
   </span><span class="s2">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6425537"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"invoice_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-10"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"invoice_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">253.87</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">167</span><span class="p">,</span><span class="w"> </span><span class="mi">168</span><span class="w"> </span><span class="p">]</span><span class="w"> 
+  </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">167</span><span class="p">,</span><span class="w"> </span><span class="mi">168</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"additional_insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASPCA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cancel_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-18"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -3277,6 +3281,21 @@ Rejection will prevent the survey from showing up again.</p>
 <td>int[]</td>
 <td>User-uploaded files from the <code>file</code> table. All the pet&#39;s <code>pdfRecords</code> (official vet records) will be automatically attached to the insurance claim.</td>
 </tr>
+<tr>
+<td>additional_insurance</td>
+<td>object?</td>
+<td>If the user has additional assurance; <code>null</code> means no.</td>
+</tr>
+<tr>
+<td>additional_insurance.name</td>
+<td>string</td>
+<td>The other insurance company&#39;s name</td>
+</tr>
+<tr>
+<td>additional_insurance.cancel_date</td>
+<td>date?</td>
+<td>Cancellation date of the other policy; <code>null</code> means the other policy is still active.</td>
+</tr>
 </tbody></table>
 <h2 id='get-user-39-s-existing-claims-summary'>Get user&#39;s existing claims (summary)</h2>
 <blockquote>
@@ -3343,6 +3362,7 @@ Rejection will prevent the survey from showing up again.</p>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
     </span><span class="s2">"promocode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mars"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3353,13 +3373,18 @@ Rejection will prevent the survey from showing up again.</p>
     </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request for full medical records for Apple from Yorktown Animal Hospital: Gariboldi Rita T DVM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request for full medical records for Bella from Pawprint, Inc."</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request for full medical records for Bella from Pawprint, Inc."</span><span class="p">,</span><span class="w">
             </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.99</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">19.98</span><span class="p">,</span><span class="w">
     </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="w">
-    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.99</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">14.98</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Generates an order preview for creating a record request from an insurance claim.
@@ -3376,6 +3401,11 @@ selected based on the insurance company in the claim.</p>
 </tr>
 </thead><tbody>
 <tr>
+<td>place_ids</td>
+<td>int[]</td>
+<td>Vets for making record requests</td>
+</tr>
+<tr>
 <td>promocode</td>
 <td>string?</td>
 <td>If specified, attempts to apply the promo code to the order. If the promo code didn&#39;t work, HTTP 400 is returned along with an error message.</td>
@@ -3386,6 +3416,7 @@ selected based on the insurance company in the claim.</p>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
     </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/sig.png"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"checkout_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkout note to Pawprint"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"promocode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mars"</span><span class="p">,</span><span class="w">
@@ -3396,13 +3427,14 @@ selected based on the insurance company in the claim.</p>
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="mi">18617</span><span class="w">
+    </span><span class="mi">18617</span><span class="p">,</span><span class="w">
+  </span><span class="mi">18618</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Executes an order.
 Creates the requests, which will show up in the admin portal as &#39;new&#39;. <code>stripe_token</code> is mostly required, and
 we won&#39;t be creating or charging Stripe Customer accounts. If a promocode is supplied but the total comes out to $0.00,
-or if the product is free (e.g. <code>wag</code> request), then <code>stripe_token</code> is neither required nor charged.
+or if the product is free, then <code>stripe_token</code> is neither required nor charged.
 Returns an array of the newly created request IDs.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /user/claims/1345/order</code></p>
@@ -3414,6 +3446,11 @@ Returns an array of the newly created request IDs.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>place_ids</td>
+<td>int[]</td>
+<td>Vets for making record requests</td>
+</tr>
 <tr>
 <td>signature</td>
 <td>string</td>

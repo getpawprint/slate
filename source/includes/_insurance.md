@@ -81,7 +81,7 @@ Deletes a pet's insurance policies. Typically a pet has only 1.
   "place_id": 27015,
   "pet_insurance_id": 66,	
   "visit_type": "wellness exam",	
-  "symptoms_start_date": "2018-11-01",	
+  "symptoms_start_date": "2018-11-01",
   "symptoms": [ "Diarrhea", "Vomiting", "Lack of appetite" ],
   "diagnosis": "Gastroenteritis",	
   "is_new_condition": true,	
@@ -93,7 +93,11 @@ Deletes a pet's insurance policies. Typically a pet has only 1.
   "invoice_number": "6425537",
   "invoice_date": "2018-11-10",
   "invoice_total": 253.87,
-  "files": [ 167, 168 ]	
+  "files": [ 167, 168 ],
+  "additional_insurance": {
+    "name": "ASPCA",
+    "cancel_date": "2018-11-18"
+  }
 }
 ```
 
@@ -131,6 +135,10 @@ invoice_number | string | invoice number; pick one if the user submitted multipl
 invoice_date | datetime or string | invoice date; pick one if the user submitted multiple
 invoice_total | number | Sum of all invoice amounts
 files | int[] | User-uploaded files from the `file` table. All the pet's `pdfRecords` (official vet records) will be automatically attached to the insurance claim.
+additional_insurance | object? | If the user has additional assurance; `null` means no.
+additional_insurance.name | string | The other insurance company's name
+additional_insurance.cancel_date | date? | Cancellation date of the other policy; `null` means the other policy is still active.
+
 
 ## Get user's existing claims (summary)
 
@@ -205,6 +213,7 @@ Gets a specific claim.
 
 ```json
 {
+  "place_ids": [ 27015, 1],
 	"promocode": "mars"
 }
 ```
@@ -216,13 +225,18 @@ Gets a specific claim.
 	"items": [
 		{
 			"id": 6,
-			"description": "Request for full medical records for Apple from Yorktown Animal Hospital: Gariboldi Rita T DVM",
+			"description": "Request for full medical records for Bella from Pawprint, Inc.",
+			"cost": 9.99
+		},
+    {
+			"id": 6,
+			"description": "Request for full medical records for Bella from Pawprint, Inc.",
 			"cost": 9.99
 		}
 	],
-	"subtotal": 9.99,
+	"subtotal": 19.98,
 	"discount": -5
-	"total": 4.99
+	"total": 14.98
 }
 ```
 
@@ -236,6 +250,7 @@ selected based on the insurance company in the claim.
 ### POST parameters
 Parameter | Type | Description
 --------- | ---- | -----------
+place_ids | int[] | Vets for making record requests
 promocode | string? | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
 
 ## Record request order from a claim
@@ -243,6 +258,7 @@ promocode | string? | If specified, attempts to apply the promo code to the orde
 
 ```json
 {
+  "place_ids": [ 27015, 1],
 	"signature": "https://s3.aws.amazon.com/pawprint/sig.png",
 	"checkout_notes": "Checkout note to Pawprint",
 	"promocode": "mars",
@@ -254,14 +270,15 @@ promocode | string? | If specified, attempts to apply the promo code to the orde
 
 ```json
 [
-	18617
+	18617,
+  18618
 ]
 ```
 
 Executes an order.
 Creates the requests, which will show up in the admin portal as 'new'. `stripe_token` is mostly required, and
 we won't be creating or charging Stripe Customer accounts. If a promocode is supplied but the total comes out to $0.00,
-or if the product is free (e.g. `wag` request), then `stripe_token` is neither required nor charged.
+or if the product is free, then `stripe_token` is neither required nor charged.
 Returns an array of the newly created request IDs.
 
 ### HTTP Request
@@ -269,6 +286,7 @@ Returns an array of the newly created request IDs.
 
 Parameter | Type | Description
 --------- | ---- | -----------
+place_ids | int[] | Vets for making record requests
 signature | string | URL to the image file containing the client's signature.
 checkout_notes | string? | Checkout note to Pawprint.
 promocode | string? | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
