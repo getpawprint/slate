@@ -3149,7 +3149,6 @@ Rejection will prevent the survey from showing up again.</p>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
   </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
   </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
   </span><span class="s2">"pet_insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w">   
@@ -3191,11 +3190,6 @@ Rejection will prevent the survey from showing up again.</p>
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>user_id</td>
-<td>int</td>
-<td>ID from the <code>user</code> table.</td>
-</tr>
 <tr>
 <td>pet_id</td>
 <td>int</td>
@@ -3243,11 +3237,11 @@ Rejection will prevent the survey from showing up again.</p>
 </tr>
 <tr>
 <td>treatment_start_date</td>
-<td>datetime or string</td>
+<td>datetime? or string?</td>
 <td>If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database.</td>
 </tr>
 <tr>
-<td>treatment_start_date</td>
+<td>treatment_end_date</td>
 <td>datetime? or string?</td>
 <td>If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database. This field is optional and a null value represents an ongoing treatment.</td>
 </tr>
@@ -3310,7 +3304,7 @@ Rejection will prevent the survey from showing up again.</p>
     </span><span class="s2">"insurance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Insurance Co."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A000007"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"invoice_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">456.78</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-01"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-01"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -3338,7 +3332,7 @@ Rejection will prevent the survey from showing up again.</p>
   </span><span class="s2">"treatment_end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-08"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"should_create_request"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint-claims/sig.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"invoice_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6425537"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"invoice_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-10"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"invoice_total"</span><span class="p">:</span><span class="w"> </span><span class="mf">456.78</span><span class="p">,</span><span class="w">
@@ -3350,6 +3344,13 @@ Rejection will prevent the survey from showing up again.</p>
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-file-upload.s3-us-west-2.amazonaws.com/104048-37683-1553621977158.pdf"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My PDF document"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">117</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Demo Vet"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">

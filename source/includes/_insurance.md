@@ -76,7 +76,6 @@ Deletes a pet's insurance policies. Typically a pet has only 1.
 
 ```json
 {
-  "user_id": 101,
   "pet_id": 2345,
   "place_id": 27015,
   "pet_insurance_id": 66,	
@@ -117,7 +116,6 @@ Creates a claim, which uses the information to create a row in the database and 
 ### POST parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-user_id | int | ID from the `user` table.
 pet_id | int| ID from the `pet` table. The user must be the pet's owner (`pet.owner`)...?
 place_id | int | The vet where invoices are coming from for this claim.
 pet_insurance_id | int | ID from the `pet_insurance` table.
@@ -127,8 +125,8 @@ symptoms | string[] | List of symptoms
 diagnosis | string | Freeform string of the vet's diagnosis
 is_new_condition | bool | Answer to "This is a new condition"
 was_claimed_before | bool | Answer to "I have filed a claim for this condition previously"
-treatment_start_date | datetime or string | If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database.
-treatment_start_date | datetime? or string? | If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database. This field is optional and a null value represents an ongoing treatment.
+treatment_start_date | datetime? or string? | If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database.
+treatment_end_date | datetime? or string? | If a datetime is passed, only the date will be stored and the time portion will be truncated. Stored as a timezone-agnostic string in the database. This field is optional and a null value represents an ongoing treatment.
 should_create_request | bool | Answer to "Request records from my vet for this visit"; will not submit claim until request is complete
 signature | string | URL to signature file
 invoice_number | string | invoice number; pick one if the user submitted multiple
@@ -154,7 +152,7 @@ additional_insurance.cancel_date | date? | Cancellation date of the other policy
     "insurance_name": "Pawprint Insurance Co.",
     "policy_number": "A000007",
     "invoice_total": 456.78,
-    "status": "submitted",
+    "status": "complete",
     "created_at": "2018-12-01",
     "updated_at": "2018-12-01"
   }
@@ -186,7 +184,7 @@ Gets a summary of all of the user's existing insurance claims.
   "treatment_end_date": "2018-11-08",
   "should_create_request": true,
   "signature": "https://s3.aws.amazon.com/pawprint-claims/sig.png",
-  "status": "submitted",
+  "status": "complete",
   "invoice_number": "6425537",
   "invoice_date": "2018-11-10",
   "invoice_total": 456.78,
@@ -198,6 +196,13 @@ Gets a summary of all of the user's existing insurance claims.
     {
       "link": "https://pawprint-file-upload.s3-us-west-2.amazonaws.com/104048-37683-1553621977158.pdf",
       "name": "My PDF document"
+    }
+  ],
+  "requests": [
+    {
+      "id": 117,
+      "status": "complete",
+      "place_name": "Pawprint Demo Vet"
     }
   ]
 }
