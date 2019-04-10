@@ -460,6 +460,20 @@
               </ul>
           </li>
           <li>
+            <a href="#intake-forms" class="toc-h1 toc-link" data-title="intake-forms">Intake forms</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-intake-form-vet" class="toc-h2 toc-link" data-title="create-intake-form-vet">Create intake form (vet)</a>
+                  </li>
+                  <li>
+                    <a href="#get-intake-form" class="toc-h2 toc-link" data-title="get-intake-form">Get intake form</a>
+                  </li>
+                  <li>
+                    <a href="#update-intake-form-user-or-vet" class="toc-h2 toc-link" data-title="update-intake-form-user-or-vet">Update intake form (user or vet)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#machine-learning-algo-tagging" class="toc-h1 toc-link" data-title="machine-learning-algo-tagging">Machine learning/algo tagging</a>
               <ul class="toc-list-h2">
                   <li>
@@ -3471,6 +3485,268 @@ Returns an array of the newly created request IDs.</p>
 <td>stripe_token</td>
 <td>string?</td>
 <td>Stripe token that will be charged for payment (one-time use)</td>
+</tr>
+</tbody></table>
+<h1 id='intake-forms'>Intake forms</h1>
+<p>Intake forms are for vets who are taking on new clients. The vet enters basic information about the new client,
+such as name, email address and pet name into a form, then submits the form. An external ID is created for the partially
+completed form, and then a link is emailed to the new client. When the client clicks the link, they will see another form with
+the partially complete information that the vet entered. They should then enter the rest of the information about the pet,
+such as species, date of birth, and most importantly, the other vets in the pet&#39;s medical history. 
+Once they have completed the form, they can submit it, which causes record requests to be created in the Pawprint system.
+When updated or completed, the records are emailed to both the client and their new vet.</p>
+<h2 id='create-intake-form-vet'>Create intake form (vet)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15:30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Initializes an intake form with the given information. The example shows all available fields,
+but only a small subset is necessary for creation. An external ID for the form is generated and emailed to the new client,
+which can be used to fill in the rest of the fields.</p>
+
+<p><strong>TODO: how does authentication work?</strong></p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /intake</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>object</td>
+<td>The new client.</td>
+</tr>
+<tr>
+<td>user.first_name</td>
+<td>string</td>
+<td>New client&#39;s first name.</td>
+</tr>
+<tr>
+<td>user.last_name</td>
+<td>string</td>
+<td>New client&#39;s last name.</td>
+</tr>
+<tr>
+<td>user.email</td>
+<td>string</td>
+<td>New client&#39;s email address.</td>
+</tr>
+<tr>
+<td>user.phone</td>
+<td>string?</td>
+<td>New client&#39;s phone number.</td>
+</tr>
+<tr>
+<td>pet</td>
+<td>object?</td>
+<td>The pet to be seen.</td>
+</tr>
+<tr>
+<td>pet.name</td>
+<td>name</td>
+<td>Pet&#39;s name.</td>
+</tr>
+<tr>
+<td>pet.species</td>
+<td>string?</td>
+<td>Pet&#39;s species, e.g. <code>cat</code> or <code>dog</code>.</td>
+</tr>
+<tr>
+<td>pet.breed</td>
+<td>string?</td>
+<td>Pet&#39;s breed.</td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>object</td>
+<td>Appointment details</td>
+</tr>
+<tr>
+<td>appointment.date</td>
+<td>string</td>
+<td>Date portion of the appointment, e.g. &quot;2019-07-20&quot;.</td>
+</tr>
+<tr>
+<td>appointment.time</td>
+<td>string?</td>
+<td>Time portion of the appointment in 24 hour time, e.g. &quot;15:30&quot; or &quot;09:45&quot;.</td>
+</tr>
+<tr>
+<td>appointment.timezone</td>
+<td>string?</td>
+<td>https://en.wikipedia.org/wiki/List_of_tz_database_time_zones</td>
+</tr>
+</tbody></table>
+<h2 id='get-intake-form'>Get intake form</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15:30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets the specified intake form. Not all fields are guaranteed to be populated.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /intake/:intake_id</code></p>
+<h2 id='update-intake-form-user-or-vet'>Update intake form (user or vet)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Seattle"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seattle"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98105"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Updates an intake form with the given information. If one of the required fields is empty, HTTP 400/Bad Request is returned. One of <code>place_ids</code> or <code>vets</code> must be specified; both are accepted. Objects in the <code>vets</code> list will be created as new entries in the <code>place</code> table. If all of the required fields are populated, HTTP 200/OK is returned, and the record requests are created automatically.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>PUT /intake/:intake_id</code></p>
+<h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>object</td>
+<td>The new client.</td>
+</tr>
+<tr>
+<td>user.first_name</td>
+<td>string</td>
+<td>New client&#39;s first name.</td>
+</tr>
+<tr>
+<td>user.last_name</td>
+<td>string</td>
+<td>New client&#39;s last name.</td>
+</tr>
+<tr>
+<td>user.email</td>
+<td>string</td>
+<td>New client&#39;s email address.</td>
+</tr>
+<tr>
+<td>user.phone</td>
+<td>string</td>
+<td>New client&#39;s phone number.</td>
+</tr>
+<tr>
+<td>pet</td>
+<td>object</td>
+<td>The pet to be seen.</td>
+</tr>
+<tr>
+<td>pet.name</td>
+<td>name</td>
+<td>Pet&#39;s name.</td>
+</tr>
+<tr>
+<td>pet.species</td>
+<td>string</td>
+<td>Pet&#39;s species, e.g. <code>cat</code> or <code>dog</code>.</td>
+</tr>
+<tr>
+<td>pet.breed</td>
+<td>string?</td>
+<td>Pet&#39;s breed.</td>
+</tr>
+<tr>
+<td>place_ids</td>
+<td>int[]?</td>
+<td>List of IDs from the <code>place</code> table who we will contact for the pet&#39;s medical history. One of <code>place_ids</code> or <code>vets</code> must be specified.</td>
+</tr>
+<tr>
+<td>vets</td>
+<td>object[]?</td>
+<td>Vets who we will contact for the pet&#39;s medical history. These will become new <code>place</code> table entries. One of <code>place_ids</code> or <code>vets</code> must be specified.</td>
+</tr>
+<tr>
+<td>vets.name</td>
+<td>string</td>
+<td>Vet name.</td>
+</tr>
+<tr>
+<td>vets.city</td>
+<td>string?</td>
+<td>Vet&#39;s city.</td>
+</tr>
+<tr>
+<td>vets.state</td>
+<td>string?</td>
+<td>Vet&#39;s state.</td>
+</tr>
+<tr>
+<td>vets.zip</td>
+<td>string?</td>
+<td>Vet&#39;s zip code.</td>
 </tr>
 </tbody></table>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>

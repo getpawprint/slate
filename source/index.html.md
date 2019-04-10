@@ -15,6 +15,7 @@ includes:
   - events_v2
   - followups
   - insurance
+  - intake
   - machine_learning
   - medication
   - payments
