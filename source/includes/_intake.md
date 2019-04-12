@@ -46,6 +46,7 @@ which can be used to fill in the rest of the fields.
 ### POST parameters
 Parameter | Type | Description
 --------- | ---- | -----------
+partner_id | int | **Temporary until auth is finalized** ID from the partner table
 user | object | The new client.
 user.first_name | string | New client's first name.
 user.last_name | string | New client's last name.
