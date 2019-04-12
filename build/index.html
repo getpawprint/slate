@@ -3507,14 +3507,11 @@ When updated or completed, the records are emailed to both the client and their 
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="w">
   </span><span class="p">},</span><span class="w">
     </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15:30"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15:30"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3527,7 +3524,7 @@ When updated or completed, the records are emailed to both the client and their 
 but only a small subset is necessary for creation. An external ID for the form is generated and emailed to the new client,
 which can be used to fill in the rest of the fields.</p>
 
-<p><strong>TODO: how does authentication work?</strong></p>
+<p><strong>TODO: how does authentication &amp; partner selection work?</strong></p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /intake</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
@@ -3565,7 +3562,7 @@ which can be used to fill in the rest of the fields.</p>
 </tr>
 <tr>
 <td>pet</td>
-<td>object?</td>
+<td>object</td>
 <td>The pet to be seen.</td>
 </tr>
 <tr>
@@ -3582,6 +3579,11 @@ which can be used to fill in the rest of the fields.</p>
 <td>pet.breed</td>
 <td>string?</td>
 <td>Pet&#39;s breed.</td>
+</tr>
+<tr>
+<td>pet.birthdate</td>
+<td>date?</td>
+<td>Date portion of the pet&#39;s birthdate</td>
 </tr>
 <tr>
 <td>appointment</td>
@@ -3618,7 +3620,8 @@ which can be used to fill in the rest of the fields.</p>
   </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="w">
   </span><span class="p">},</span><span class="w">
     </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
@@ -3644,7 +3647,8 @@ which can be used to fill in the rest of the fields.</p>
   </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">],</span><span class="w">
   </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -3665,7 +3669,7 @@ which can be used to fill in the rest of the fields.</p>
 <p>Updates an intake form with the given information. If one of the required fields is empty, HTTP 400/Bad Request is returned. One of <code>place_ids</code> or <code>vets</code> must be specified; both are accepted. Objects in the <code>vets</code> list will be created as new entries in the <code>place</code> table. If all of the required fields are populated, HTTP 200/OK is returned, and the record requests are created automatically.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>PUT /intake/:intake_id</code></p>
-<h3 id='post-parameters-2'>POST parameters</h3>
+<h3 id='put-parameters'>PUT parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3715,8 +3719,13 @@ which can be used to fill in the rest of the fields.</p>
 </tr>
 <tr>
 <td>pet.breed</td>
-<td>string?</td>
+<td>string</td>
 <td>Pet&#39;s breed.</td>
+</tr>
+<tr>
+<td>pet.birthdate</td>
+<td>date?</td>
+<td>Date portion of the pet&#39;s birthdate</td>
 </tr>
 <tr>
 <td>place_ids</td>

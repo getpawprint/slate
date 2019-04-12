@@ -19,14 +19,11 @@ When updated or completed, the records are emailed to both the client and their 
     "phone": "555-555-5555"
   },
   "pet": {
-    "name": "Milo",
-    "species": "dog",
-    "breed": "Australian Cattle Dog Mix"
+    "name": "Milo"
   },
 	"appointment": {
     "date": "2019-07-20",
-    "time": "15:30",
-    "timezone": "America/Los Angeles"
+    "time": "15:30"
   }
 }
 ```
@@ -41,7 +38,7 @@ Initializes an intake form with the given information. The example shows all ava
 but only a small subset is necessary for creation. An external ID for the form is generated and emailed to the new client,
 which can be used to fill in the rest of the fields.
 
-**TODO: how does authentication work?**
+**TODO: how does authentication & partner selection work?**
 
 ### HTTP Request
 `POST /intake`
@@ -54,10 +51,11 @@ user.first_name | string | New client's first name.
 user.last_name | string | New client's last name.
 user.email | string | New client's email address.
 user.phone | string? | New client's phone number.
-pet | object? | The pet to be seen.
+pet | object | The pet to be seen.
 pet.name | name | Pet's name.
 pet.species | string? | Pet's species, e.g. `cat` or `dog`.
 pet.breed | string? | Pet's breed.
+pet.birthdate | date? | Date portion of the pet's birthdate
 appointment | object | Appointment details
 appointment.date | string | Date portion of the appointment, e.g. "2019-07-20".
 appointment.time | string? | Time portion of the appointment in 24 hour time, e.g. "15:30" or "09:45".
@@ -79,7 +77,8 @@ appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_databa
   "pet": {
     "name": "Milo",
     "species": "dog",
-    "breed": "Australian Cattle Dog Mix"
+    "breed": "Australian Cattle Dog Mix",
+    "birthdate": "2018-02-16"
   },
 	"appointment": {
     "date": "2019-07-20",
@@ -108,7 +107,8 @@ Gets the specified intake form. Not all fields are guaranteed to be populated.
   "pet": {
     "name": "Milo",
     "species": "dog",
-    "breed": "Australian Cattle Dog Mix"
+    "breed": "Australian Cattle Dog Mix",
+    "birthdate": "2018-02-16"
   },
   "place_ids": [ ],
   "vets": [
@@ -133,7 +133,7 @@ Updates an intake form with the given information. If one of the required fields
 ### HTTP Request
 `PUT /intake/:intake_id`
 
-### POST parameters
+### PUT parameters
 Parameter | Type | Description
 --------- | ---- | -----------
 user | object | The new client.
@@ -144,7 +144,8 @@ user.phone | string | New client's phone number.
 pet | object | The pet to be seen.
 pet.name | name | Pet's name.
 pet.species | string | Pet's species, e.g. `cat` or `dog`.
-pet.breed | string? | Pet's breed.
+pet.breed | string | Pet's breed.
+pet.birthdate | date? | Date portion of the pet's birthdate
 place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. One of `place_ids` or `vets` must be specified.
 vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. One of `place_ids` or `vets` must be specified.
 vets.name | string | Vet name.
