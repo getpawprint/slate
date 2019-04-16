@@ -11,6 +11,7 @@ includes:
   - activation
   - activation_v2
   - admin
+  - admin_v2
   - appointment_requests
   - events_v2
   - followups
