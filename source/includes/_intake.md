@@ -19,7 +19,8 @@ When updated or completed, the records are emailed to both the client and their 
     "phone": "555-555-5555"
   },
   "pet": {
-    "name": "Milo"
+    "name": "Milo",
+    "species": "Dog"
   },
 	"appointment": {
     "date": "2019-07-20",
@@ -54,7 +55,7 @@ user.email | string | New client's email address.
 user.phone | string? | New client's phone number.
 pet | object | The pet to be seen.
 pet.name | name | Pet's name.
-pet.species | string? | Pet's species, e.g. `cat` or `dog`.
+pet.species | string | Pet's species, e.g. `Cat` or `Dog`.
 pet.breed | string? | Pet's breed.
 pet.birthdate | date? | Date portion of the pet's birthdate
 appointment | object | Appointment details
@@ -85,7 +86,8 @@ appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_databa
     "date": "2019-07-20",
     "time": "15:30",
     "timezone": "America/Los Angeles"
-  }
+  },
+  "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"
 }
 ```
 
@@ -119,7 +121,9 @@ Gets the specified intake form. Not all fields are guaranteed to be populated.
       "state": "WA",
       "zip": "98105"
     }
-  ]
+  ],
+  "note": "Milo used to be called Olim",
+  "signature": "https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png"
 }
 ```
 
@@ -153,3 +157,5 @@ vets.name | string | Vet name.
 vets.city | string? | Vet's city.
 vets.state | string? | Vet's state.
 vets.zip | string? | Vet's zip code.
+note | string? | Note to the vets.
+signature | string | Signature of the user's consent.

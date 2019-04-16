@@ -3507,7 +3507,8 @@ When updated or completed, the records are emailed to both the client and their 
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dog"</span><span class="w">
   </span><span class="p">},</span><span class="w">
     </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
@@ -3577,8 +3578,8 @@ which can be used to fill in the rest of the fields.</p>
 </tr>
 <tr>
 <td>pet.species</td>
-<td>string?</td>
-<td>Pet&#39;s species, e.g. <code>cat</code> or <code>dog</code>.</td>
+<td>string</td>
+<td>Pet&#39;s species, e.g. <code>Cat</code> or <code>Dog</code>.</td>
 </tr>
 <tr>
 <td>pet.breed</td>
@@ -3632,7 +3633,8 @@ which can be used to fill in the rest of the fields.</p>
     </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15:30"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets the specified intake form. Not all fields are guaranteed to be populated.</p>
@@ -3663,7 +3665,9 @@ which can be used to fill in the rest of the fields.</p>
       </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98105"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo used to be called Olim"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -3761,6 +3765,16 @@ which can be used to fill in the rest of the fields.</p>
 <td>vets.zip</td>
 <td>string?</td>
 <td>Vet&#39;s zip code.</td>
+</tr>
+<tr>
+<td>note</td>
+<td>string?</td>
+<td>Note to the vets.</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string</td>
+<td>Signature of the user&#39;s consent.</td>
 </tr>
 </tbody></table>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
