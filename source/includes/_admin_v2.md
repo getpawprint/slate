@@ -193,8 +193,6 @@ Gets a single appointment request's details.
     "place_name": "Jellystone Animal Hospital",
     "insurance_id": 5,
     "insurance_name": "Pawprint Farm",
-    "admin_id": 15,
-    "admin_name": "Cassie",
     "status": "new",
     "created_at": "2019-01-15T09:15:00Z",
     "updated_at": "2019-01-16T08:30:00Z"
