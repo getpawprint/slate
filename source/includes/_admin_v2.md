@@ -28,12 +28,14 @@ Now includes partner information, insurance claims, intake forms and partner req
   "claims": {
     "initializing": 0,
     "pending-records": "1",
+    "review": "1",
     "complete": "1",
     "cancelled": 0
   },
   "intake": {
     "initializing": 0,
     "pending-records": "1",
+    "review": "1",
     "complete": 0,
     "cancelled": 0
   }
