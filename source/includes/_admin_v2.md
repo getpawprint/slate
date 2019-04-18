@@ -1,42 +1,154 @@
 # Admin portal V2
 Now includes partner information, insurance claims, intake forms and partner requests!
 
+## Get status counts
+
+> Response example
+
+```json
+{
+  "requests": {
+    "initializing": 0,
+    "new": 0,
+    "verbal requested": 0,
+    "verbal complete": 0,
+    "pending user": 0,
+    "pending vet": "3",
+    "complete": "1",
+    "complete linked": 0,
+    "cancelled": 0
+  },
+  "appointment_requests": {
+    "new": 0,
+    "pending user": 0,
+    "pending vet": "1",
+    "complete": 0,
+    "cancelled": 0
+  },
+  "claims": {
+    "initializing": 0,
+    "pending-records": "1",
+    "complete": "1",
+    "cancelled": 0
+  },
+  "intake": {
+    "initializing": 0,
+    "pending-records": "1",
+    "complete": 0,
+    "cancelled": 0
+  }
+}
+```
+
+Gets the status and count for each type of admin portal item.
+
+### HTTP Request
+`GET /admin/v2/statuses`
+
 ## Get record requests
 
 > Response example
 
 ```json
-[
-  {
-    "request": {
-      "id": 3159,
-      "user_id": 100,
-      "user_name": "Smith, John",
-      "pet_id": 20,
-      "pet_name": "Chewie",
-      "place_id": 27015,
-      "place_name": "Jellystone Animal Hospital",
-      "status": "new",
-      "created_at": "2019-01-15T13:14:00Z",
-      "updated_at": "2019-01-15T13:14:00Z",
-      "checkout_notes": "Note to Pawprint",
-      "consent": "https://s3.aws.amazon.com/pawprint/pawprint-consent/3159_AxsEJnkstln259.pdf",
-      "admin": 37683,
-      "note": "Note to the vet"
+{
+  "data": [
+    {
+      "request": {
+        "id": 45181,
+        "user_id": 70420,
+        "user_name": "User, Test",
+        "pet_id": 104308,
+        "pet_name": "Spot",
+        "place_id": 46108,
+        "place_name": "Rainbow Road Emergency Vet",
+        "pawprint_vet_id": null,
+        "status": "complete",
+        "created_at": "2019-04-18T00:28:38.626Z",
+        "updated_at": "2019-04-18T00:28:38.626Z",
+        "admin": 1
+      },
+      "product": {
+        "slug": "pawprintfarm",
+        "title": "Insurance - Pawprint Farm"
+      },
+      "appointment": null
     },
-    "product": {
-      "slug": "peanutbutter",
-      "title": "Intake - Peanut Butter Veterinary Clinic"
+    {
+      "request": {
+        "id": 45180,
+        "user_id": 70420,
+        "user_name": "User, Test",
+        "pet_id": 104308,
+        "pet_name": "Spot",
+        "place_id": 46107,
+        "place_name": "Jellystone Animal Hospital",
+        "pawprint_vet_id": null,
+        "status": "pending vet",
+        "created_at": "2019-04-18T00:28:38.616Z",
+        "updated_at": "2019-04-18T00:28:38.616Z",
+        "admin": 1
+      },
+      "product": {
+        "slug": "pawprintfarm",
+        "title": "Insurance - Pawprint Farm"
+      },
+      "appointment": null
     },
-    "appointment": {
-      "date": "2019-04-22",
-      "time": "16:45",
-      "timezone": "America/Los Angeles",
-      "place_id": 43919,
-      "place_name": "Peanut Butter Veterinary Clinic"
+    {
+      "request": {
+        "id": 45179,
+        "user_id": 70420,
+        "user_name": "User, Test",
+        "pet_id": 104308,
+        "pet_name": "Spot",
+        "place_id": 46107,
+        "place_name": "Jellystone Animal Hospital",
+        "pawprint_vet_id": null,
+        "status": "pending vet",
+        "created_at": "2019-04-17T22:27:06.743Z",
+        "updated_at": "2019-04-17T22:27:06.743Z",
+        "admin": 1
+      },
+      "product": {
+        "slug": "megavet",
+        "title": "Intake - Megavet record request"
+      },
+      "appointment": {
+        "date": "2019-04-30",
+        "time": "19:35",
+        "timezone": null,
+        "place_id": 46109
+      }
+    },
+    {
+      "request": {
+        "id": 45178,
+        "user_id": 70420,
+        "user_name": "User, Test",
+        "pet_id": 104308,
+        "pet_name": "Spot",
+        "place_id": 46106,
+        "place_name": "Peanut Butter Veterinary Clinic",
+        "pawprint_vet_id": null,
+        "status": "pending vet",
+        "created_at": "2019-04-17T22:27:06.725Z",
+        "updated_at": "2019-04-17T22:27:06.725Z",
+        "admin": 1
+      },
+      "product": {
+        "slug": "megavet",
+        "title": "Intake - Megavet record request"
+      },
+      "appointment": {
+        "date": "2019-04-30",
+        "time": "19:35",
+        "timezone": null,
+        "place_id": 46109
+      }
     }
-  }
-]
+  ],
+  "count": 4
+}
 ```
 
 Gets a list of record request summaries.
@@ -59,17 +171,18 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
 ```json
 {
   "request": {
-    "id": 3159,
-    "user_id": 100,
-    "pet_id": 20,
-    "place_id": 27015,
-    "status": "new",
-    "created_at": "2019-01-15T13:14:00Z",
-    "updated_at": "2019-01-15T13:14:00Z",
-    "checkout_notes": "Note to Pawprint",
-    "consent": "https://s3.aws.amazon.com/pawprint/pawprint-consent/3159_AxsEJnkstln259.pdf",
-    "admin": 37683,
-    "note": "Note to the vet"
+    "id": 45179,
+    "user_id": 70420,
+    "pet_id": 104308,
+    "place_id": 46107,
+    "pawprint_vet_id": null,
+    "status": "pending vet",
+    "created_at": "2019-04-17T22:27:06.743Z",
+    "updated_at": "2019-04-17T22:27:06.743Z",
+    "checkout_notes": null,
+    "consent": "https://www.getpawprint.com/consent.png",
+    "admin": 1,
+    "note": "He bites hands occasionally"
   },
   "order": {
     "id": 1020,
@@ -78,20 +191,20 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
     "charge_amount": 1998
   },
   "product": {
-    "slug": "peanutbutter",
-    "title": "Intake - Peanut Butter Veterinary Clinic",
-    "description": "Full medical records for an intake form"
+    "slug": "megavet",
+    "title": "Intake - Megavet record request",
+    "description": "Full medical records for Megavet intake"
   },
   "partner": {
-    "id": 3,
+    "id": 1468,
     "type": "vet",
-    "name": "Peanut Butter Veterinary Clinic"
+    "name": "Megavet Co."
   },
   "appointment": {
-    "date": "2019-04-22",
-    "time": "16:45",
+    "date": "2019-04-30",
+    "time": "19:35",
     "timezone": "America/Los Angeles",
-    "place_id": 1
+    "place_id": 46109
   },
   "claim": {
     "id": 10,
@@ -110,24 +223,27 @@ Gets an individual request's details. Depending on the channel that the app came
 > Response example
 
 ```json
-[
-  {
-    "id": 549,
-    "user_id": 948,
-    "user_full_name": "John Smith",
-    "pet_id": 3,
-    "pet_name": "Zorro",
-    "place_id": 4,
-    "place_name": "Jellystone Animal Hospital",
-    "pawprint_vet_id": 1,
-    "pawprint_vet_place_id": 2,
-    "admin_id": 15,
-    "admin_name": "Cassie",
-    "status": "new",
-    "created_at": "2019-01-15T09:15:00Z",
-    "updated_at": "2019-01-16T08:30:00Z"
-  }
-]
+{
+  "data": [
+    {
+      "id": 807,
+      "user_id": 70420,
+      "place_id": 46106,
+      "pet_id": 104308,
+      "user_full_name": "Test User",
+      "pawprint_vet_id": null,
+      "pawprint_vet_place_id": null,
+      "admin_name": "Emily",
+      "pet_name": "Spot",
+      "place_name": "Peanut Butter Veterinary Clinic",
+      "status": "pending vet",
+      "created_at": "2019-04-18T01:17:39.508Z",
+      "updated_at": "2019-04-18T01:17:39.508Z",
+      "admin": 1
+    }
+  ],
+  "count": 1
+}
 ```
 
 Gets a list of appointment request summaries.
@@ -149,28 +265,38 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
 
 ```json
 {
-  "id": 549,
-  "user_id": 948,
-  "user_name": "John Smith",
-  "email": "johnsmith@getpawprint.com",
-  "phone": "555-555-5555",
-  "pet_id": 3,
-  "pet_name": "Pumpkin",
-  "pet_species": "Cat",
-  "pet_breed": "Domestic Shorthair",
-  "place_id": 4,
-  "status": "new",
-  "created_at": "2019-01-15T09:15:00Z",
-  "updated_at": "2019-01-16T08:30:00Z",
-  "description": "Wellness exam",
-  "time": [
-    "2018-04-14T11:00:00-08:00",
-    "2018-04-14T11:15:00-08:00",
-  ],
-  "notes": "Note to the vet",
-  "accepted_time": "12:15pm",
-  "admin_id": 15,
-  "admin_name": "Cassie"
+    "id": 807,
+    "user_id": 70420,
+    "user_name": "Test User",
+    "email": "testuser@getpawprint.com",
+    "phone": "425-555-5555",
+    "pet_id": 104308,
+    "pet_name": "Spot",
+    "pet_species": "Dog",
+    "pet_breed": "Staffordshire Terrier",
+    "place_id": 46106,
+    "status": "pending vet",
+    "created_at": "2019-04-18T01:17:39.508Z",
+    "updated_at": "2019-04-18T01:17:39.508Z",
+    "description": "Wellness exam",
+    "notes": "Bites hands occasionally",
+    "time": [
+        "2019-04-22T08:30:00-07:00",
+        "2019-04-22T09:00:00-07:00",
+        "2019-04-22T20:00:00-07:00",
+        "2019-04-22T19:30:00-07:00",
+        "2019-04-22T19:00:00-07:00",
+        "2019-04-22T18:30:00-07:00",
+        "2019-04-22T18:00:00-07:00",
+        "2019-04-22T17:30:00-07:00",
+        "2019-04-22T17:00:00-07:00",
+        "2019-04-22T16:30:00-07:00",
+        "2019-04-22T16:00:00-07:00",
+        "2019-04-22T09:30:00-07:00"
+    ],
+    "accepted_time": "2019-04-22T15:30:00Z",
+    "admin_id": 1,
+    "admin_name": "Emily"
 }
 ```
 
@@ -182,22 +308,37 @@ Gets a single appointment request's details.
 ## Get insurance claims
 
 ```json
-[
-  {
-    "id": 549,
-    "user_id": 948,
-    "user_full_name": "John Smith",
-    "pet_id": 21,
-    "pet_name": "Zorro",
-    "place_id": 1,
-    "place_name": "Jellystone Animal Hospital",
-    "insurance_id": 5,
-    "insurance_name": "Pawprint Farm",
-    "status": "new",
-    "created_at": "2019-01-15T09:15:00Z",
-    "updated_at": "2019-01-16T08:30:00Z"
-  }
-]
+{
+  "data": [
+    {
+      "id": 327,
+      "user_id": 70420,
+      "place_id": 46106,
+      "pet_id": 104308,
+      "user_full_name": "User, Test",
+      "pet_name": "Spot",
+      "place_name": "Peanut Butter Veterinary Clinic",
+      "insurance_name": "Pawprint Farm",
+      "status": "pending-records",
+      "created_at": "2019-04-18T00:28:38.611Z",
+      "updated_at": "2019-04-18T00:28:38.611Z"
+    },
+    {
+      "id": 326,
+      "user_id": 37683,
+      "place_id": 27015,
+      "pet_id": 103843,
+      "user_full_name": "Choi, Eric",
+      "pet_name": "Glumpy",
+      "place_name": "Pawprint, Inc.",
+      "insurance_name": "Nationwide",
+      "status": "complete",
+      "created_at": "2019-04-16T17:00:02.552Z",
+      "updated_at": "2019-04-16T17:00:02.552Z"
+    }
+  ],
+  "count": 2
+}
 ```
 
 Gets a list of insurance claims.
@@ -217,24 +358,24 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
 
 ```json
 {
-  "id": 326,
-  "user_id": 37683,
-  "pet_id": 103843,
-  "place_id": 27015,
-  "pet_insurance_id": 2834,
+  "id": 327,
+  "user_id": 70420,
+  "pet_id": 104308,
+  "place_id": 46106,
+  "pet_insurance_id": 2847,
   "visit_type": "wellness",
   "symptoms_start_date": "2018-11-01",
   "diagnosis": "Gastroenteritis",
   "is_new_condition": true,
   "was_claimed_before": false,
-  "invoice_date": "2018-11-10",
-  "invoice_total": "253.87",
-  "treatment_start_date": "2018-11-01",
-  "treatment_end_date": "2018-11-08",
-  "signature": "https://pawprint-request-signature.s3.amazonaws.com/37683-1551947544647.png",
-  "should_create_request": false,
-  "status": "pending",
-  "link": "https://pawprint-insurance-claim.s3.amazonaws.com/326_b6WRCGEevJuCqDtEsm55-8MW6DwDOZdF.pdf",
+  "invoice_date": "2018-11-05",
+  "invoice_total": "259.33",
+  "treatment_start_date": null,
+  "treatment_end_date": null,
+  "signature": "https://www.getpawprint.com/signature.png",
+  "should_create_request": true,
+  "status": "pending-records",
+  "link": "https://www.getpawprint.com/claim.pdf",
   "additional_insurance_name": null,
   "additional_insurance_cancel_date": null,
   "symptoms": [
@@ -250,9 +391,14 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
   ],
   "requests": [
     {
-      "id": 43919,
+      "id": 45180,
       "status": "pending vet",
-      "place_name": "Peanut Butter Veterinary Clinic"
+      "place_name": "Jellystone Animal Hospital"
+    },
+    {
+      "id": 45181,
+      "status": "complete",
+      "place_name": "Rainbow Road Emergency Vet"
     }
   ]
 }
@@ -266,27 +412,30 @@ Gets a single insurance claim's details.
 ## Get intake forms
 
 ```json
-[
-  {
-    "id": 549,
-    "user_id": 948,
-    "user_full_name": "John Smith",
-    "pet_id": 21,
-    "pet_name": "Zorro",
-    "partner_id": 3,
-    "partner_name": "Megavet Co.",
-    "status": "pending",
-    "created_at": "2019-01-15T09:15:00Z",
-    "updated_at": "2019-01-16T08:30:00Z",
-    "appointment": {
-      "date": "2019-04-22",
-      "time": "16:45",
-      "timezone": "America/Los Angeles",
-      "place_id": 41310,
-      "place_name": "Megavet of Lakeshire"
+{
+  "data": [
+    {
+      "id": 93,
+      "user_id": 70420,
+      "user_full_name": "User, Test",
+      "pet_id": 104308,
+      "pet_name": "Spot",
+      "partner_id": 1468,
+      "partner_name": "Megavet Co.",
+      "status": "pending-records",
+      "created_at": "2019-04-17T23:58:12.932Z",
+      "updated_at": "2019-04-17T23:58:19.764Z",
+      "appointment": {
+        "date": "2019-04-30",
+        "time": "19:35",
+        "timezone": null,
+        "place_id": 46109,
+        "place_name": "Megavet of Lakeshire"
+      }
     }
-  }
-]
+  ],
+  "count": 1
+}
 ```
 
 Gets a list of intake forms.
@@ -306,28 +455,33 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
 
 ```json
 {
-  "id": 549,
-  "user_id": 948,
-  "user_full_name": "John Smith",
-  "pet_id": 21,
-  "pet_name": "Zorro",
-  "partner_id": 3,
+  "id": 93,
+  "status": "pending-records",
+  "user_id": 70420,
+  "user_full_name": "User, Test",
+  "pet_id": 104308,
+  "pet_name": "Spot",
+  "partner_id": 1468,
   "partner_name": "Megavet Co.",
-  "status": "pending",
-  "created_at": "2019-01-15T09:15:00Z",
-  "updated_at": "2019-01-16T08:30:00Z",
+  "created_at": "2019-04-17T23:58:12.932Z",
+  "updated_at": "2019-04-17T23:58:19.764Z",
   "appointment": {
-    "date": "2019-04-22",
-    "time": "16:45",
-    "timezone": "America/Los Angeles",
-    "place_id": 41310,
+    "date": "2019-04-30",
+    "time": "19:35",
+    "timezone": null,
+    "place_id": 46109,
     "place_name": "Megavet of Lakeshire"
   },
   "requests": [
     {
-      "id": 43919,
+      "id": 45178,
       "status": "pending vet",
       "place_name": "Peanut Butter Veterinary Clinic"
+    },
+    {
+      "id": 45179,
+      "status": "pending vet",
+      "place_name": "Jellystone Animal Hospital"
     }
   ]
 }

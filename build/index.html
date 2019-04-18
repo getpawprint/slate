@@ -389,6 +389,9 @@
             <a href="#admin-portal-v2" class="toc-h1 toc-link" data-title="admin-portal-v2">Admin portal V2</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#get-status-counts" class="toc-h2 toc-link" data-title="get-status-counts">Get status counts</a>
+                  </li>
+                  <li>
                     <a href="#get-record-requests" class="toc-h2 toc-link" data-title="get-record-requests">Get record requests</a>
                   </li>
                   <li>
@@ -2582,44 +2585,152 @@ is the ID in the event table that should be deleted.</p>
 <p><code>DELETE /admin/requests/:requestid/events/:eventid</code></p>
 <h1 id='admin-portal-v2'>Admin portal V2</h1>
 <p>Now includes partner information, insurance claims, intake forms and partner requests!</p>
+<h2 id='get-status-counts'>Get status counts</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"initializing"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verbal requested"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verbal complete"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending user"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending vet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"complete linked"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cancelled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"appointment_requests"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending user"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending vet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cancelled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"claims"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"initializing"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending-records"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cancelled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"intake"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"initializing"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending-records"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cancelled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets the status and count for each type of admin portal item.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /admin/v2/statuses</code></p>
 <h2 id='get-record-requests'>Get record requests</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3159</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith, John"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chewie"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone Animal Hospital"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-15T13:14:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-15T13:14:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"checkout_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note to Pawprint"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"consent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-consent/3159_AxsEJnkstln259.pdf"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">37683</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note to the vet"</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45181</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User, Test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46108</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rainbow Road Emergency Vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T00:28:38.626Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T00:28:38.626Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pawprintfarm"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Insurance - Pawprint Farm"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peanutbutter"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Intake - Peanut Butter Veterinary Clinic"</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45180</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User, Test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46107</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone Animal Hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T00:28:38.616Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T00:28:38.616Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pawprintfarm"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Insurance - Pawprint Farm"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-22"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16:45"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43919</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut Butter Veterinary Clinic"</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45179</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User, Test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46107</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone Animal Hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T22:27:06.743Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T22:27:06.743Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"megavet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Intake - Megavet record request"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-30"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:35"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46109</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45178</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User, Test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46106</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut Butter Veterinary Clinic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T22:27:06.725Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T22:27:06.725Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"megavet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Intake - Megavet record request"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-30"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:35"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46109</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets a list of record request summaries.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /admin/v2/requests</code></p>
 <h3 id='query-string-parameters'>Query string parameters</h3>
 <table><thead>
@@ -2656,17 +2767,18 @@ is the ID in the event table that should be deleted.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3159</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-15T13:14:00Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-15T13:14:00Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"checkout_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note to Pawprint"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"consent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-consent/3159_AxsEJnkstln259.pdf"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">37683</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note to the vet"</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45179</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46107</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T22:27:06.743Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T22:27:06.743Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"checkout_notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"consent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.getpawprint.com/consent.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"He bites hands occasionally"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1020</span><span class="p">,</span><span class="w">
@@ -2675,20 +2787,20 @@ is the ID in the event table that should be deleted.</p>
     </span><span class="s2">"charge_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1998</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"peanutbutter"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Intake - Peanut Butter Veterinary Clinic"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full medical records for an intake form"</span><span class="w">
+    </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"megavet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Intake - Megavet record request"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full medical records for Megavet intake"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"partner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1468</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut Butter Veterinary Clinic"</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Megavet Co."</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-22"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16:45"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:35"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46109</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"claim"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
@@ -2697,33 +2809,36 @@ is the ID in the event table that should be deleted.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets an individual request&#39;s details. Depending on the channel that the app came in, <code>partner</code>, <code>appointment</code> and <code>claim</code> may be null.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /admin/v2/requests/:request_id</code></p>
 <h2 id='get-appointment-requests'>Get appointment requests</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">549</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">948</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zorro"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone Animal Hospital"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pawprint_vet_place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"admin_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cassie"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-15T09:15:00Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-16T08:30:00Z"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">807</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46106</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test User"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pawprint_vet_place_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Emily"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut Butter Veterinary Clinic"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T01:17:39.508Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T01:17:39.508Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"admin"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets a list of appointment request summaries.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /admin/v2/appointment_requests</code></p>
 <h3 id='query-string-parameters-2'>Query string parameters</h3>
 <table><thead>
@@ -2759,52 +2874,77 @@ is the ID in the event table that should be deleted.</p>
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">549</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">948</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pet_species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pet_breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Shorthair"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-15T09:15:00Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-16T08:30:00Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness exam"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"2018-04-14T11:00:00-08:00"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"2018-04-14T11:15:00-08:00"</span><span class="p">,</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Note to the vet"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"accepted_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12:15pm"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"admin_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cassie"</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">807</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test User"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testuser@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"425-555-5555"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet_breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Staffordshire Terrier"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46106</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T01:17:39.508Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T01:17:39.508Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness exam"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bites hands occasionally"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"2019-04-22T08:30:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T09:00:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T20:00:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T19:30:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T19:00:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T18:30:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T18:00:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T17:30:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T17:00:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T16:30:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T16:00:00-07:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"2019-04-22T09:30:00-07:00"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"accepted_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-22T15:30:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Emily"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets a single appointment request&#39;s details.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /admin/v2/appointment_requests/:appointment_request_id</code></p>
-<h2 id='get-insurance-claims'>Get insurance claims</h2><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">549</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">948</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zorro"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone Animal Hospital"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"insurance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Farm"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-15T09:15:00Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-16T08:30:00Z"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<h2 id='get-insurance-claims'>Get insurance claims</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">327</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46106</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User, Test"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut Butter Veterinary Clinic"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insurance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Farm"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending-records"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T00:28:38.611Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T00:28:38.611Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">326</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37683</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103843</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Choi, Eric"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glumpy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint, Inc."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"insurance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nationwide"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T17:00:02.552Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T17:00:02.552Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets a list of insurance claims.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /admin/v2/claims</code></p>
 <h3 id='query-string-parameters-3'>Query string parameters</h3>
 <table><thead>
@@ -2836,24 +2976,24 @@ is the ID in the event table that should be deleted.</p>
 </tr>
 </tbody></table>
 <h2 id='get-an-insurance-claim'>Get an insurance claim</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">326</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37683</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">103843</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pet_insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2834</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">327</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46106</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pet_insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2847</span><span class="p">,</span><span class="w">
   </span><span class="s2">"visit_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wellness"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"symptoms_start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"diagnosis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gastroenteritis"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"is_new_condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"was_claimed_before"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"invoice_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-10"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"invoice_total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"253.87"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"treatment_start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-01"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"treatment_end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-08"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-request-signature.s3.amazonaws.com/37683-1551947544647.png"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"should_create_request"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-insurance-claim.s3.amazonaws.com/326_b6WRCGEevJuCqDtEsm55-8MW6DwDOZdF.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"invoice_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-05"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"invoice_total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"259.33"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"treatment_start_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"treatment_end_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.getpawprint.com/signature.png"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"should_create_request"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending-records"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.getpawprint.com/claim.pdf"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"additional_insurance_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"additional_insurance_cancel_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"symptoms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -2869,40 +3009,48 @@ is the ID in the event table that should be deleted.</p>
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43919</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45180</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut Butter Veterinary Clinic"</span><span class="w">
+      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone Animal Hospital"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45181</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rainbow Road Emergency Vet"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets a single insurance claim&#39;s details.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /admin/v2/claims/:claim_id</code></p>
-<h2 id='get-intake-forms'>Get intake forms</h2><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">549</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">948</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zorro"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"partner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"partner_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Megavet Co."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-15T09:15:00Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-16T08:30:00Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-22"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16:45"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">41310</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Megavet of Lakeshire"</span><span class="w">
+<h2 id='get-intake-forms'>Get intake forms</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">93</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User, Test"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"partner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1468</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"partner_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Megavet Co."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending-records"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T23:58:12.932Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T23:58:19.764Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-30"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:35"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46109</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Megavet of Lakeshire"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets a list of intake forms.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /admin/v2/intake</code></p>
 <h3 id='query-string-parameters-4'>Query string parameters</h3>
 <table><thead>
@@ -2934,34 +3082,39 @@ is the ID in the event table that should be deleted.</p>
 </tr>
 </tbody></table>
 <h2 id='get-an-intake-form'>Get an intake form</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">549</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">948</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zorro"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"partner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">93</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending-records"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User, Test"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">104308</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"partner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1468</span><span class="p">,</span><span class="w">
   </span><span class="s2">"partner_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Megavet Co."</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-15T09:15:00Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-16T08:30:00Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T23:58:12.932Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T23:58:19.764Z"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-22"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16:45"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">41310</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"19:35"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46109</span><span class="p">,</span><span class="w">
     </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Megavet of Lakeshire"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"requests"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43919</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45178</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut Butter Veterinary Clinic"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45179</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone Animal Hospital"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets an individual intake form.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /admin/v2/intake/:intake_id</code></p>
 <h1 id='appointments'>Appointments</h1>
 <p>Appointment booking, cancellations and status.</p>
