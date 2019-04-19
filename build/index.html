@@ -2755,12 +2755,12 @@ is the ID in the event table that should be deleted.</p>
 <tr>
 <td>sort_by</td>
 <td>string?</td>
-<td>Sort fields separated by commas, e.g. <code>sort_by=updated_at:desc,user_name:asc</code></td>
+<td>Either <code>created_at:asc</code>, <code>created_at:desc</code>, <code>updated_at:asc</code> or <code>updated_at:desc</code>. Default field is <code>updated_at:desc</code>.</td>
 </tr>
 <tr>
 <td>filter</td>
 <td>string?</td>
-<td>Filter fields separated by commas, e.g. <code>filter={&quot;place_name&quot;:&quot;banf&quot;,&quot;pet_name&quot;:&quot;er&quot;,&quot;place_id&quot;:27015}</code></td>
+<td>Filter fields separated by commas, e.g. <code>filter={&quot;place_name&quot;:&quot;banf&quot;,&quot;pet_name&quot;:&quot;er&quot;}</code>. All channels support filtering by <code>user_name</code>, <code>pet_name</code>, <code>status</code> and <code>place_name</code>. Record and appointment requests also support <code>admin_name</code>.</td>
 </tr>
 </tbody></table>
 <h2 id='get-a-record-request'>Get a record request</h2>
@@ -2863,12 +2863,12 @@ is the ID in the event table that should be deleted.</p>
 <tr>
 <td>sort_by</td>
 <td>string?</td>
-<td>Sort fields separated by commas, e.g. <code>sort_by=updated_at:desc,user_name:asc</code></td>
+<td>Either <code>created_at:asc</code>, <code>created_at:desc</code>, <code>updated_at:asc</code> or <code>updated_at:desc</code>. Default field is <code>updated_at:desc</code>.</td>
 </tr>
 <tr>
 <td>filter</td>
 <td>string?</td>
-<td>Filter fields separated by commas, e.g. <code>filter={&quot;place_name&quot;:&quot;banf&quot;,&quot;pet_name&quot;:&quot;er&quot;,&quot;place_id&quot;:27015}</code></td>
+<td>Filter fields separated by commas, e.g. <code>filter={&quot;place_name&quot;:&quot;banf&quot;,&quot;pet_name&quot;:&quot;er&quot;}</code>. All channels support filtering by <code>user_name</code>, <code>pet_name</code>, <code>status</code> and <code>place_name</code>. Record and appointment requests also support <code>admin_name</code>.</td>
 </tr>
 </tbody></table>
 <h2 id='get-an-appointment-request'>Get an appointment request</h2>
@@ -2969,12 +2969,12 @@ is the ID in the event table that should be deleted.</p>
 <tr>
 <td>sort_by</td>
 <td>string?</td>
-<td>Sort fields separated by commas, e.g. <code>sort_by=updated_at:desc,user_name:asc</code></td>
+<td>Either <code>created_at:asc</code>, <code>created_at:desc</code>, <code>updated_at:asc</code> or <code>updated_at:desc</code>. Default field is <code>updated_at:desc</code>.</td>
 </tr>
 <tr>
 <td>filter</td>
 <td>string?</td>
-<td>Filter fields separated by commas, e.g. <code>filter={&quot;place_name&quot;:&quot;banf&quot;,&quot;pet_name&quot;:&quot;er&quot;,&quot;place_id&quot;:27015}</code></td>
+<td>Filter fields separated by commas, e.g. <code>filter={&quot;place_name&quot;:&quot;banf&quot;,&quot;pet_name&quot;:&quot;er&quot;}</code>. All channels support filtering by <code>user_name</code>, <code>pet_name</code>, <code>status</code> and <code>place_name</code>. Claims also supports <code>insurance_name</code>.</td>
 </tr>
 </tbody></table>
 <h2 id='get-an-insurance-claim'>Get an insurance claim</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -3075,12 +3075,12 @@ is the ID in the event table that should be deleted.</p>
 <tr>
 <td>sort_by</td>
 <td>string?</td>
-<td>Sort fields separated by commas, e.g. <code>sort_by=updated_at:desc,user_name:asc</code></td>
+<td>Either <code>created_at:asc</code>, <code>created_at:desc</code>, <code>updated_at:asc</code> or <code>updated_at:desc</code>. Default field is <code>updated_at:desc</code>.</td>
 </tr>
 <tr>
 <td>filter</td>
 <td>string?</td>
-<td>Filter fields separated by commas, e.g. <code>filter={&quot;place_name&quot;:&quot;banf&quot;,&quot;pet_name&quot;:&quot;er&quot;,&quot;place_id&quot;:27015}</code></td>
+<td>Filter fields separated by commas, e.g. <code>filter={&quot;place_name&quot;:&quot;banf&quot;,&quot;pet_name&quot;:&quot;er&quot;}</code>. All channels support filtering by <code>user_name</code>, <code>pet_name</code>, <code>status</code> and <code>place_name</code>. Intake also supports <code>partner_name</code>.</td>
 </tr>
 </tbody></table>
 <h2 id='get-an-intake-form'>Get an intake form</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">

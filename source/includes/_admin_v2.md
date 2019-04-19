@@ -163,8 +163,8 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | Sort fields separated by commas, e.g. `sort_by=updated_at:desc,user_name:asc`
-filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er","place_id":27015}`
+sort_by | string? | Either `created_at:asc`, `created_at:desc`, `updated_at:asc` or `updated_at:desc`. Default field is `updated_at:desc`.
+filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Record and appointment requests also support `admin_name`.
 
 ## Get a record request
 
@@ -258,8 +258,8 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | Sort fields separated by commas, e.g. `sort_by=updated_at:desc,user_name:asc`
-filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er","place_id":27015}`
+sort_by | string? | Either `created_at:asc`, `created_at:desc`, `updated_at:asc` or `updated_at:desc`. Default field is `updated_at:desc`.
+filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Record and appointment requests also support `admin_name`.
 
 ## Get an appointment request
 
@@ -353,8 +353,8 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | Sort fields separated by commas, e.g. `sort_by=updated_at:desc,user_name:asc`
-filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er","place_id":27015}`
+sort_by | string? | Either `created_at:asc`, `created_at:desc`, `updated_at:asc` or `updated_at:desc`. Default field is `updated_at:desc`.
+filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Claims also supports `insurance_name`.
 
 ## Get an insurance claim
 
@@ -450,8 +450,8 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | Sort fields separated by commas, e.g. `sort_by=updated_at:desc,user_name:asc`
-filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er","place_id":27015}`
+sort_by | string? | Either `created_at:asc`, `created_at:desc`, `updated_at:asc` or `updated_at:desc`. Default field is `updated_at:desc`.
+filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Intake also supports `partner_name`.
 
 ## Get an intake form
 
