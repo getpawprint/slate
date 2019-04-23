@@ -271,3 +271,105 @@ at a later date which suggests the same medication.
 
 ### HTTP Request
 `DELETE /user/v2/pets/:petid/medication/suggested/:suggestionid`
+
+
+
+## Get medications for a pet medication (admin)
+
+> Response example
+
+```json
+[
+	{
+		"id": 6060,
+		"pet_id": 104306,
+		"dosage_number": null,
+		"dosage_unit": null,
+		"name": "ProHeart 6",
+		"times": null,
+		"frequency": null,
+		"notes": null,
+		"medication_id": 284,
+		"reminder_id": null,
+		"verified": true
+	}
+]
+```
+
+Gets only verified medications for a pet. Pawprint admins can only view, add, edit or delete verified medications for a pet, while users can only view verified medications. The `times` and `frequency` fields are deprecated (should be ignored) and `reminder_id` is relevant to users (see user-space documentation above for more info). 
+
+### HTTP Request
+`GET /admin/pets/:petid/medications`
+
+
+## Add pet medication (admin)
+
+> Request example
+
+```json
+{
+	"medication_id": 9,
+	"dosage_number": 1,
+	"dosage_unit": "tablet",
+	"notes": "For anxiety",
+}
+```
+
+> Response example
+
+```json
+{ "id": 606 }
+```
+
+Adds a verified medication for the given pet. Pawprint admins can only view, add, edit or delete verified medications for a pet, while users can only view verified medications.
+
+### HTTP Request
+`POST /admin/pets/:petid/medications`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+medication_id | int | Foreign key into the `medication` table; null if the medication doesn't exist in our system
+dosage_number | int? | Size of a dose of the medication
+dosage_unit | string? | Units for the dose
+notes | string? | Notes
+
+## Update pet medication (admin)
+
+> Request example
+
+```json
+{
+	"medication_id": 9,
+	"dosage_number": 1,
+	"dosage_unit": "tablet",
+	"notes": "For anxiety",
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Updates a verified medication for the given pet. Pawprint admins can only view, add, edit or delete verified medications for a pet, while users can only view verified medications.
+
+### HTTP Request
+`PUT /admin/pets/medications/:pet_medication_id`
+
+### PUT parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+medication_id | int | Foreign key into the `medication` table; null if the medication doesn't exist in our system
+dosage_number | int? | Size of a dose of the medication
+dosage_unit | string? | Units for the dose
+notes | string? | Notes
+
+## Delete pet medication (admin)
+
+Deletes a verified pet medication. Pawprint admins can only view, add, edit or delete verified medications for a pet, while users can only view verified medications.
+
+### HTTP Request
+`DELETE /admin/pets/medications/:pet_medication_id`
+
