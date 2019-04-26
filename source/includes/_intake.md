@@ -7,6 +7,34 @@ such as species, date of birth, and most importantly, the other vets in the pet'
 Once they have completed the form, they can submit it, which causes record requests to be created in the Pawprint system.
 When updated or completed, the records are emailed to both the client and their new vet.
 
+Identity and authentication is based on a JWT given to the records portal when a vet has logged in; it is based on the vet's `place_id`.
+
+## Partner place login (intake/records portal)
+> Request example
+
+```json
+{
+  "email": "demo2@getpawprint.com",
+  "password": "p4ssw0rd"
+}
+```
+
+> Response example
+
+```json
+{
+  "token": "eYJazo.sometoken.oawf8aliwf8aZ_-w3BmAS"
+}
+```
+
+Login for partners for the records portal. Each place has its own separate login.
+Vet groups will have a single entry in the `partner` table but multiple `partner_place` entries (which store login info), while
+single vets will have a single entry in both the `partner` and `partner_place` tables.
+Returns a JWT to be used for authenticated partner calls.
+
+### HTTP Request
+`POST /partners/login`
+
 ## Create intake form (vet)
 > Request example
 
@@ -16,7 +44,8 @@ When updated or completed, the records are emailed to both the client and their 
     "first_name": "John",
     "last_name": "Smith",
     "email": "johnsmith@getpawprint.com",
-    "phone": "555-555-5555"
+    "phone": "555-555-5555",
+    "address": "123 Main St, San Francisco, CA 94302"
   },
   "pet": {
     "name": "Milo",
@@ -32,27 +61,25 @@ When updated or completed, the records are emailed to both the client and their 
 > Response example
 
 ```json
-(none)
+{ "id": "eYJnm8909C-A90xCMpznzC" }
 ```
 
-Initializes an intake form with the given information. The example shows all available fields,
+Initializes an intake form with the given information. Extra fields can be passed to the endpoint,
 but only a small subset is necessary for creation. An external ID for the form is generated and emailed to the new client,
-which can be used to fill in the rest of the fields.
-
-**TODO: how does authentication & partner selection work?**
+which can be used to fill in the rest of the fields. The external ID is also returned by the endpoint.
 
 ### HTTP Request
-`POST /intake`
+`POST /partners/intake`
 
 ### POST parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-partner_id | int | **Temporary until auth is finalized** ID from the partner table
 user | object | The new client.
 user.first_name | string | New client's first name.
 user.last_name | string | New client's last name.
 user.email | string | New client's email address.
 user.phone | string? | New client's phone number.
+user.address | string? | New client's address.
 pet | object | The pet to be seen.
 pet.name | name | Pet's name.
 pet.species | string | Pet's species, e.g. `Cat` or `Dog`.
@@ -62,7 +89,6 @@ appointment | object | Appointment details
 appointment.date | string | Date portion of the appointment, e.g. "2019-07-20".
 appointment.time | string? | Time portion of the appointment in 24 hour time, e.g. "15:30" or "09:45".
 appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
 
 ## Get intake form
 
@@ -74,7 +100,8 @@ appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_databa
     "first_name": "John",
     "last_name": "Smith",
     "email": "johnsmith@getpawprint.com",
-    "phone": "555-555-5555"
+    "phone": "555-555-5555",
+    "address": "123 Main St, San Francisco, CA 94302"
   },
   "pet": {
     "name": "Milo",
@@ -83,15 +110,18 @@ appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_databa
     "birthdate": "2018-02-16"
   },
 	"appointment": {
+    "place": 27015,
     "date": "2019-07-20",
     "time": "15:30",
     "timezone": "America/Los Angeles"
   },
-  "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"
+  "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
+  "status": "pending user"
 }
 ```
 
-Gets the specified intake form. Not all fields are guaranteed to be populated.
+Gets the specified intake form. Not all fields are guaranteed to be populated, based on what the vet filled out when creating
+the intake form.
 
 ### HTTP Request
 `GET /intake/:intake_id`
@@ -113,7 +143,7 @@ Gets the specified intake form. Not all fields are guaranteed to be populated.
     "breed": "Australian Cattle Dog Mix",
     "birthdate": "2018-02-16"
   },
-  "place_ids": [ ],
+  "place_ids": [ 27015, 2101 ],
   "vets": [
     {
       "name": "Pawprint Seattle",
@@ -135,6 +165,9 @@ Gets the specified intake form. Not all fields are guaranteed to be populated.
 
 Updates an intake form with the given information. If one of the required fields is empty, HTTP 400/Bad Request is returned. One of `place_ids` or `vets` must be specified; both are accepted. Objects in the `vets` list will be created as new entries in the `place` table. If all of the required fields are populated, HTTP 200/OK is returned, and the record requests are created automatically.
 
+After an intake form has been submitted, it cannot be submitted again, and HTTP 400/Bad Request is returned. This is because the
+record requests are created as soon the intake form has been submitted the first time. If `intake.status` from `GET /intake/:external_id` is anything but `pending user`, the user should be blocked from submitting the request again.
+
 ### HTTP Request
 `PUT /intake/:intake_id`
 
@@ -146,6 +179,7 @@ user.first_name | string | New client's first name.
 user.last_name | string | New client's last name.
 user.email | string | New client's email address.
 user.phone | string | New client's phone number.
+user.address | string | New client's address.
 pet | object | The pet to be seen.
 pet.name | name | Pet's name.
 pet.species | string | Pet's species, e.g. `cat` or `dog`.
@@ -159,3 +193,54 @@ vets.state | string? | Vet's state.
 vets.zip | string? | Vet's zip code.
 note | string? | Note to the vets.
 signature | string | Signature of the user's consent.
+
+
+## Reset partner place login (admin)
+> Request example
+
+```json
+{
+  "password": "p4ssw0rd"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+For admins to manually set a new password for a partner place.
+
+### HTTP Request
+`POST /admin/partners/:partner_id/reset`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+email | string | Partner place's email address.
+password | string | Partner place's password.
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+email | string | Partner place's email address.
+password | string | Partner place's password.
+
+## Get partner info
+
+> Response example
+
+```json
+{
+  "name": "Test Animal Clinic",
+  "partner_id": 5,
+  "partner_name": "Pawprint Farm",
+  "banner_image": "https://www.getpawprint.com/images/banner.jpg"
+}
+```
+
+Gets partner place info for the caller identifed in the auth header, like place name, partner ID, partner name and banner image.
+
+### HTTP Request
+`GET /partners/info`

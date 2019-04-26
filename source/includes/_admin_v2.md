@@ -27,22 +27,22 @@ Now includes partner information, insurance claims, intake forms and partner req
   },
   "claims": {
     "initializing": 0,
-    "pending-records": "1",
-    "review": "1",
+    "pending records": "1",
+    "in review": "1",
     "complete": "1",
     "cancelled": 0
   },
   "intake": {
-    "initializing": 0,
-    "pending-records": "1",
-    "review": "1",
+    "pending user": 0,
+    "pending records": "1",
+    "in review": "1",
     "complete": 0,
     "cancelled": 0
   }
 }
 ```
 
-Gets the status and count for each type of admin portal item.
+Gets the status and count for each type of admin portal item. Each type of admin portal item has its endpoint as well, which returns the appropriate subset of statuses, e.g. `/admin/v2/statuses/requests`, `/admin/v2/statuses/intake`, etc.
 
 ### HTTP Request
 `GET /admin/v2/statuses`
@@ -67,7 +67,8 @@ Gets the status and count for each type of admin portal item.
         "status": "complete",
         "created_at": "2019-04-18T00:28:38.626Z",
         "updated_at": "2019-04-18T00:28:38.626Z",
-        "admin": 1
+        "admin": 1,
+        "admin_name": "Emily"
       },
       "product": {
         "slug": "pawprintfarm",
@@ -88,7 +89,8 @@ Gets the status and count for each type of admin portal item.
         "status": "pending vet",
         "created_at": "2019-04-18T00:28:38.616Z",
         "updated_at": "2019-04-18T00:28:38.616Z",
-        "admin": 1
+        "admin": 1,
+        "admin_name": "Emily"
       },
       "product": {
         "slug": "pawprintfarm",
@@ -109,7 +111,8 @@ Gets the status and count for each type of admin portal item.
         "status": "pending vet",
         "created_at": "2019-04-17T22:27:06.743Z",
         "updated_at": "2019-04-17T22:27:06.743Z",
-        "admin": 1
+        "admin": 1,
+        "admin_name": "Emily"
       },
       "product": {
         "slug": "megavet",
@@ -135,7 +138,8 @@ Gets the status and count for each type of admin portal item.
         "status": "pending vet",
         "created_at": "2019-04-17T22:27:06.725Z",
         "updated_at": "2019-04-17T22:27:06.725Z",
-        "admin": 1
+        "admin": null,
+        "admin_name": null
       },
       "product": {
         "slug": "megavet",
@@ -163,7 +167,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | Either `created_at:asc`, `created_at:desc`, `updated_at:asc` or `updated_at:desc`. Default field is `updated_at:desc`.
+sort_by | string? | Either `{"created_at":"asc"}`, `{"created_at":"desc"}`, `{"updated_at":"asc"}` or `{"updated_at":"desc"}`. Default field is `{"updated_at":"desc"}`.
 filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Record and appointment requests also support `admin_name`.
 
 ## Get a record request
@@ -178,6 +182,7 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
     "pet_id": 104308,
     "place_id": 46107,
     "pawprint_vet_id": null,
+    "pawprint_vet_place_id": null,
     "status": "pending vet",
     "created_at": "2019-04-17T22:27:06.743Z",
     "updated_at": "2019-04-17T22:27:06.743Z",
@@ -215,7 +220,7 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
 }
 ```
 
-Gets an individual request's details. Depending on the channel that the app came in, `partner`, `appointment` and `claim` may be null.
+Gets an individual request's details. Depending on the channel that the request came from, `partner`, `appointment` and `claim` may be null.
 
 ### HTTP Request
 `GET /admin/v2/requests/:request_id`
@@ -258,7 +263,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | Either `created_at:asc`, `created_at:desc`, `updated_at:asc` or `updated_at:desc`. Default field is `updated_at:desc`.
+sort_by | string? | Either `{"created_at":"asc"}`, `{"created_at":"desc"}`, `{"updated_at":"asc"}` or `{"updated_at":"desc"}`. Default field is `{"updated_at":"desc"}`.
 filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Record and appointment requests also support `admin_name`.
 
 ## Get an appointment request
@@ -353,7 +358,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | Either `created_at:asc`, `created_at:desc`, `updated_at:asc` or `updated_at:desc`. Default field is `updated_at:desc`.
+sort_by | string? | Either `{"created_at":"asc"}`, `{"created_at":"desc"}`, `{"updated_at":"asc"}` or `{"updated_at":"desc"}`. Default field is `{"updated_at":"desc"}`.
 filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Claims also supports `insurance_name`.
 
 ## Get an insurance claim
@@ -433,7 +438,9 @@ Gets a single insurance claim's details.
         "timezone": null,
         "place_id": 46109,
         "place_name": "Megavet of Lakeshire"
-      }
+      },
+      "admin_id": 1,
+      "admin_name": "Emily"
     }
   ],
   "count": 1
@@ -450,7 +457,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | Either `created_at:asc`, `created_at:desc`, `updated_at:asc` or `updated_at:desc`. Default field is `updated_at:desc`.
+sort_by | string? | Either `{"created_at":"asc"}`, `{"created_at":"desc"}`, `{"updated_at":"asc"}` or `{"updated_at":"desc"}`. Default field is `{"updated_at":"desc"}`.
 filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Intake also supports `partner_name`.
 
 ## Get an intake form
@@ -458,13 +465,15 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
 ```json
 {
   "id": 93,
-  "status": "pending-records",
+  "status": "pending records",
   "user_id": 70420,
   "user_full_name": "User, Test",
   "pet_id": 104308,
   "pet_name": "Spot",
   "partner_id": 1468,
   "partner_name": "Megavet Co.",
+  "link": "https://pawprint-summary.s3.aws.amazon.com/YJ1300cllreiancFl.pdf",
+  "review_notes": "* Missed a year of rabies",
   "created_at": "2019-04-17T23:58:12.932Z",
   "updated_at": "2019-04-17T23:58:19.764Z",
   "appointment": {
@@ -478,14 +487,20 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
     {
       "id": 45178,
       "status": "pending vet",
-      "place_name": "Peanut Butter Veterinary Clinic"
+      "place_id": 547,
+      "place_name": "Peanut Butter Veterinary Clinic",
+      "place_phone": "(206) 555-5555"
     },
     {
       "id": 45179,
       "status": "pending vet",
-      "place_name": "Jellystone Animal Hospital"
+      "place_id": 14501,
+      "place_name": "Jellystone Animal Hospital",
+      "place_phone": "(425) 555-5555"
     }
-  ]
+  ],
+  "admin_id": 1,
+  "admin_name": "Emily"
 }
 ```
 
@@ -493,3 +508,135 @@ Gets an individual intake form.
 
 ### HTTP Request
 `GET /admin/v2/intake/:intake_id`
+
+## Update intake form (admin)
+> Request example
+
+```json
+{
+  "status": "complete",
+  "review_notes": "Bites hands occasionally",
+  "admin_id": 1
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Updates an intake form. Only the admin, review notes or status can be updated. Setting the status to `complete` will cause the
+Pawprint Summary to be automatically generated and the URL stored in `intake.link`.
+
+### HTTP Request
+`PUT /admin/v2/intake/:intake_id`
+
+### PUT parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+status | string? | One of "in review", "complete" or "cancelled".
+review_notes | string? | Important observations that came up during the admin review.
+admin_id | int? | Assigns an admin to handle this case.
+
+## Regenerate Pawprint Summary
+> Request example
+
+```json
+(none)
+```
+
+> Response example
+
+```json
+{ "link": "https://pawprint-summary.s3.aws.amazon.com/YJ1300cllreiancFl.pdf" }
+```
+
+Regenerates the Pawprint Summary PDF and stores the URL in `intake.link`.
+
+### HTTP Request
+`POST /admin/v2/intake/:intake_id/summary`
+
+## Get intakes for pet
+
+```json
+[
+  {
+    "id": 21,
+    "user_id": 37683,
+    "user_full_name": "Choi, Eric",
+    "pet_id": 68795,
+    "pet_name": "Glumpy",
+    "partner_id": 5,
+    "partner_name": "Pawprint Farm",
+    "status": "complete",
+    "created_at": "2019-04-25T00:30:34.941Z",
+    "updated_at": "2019-04-25T00:30:34.941Z",
+    "appointment": {
+      "date": "2019-04-24",
+      "time": "1:30 pm",
+      "timezone": null,
+      "place_id": 27015,
+      "place_name": "Test Animal Clinic"
+    }
+  }
+]
+```
+
+Gets all intakes associated with a pet.
+
+### HTTP Request
+`GET /admin/pets/:petid/intake`
+
+## Get insurance claims for pet
+
+```json
+[
+  {
+    "id": 31,
+    "user_id": 1000000003,
+    "place_id": 27015,
+    "pet_id": 1000000033,
+    "user_full_name": "Zo, Eli",
+    "pet_name": "Dates",
+    "place_name": "Test Animal Clinic",
+    "insurance_name": "ASPCA Pet Health Insurance",
+    "status": "pending records",
+    "created_at": "2019-04-09T15:16:23.305Z",
+    "updated_at": "2019-04-09T15:16:23.305Z"
+  }
+]
+```
+
+Gets all insurance claims associated with a pet.
+
+### HTTP Request
+`GET /admin/pets/:petid/claims`
+
+## Get appointment requests for pet
+
+```json
+[
+  {
+    "id": 314,
+    "user_id": 159,
+    "place_id": 2653,
+    "pet_id": 58979,
+    "user_full_name": "John Smith",
+    "pawprint_vet_id": null,
+    "pawprint_vet_place_id": null,
+    "admin_name": null,
+    "pet_name": "Glumpy",
+    "place_name": "Laurel Pet Hospital",
+    "status": "complete",
+    "created_at": "2018-04-20T17:57:50.083Z",
+    "updated_at": "2018-04-20T19:51:00.000Z",
+    "admin": null
+  }
+]
+```
+
+Gets all appointment requests associated with a pet.
+
+### HTTP Request
+`GET /admin/pets/:petid/appointment_request`
