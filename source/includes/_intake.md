@@ -89,6 +89,8 @@ appointment | object | Appointment details
 appointment.date | string | Date portion of the appointment, e.g. "2019-07-20".
 appointment.time | string? | Time portion of the appointment in 24 hour time, e.g. "15:30" or "09:45".
 appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+appointment.type | string? | Broad category; see `appointment_type` table in database
+appointment.reason | string? | More details about why this appointment is being made
 
 ## Get intake form
 
@@ -113,7 +115,9 @@ appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_databa
     "place": 27015,
     "date": "2019-07-20",
     "time": "15:30",
-    "timezone": "America/Los Angeles"
+    "timezone": "America/Los Angeles",
+    "type": "Wellness Exam",
+    "reason": "Just moved here from Chicago"
   },
   "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
   "status": "pending user"

@@ -291,7 +291,8 @@ at a later date which suggests the same medication.
 		"notes": null,
 		"medication_id": 284,
 		"reminder_id": null,
-		"verified": true
+		"verified": true,
+		"date_prescribed": "2018-10-03"
 	}
 ]
 ```
@@ -312,6 +313,7 @@ Gets only verified medications for a pet. Pawprint admins can only view, add, ed
 	"dosage_number": 1,
 	"dosage_unit": "tablet",
 	"notes": "For anxiety",
+	"date_prescribed": "2018-10-03"
 }
 ```
 
@@ -333,6 +335,7 @@ medication_id | int | Foreign key into the `medication` table; null if the medic
 dosage_number | int? | Size of a dose of the medication
 dosage_unit | string? | Units for the dose
 notes | string? | Notes
+date_prescribed | string? | Date the medication was prescribed (no time)
 
 ## Update pet medication (admin)
 
@@ -344,6 +347,7 @@ notes | string? | Notes
 	"dosage_number": 1,
 	"dosage_unit": "tablet",
 	"notes": "For anxiety",
+	"date_prescribed": "2018-10-03"
 }
 ```
 
@@ -365,6 +369,7 @@ medication_id | int | Foreign key into the `medication` table; null if the medic
 dosage_number | int? | Size of a dose of the medication
 dosage_unit | string? | Units for the dose
 notes | string? | Notes
+date_prescribed | string? | Date the medication was prescribed (no time)
 
 ## Delete pet medication (admin)
 
