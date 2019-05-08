@@ -9,32 +9,6 @@ When updated or completed, the records are emailed to both the client and their 
 
 Identity and authentication is based on a JWT given to the records portal when a vet has logged in; it is based on the vet's `place_id`.
 
-## Partner place login (intake/records portal)
-> Request example
-
-```json
-{
-  "email": "demo2@getpawprint.com",
-  "password": "p4ssw0rd"
-}
-```
-
-> Response example
-
-```json
-{
-  "token": "eYJazo.sometoken.oawf8aliwf8aZ_-w3BmAS"
-}
-```
-
-Login for partners for the records portal. Each place has its own separate login.
-Vet groups will have a single entry in the `partner` table but multiple `partner_place` entries (which store login info), while
-single vets will have a single entry in both the `partner` and `partner_place` tables.
-Returns a JWT to be used for authenticated partner calls.
-
-### HTTP Request
-`POST /partners/login`
-
 ## Create intake form (vet)
 > Request example
 
@@ -92,7 +66,7 @@ appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_databa
 appointment.type | string? | Broad category; see `appointment_type` table in database
 appointment.reason | string? | More details about why this appointment is being made
 
-## Get intake form
+## Get intake form (user)
 
 > Response example
 
@@ -130,7 +104,7 @@ the intake form.
 ### HTTP Request
 `GET /intake/:intake_id`
 
-## Update intake form (user or vet)
+## Update intake form (user)
 > Request example
 
 ```json
@@ -197,54 +171,3 @@ vets.state | string? | Vet's state.
 vets.zip | string? | Vet's zip code.
 note | string? | Note to the vets.
 signature | string | Signature of the user's consent.
-
-
-## Reset partner place login (admin)
-> Request example
-
-```json
-{
-  "password": "p4ssw0rd"
-}
-```
-
-> Response example
-
-```json
-(none)
-```
-
-For admins to manually set a new password for a partner place.
-
-### HTTP Request
-`POST /admin/partners/:partner_id/reset`
-
-### POST parameters
-Parameter | Type | Description
---------- | ---- | -----------
-email | string | Partner place's email address.
-password | string | Partner place's password.
-
-### POST parameters
-Parameter | Type | Description
---------- | ---- | -----------
-email | string | Partner place's email address.
-password | string | Partner place's password.
-
-## Get partner info
-
-> Response example
-
-```json
-{
-  "name": "Test Animal Clinic",
-  "partner_id": 5,
-  "partner_name": "Pawprint Farm",
-  "banner_image": "https://www.getpawprint.com/images/banner.jpg"
-}
-```
-
-Gets partner place info for the caller identifed in the auth header, like place name, partner ID, partner name and banner image.
-
-### HTTP Request
-`GET /partners/info`

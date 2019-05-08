@@ -17,6 +17,7 @@ includes:
   - followups
   - insurance
   - intake
+  - vet_intake_portal
   - machine_learning
   - medication
   - payments

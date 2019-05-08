@@ -510,22 +510,42 @@
             <a href="#intake-forms" class="toc-h1 toc-link" data-title="intake-forms">Intake forms</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#partner-place-login-intake-records-portal" class="toc-h2 toc-link" data-title="partner-place-login-intake-records-portal">Partner place login (intake/records portal)</a>
-                  </li>
-                  <li>
                     <a href="#create-intake-form-vet" class="toc-h2 toc-link" data-title="create-intake-form-vet">Create intake form (vet)</a>
                   </li>
                   <li>
-                    <a href="#get-intake-form" class="toc-h2 toc-link" data-title="get-intake-form">Get intake form</a>
+                    <a href="#get-intake-form-user" class="toc-h2 toc-link" data-title="get-intake-form-user">Get intake form (user)</a>
                   </li>
                   <li>
-                    <a href="#update-intake-form-user-or-vet" class="toc-h2 toc-link" data-title="update-intake-form-user-or-vet">Update intake form (user or vet)</a>
+                    <a href="#update-intake-form-user" class="toc-h2 toc-link" data-title="update-intake-form-user">Update intake form (user)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#vet-intake-portal" class="toc-h1 toc-link" data-title="vet-intake-portal">Vet intake portal</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#login" class="toc-h2 toc-link" data-title="login">Login</a>
                   </li>
                   <li>
-                    <a href="#reset-partner-place-login-admin" class="toc-h2 toc-link" data-title="reset-partner-place-login-admin">Reset partner place login (admin)</a>
+                    <a href="#change-password" class="toc-h2 toc-link" data-title="change-password">Change password</a>
                   </li>
                   <li>
-                    <a href="#get-partner-info" class="toc-h2 toc-link" data-title="get-partner-info">Get partner info</a>
+                    <a href="#send-password-reset-token" class="toc-h2 toc-link" data-title="send-password-reset-token">Send password reset token</a>
+                  </li>
+                  <li>
+                    <a href="#reset-forgotten-password-from-token" class="toc-h2 toc-link" data-title="reset-forgotten-password-from-token">Reset forgotten password from token</a>
+                  </li>
+                  <li>
+                    <a href="#reset-forgotten-password-admin" class="toc-h2 toc-link" data-title="reset-forgotten-password-admin">Reset forgotten password (admin)</a>
+                  </li>
+                  <li>
+                    <a href="#get-partner-place-info" class="toc-h2 toc-link" data-title="get-partner-place-info">Get partner place info</a>
+                  </li>
+                  <li>
+                    <a href="#get-list-of-intakes" class="toc-h2 toc-link" data-title="get-list-of-intakes">Get list of intakes</a>
+                  </li>
+                  <li>
+                    <a href="#get-intake-details" class="toc-h2 toc-link" data-title="get-intake-details">Get intake details</a>
                   </li>
               </ul>
           </li>
@@ -2965,7 +2985,7 @@ is the ID in the event table that should be deleted.</p>
       </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"place_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peanut Butter Veterinary Clinic"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"insurance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Farm"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending-records"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending records"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T00:28:38.611Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T00:28:38.611Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -3035,7 +3055,7 @@ is the ID in the event table that should be deleted.</p>
   </span><span class="s2">"treatment_end_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.getpawprint.com/signature.png"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"should_create_request"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending-records"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending records"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.getpawprint.com/claim.pdf"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"additional_insurance_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"additional_insurance_cancel_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -3077,7 +3097,7 @@ is the ID in the event table that should be deleted.</p>
       </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spot"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"partner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1468</span><span class="p">,</span><span class="w">
       </span><span class="s2">"partner_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Megavet Co."</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending-records"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending records"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T23:58:12.932Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T23:58:19.764Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3118,7 +3138,7 @@ is the ID in the event table that should be deleted.</p>
 <tr>
 <td>sort_by</td>
 <td>string?</td>
-<td>Either <code>{&quot;created_at&quot;:&quot;asc&quot;}</code>, <code>{&quot;created_at&quot;:&quot;desc&quot;}</code>, <code>{&quot;updated_at&quot;:&quot;asc&quot;}</code> or <code>{&quot;updated_at&quot;:&quot;desc&quot;}</code>. Default field is <code>{&quot;updated_at&quot;:&quot;desc&quot;}</code>.</td>
+<td>JSON object, where the key is the sort field and the value is the sort direction (<code>asc</code> or <code>desc</code>). Sort fields are <code>created_at</code>, <code>updated_at</code>, and <code>appointment_time</code>. Default is <code>{&quot;updated_at&quot;:&quot;desc&quot;}</code>.</td>
 </tr>
 <tr>
 <td>filter</td>
@@ -4238,28 +4258,6 @@ Once they have completed the form, they can submit it, which causes record reque
 When updated or completed, the records are emailed to both the client and their new vet.</p>
 
 <p>Identity and authentication is based on a JWT given to the records portal when a vet has logged in; it is based on the vet&#39;s <code>place_id</code>.</p>
-<h2 id='partner-place-login-intake-records-portal'>Partner place login (intake/records portal)</h2>
-<blockquote>
-<p>Request example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@getpawprint.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p4ssw0rd"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eYJazo.sometoken.oawf8aliwf8aZ_-w3BmAS"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Login for partners for the records portal. Each place has its own separate login.
-Vet groups will have a single entry in the <code>partner</code> table but multiple <code>partner_place</code> entries (which store login info), while
-single vets will have a single entry in both the <code>partner</code> and <code>partner_place</code> tables.
-Returns a JWT to be used for authenticated partner calls.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /partners/login</code></p>
 <h2 id='create-intake-form-vet'>Create intake form (vet)</h2>
 <blockquote>
 <p>Request example</p>
@@ -4290,7 +4288,7 @@ Returns a JWT to be used for authenticated partner calls.</p>
 <p>Initializes an intake form with the given information. Extra fields can be passed to the endpoint,
 but only a small subset is necessary for creation. An external ID for the form is generated and emailed to the new client,
 which can be used to fill in the rest of the fields. The external ID is also returned by the endpoint.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /partners/intake</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
@@ -4386,7 +4384,7 @@ which can be used to fill in the rest of the fields. The external ID is also ret
 <td>More details about why this appointment is being made</td>
 </tr>
 </tbody></table>
-<h2 id='get-intake-form'>Get intake form</h2>
+<h2 id='get-intake-form-user'>Get intake form (user)</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
@@ -4418,9 +4416,9 @@ which can be used to fill in the rest of the fields. The external ID is also ret
 </span></code></pre>
 <p>Gets the specified intake form. Not all fields are guaranteed to be populated, based on what the vet filled out when creating
 the intake form.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /intake/:intake_id</code></p>
-<h2 id='update-intake-form-user-or-vet'>Update intake form (user or vet)</h2>
+<h2 id='update-intake-form-user'>Update intake form (user)</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
@@ -4459,7 +4457,7 @@ the intake form.</p>
 
 <p>After an intake form has been submitted, it cannot be submitted again, and HTTP 400/Bad Request is returned. This is because the
 record requests are created as soon the intake form has been submitted the first time. If <code>intake.status</code> from <code>GET /intake/:external_id</code> is anything but <code>pending user</code>, the user should be blocked from submitting the request again.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>PUT /intake/:intake_id</code></p>
 <h3 id='put-parameters'>PUT parameters</h3>
 <table><thead>
@@ -4565,7 +4563,100 @@ record requests are created as soon the intake form has been submitted the first
 <td>Signature of the user&#39;s consent.</td>
 </tr>
 </tbody></table>
-<h2 id='reset-partner-place-login-admin'>Reset partner place login (admin)</h2>
+<h1 id='vet-intake-portal'>Vet intake portal</h1>
+<p>This API is for the vet side of intakes - account management, intake summaries and intake detail.</p>
+<h2 id='login'>Login</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@getpawprint.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p4ssw0rd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eYJazo.sometoken.oawf8aliwf8aZ_-w3BmAS"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Login for partners for the records portal. Each place has its own separate login.
+Vet groups will have a single entry in the <code>partner</code> table but multiple <code>partner_place</code> entries (which store login info), while
+single vets will have a single entry in both the <code>partner</code> and <code>partner_place</code> tables.
+Returns a JWT to be used for authenticated partner calls.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /partners/login</code></p>
+<h2 id='change-password'>Change password</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"old_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"passw3rd"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p4ssw0rd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Partner self-service password change.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /partners/password</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>old_password</td>
+<td>string</td>
+<td>Partner place&#39;s old password</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Partner place&#39;s new password.</td>
+</tr>
+</tbody></table>
+<h2 id='send-password-reset-token'>Send password reset token</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Emails a password reset token to the partner place&#39;s email address.
+Always returns HTTP 200.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /partners/forgot</code></p>
+<h2 id='reset-forgotten-password-from-token'>Reset forgotten password from token</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"reset_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A0bvcbbg37c-34nbp93l1znBXxc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Resets the password on the account that matches the given token. Returns HTTP 404 if the token was not found; HTTP 200 otherwise.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /partners/reset</code></p>
+<h2 id='reset-forgotten-password-admin'>Reset forgotten password (admin)</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
@@ -4580,7 +4671,7 @@ record requests are created as soon the intake form has been submitted the first
 </span></code></pre>
 <p>For admins to manually set a new password for a partner place.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>POST /admin/partners/:partner_id/reset</code></p>
+<p><code>POST /admin/partners/:place_id/reset</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -4600,7 +4691,60 @@ record requests are created as soon the intake form has been submitted the first
 <td>Partner place&#39;s password.</td>
 </tr>
 </tbody></table>
-<h3 id='post-parameters-3'>POST parameters</h3>
+<h2 id='get-partner-place-info'>Get partner place info</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Animal Clinic"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27015"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"partner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"partner_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Farm"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.getpawprint.com/images/banner.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"appointment_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="s2">",
+      "</span><span class="err">description</span><span class="s2">": "</span><span class="err">Wellness</span><span class="w"> </span><span class="err">exam</span><span class="s2">"
+    },
+    {
+      "</span><span class="err">id</span><span class="s2">": 2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Illness/injury"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets partner place info for the caller identifed in the auth header, like place name, partner ID, partner name and banner image.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET /partners/info</code></p>
+<h2 id='get-list-of-intakes'>Get list of intakes</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">93</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70420</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hiro"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet_breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shiba Inu"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in progress"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T23:58:12.932Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T23:58:19.764Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-20"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00 AM"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets information about intakes for a partner place. Paginated.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET /partners/intake</code></p>
+<h3 id='query-string-parameters'>Query string parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4609,30 +4753,161 @@ record requests are created as soon the intake form has been submitted the first
 </tr>
 </thead><tbody>
 <tr>
-<td>email</td>
-<td>string</td>
-<td>Partner place&#39;s email address.</td>
+<td>$top</td>
+<td>int?</td>
+<td>Limits number of results.</td>
 </tr>
 <tr>
-<td>password</td>
-<td>string</td>
-<td>Partner place&#39;s password.</td>
+<td>$skip</td>
+<td>int?</td>
+<td>Offsets number of results.</td>
+</tr>
+<tr>
+<td>sort_by</td>
+<td>string?</td>
+<td>JSON object, where the key is the sort field and the value is the sort direction (<code>asc</code> or <code>desc</code>). Sort fields are <code>created_at</code>, <code>updated_at</code>, and <code>appointment_time</code>. Default is <code>{&quot;updated_at&quot;:&quot;desc&quot;}</code>.</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>string?</td>
+<td>JSON object, where the key is the filter name and the value i the filter value. The only filter currently supported is <code>status</code>, e.g. <code>?filter={&quot;status&quot;:&quot;pending&quot;}</code>. Possible values for <code>status</code> are <code>pending</code>, <code>in progress</code>, <code>complete</code> and <code>cancelled</code>.</td>
 </tr>
 </tbody></table>
-<h2 id='get-partner-info'>Get partner info</h2>
+<h2 id='get-intake-details'>Get intake details</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Animal Clinic"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"partner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"partner_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Farm"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.getpawprint.com/images/banner.jpg"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00 AM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness exam"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Puppy shots"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-HiX2CpDBA_tukyYkldcN5gGwqwPyAsh"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eric Choi"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05-08-2019"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Roxy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-user-upload.s3-us-west-2.amazonaws.com/65389-39561-1496970785752.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11-01-2005"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13 yo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"adoption_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Female"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"neuterString"</span><span class="p">:</span><span class="w"> </span><span class="s2">", spayed"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dog"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Papillon, Lhasa Apso, Pomeranian Mix"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tri"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"microchip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3258889"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mimi"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tran"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(408) 203-2604"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mimitran02@gmail.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"places"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aborn Pet Clinic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(408) 270-4600"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Antioch animal hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(630) 307-9115"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VIP Pet Care"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(800) 427-7973"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"medications"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enacard, Vasotec"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user_medications"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Enacard, Vasotec"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"labs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SNAP 4Dx Test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12-27-2014"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12-27-2015"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"expired"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heartworm"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fecal Exam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10-29-2017"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10-29-2018"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"expired"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Urine"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"missing"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CBC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"missing"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chemistry"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"missing"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thyroid Level"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"missing"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Heartworm Test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"missing"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"vaccinations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rabies"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04-19-2019"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04-19-2020"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rabies"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Distemper"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"missing"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Distemper-parvo"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bordetella"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"expiryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"missing"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"primary_condition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bordetella"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"review_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Roxy is 80% blind in left eye. No hearing"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pdfs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"https://pawprint-request-pdf.s3.amazonaws.com/25532-1510168264037.pdf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"https://pawprint-request-pdf.s3.amazonaws.com/24218-1507333133166.pdf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"https://pawprint-request-pdf.s3.amazonaws.com/23522-1505611108804.pdf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"https://pawprint-request-pdf.s3.amazonaws.com/21871-1501653255290.pdf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"https://pawprint-request-pdf.s3.amazonaws.com/20214-1498679972210.pdf"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>Gets partner place info for the caller identifed in the auth header, like place name, partner ID, partner name and banner image.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET /partners/info</code></p>
+<p>Get detailed information about a specific intake for a partner place. There are two main fields - <code>appointment</code> and <code>summary</code>; <code>summary</code> is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal. HTTP 403 is returned if the <code>intake_id</code> does not belong to the partner place.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /partners/intake/:intake_id</code></p>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
 if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after

@@ -326,7 +326,7 @@ Gets a single appointment request's details.
       "pet_name": "Spot",
       "place_name": "Peanut Butter Veterinary Clinic",
       "insurance_name": "Pawprint Farm",
-      "status": "pending-records",
+      "status": "pending records",
       "created_at": "2019-04-18T00:28:38.611Z",
       "updated_at": "2019-04-18T00:28:38.611Z"
     },
@@ -381,7 +381,7 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
   "treatment_end_date": null,
   "signature": "https://www.getpawprint.com/signature.png",
   "should_create_request": true,
-  "status": "pending-records",
+  "status": "pending records",
   "link": "https://www.getpawprint.com/claim.pdf",
   "additional_insurance_name": null,
   "additional_insurance_cancel_date": null,
@@ -429,7 +429,7 @@ Gets a single insurance claim's details.
       "pet_name": "Spot",
       "partner_id": 1468,
       "partner_name": "Megavet Co.",
-      "status": "pending-records",
+      "status": "pending records",
       "created_at": "2019-04-17T23:58:12.932Z",
       "updated_at": "2019-04-17T23:58:19.764Z",
       "appointment": {
@@ -457,7 +457,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | Either `{"created_at":"asc"}`, `{"created_at":"desc"}`, `{"updated_at":"asc"}` or `{"updated_at":"desc"}`. Default field is `{"updated_at":"desc"}`.
+sort_by | string? | JSON object, where the key is the sort field and the value is the sort direction (`asc` or `desc`). Sort fields are `created_at`, `updated_at`, and `appointment_time`. Default is `{"updated_at":"desc"}`.
 filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Intake also supports `partner_name`.
 
 ## Get an intake form
