@@ -163,6 +163,7 @@ Gets partner place info for the caller identifed in the auth header, like place 
       "user_id": 70420,
       "user_full_name": "John Smith",
       "pet_name": "Hiro",
+      "pet_species": "dog",
       "pet_breed": "Shiba Inu",
       "status": "in progress",
       "created_at": "2019-04-17T23:58:12.932Z",
