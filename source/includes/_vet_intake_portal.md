@@ -195,7 +195,7 @@ filter | string? | JSON object, where the key is the filter name and the value i
 > Response example
 
 ```json
-[
+{
   "appointment": {
     "date": "2019-04-20",
     "time": "10:00 AM",
@@ -208,24 +208,24 @@ filter | string? | JSON object, where the key is the filter name and the value i
     "admin_name": "Eric Choi",
     "date": "05-08-2019",
     "pet": {
-      "name": "Roxy",
+      "name": "Rocky",
       "image": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/65389-39561-1496970785752.jpg",
       "birthdate": "11-01-2005",
       "age": "13 yo",
       "adoption_date": null,
-      "gender": "Female",
-      "neuterString": ", spayed",
+      "gender": "Male",
+      "neuterString": ", neutered",
       "species": "Dog",
-      "breed": "Papillon, Lhasa Apso, Pomeranian Mix",
+      "breed": "American Staffordshire Terrier",
       "color": "Tri",
       "weight": null,
-      "microchip": "3258889"
+      "microchip": "1337"
     },
     "user": {
-      "first_name": "Mimi",
-      "last_name": "Tran",
-      "phone": "(408) 203-2604",
-      "email": "mimitran02@gmail.com"
+      "first_name": "Momo",
+      "last_name": "Nguyen",
+      "phone": "(555) 555-5504",
+      "email": "momonguyen@getpawprint.com"
     },
     "places": [
       {
@@ -312,16 +312,16 @@ filter | string? | JSON object, where the key is the filter name and the value i
         "primary_condition": "Bordetella"
       }
     ],
-    "review_notes": "Roxy is 80% blind in left eye. No hearing",
+    "review_notes": "Rocky is 80% blind in left eye. No hearing",
     "pdfs": [
-      "https://pawprint-request-pdf.s3.amazonaws.com/25532-1510168264037.pdf",
-      "https://pawprint-request-pdf.s3.amazonaws.com/24218-1507333133166.pdf",
-      "https://pawprint-request-pdf.s3.amazonaws.com/23522-1505611108804.pdf",
-      "https://pawprint-request-pdf.s3.amazonaws.com/21871-1501653255290.pdf",
-      "https://pawprint-request-pdf.s3.amazonaws.com/20214-1498679972210.pdf"
+      "https://pawprint-request-pdf.s3.amazonaws.com/123.pdf",
+      "https://pawprint-request-pdf.s3.amazonaws.com/456.pdf",
+      "https://pawprint-request-pdf.s3.amazonaws.com/789.pdf",
+      "https://pawprint-request-pdf.s3.amazonaws.com/0ab.pdf",
+      "https://pawprint-request-pdf.s3.amazonaws.com/cde.pdf"
     ]
   }
-]
+}
 ```
 Get detailed information about a specific intake for a partner place. There are two main fields - `appointment` and `summary`; `summary` is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal. HTTP 403 is returned if the `intake_id` does not belong to the partner place.
 
