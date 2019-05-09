@@ -103,7 +103,7 @@ Shows information about the vet associated with a password reset token. If the r
 
 ```json
 {
-  "reset_token": "A0bvcbbg37c-34nbp93l1znBXxc"
+  "password": "new_p4ssw0rd"
 }
 ```
 
