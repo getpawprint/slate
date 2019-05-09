@@ -160,7 +160,6 @@ Gets partner place info for the caller identifed in the auth header, like place 
   "data": [
     {
       "id": 93,
-      "user_id": 70420,
       "user_full_name": "John Smith",
       "pet_name": "Hiro",
       "pet_species": "dog",
