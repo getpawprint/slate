@@ -74,7 +74,29 @@ Emails a password reset token to the partner place's email address.
 Always returns HTTP 200.
 
 ### HTTP Request
-`POST /partners/forgot`
+`POST /partners/reset`
+
+## Validate password reset token
+
+> Request example
+
+```json
+(none)
+```
+
+> Response example
+
+```json
+{
+  "name": "Test Vet",
+  "email": "demo@getpawprint.com"
+}
+```
+
+Shows information about the vet associated with a password reset token. If the reset token is not found or it is expired, HTTP 404 is returned.
+
+### HTTP Request
+`GET /partners/reset/:token`
 
 ## Reset forgotten password from token
 > Request example
@@ -94,7 +116,7 @@ Always returns HTTP 200.
 Resets the password on the account that matches the given token. Returns HTTP 404 if the token was not found; HTTP 200 otherwise.
 
 ### HTTP Request
-`POST /partners/reset`
+`POST /partners/reset/:token`
 
 ## Reset forgotten password (admin)
 > Request example

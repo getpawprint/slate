@@ -533,6 +533,9 @@
                     <a href="#send-password-reset-token" class="toc-h2 toc-link" data-title="send-password-reset-token">Send password reset token</a>
                   </li>
                   <li>
+                    <a href="#validate-password-reset-token" class="toc-h2 toc-link" data-title="validate-password-reset-token">Validate password reset token</a>
+                  </li>
+                  <li>
                     <a href="#reset-forgotten-password-from-token" class="toc-h2 toc-link" data-title="reset-forgotten-password-from-token">Reset forgotten password from token</a>
                   </li>
                   <li>
@@ -4639,7 +4642,24 @@ Returns a JWT to be used for authenticated partner calls.</p>
 <p>Emails a password reset token to the partner place&#39;s email address.
 Always returns HTTP 200.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST /partners/forgot</code></p>
+<p><code>POST /partners/reset</code></p>
+<h2 id='validate-password-reset-token'>Validate password reset token</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Vet"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Shows information about the vet associated with a password reset token. If the reset token is not found or it is expired, HTTP 404 is returned.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /partners/reset/:token</code></p>
 <h2 id='reset-forgotten-password-from-token'>Reset forgotten password from token</h2>
 <blockquote>
 <p>Request example</p>
@@ -4654,8 +4674,8 @@ Always returns HTTP 200.</p>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Resets the password on the account that matches the given token. Returns HTTP 404 if the token was not found; HTTP 200 otherwise.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>POST /partners/reset</code></p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST /partners/reset/:token</code></p>
 <h2 id='reset-forgotten-password-admin'>Reset forgotten password (admin)</h2>
 <blockquote>
 <p>Request example</p>
@@ -4670,7 +4690,7 @@ Always returns HTTP 200.</p>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>For admins to manually set a new password for a partner place.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST /admin/partners/:place_id/reset</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
@@ -4715,7 +4735,7 @@ Always returns HTTP 200.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets partner place info for the caller identifed in the auth header, like place name, partner ID, partner name and banner image.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /partners/info</code></p>
 <h2 id='get-list-of-intakes'>Get list of intakes</h2>
 <blockquote>
@@ -4742,7 +4762,7 @@ Always returns HTTP 200.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets information about intakes for a partner place. Paginated.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /partners/intake</code></p>
 <h3 id='query-string-parameters'>Query string parameters</h3>
 <table><thead>
@@ -4906,7 +4926,7 @@ Always returns HTTP 200.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get detailed information about a specific intake for a partner place. There are two main fields - <code>appointment</code> and <code>summary</code>; <code>summary</code> is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal. HTTP 403 is returned if the <code>intake_id</code> does not belong to the partner place.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /partners/intake/:intake_id</code></p>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
