@@ -430,6 +430,9 @@
                   <li>
                     <a href="#get-appointment-requests-for-pet" class="toc-h2 toc-link" data-title="get-appointment-requests-for-pet">Get appointment requests for pet</a>
                   </li>
+                  <li>
+                    <a href="#get-places" class="toc-h2 toc-link" data-title="get-places">Get places</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -652,6 +655,9 @@
                   </li>
                   <li>
                     <a href="#suggest-a-city" class="toc-h2 toc-link" data-title="suggest-a-city">Suggest a city</a>
+                  </li>
+                  <li>
+                    <a href="#merge-two-places" class="toc-h2 toc-link" data-title="merge-two-places">Merge two places</a>
                   </li>
               </ul>
           </li>
@@ -3315,6 +3321,80 @@ Pawprint Summary to be automatically generated and the URL stored in <code>intak
 <p>Gets all appointment requests associated with a pet.</p>
 <h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET /admin/pets/:petid/appointment_request</code></p>
+<h2 id='get-places'>Get places</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14501</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banfield of Bellevue Overlake"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15445 NE 24th St, Bellevue, WA 98007"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.banfield.com/our-hospitals/hospital-locations/location-pages/BEO"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(425) 746-2865"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4257474883"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"na"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contactMethod"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pawprint_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-05-01T20:51:36.252Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-26T21:56:04.922Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">547</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Banfield of Bellevue"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100 108th Ave NE, Bellevue, WA 98004"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.banfield.com/our-hospitals/hospital-locations/location-pages/BLV"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(425) 454-7023"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4254548967"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contactMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Call"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pawprint_note"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-26T16:41:11.921Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-26T21:56:04.922Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a list of Pawprint places only (does not query Google Places), optionally with sorting and filtering.</p>
+
+<p>Supported filters are:</p>
+
+<ul>
+<li><code>name</code></li>
+<li><code>address</code> - matches freeform strings in the <code>place.address</code> field only. Address strings typically contain a zip code and a city name.</li>
+<li><code>phone</code> - Numbers only. When searching the database, phone numbers like &quot;(425) 753-1234&quot; are normalized to &quot;4257536174&quot;, so filtering with &quot;42575&quot; will still produce a match.</li>
+</ul>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>GET /admin/v2/places</code></p>
+<h3 id='query-string-parameters-5'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>$top</td>
+<td>int?</td>
+<td>Limits number of results.</td>
+</tr>
+<tr>
+<td>$skip</td>
+<td>int?</td>
+<td>Offsets number of results.</td>
+</tr>
+<tr>
+<td>sort_by</td>
+<td>string?</td>
+<td>JSON object, where the key is the sort field and the value is the sort direction (<code>asc</code> or <code>desc</code>). Sort fields are <code>created_at</code>, <code>updated_at</code>, and <code>id</code>. Default is <code>{&quot;updated_at&quot;:&quot;desc&quot;}</code>.</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>string?</td>
+<td>Filter fields separated by commas, e.g. <code>filter={&quot;name&quot;:&quot;banf&quot;,&quot;address&quot;:&quot;98004&quot;,&quot;phone&quot;:&quot;425&quot;}</code>.</td>
+</tr>
+</tbody></table>
 <h1 id='appointments'>Appointments</h1>
 <p>Appointment booking, cancellations and status.</p>
 <h2 id='get-appointment-types'>Get appointment types</h2>
@@ -6140,6 +6220,56 @@ and the backend will get its coordinates automatically.</p>
 <td>prefix</td>
 <td>string</td>
 <td>The search prefix.</td>
+</tr>
+</tbody></table>
+<h2 id='merge-two-places'>Merge two places</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"keep"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cH7jzcx8aoGvx"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Demo Vet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"814 Mission St, San Francisco, CA 94302"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(650) 555-5555"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(650) 555-6666"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hi@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"contactMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pawprint_note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint vet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"delete"</span><span class="p">:</span><span class="w"> </span><span class="mi">99999</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>ADMIN ONLY. Takes an update object (<code>keep</code>) and the ID of the place to delete.
+The database entry for <code>keep</code> is patched with the object fields, then all table references to the place ID in <code>delete</code> are updated
+to <code>keep.id</code>, and the row specified by <code>delete</code> is deleted. Prior to deletion, any fields that were empty in the kept place but not empty in the deleted place are copied to the kept place.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /places/duplicates</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>keep</td>
+<td>object</td>
+<td>Object containing fields to update in the place to keep.</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>int</td>
+<td>ID of the place to delete</td>
 </tr>
 </tbody></table>
 <h1 id='postcards'>Postcards</h1>
