@@ -6252,7 +6252,7 @@ and the backend will get its coordinates automatically.</p>
 The database entry for <code>keep</code> is patched with the object fields, then all table references to the place ID in <code>delete</code> are updated
 to <code>keep.id</code>, and the row specified by <code>delete</code> is deleted. Prior to deletion, any fields that were empty in the kept place but not empty in the deleted place are copied to the kept place.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST /places/duplicates</code></p>
+<p><code>POST /admin/places/duplicates</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
 <tr>

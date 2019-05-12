@@ -223,7 +223,7 @@ The database entry for `keep` is patched with the object fields, then all table 
 to `keep.id`, and the row specified by `delete` is deleted. Prior to deletion, any fields that were empty in the kept place but not empty in the deleted place are copied to the kept place.
 
 ### HTTP Request
-`POST /places/duplicates`
+`POST /admin/places/duplicates`
 
 ### POST parameters
 Parameter | Type | Description
