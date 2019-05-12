@@ -189,3 +189,44 @@ and the backend will get its coordinates automatically.
 Parameter | Type | Description
 --------- | ---- | -----------
 prefix | string | The search prefix.
+
+## Merge two places
+> Request example
+
+```json
+{
+  "keep": {
+    "id": 27015,
+    "placesid": "cH7jzcx8aoGvx",
+    "name": "Pawprint Demo Vet",
+    "address": "814 Mission St, San Francisco, CA 94302",
+    "website": "https://www.getpawprint.com",
+    "phone": "(650) 555-5555",
+    "fax": "(650) 555-6666",
+    "email": "hi@getpawprint.com",
+    "contactMethod": "email",
+    "pawprint_note": "Pawprint vet",
+    "verified": true
+  },
+  "delete": 99999
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+ADMIN ONLY. Takes an update object (`keep`) and the ID of the place to delete.
+The database entry for `keep` is patched with the object fields, then all table references to the place ID in `delete` are updated
+to `keep.id`, and the row specified by `delete` is deleted. Prior to deletion, any fields that were empty in the kept place but not empty in the deleted place are copied to the kept place.
+
+### HTTP Request
+`POST /places/duplicates`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+keep | object | Object containing fields to update in the place to keep.
+delete | int | ID of the place to delete

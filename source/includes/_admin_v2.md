@@ -640,3 +640,60 @@ Gets all appointment requests associated with a pet.
 
 ### HTTP Request
 `GET /admin/pets/:petid/appointment_request`
+
+## Get places
+
+```json
+{
+    "data": [
+        {
+            "id": 14501,
+            "name": "Banfield of Bellevue Overlake",
+            "address": "15445 NE 24th St, Bellevue, WA 98007",
+            "website": "http://www.banfield.com/our-hospitals/hospital-locations/location-pages/BEO",
+            "phone": "(425) 746-2865",
+            "fax": "4257474883",
+            "email": "na",
+            "contactMethod": null,
+            "verified": true,
+            "pawprint_note": null,
+            "created_at": "2018-05-01T20:51:36.252Z",
+            "updated_at": "2018-10-26T21:56:04.922Z"
+        },
+        {
+            "id": 547,
+            "name": "Banfield of Bellevue",
+            "address": "100 108th Ave NE, Bellevue, WA 98004",
+            "website": "http://www.banfield.com/our-hospitals/hospital-locations/location-pages/BLV",
+            "phone": "(425) 454-7023",
+            "fax": "4254548967",
+            "email": null,
+            "contactMethod": "Call",
+            "verified": true,
+            "pawprint_note": null,
+            "created_at": "2015-05-26T16:41:11.921Z",
+            "updated_at": "2018-10-26T21:56:04.922Z"
+        }
+    ],
+    "count": "2"
+}
+```
+
+Gets a list of Pawprint places only (does not query Google Places), optionally with sorting and filtering.
+
+Supported filters are:
+
+- `name`
+- `address` - matches freeform strings in the `place.address` field only. Address strings typically contain a zip code and a city name.
+- `phone` - Numbers only. When searching the database, phone numbers like "(425) 753-1234" are normalized to "4257536174", so filtering with "42575" will still produce a match.
+
+### HTTP Request
+`GET /admin/v2/places`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+$top | int? | Limits number of results.
+$skip | int? | Offsets number of results.
+sort_by | string? | JSON object, where the key is the sort field and the value is the sort direction (`asc` or `desc`). Sort fields are `created_at`, `updated_at`, and `id`. Default is `{"updated_at":"desc"}`.
+filter | string? | Filter fields separated by commas, e.g. `filter={"name":"banf","address":"98004","phone":"425"}`.
