@@ -697,3 +697,58 @@ $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
 sort_by | string? | JSON object, where the key is the sort field and the value is the sort direction (`asc` or `desc`). Sort fields are `created_at`, `updated_at`, and `id`. Default is `{"updated_at":"desc"}`.
 filter | string? | Filter fields separated by commas, e.g. `filter={"name":"banf","address":"98004","phone":"425"}`.
+
+## Add intake log entry
+> Request example
+
+```json
+{
+	"type": "Automated reminder",
+	"notes": "Sent an automated reminder"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Adds an entry to the `intake_log` table.
+
+### HTTP Request
+`POST /admin/v2/intake/:intake_log/logs`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+type | string | Note type (Ideally a limited set)
+notes | string | Note body
+
+## GET example
+
+> Response example
+
+```json
+[
+  {
+    "admin_id": 0,
+    "admin_name": "System",
+    "type": "Automated event",
+    "notes": "Automatically advanced to 'in review'",
+    "created_at": "2019-04-21T00:35:42Z"
+  },
+  {
+    "admin_id": 1,
+    "admin_name": "Emily Dong",
+    "type": "Appointment delayed",
+    "notes": "Vet notified me of something",
+    "created_at": "2018-02-01T00:35:42Z"
+  }
+]
+```
+
+Gets all the log entries for an intake.
+
+### HTTP Request
+`GET /admin/v2/intake/:intake_id/logs`

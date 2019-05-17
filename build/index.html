@@ -433,6 +433,12 @@
                   <li>
                     <a href="#get-places" class="toc-h2 toc-link" data-title="get-places">Get places</a>
                   </li>
+                  <li>
+                    <a href="#add-intake-log-entry" class="toc-h2 toc-link" data-title="add-intake-log-entry">Add intake log entry</a>
+                  </li>
+                  <li>
+                    <a href="#get-example" class="toc-h2 toc-link" data-title="get-example">GET example</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -3395,6 +3401,66 @@ Pawprint Summary to be automatically generated and the URL stored in <code>intak
 <td>Filter fields separated by commas, e.g. <code>filter={&quot;name&quot;:&quot;banf&quot;,&quot;address&quot;:&quot;98004&quot;,&quot;phone&quot;:&quot;425&quot;}</code>.</td>
 </tr>
 </tbody></table>
+<h2 id='add-intake-log-entry'>Add intake log entry</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Automated reminder"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sent an automated reminder"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Adds an entry to the <code>intake_log</code> table.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>POST /admin/v2/intake/:intake_log/logs</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>Note type (Ideally a limited set)</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Note body</td>
+</tr>
+</tbody></table>
+<h2 id='get-example'>GET example</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"admin_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"System"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Automated event"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Automatically advanced to 'in review'"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-21T00:35:42Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"admin_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Emily Dong"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Appointment delayed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vet notified me of something"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-01T00:35:42Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all the log entries for an intake.</p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>GET /admin/v2/intake/:intake_id/logs</code></p>
 <h1 id='appointments'>Appointments</h1>
 <p>Appointment booking, cancellations and status.</p>
 <h2 id='get-appointment-types'>Get appointment types</h2>
