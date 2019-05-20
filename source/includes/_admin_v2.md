@@ -717,7 +717,7 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"name":"banf
 Adds an entry to the `intake_log` table.
 
 ### HTTP Request
-`POST /admin/v2/intake/:intake_log/logs`
+`POST /admin/v2/intake/:intake_id/logs`
 
 ### POST parameters
 Parameter | Type | Description
@@ -725,7 +725,7 @@ Parameter | Type | Description
 type | string | Note type (Ideally a limited set)
 notes | string | Note body
 
-## GET example
+## Get intake logs
 
 > Response example
 
