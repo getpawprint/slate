@@ -207,20 +207,38 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
     "type": "vet",
     "name": "Megavet Co."
   },
-  "appointment": {
-    "date": "2019-04-30",
-    "time": "19:35",
-    "timezone": "America/Los Angeles",
-    "place_id": 46109
-  },
-  "claim": {
+  "claims": [{
     "id": 10,
     "insurance_name": "Pawprint Farm"
-  }
+  }],
+  "links": [
+    {
+      "intake": {
+        "id": 41,
+        "status": "in review"
+      },
+      "appointment": {
+        "place_id": 27015,
+        "place_name": "Test Animal Clinic",
+        "date": "2019-05-02",
+        "time": "10:00 am",
+        "timezone": null
+      }
+    },
+    {
+      "appointment": {
+        "place_id": 1,
+        "place_name": "Irving Pet Hospital",
+        "date": "2019-05-02",
+        "time": "10:30 am",
+        "timezone": null
+      }
+    }
+  ]
 }
 ```
 
-Gets an individual request's details. Depending on the channel that the request came from, `partner`, `appointment` and `claim` may be null.
+Gets an individual request's details. Depending on the channel that the request came from, `partner`, `links` and `claim` may be null.
 
 ### HTTP Request
 `GET /admin/v2/requests/:request_id`
