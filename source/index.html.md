@@ -32,6 +32,7 @@ includes:
   - user
   - web_requests
   - web_requests_branded
+  - vetstoria
 
 search: true
 ---

@@ -871,6 +871,14 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#vetstoria" class="toc-h1 toc-link" data-title="vetstoria">Vetstoria</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-vetstoria-booking-details" class="toc-h2 toc-link" data-title="get-vetstoria-booking-details">Get Vetstoria booking details</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
@@ -8732,6 +8740,62 @@ then creates a records request for each pet that was onboarded.</li>
 <td>Required if slug is <code>web_full</code> or <code>wag_full</code>. URL of consent signature file.</td>
 </tr>
 </tbody></table>
+<h1 id='vetstoria'>Vetstoria</h1>
+<p>Vetstoria integration. After booking an appointment in Vetstoria, their clients are redirected to a URL on the Pawprint site.
+Each partner hospital has a redirect URL configured on the Vetstoria side, and has a site hash that is stored in the Pawprint database.
+Site hashes are obtained from our partner account on Vetstoria.</p>
+<h2 id='get-vetstoria-booking-details'>Get Vetstoria booking details</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"janesmith@getpawprint.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15:30"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los_Angeles"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just moved here from Chicago"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cat"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Shorthair"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-05-26"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16:30"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los_Angeles"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just moved here from Chicago"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets appointment information from Vetstoria and returns it to the caller (Pawprint landing page), and also silently creates intakes
+in the Pawprint database. A Vetstoria booking ID may return multiple appointments. The <code>place_id</code> parameter will be hard coded into
+the redirect URL that we give to Vetstoria per partner hospital, and <code>booking_id</code> is an identifier generated on their end.
+The result is that both parameters will end up in the URL when they redirect to Pawprint.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/vetstoria/:place_id/:booking_id</code></p>
 
       </div>
       <div class="dark-box">
