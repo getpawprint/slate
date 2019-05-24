@@ -17,6 +17,7 @@ Site hashes are obtained from our partner account on Vetstoria.
   },
   "bookings": [
     {
+      "external_id": "a4X_ilj39-cA41nb0c9rip9",
       "pet": {
         "name": "Milo",
         "species": "dog",
@@ -32,6 +33,7 @@ Site hashes are obtained from our partner account on Vetstoria.
       }
     },
     {
+      "external_id": "m-49u4uVnHLk56rm47nu",
       "pet": {
         "name": "Pumpkin",
         "species": "cat",
