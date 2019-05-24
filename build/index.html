@@ -8746,6 +8746,9 @@ Each partner hospital has a redirect URL configured on the Vetstoria side, and h
 Site hashes are obtained from our partner account on Vetstoria.</p>
 <h2 id='get-vetstoria-booking-details'>Get Vetstoria booking details</h2>
 <blockquote>
+<p>Request example
+(none)</p>
+
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -8797,7 +8800,7 @@ in the Pawprint database. A Vetstoria booking ID may return multiple appointment
 the redirect URL that we give to Vetstoria per partner hospital, and <code>booking_id</code> is an identifier generated on their end.
 The result is that both parameters will end up in the URL when they redirect to Pawprint.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /partners/vetstoria/:place_id/:booking_id</code></p>
+<p><code>POST /partners/vetstoria/:place_id/:booking_id</code></p>
 
       </div>
       <div class="dark-box">

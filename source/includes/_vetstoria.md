@@ -4,6 +4,10 @@ Each partner hospital has a redirect URL configured on the Vetstoria side, and h
 Site hashes are obtained from our partner account on Vetstoria.
 
 ## Get Vetstoria booking details
+
+> Request example
+(none)
+
 > Response example
 
 ```json
@@ -57,5 +61,5 @@ the redirect URL that we give to Vetstoria per partner hospital, and `booking_id
 The result is that both parameters will end up in the URL when they redirect to Pawprint.
 
 ### HTTP Request
-`GET /partners/vetstoria/:place_id/:booking_id`
+`POST /partners/vetstoria/:place_id/:booking_id`
 
