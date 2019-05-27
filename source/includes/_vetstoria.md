@@ -24,13 +24,11 @@ Site hashes are obtained from our partner account on Vetstoria.
       "external_id": "a4X_ilj39-cA41nb0c9rip9",
       "pet": {
         "name": "Milo",
-        "species": "dog",
-        "breed": "Australian Cattle Dog Mix",
-        "birthdate": "2018-02-16"
+        "species": "dog"
       },
       "appointment": {
         "date": "2019-07-20",
-        "time": "15:30",
+        "time": "9:15 am",
         "timezone": "America/Los_Angeles",
         "type": "Wellness Exam",
         "reason": "Just moved here from Chicago"
@@ -40,15 +38,13 @@ Site hashes are obtained from our partner account on Vetstoria.
       "external_id": "m-49u4uVnHLk56rm47nu",
       "pet": {
         "name": "Pumpkin",
-        "species": "cat",
-        "breed": "Domestic Shorthair",
-        "birthdate": "2009-05-26"
+        "species": "cat"
       },
       "appointment": {
         "date": "2019-07-20",
-        "time": "16:30",
+        "time": "9:30 am",
         "timezone": "America/Los_Angeles",
-        "type": "Wellness Exam",
+        "type": "Consultation",
         "reason": "Just moved here from Chicago"
       }
     },
