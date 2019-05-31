@@ -168,7 +168,7 @@ Parameter | Type | Description
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
 sort_by | string? | Either `{"created_at":"asc"}`, `{"created_at":"desc"}`, `{"updated_at":"asc"}` or `{"updated_at":"desc"}`. Default field is `{"updated_at":"desc"}`.
-filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Record requests also supports `id`.
+filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Record requests also supports `id`, `user_id`, `pet_id` and `place_id`/`vet_id`.
 
 ## Get a record request
 
