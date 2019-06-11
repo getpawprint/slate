@@ -187,7 +187,7 @@ signature | string | Signature of the user's consent.
 Gets information available to the general public about a place, for the purpose of creating intakes.
 
 ### HTTP Request
-`GET /intake/place/:place_id`
+`GET /place/:place_id/intake`
 
 ## Create complete intake form (user)
 > Request example
