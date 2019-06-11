@@ -4765,7 +4765,7 @@ record requests are created as soon the intake form has been submitted the first
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png"</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64:jpeg,hbIL8cqGoxa3w3"</span><span class="w">
   </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
@@ -4911,7 +4911,7 @@ record requests are created as soon the intake form has been submitted the first
 <tr>
 <td>bookings.pet.profile_pic</td>
 <td>base64?</td>
-<td>Base64 encoding of the pet&#39;s profile image</td>
+<td>Base64 encoded image of the pet</td>
 </tr>
 <tr>
 <td>bookings.place_ids</td>
@@ -4981,7 +4981,7 @@ record requests are created as soon the intake form has been submitted the first
 <tr>
 <td>signature</td>
 <td>string</td>
-<td>Signature of the user&#39;s consent.</td>
+<td>Base64 encoded signature of the user&#39;s consent.</td>
 </tr>
 </tbody></table>
 <h2 id='update-intake-auxiliary-info-user'>Update intake auxiliary info (user)</h2>

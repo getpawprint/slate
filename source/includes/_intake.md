@@ -194,7 +194,7 @@ Gets information available to the general public about a place, for the purpose 
 
 ```json
 {
-  "signature": "https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png"
+  "signature": "base64:jpeg,hbIL8cqGoxa3w3"
   "user": {
     "first_name": "John",
     "last_name": "Smith",
@@ -288,7 +288,7 @@ bookings.pet.name | name | Pet's name.
 bookings.pet.species | string | Pet's species, e.g. `cat` or `dog`.
 bookings.pet.breed | string? | Pet's breed.
 bookings.pet.birthdate | date? | Date portion of the pet's birthdate
-bookings.pet.profile_pic | base64? | Base64 encoding of the pet's profile image
+bookings.pet.profile_pic | base64? | Base64 encoded image of the pet
 bookings.place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. One of `place_ids` or `vets` must be specified.
 bookings.vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. One of `place_ids` or `vets` must be specified.
 bookings.vets.name | string | Vet name.
@@ -302,7 +302,7 @@ bookings.appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_
 bookings.appointment.type | string? | Broad category; see `appointment_type` table in database
 bookings.appointment.reason | string? | More details about why this appointment is being made
 bookings.note | string? | Note to the vets.
-signature | string | Signature of the user's consent.
+signature | string | Base64 encoded signature of the user's consent.
 
 ## Update intake auxiliary info (user)
 > Request example
