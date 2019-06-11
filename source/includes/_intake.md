@@ -301,7 +301,7 @@ bookings.appointment.reason | string? | More details about why this appointment 
 bookings.note | string? | Note to the vets.
 signature | string | Signature of the user's consent.
 
-## Update intake form (user)
+## Update intake auxiliary info (user)
 > Request example
 
 ```json
