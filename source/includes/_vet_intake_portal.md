@@ -210,7 +210,7 @@ Parameter | Type | Description
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
 sort_by | string? | JSON object, where the key is the sort field and the value is the sort direction (`asc` or `desc`). Sort fields are `created_at`, `updated_at`, and `appointment_date`. Default is `{"updated_at":"desc"}`.
-filter | string? | JSON object, where the key is the filter name and the value i the filter value. The only filter currently supported is `status`, e.g. `?filter={"status":"pending"}`. Possible values for `status` are `pending`, `in progress`, `complete` and `cancelled`.
+filter | string? | JSON object, where the key is the filter name and the value i the filter value. Filters: `status`, e.g. `?filter={"status":"pending"}`. Possible values for `status` are `pending`, `in progress`, `complete` and `cancelled`. `date`, which is date in `YYYY-MM-DD` format.
 
 ## Get intake details
 > Response example

@@ -527,6 +527,15 @@
                   <li>
                     <a href="#update-intake-form-user" class="toc-h2 toc-link" data-title="update-intake-form-user">Update intake form (user)</a>
                   </li>
+                  <li>
+                    <a href="#get-place-info" class="toc-h2 toc-link" data-title="get-place-info">Get place info</a>
+                  </li>
+                  <li>
+                    <a href="#create-complete-intake-form-user" class="toc-h2 toc-link" data-title="create-complete-intake-form-user">Create complete intake form (user)</a>
+                  </li>
+                  <li>
+                    <a href="#update-intake-form-user-2" class="toc-h2 toc-link" data-title="update-intake-form-user">Update intake form (user)</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -4602,7 +4611,8 @@ the intake form.</p>
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
@@ -4736,6 +4746,257 @@ record requests are created as soon the intake form has been submitted the first
 <td>signature</td>
 <td>string</td>
 <td>Signature of the user&#39;s consent.</td>
+</tr>
+</tbody></table>
+<h2 id='get-place-info'>Get place info</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone Animal Hospital"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets information available to the general public about a place, for the purpose of creating intakes.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /intake/place/:place_id</code></p>
+<h2 id='create-complete-intake-form-user'>Create complete intake form (user)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png"</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint-intake-pet/0001.jpg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w"> </span><span class="mi">2101</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Seattle"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seattle"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98105"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-09"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:30 PM"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just moved to town"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo used to be called Olim"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cat"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Short Hair"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-07-11"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint-intake-pet/0002.jpg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2101</span><span class="w"> </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone Animal Hospital"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jackson"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WY"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"83002"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-09"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:30 PM"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Illness/injury"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Persistent cough"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doesn't like being touched on the head"</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>This creates an intake form all in one go, without the need for action on the vet side.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>POST /intake/place/:place_id</code></p>
+<h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>object</td>
+<td>The new client.</td>
+</tr>
+<tr>
+<td>user.first_name</td>
+<td>string</td>
+<td>New client&#39;s first name.</td>
+</tr>
+<tr>
+<td>user.last_name</td>
+<td>string</td>
+<td>New client&#39;s last name.</td>
+</tr>
+<tr>
+<td>user.email</td>
+<td>string</td>
+<td>New client&#39;s email address.</td>
+</tr>
+<tr>
+<td>user.phone</td>
+<td>string</td>
+<td>New client&#39;s phone number.</td>
+</tr>
+<tr>
+<td>user.address</td>
+<td>string</td>
+<td>New client&#39;s address.</td>
+</tr>
+<tr>
+<td>pet</td>
+<td>object</td>
+<td>The pet to be seen.</td>
+</tr>
+<tr>
+<td>pet.name</td>
+<td>name</td>
+<td>Pet&#39;s name.</td>
+</tr>
+<tr>
+<td>pet.species</td>
+<td>string</td>
+<td>Pet&#39;s species, e.g. <code>cat</code> or <code>dog</code>.</td>
+</tr>
+<tr>
+<td>pet.breed</td>
+<td>string</td>
+<td>Pet&#39;s breed.</td>
+</tr>
+<tr>
+<td>pet.birthdate</td>
+<td>date?</td>
+<td>Date portion of the pet&#39;s birthdate</td>
+</tr>
+<tr>
+<td>place_ids</td>
+<td>int[]?</td>
+<td>List of IDs from the <code>place</code> table who we will contact for the pet&#39;s medical history. One of <code>place_ids</code> or <code>vets</code> must be specified.</td>
+</tr>
+<tr>
+<td>vets</td>
+<td>object[]?</td>
+<td>Vets who we will contact for the pet&#39;s medical history. These will become new <code>place</code> table entries. One of <code>place_ids</code> or <code>vets</code> must be specified.</td>
+</tr>
+<tr>
+<td>vets.name</td>
+<td>string</td>
+<td>Vet name.</td>
+</tr>
+<tr>
+<td>vets.city</td>
+<td>string?</td>
+<td>Vet&#39;s city.</td>
+</tr>
+<tr>
+<td>vets.state</td>
+<td>string?</td>
+<td>Vet&#39;s state.</td>
+</tr>
+<tr>
+<td>vets.zip</td>
+<td>string?</td>
+<td>Vet&#39;s zip code.</td>
+</tr>
+<tr>
+<td>note</td>
+<td>string?</td>
+<td>Note to the vets.</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>string</td>
+<td>Signature of the user&#39;s consent.</td>
+</tr>
+</tbody></table>
+<h2 id='update-intake-form-user-2'>Update intake form (user)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint-intake-pet/0003.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15:30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los Angeles"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Updates an intake form; anyone with the link/intake external ID can update this.
+Fields other than the profile pic and appointment fields will be ignored.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>PUT /intake/:intake_id/aux</code></p>
+<h3 id='post-parameters-3'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pet.profile_pic</td>
+<td>string?</td>
+<td>Pet&#39;s name.</td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>object?</td>
+<td>Appointment details</td>
+</tr>
+<tr>
+<td>appointment.date</td>
+<td>string?</td>
+<td>Date portion of the appointment, e.g. &quot;2019-07-20&quot;.</td>
+</tr>
+<tr>
+<td>appointment.time</td>
+<td>string?</td>
+<td>Time portion of the appointment in 24 hour time, e.g. &quot;3:30 pm&quot; or &quot;9:45 am&quot;.</td>
+</tr>
+<tr>
+<td>appointment.timezone</td>
+<td>string?</td>
+<td>https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.</td>
 </tr>
 </tbody></table>
 <h1 id='vet-intake-portal'>Vet intake portal</h1>
@@ -4962,7 +5223,7 @@ Always returns HTTP 200.</p>
 <tr>
 <td>filter</td>
 <td>string?</td>
-<td>JSON object, where the key is the filter name and the value i the filter value. The only filter currently supported is <code>status</code>, e.g. <code>?filter={&quot;status&quot;:&quot;pending&quot;}</code>. Possible values for <code>status</code> are <code>pending</code>, <code>in progress</code>, <code>complete</code> and <code>cancelled</code>.</td>
+<td>JSON object, where the key is the filter name and the value i the filter value. Filters: <code>status</code>, e.g. <code>?filter={&quot;status&quot;:&quot;pending&quot;}</code>. Possible values for <code>status</code> are <code>pending</code>, <code>in progress</code>, <code>complete</code> and <code>cancelled</code>. <code>date</code>, which is date in <code>YYYY-MM-DD</code> format.</td>
 </tr>
 </tbody></table>
 <h2 id='get-intake-details'>Get intake details</h2>

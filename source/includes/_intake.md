@@ -113,7 +113,8 @@ the intake form.
     "first_name": "John",
     "last_name": "Smith",
     "email": "johnsmith@getpawprint.com",
-    "phone": "555-555-5555"
+    "phone": "555-555-5555",
+    "address": "123 Main St, Palo Alto, CA 94305"
   },
   "pet": {
     "name": "Milo",
@@ -171,3 +172,160 @@ vets.state | string? | Vet's state.
 vets.zip | string? | Vet's zip code.
 note | string? | Note to the vets.
 signature | string | Signature of the user's consent.
+
+## Get place info
+
+> Response example
+
+```json
+{
+  "name": "Jellystone Animal Hospital",
+  "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
+}
+```
+
+Gets information available to the general public about a place, for the purpose of creating intakes.
+
+### HTTP Request
+`GET /intake/place/:place_id`
+
+## Create complete intake form (user)
+> Request example
+
+```json
+{
+  "signature": "https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png"
+  "user": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "johnsmith@getpawprint.com",
+    "phone": "555-555-5555",
+    "address": "123 Main St, Palo Alto, CA 94305"
+  },
+  "bookings": [
+    {
+      "pet": {
+        "name": "Milo",
+        "species": "dog",
+        "breed": "Australian Cattle Dog Mix",
+        "birthdate": "2018-02-16",
+        "profile_pic": "https://s3.aws.amazon.com/pawprint-intake-pet/0001.jpg"
+      },
+      "place_ids": [ 27015, 2101 ],
+      "vets": [
+        {
+          "name": "Pawprint Seattle",
+          "city": "Seattle",
+          "state": "WA",
+          "zip": "98105"
+        }
+      ],
+      "appointment": {
+        "date": "2019-07-09",
+        "time": "1:30 PM",
+        "timezone": "America/Los Angeles",
+        "type": "Wellness Exam",
+        "reason": "Just moved to town"
+      }
+      "note": "Milo used to be called Olim",
+    },
+    {
+      "pet": {
+        "name": "Pumpkin",
+        "species": "cat",
+        "breed": "Domestic Short Hair",
+        "birthdate": "2009-07-11",
+        "profile_pic": "https://s3.aws.amazon.com/pawprint-intake-pet/0002.jpg"
+      },
+      "place_ids": [ 2101 ],
+      "vets": [
+        {
+          "name": "Jellystone Animal Hospital",
+          "city": "Jackson",
+          "state": "WY",
+          "zip": "83002"
+        },
+        "appointment": {
+          "date": "2019-07-09",
+          "time": "1:30 PM",
+          "timezone": "America/Los Angeles",
+          "type": "Illness/injury",
+          "reason": "Persistent cough"
+        }
+      ],
+      "note": "Doesn't like being touched on the head",
+    }
+  ]
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+This creates an intake form all in one go, without the need for action on the vet side.
+
+### HTTP Request
+`POST /intake/place/:place_id`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+user | object | The new client.
+user.first_name | string | New client's first name.
+user.last_name | string | New client's last name.
+user.email | string | New client's email address.
+user.phone | string | New client's phone number.
+user.address | string | New client's address.
+pet | object | The pet to be seen.
+pet.name | name | Pet's name.
+pet.species | string | Pet's species, e.g. `cat` or `dog`.
+pet.breed | string | Pet's breed.
+pet.birthdate | date? | Date portion of the pet's birthdate
+place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. One of `place_ids` or `vets` must be specified.
+vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. One of `place_ids` or `vets` must be specified.
+vets.name | string | Vet name.
+vets.city | string? | Vet's city.
+vets.state | string? | Vet's state.
+vets.zip | string? | Vet's zip code.
+note | string? | Note to the vets.
+signature | string | Signature of the user's consent.
+
+## Update intake form (user)
+> Request example
+
+```json
+{
+  "pet": {
+    "profile_pic": "https://s3.aws.amazon.com/pawprint-intake-pet/0003.jpg",
+  },
+	"appointment": {
+    "date": "2019-07-20",
+    "time": "15:30",
+    "timezone": "America/Los Angeles"
+  }
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Updates an intake form; anyone with the link/intake external ID can update this.
+Fields other than the profile pic and appointment fields will be ignored.
+
+### HTTP Request
+`PUT /intake/:intake_id/aux`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+pet.profile_pic | string? | Pet's name.
+appointment | object? | Appointment details
+appointment.date | string? | Date portion of the appointment, e.g. "2019-07-20".
+appointment.time | string? | Time portion of the appointment in 24 hour time, e.g. "3:30 pm" or "9:45 am".
+appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
