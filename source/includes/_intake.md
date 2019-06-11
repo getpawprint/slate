@@ -262,7 +262,10 @@ Gets information available to the general public about a place, for the purpose 
 > Response example
 
 ```json
-(none)
+{
+  "Milo": "eXIjl3poE05z8vvvJqaofn",
+  "Pumpkin": "98cgckxlf3DDmf9AFjv4089pz"
+}
 ```
 
 This creates an intake form all in one go, without the need for action on the vet side.
