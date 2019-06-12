@@ -89,7 +89,7 @@ appointment.reason | string? | More details about why this appointment is being 
     "place": 27015,
     "date": "2019-07-20",
     "time": "15:30",
-    "timezone": "America/Los Angeles",
+    "timezone": "America/Los_Angeles",
     "type": "Wellness Exam",
     "reason": "Just moved here from Chicago"
   },
@@ -158,7 +158,7 @@ user.first_name | string | New client's first name.
 user.last_name | string | New client's last name.
 user.email | string | New client's email address.
 user.phone | string | New client's phone number.
-user.address | string | New client's address.
+user.address | string? | New client's address.
 pet | object | The pet to be seen.
 pet.name | name | Pet's name.
 pet.species | string | Pet's species, e.g. `cat` or `dog`.
@@ -223,7 +223,7 @@ Gets information available to the general public about a place, for the purpose 
       "appointment": {
         "date": "2019-07-09",
         "time": "1:30 PM",
-        "timezone": "America/Los Angeles",
+        "timezone": "America/Los_Angeles",
         "type": "Wellness Exam",
         "reason": "Just moved to town"
       },
@@ -249,7 +249,7 @@ Gets information available to the general public about a place, for the purpose 
       "appointment": {
         "date": "2019-07-09",
         "time": "1:30 PM",
-        "timezone": "America/Los Angeles",
+        "timezone": "America/Los_Angeles",
         "type": "Illness/injury",
         "reason": "Persistent cough"
       },
@@ -315,7 +315,7 @@ signature | string | Base64 encoded signature of the user's consent.
 	"appointment": {
     "date": "2019-07-20",
     "time": "15:30",
-    "timezone": "America/Los Angeles",
+    "timezone": "America/Los_Angeles",
     "type": "Injury/Illness",
     "reason": "Mass on right hind leg"
   }
