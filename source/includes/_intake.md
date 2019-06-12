@@ -304,14 +304,37 @@ bookings.appointment.reason | string? | More details about why this appointment 
 bookings.note | string? | Note to the vets.
 signature | string | Base64 encoded signature of the user's consent.
 
-## Update intake auxiliary info (user)
+## Update pet profile pic (user)
 > Request example
 
 ```json
 {
-  "pet": {
-    "profile_pic": "https://s3.aws.amazon.com/pawprint-intake-pet/0003.jpg",
-  },
+  "image": "base64:jpeg,hbIL8cqGoxa3w3"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Updates a pet's profile picture; this can be done at any stage of the intake process at and after `pending user`.
+
+### HTTP Request
+`POST /intake/:intake_id/image`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+image | string | Pet's new profile picture in base64 encoding.
+
+
+## Update intake appointment (user)
+> Request example
+
+```json
+{
 	"appointment": {
     "date": "2019-07-20",
     "time": "15:30",
@@ -328,16 +351,14 @@ signature | string | Base64 encoded signature of the user's consent.
 (none)
 ```
 
-Updates an intake form; anyone with the link/intake external ID can update this.
-Fields other than the profile pic and appointment fields will be ignored.
+Updates the appointment on the intake; anyone with the link/intake external ID can update this.
 
 ### HTTP Request
-`PUT /intake/:intake_id/aux`
+`PUT /intake/:intake_id/appointment`
 
-### POST parameters
+### PUT parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-pet.profile_pic | string? | URL of the pet's profile picture.
 appointment | object? | Appointment details
 appointment.date | string? | Date portion of the appointment, e.g. "2019-07-20".
 appointment.time | string? | Time portion of the appointment in 24 hour time, e.g. "3:30 pm" or "9:45 am".
