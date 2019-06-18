@@ -363,3 +363,59 @@ appointment | object? | Appointment details
 appointment.date | string? | Date portion of the appointment, e.g. "2019-07-20".
 appointment.time | string? | Time portion of the appointment in 24 hour time, e.g. "3:30 pm" or "9:45 am".
 appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
+
+## Update intake (vet)
+> Request example
+
+```json
+{
+  "status": "cancelled",
+  "user": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "johnsmith@getpawprint.com",
+    "phone": "206-555-5555",
+  },
+  "pet": {
+    "name": "Casper"
+  },
+	"appointment": {
+    "date": "2019-07-20",
+    "time": "15:30",
+    "timezone": "America/Los_Angeles",
+    "type": "Injury/Illness",
+    "reason": "Mass on right hind leg"
+  }
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Allows vets to update an intake, but only when `status` is `missing info` or `pending user`.
+`user.email` and `user.phone` can only be updated when `status` is `missing info`, and either of those fields is entered,
+the intake will automatically enter `pending user` status and the `intake-form` email/SMS will be sent to the user.
+
+### HTTP Request
+`PUT /partners/intake/:intake_id`
+
+### PUT parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+status | string? | Only accepted value is `cancelled`.
+user | object? | User details
+user.first_name | string? | User first name
+user.lat_name | string? | User last name
+user.email | string? | User's email address
+user.phone | string? | User's phone number
+pet | object? | Pet details
+pet.name | string? | Pet name
+appointment | object? | Appointment details
+appointment.date | string? | Date portion of the appointment, e.g. "2019-07-20".
+appointment.time | string? | Time portion of the appointment in 24 hour time, e.g. "3:30 pm" or "9:45 am".
+appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
+appointment.type | string? | Type of appointment.
+appointment.reason | string? | Reason for the appointment.
