@@ -394,7 +394,7 @@ Parameter | Type | Description
 status | string? | Only accepted value is `cancelled`.
 user | object? | User details
 user.first_name | string? | User first name
-user.lat_name | string? | User last name
+user.last_name | string? | User last name
 user.email | string? | User's email address
 user.phone | string? | User's phone number
 pet | object? | Pet details
