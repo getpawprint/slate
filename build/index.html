@@ -539,9 +539,6 @@
                   <li>
                     <a href="#update-intake-appointment-user" class="toc-h2 toc-link" data-title="update-intake-appointment-user">Update intake appointment (user)</a>
                   </li>
-                  <li>
-                    <a href="#update-intake-vet" class="toc-h2 toc-link" data-title="update-intake-vet">Update intake (vet)</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -573,6 +570,9 @@
                   </li>
                   <li>
                     <a href="#get-intake-details" class="toc-h2 toc-link" data-title="get-intake-details">Get intake details</a>
+                  </li>
+                  <li>
+                    <a href="#update-intake-vet" class="toc-h2 toc-link" data-title="update-intake-vet">Update intake (vet)</a>
                   </li>
               </ul>
           </li>
@@ -5071,119 +5071,6 @@ record requests are created as soon the intake form has been submitted the first
 <td>https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.</td>
 </tr>
 </tbody></table>
-<h2 id='update-intake-vet'>Update intake (vet)</h2>
-<blockquote>
-<p>Request example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancelled"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"206-555-5555"</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Casper"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15:30"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los_Angeles"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Injury/Illness"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mass on right hind leg"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
-</span></code></pre>
-<p>Allows vets to update an intake, but only when <code>status</code> is <code>missing info</code> or <code>pending user</code>.
-<code>user.email</code> and <code>user.phone</code> can only be updated when <code>status</code> is <code>missing info</code>, and either of those fields is entered,
-the intake will automatically enter <code>pending user</code> status and the <code>intake-form</code> email/SMS will be sent to the user.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
-<p><code>PUT /partners/intake/:intake_id</code></p>
-<h3 id='put-parameters-3'>PUT parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>string?</td>
-<td>Only accepted value is <code>cancelled</code>.</td>
-</tr>
-<tr>
-<td>user</td>
-<td>object?</td>
-<td>User details</td>
-</tr>
-<tr>
-<td>user.first_name</td>
-<td>string?</td>
-<td>User first name</td>
-</tr>
-<tr>
-<td>user.lat_name</td>
-<td>string?</td>
-<td>User last name</td>
-</tr>
-<tr>
-<td>user.email</td>
-<td>string?</td>
-<td>User&#39;s email address</td>
-</tr>
-<tr>
-<td>user.phone</td>
-<td>string?</td>
-<td>User&#39;s phone number</td>
-</tr>
-<tr>
-<td>pet</td>
-<td>object?</td>
-<td>Pet details</td>
-</tr>
-<tr>
-<td>pet.name</td>
-<td>string?</td>
-<td>Pet name</td>
-</tr>
-<tr>
-<td>appointment</td>
-<td>object?</td>
-<td>Appointment details</td>
-</tr>
-<tr>
-<td>appointment.date</td>
-<td>string?</td>
-<td>Date portion of the appointment, e.g. &quot;2019-07-20&quot;.</td>
-</tr>
-<tr>
-<td>appointment.time</td>
-<td>string?</td>
-<td>Time portion of the appointment in 24 hour time, e.g. &quot;3:30 pm&quot; or &quot;9:45 am&quot;.</td>
-</tr>
-<tr>
-<td>appointment.timezone</td>
-<td>string?</td>
-<td>https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.</td>
-</tr>
-<tr>
-<td>appointment.type</td>
-<td>string?</td>
-<td>Type of appointment.</td>
-</tr>
-<tr>
-<td>appointment.reason</td>
-<td>string?</td>
-<td>Reason for the appointment.</td>
-</tr>
-</tbody></table>
 <h1 id='vet-intake-portal'>Vet intake portal</h1>
 <p>This API is for the vet side of intakes - account management, intake summaries and intake detail.</p>
 <h2 id='login'>Login</h2>
@@ -5546,6 +5433,119 @@ Always returns HTTP 200.</p>
 <p>Get detailed information about a specific intake for a partner place. There are two main fields - <code>appointment</code> and <code>summary</code>; <code>summary</code> is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal. HTTP 403 is returned if the <code>intake_id</code> does not belong to the partner place.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /partners/intake/:intake_id</code></p>
+<h2 id='update-intake-vet'>Update intake (vet)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancelled"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"206-555-5555"</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Casper"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15:30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los_Angeles"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Injury/Illness"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mass on right hind leg"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Allows vets to update an intake, but only when <code>status</code> is <code>missing info</code> or <code>pending user</code>.
+<code>user.email</code> and <code>user.phone</code> can only be updated when <code>status</code> is <code>missing info</code>, and either of those fields is entered,
+the intake will automatically enter <code>pending user</code> status and the <code>intake-form</code> email/SMS will be sent to the user.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>PUT /partners/intake/:intake_id</code></p>
+<h3 id='put-parameters'>PUT parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>string?</td>
+<td>Only accepted value is <code>cancelled</code>.</td>
+</tr>
+<tr>
+<td>user</td>
+<td>object?</td>
+<td>User details</td>
+</tr>
+<tr>
+<td>user.first_name</td>
+<td>string?</td>
+<td>User first name</td>
+</tr>
+<tr>
+<td>user.lat_name</td>
+<td>string?</td>
+<td>User last name</td>
+</tr>
+<tr>
+<td>user.email</td>
+<td>string?</td>
+<td>User&#39;s email address</td>
+</tr>
+<tr>
+<td>user.phone</td>
+<td>string?</td>
+<td>User&#39;s phone number</td>
+</tr>
+<tr>
+<td>pet</td>
+<td>object?</td>
+<td>Pet details</td>
+</tr>
+<tr>
+<td>pet.name</td>
+<td>string?</td>
+<td>Pet name</td>
+</tr>
+<tr>
+<td>appointment</td>
+<td>object?</td>
+<td>Appointment details</td>
+</tr>
+<tr>
+<td>appointment.date</td>
+<td>string?</td>
+<td>Date portion of the appointment, e.g. &quot;2019-07-20&quot;.</td>
+</tr>
+<tr>
+<td>appointment.time</td>
+<td>string?</td>
+<td>Time portion of the appointment in 24 hour time, e.g. &quot;3:30 pm&quot; or &quot;9:45 am&quot;.</td>
+</tr>
+<tr>
+<td>appointment.timezone</td>
+<td>string?</td>
+<td>https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.</td>
+</tr>
+<tr>
+<td>appointment.type</td>
+<td>string?</td>
+<td>Type of appointment.</td>
+</tr>
+<tr>
+<td>appointment.reason</td>
+<td>string?</td>
+<td>Reason for the appointment.</td>
+</tr>
+</tbody></table>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
 if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after
