@@ -5267,6 +5267,25 @@ Always returns HTTP 200.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets information about intakes for a partner place. Paginated.</p>
+
+<p><em>Filters:</em>
+Multiple filters are joined by AND.</p>
+
+<ul>
+<li><code>status</code> - One of <code>missing info</code>, <code>pending</code>, <code>in progress</code>, <code>complete</code> and <code>cancelled</code></li>
+<li><code>appointment_date</code> - Restricts results down to a specific day; format is <code>YYYY-MM-DD</code>. <em>Sort field is locked to <code>appointment_date</code> and direction defaults to <code>desc</code> when this filter is selected, but the direction remains changeable (<code>asc</code>/<code>desc</code>).</em></li>
+<li><code>pet_name</code> - Peforms partial name on pets. (e.g. <code>chi</code> will match both <code>Mochi</code> and <code>Chip</code>)</li>
+<li><code>user_name</code> - Performs partial name match on user first name OR last name (e.g. &#39;smi&#39; will match both &quot;Jasmine Wong&quot; and &quot;Jane Smith&quot;, but not &quot;Jess Milan&quot;)</li>
+</ul>
+
+<p><em>Sorting:</em>
+Direction is specified by <code>asc</code> or <code>desc</code>.</p>
+
+<ul>
+<li><code>appointment_date</code> - Sorts by appointment date. Intakes with no appointment date are automatically excluded.</li>
+<li><code>created_at</code> - Sorts by <code>created_at</code> date, which is when the form was created by the vet, or generated based on synced PMS data.</li>
+<li><code>updated_at</code> - Sorts by <code>updated_at</code> date, which is the timestamp of the last admin action (or <code>created_at</code> at the earliest).</li>
+</ul>
 <h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /partners/intake</code></p>
 <h3 id='query-string-parameters'>Query string parameters</h3>
@@ -5290,12 +5309,12 @@ Always returns HTTP 200.</p>
 <tr>
 <td>sort_by</td>
 <td>string?</td>
-<td>JSON object, where the key is the sort field and the value is the sort direction (<code>asc</code> or <code>desc</code>). Sort fields are <code>created_at</code>, <code>updated_at</code>, and <code>appointment_date</code>. Default is <code>{&quot;updated_at&quot;:&quot;desc&quot;}</code>.</td>
+<td>Default is <code>{&quot;updated_at&quot;:&quot;desc&quot;}</code>. This parameter is ignored if the <code>date</code> filter is specified unless it is <code>appointment_date</code>, which allows the sort direction to be changed.</td>
 </tr>
 <tr>
 <td>filter</td>
 <td>string?</td>
-<td>JSON object, where the key is the filter name and the value i the filter value. Filters: <code>status</code>, e.g. <code>?filter={&quot;status&quot;:&quot;pending&quot;}</code>. Possible values for <code>status</code> are <code>pending</code>, <code>in progress</code>, <code>complete</code> and <code>cancelled</code>. <code>date</code>, which is date in <code>YYYY-MM-DD</code> format.</td>
+<td>JSON object, where the key is the filter name and the value is the filter value, e.g. <code>&amp;filter={&quot;status&quot;:&quot;missing info&quot;}</code>.</td>
 </tr>
 </tbody></table>
 <h2 id='get-intake-details'>Get intake details</h2>

@@ -201,6 +201,22 @@ Gets partner place info for the caller identifed in the auth header, like place 
 
 Gets information about intakes for a partner place. Paginated.
 
+*Filters:*
+Multiple filters are joined by AND.
+
+- `status` - One of `missing info`, `pending`, `in progress`, `complete` and `cancelled`
+- `appointment_date` - Restricts results down to a specific day; format is `YYYY-MM-DD`. *Sort field is locked to `appointment_date` and direction defaults to `desc` when this filter is selected, but the direction remains changeable (`asc`/`desc`).*
+- `pet_name` - Peforms partial name on pets. (e.g. `chi` will match both `Mochi` and `Chip`)
+- `user_name` - Performs partial name match on user first name OR last name (e.g. 'smi' will match both "Jasmine Wong" and "Jane Smith", but not "Jess Milan")
+
+
+*Sorting:*
+Direction is specified by `asc` or `desc`.
+
+- `appointment_date` - Sorts by appointment date. Intakes with no appointment date are automatically excluded.
+- `created_at` - Sorts by `created_at` date, which is when the form was created by the vet, or generated based on synced PMS data.
+- `updated_at` - Sorts by `updated_at` date, which is the timestamp of the last admin action (or `created_at` at the earliest).
+
 ### HTTP Request
 `GET /partners/intake`
 
@@ -209,8 +225,8 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | JSON object, where the key is the sort field and the value is the sort direction (`asc` or `desc`). Sort fields are `created_at`, `updated_at`, and `appointment_date`. Default is `{"updated_at":"desc"}`.
-filter | string? | JSON object, where the key is the filter name and the value i the filter value. Filters: `status`, e.g. `?filter={"status":"pending"}`. Possible values for `status` are `pending`, `in progress`, `complete` and `cancelled`. `date`, which is date in `YYYY-MM-DD` format.
+sort_by | string? | Default is `{"updated_at":"desc"}`. This parameter is ignored if the `date` filter is specified unless it is `appointment_date`, which allows the sort direction to be changed.
+filter | string? | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"status":"missing info"}`.
 
 ## Get intake details
 > Response example
