@@ -4633,8 +4633,9 @@ the intake form.</p>
       </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seattle"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98105"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
   </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"empty_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New puppy/kitten"</span><span class="w">
   </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo used to be called Olim"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -4716,12 +4717,12 @@ record requests are created as soon the intake form has been submitted the first
 <tr>
 <td>place_ids</td>
 <td>int[]?</td>
-<td>List of IDs from the <code>place</code> table who we will contact for the pet&#39;s medical history. One of <code>place_ids</code> or <code>vets</code> must be specified.</td>
+<td>List of IDs from the <code>place</code> table who we will contact for the pet&#39;s medical history. If <code>place_ids</code> and <code>vets</code> are not specified, <code>empty_reason</code> must be given.</td>
 </tr>
 <tr>
 <td>vets</td>
 <td>object[]?</td>
-<td>Vets who we will contact for the pet&#39;s medical history. These will become new <code>place</code> table entries. One of <code>place_ids</code> or <code>vets</code> must be specified.</td>
+<td>Vets who we will contact for the pet&#39;s medical history. These will become new <code>place</code> table entries. If <code>place_ids</code> and <code>vets</code> are not specified, <code>empty_reason</code> must be given.</td>
 </tr>
 <tr>
 <td>vets.name</td>
@@ -4742,6 +4743,11 @@ record requests are created as soon the intake form has been submitted the first
 <td>vets.zip</td>
 <td>string?</td>
 <td>Vet&#39;s zip code.</td>
+</tr>
+<tr>
+<td>empty_reason</td>
+<td>string?</td>
+<td>If <code>place_ids</code> and <code>vets</code> are not specified, this is the reason why - e.g., &quot;I forgot which vets my pet has seen&quot; or &quot;New puppy/kitten&quot;. Otherwise, this string is ignored.</td>
 </tr>
 <tr>
 <td>note</td>

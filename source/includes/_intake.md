@@ -129,8 +129,9 @@ the intake form.
       "city": "Seattle",
       "state": "WA",
       "zip": "98105"
-    }
+    },
   ],
+  "empty_reason": "New puppy/kitten"
   "note": "Milo used to be called Olim",
   "signature": "https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png"
 }
@@ -164,12 +165,13 @@ pet.name | name | Pet's name.
 pet.species | string | Pet's species, e.g. `cat` or `dog`.
 pet.breed | string | Pet's breed.
 pet.birthdate | date? | Date portion of the pet's birthdate
-place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. One of `place_ids` or `vets` must be specified.
-vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. One of `place_ids` or `vets` must be specified.
+place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
+vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets.name | string | Vet name.
 vets.city | string? | Vet's city.
 vets.state | string? | Vet's state.
 vets.zip | string? | Vet's zip code.
+empty_reason | string? | If `place_ids` and `vets` are not specified, this is the reason why - e.g., "I forgot which vets my pet has seen" or "New puppy/kitten". Otherwise, this string is ignored.
 note | string? | Note to the vets.
 signature | string | Signature of the user's consent.
 
