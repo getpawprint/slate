@@ -131,7 +131,7 @@ the intake form.
       "zip": "98105"
     },
   ],
-  "empty_reason": "New puppy/kitten"
+  "empty_reason": "New puppy/kitten",
   "note": "Milo used to be called Olim",
   "signature": "https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png"
 }
