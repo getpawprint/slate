@@ -120,7 +120,8 @@ the intake form.
     "name": "Milo",
     "species": "dog",
     "breed": "Australian Cattle Dog Mix",
-    "birthdate": "2018-02-16"
+    "birthdate": "2018-02-16",
+    "birthdate_level": "day"
   },
   "place_ids": [ 27015, 2101 ],
   "vets": [
@@ -165,6 +166,7 @@ pet.name | name | Pet's name.
 pet.species | string | Pet's species, e.g. `cat` or `dog`.
 pet.breed | string | Pet's breed.
 pet.birthdate | date? | Date portion of the pet's birthdate
+pet.birthdate_level | string? | The accuracy of the pet's birthdate, e.g. if user only chose a `year`, a year and a `month`, or a complete date (`day`).
 place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets.name | string | Vet name.
