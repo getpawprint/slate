@@ -224,6 +224,7 @@ Gets information available to the general public about a place, for the purpose 
           "zip": "98105"
         }
       ],
+      "empty_reason": "New puppy",
       "appointment": {
         "date": "2019-07-09",
         "time": "1:30 PM",
@@ -250,6 +251,7 @@ Gets information available to the general public about a place, for the purpose 
           "zip": "83002"
         },
       ],
+      "empty_reason": "New kitten",
       "appointment": {
         "date": "2019-07-09",
         "time": "1:30 PM",
@@ -293,12 +295,13 @@ bookings.pet.species | string | Pet's species, e.g. `cat` or `dog`.
 bookings.pet.breed | string? | Pet's breed.
 bookings.pet.birthdate | date? | Date portion of the pet's birthdate
 bookings.pet.profile_pic | base64? | Base64 encoded image of the pet
-bookings.place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. One of `place_ids` or `vets` must be specified.
-bookings.vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. One of `place_ids` or `vets` must be specified.
+bookings.place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. One of `place_ids` or `vets` must be specified, or else `empty_reason` must be given.
+bookings.vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. One of `place_ids` or `vets` must be specified, or else `empty_reason` must be given.
 bookings.vets.name | string | Vet name.
 bookings.vets.city | string? | Vet's city.
 bookings.vets.state | string? | Vet's state.
 bookings.vets.zip | string? | Vet's zip code.
+bookings.empty_reason | string? | Reason for not having pet's medical history (if `bookings.place_ids` and `bookings.vets` are both empty)
 bookings.appointment | object? | Appointment details
 bookings.appointment.date | string? | Date portion of the appointment, e.g. "2019-07-20".
 bookings.appointment.time | string? | Time portion of the appointment in 24 hour time, e.g. "15:30" or "09:45".

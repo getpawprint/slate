@@ -4809,6 +4809,7 @@ record requests are created as soon the intake form has been submitted the first
           </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98105"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"empty_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New puppy"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-09"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:30 PM"</span><span class="p">,</span><span class="w">
@@ -4835,6 +4836,7 @@ record requests are created as soon the intake form has been submitted the first
           </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"83002"</span><span class="w">
         </span><span class="p">},</span><span class="w">
       </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"empty_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New kitten"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-09"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1:30 PM"</span><span class="p">,</span><span class="w">
@@ -4934,12 +4936,12 @@ record requests are created as soon the intake form has been submitted the first
 <tr>
 <td>bookings.place_ids</td>
 <td>int[]?</td>
-<td>List of IDs from the <code>place</code> table who we will contact for the pet&#39;s medical history. One of <code>place_ids</code> or <code>vets</code> must be specified.</td>
+<td>List of IDs from the <code>place</code> table who we will contact for the pet&#39;s medical history. One of <code>place_ids</code> or <code>vets</code> must be specified, or else <code>empty_reason</code> must be given.</td>
 </tr>
 <tr>
 <td>bookings.vets</td>
 <td>object[]?</td>
-<td>Vets who we will contact for the pet&#39;s medical history. These will become new <code>place</code> table entries. One of <code>place_ids</code> or <code>vets</code> must be specified.</td>
+<td>Vets who we will contact for the pet&#39;s medical history. These will become new <code>place</code> table entries. One of <code>place_ids</code> or <code>vets</code> must be specified, or else <code>empty_reason</code> must be given.</td>
 </tr>
 <tr>
 <td>bookings.vets.name</td>
@@ -4960,6 +4962,11 @@ record requests are created as soon the intake form has been submitted the first
 <td>bookings.vets.zip</td>
 <td>string?</td>
 <td>Vet&#39;s zip code.</td>
+</tr>
+<tr>
+<td>bookings.empty_reason</td>
+<td>string?</td>
+<td>Reason for not having pet&#39;s medical history (if <code>bookings.place_ids</code> and <code>bookings.vets</code> are both empty)</td>
 </tr>
 <tr>
 <td>bookings.appointment</td>
