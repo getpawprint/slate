@@ -204,7 +204,7 @@ Gets information about intakes for a partner place. Paginated.
 *Filters:*
 Multiple filters are joined by AND.
 
-- `status` - One of `missing info`, `pending`, `in progress`, `complete` and `cancelled`
+- `status` - `missing info`, `pending`, `in progress`, `complete` or `cancelled`; can be combined with a comma for OR, e.g. `filter={"status":"pending,in progress"}`
 - `appointment_date` - Restricts results down to a specific day; format is `YYYY-MM-DD`. *Sort field is locked to `appointment_date` and direction defaults to `desc` when this filter is selected, but the direction remains changeable (`asc`/`desc`).*
 - `pet_name` - Peforms partial name on pets. (e.g. `chi` will match both `Mochi` and `Chip`)
 - `user_name` - Performs partial name match on user first name OR last name (e.g. 'smi' will match both "Jasmine Wong" and "Jane Smith", but not "Jess Milan")

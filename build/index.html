@@ -4783,7 +4783,7 @@ record requests are created as soon the intake form has been submitted the first
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64:jpeg,hbIL8cqGoxa3w3"</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64:jpeg,hbIL8cqGoxa3w3"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
@@ -5291,7 +5291,7 @@ Always returns HTTP 200.</p>
 Multiple filters are joined by AND.</p>
 
 <ul>
-<li><code>status</code> - One of <code>missing info</code>, <code>pending</code>, <code>in progress</code>, <code>complete</code> and <code>cancelled</code></li>
+<li><code>status</code> - <code>missing info</code>, <code>pending</code>, <code>in progress</code>, <code>complete</code> or <code>cancelled</code>; can be combined with a comma for OR, e.g. <code>filter={&quot;status&quot;:&quot;pending,in progress&quot;}</code></li>
 <li><code>appointment_date</code> - Restricts results down to a specific day; format is <code>YYYY-MM-DD</code>. <em>Sort field is locked to <code>appointment_date</code> and direction defaults to <code>desc</code> when this filter is selected, but the direction remains changeable (<code>asc</code>/<code>desc</code>).</em></li>
 <li><code>pet_name</code> - Peforms partial name on pets. (e.g. <code>chi</code> will match both <code>Mochi</code> and <code>Chip</code>)</li>
 <li><code>user_name</code> - Performs partial name match on user first name OR last name (e.g. &#39;smi&#39; will match both &quot;Jasmine Wong&quot; and &quot;Jane Smith&quot;, but not &quot;Jess Milan&quot;)</li>

@@ -198,7 +198,7 @@ Gets information available to the general public about a place, for the purpose 
 
 ```json
 {
-  "signature": "base64:jpeg,hbIL8cqGoxa3w3"
+  "signature": "base64:jpeg,hbIL8cqGoxa3w3",
   "user": {
     "first_name": "John",
     "last_name": "Smith",
