@@ -307,6 +307,44 @@ or updates ANY pet by patching the `pet` row with the properties specified in th
 
 `PUT /admin/pets/:petid`
 
+
+## Create a place
+> Request example
+
+```json
+{
+    "name": "Jellystone Animal Hospital",
+    "phone": "(555) 555-1234",
+    "address": "123 Main St, Bellevue, WA 98004",
+    "email": "jellystone@getpawprint.com",
+    "fax": "(555) 555-5768",
+    "website": "https://www.getpawprint.com",
+    "verified": true
+}
+```
+
+> Response example
+
+```json
+{ "id": "27015" }
+```
+
+Creates a place. Automatically attempts to fill in the physical address's GPS coordinates and SEO information if `address` was specified.
+
+### HTTP Request
+`POST /admin/places`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+name | string | The place's name
+phone | string? | The place's phone number
+address | string? | The place's physical location address
+email | string? | The place's email address
+fax | string? | The place's fax number
+website | string? | The place's web site address
+verified | boolean? | Verified that the place is real. Defaults to `null` (not verified).
+
 ## Get/Update any place
 
 > Request example
@@ -325,11 +363,12 @@ or updates ANY pet by patching the `pet` row with the properties specified in th
 
 Gets ANY vet/place (if called with GET),
 or updates ANY vet/place by patching the `place` row with the properties specified in the PUT body.
+Automatically attempts to fill in the physical address's GPS coordinates and SEO information if `address` was specified.
 
 ### HTTP Request
-`GET /admin/places/:petid`
+`GET /admin/places/:place_id`
 
-`PUT /admin/places/:petid`
+`PUT /admin/places/:place_id`
 
 ## Get contact history for a request
 
