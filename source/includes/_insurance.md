@@ -24,10 +24,10 @@ API to create an insurance claim. Each claim consists of a user, pet, place, cla
 ]
 ```
 
-Gets the list of all insurance companies known to Pawprint.
+Gets the list of all insurance companies known to Pawprint. Public API.
 
 ### HTTP Request
-`GET /user/insurance`
+`GET /user/insurance`, `GET /insurance`
 
 ## Add a pet insurance policy
 > Request example
