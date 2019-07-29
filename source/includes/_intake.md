@@ -104,7 +104,7 @@ the intake form.
 ### HTTP Request
 `GET /intake/:intake_id`
 
-## Update intake form (user)
+## Update/submit intake form (user)
 > Request example
 
 ```json
@@ -115,6 +115,11 @@ the intake form.
     "email": "johnsmith@getpawprint.com",
     "phone": "555-555-5555",
     "address": "123 Main St, Palo Alto, CA 94305"
+  },
+  "screening": {
+    "is_new_client": true,
+    "has_been_elsewhere": false,
+    "has_been_vaccinated": true
   },
   "pet": {
     "name": "Milo",
@@ -161,6 +166,10 @@ user.last_name | string | New client's last name.
 user.email | string | New client's email address.
 user.phone | string | New client's phone number.
 user.address | string? | New client's address.
+screening | object | Screening questions
+screening.is_new_client | bool | Answers "Are you a new client?"
+screening.has_been_elsewhere | bool | Answers "Have you been to any other vets?"
+screening.has_been_vaccinated | bool? | Answers "Have any of your pets been vaccinated before?" (only relevant if `has_been_elsewhere` was false)
 pet | object | The pet to be seen.
 pet.name | name | Pet's name.
 pet.species | string | Pet's species, e.g. `cat` or `dog`.
@@ -205,6 +214,11 @@ Gets information available to the general public about a place, for the purpose 
     "email": "johnsmith@getpawprint.com",
     "phone": "555-555-5555",
     "address": "123 Main St, Palo Alto, CA 94305"
+  },
+  "screening": {
+    "is_new_client": true,
+    "has_been_elsewhere": false,
+    "has_been_vaccinated": true
   },
   "bookings": [
     {
@@ -288,6 +302,10 @@ user.last_name | string | New client's last name.
 user.email | string | New client's email address.
 user.phone | string | New client's phone number.
 user.address | string | New client's address.
+screening | object | Screening questions
+screening.is_new_client | bool | Answers "Are you a new client?"
+screening.has_been_elsewhere | bool | Answers "Have you been to any other vets?"
+screening.has_been_vaccinated | bool? | Answers "Have any of your pets been vaccinated before?" (only relevant if `has_been_elsewhere` was false)
 bookings | object[] | Contains information about each pet and appointment
 bookings.pet | object | The pet to be seen.
 bookings.pet.name | name | Pet's name.
@@ -358,6 +376,7 @@ image | string | Pet's new profile picture in base64 encoding.
 (none)
 ```
 
+**Deprecated, please use `PATCH /intake/:intake_id`**
 Updates the appointment on the intake; anyone with the link/intake external ID can update this.
 
 ### HTTP Request
@@ -370,3 +389,47 @@ appointment | object? | Appointment details
 appointment.date | string? | Date portion of the appointment, e.g. "2019-07-20".
 appointment.time | string? | Time portion of the appointment in 24 hour time, e.g. "3:30 pm" or "9:45 am".
 appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
+
+## Update intake (user)
+> Request example
+
+```json
+{
+	"appointment": {
+    "date": "2019-07-20",
+    "time": "15:30",
+    "timezone": "America/Los_Angeles",
+    "type": "Injury/Illness",
+    "reason": "Mass on right hind leg"
+  },
+  "pet": {
+    "insurance": {
+      "insurance_id": 1,
+      "policy_number": "IPC013297"
+    }
+  }
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Updates the intake; anyone with the link/intake external ID can update certain parts of the submitted data.
+
+### HTTP Request
+`PATCH /intake/:intake_id`
+
+### PATCH parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+appointment | object? | Appointment details
+appointment.date | string? | Date portion of the appointment, e.g. "2019-07-20".
+appointment.time | string? | Time portion of the appointment in 24 hour time, e.g. "3:30 pm" or "9:45 am".
+appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
+pet | object? | Pet details
+pet.insurance | object? | Pet's insurance info
+pet.insurance.insurance_id | string | Insurance company from calling `GET /insurance`
+pet.insurance.policy_number | string | Pet's insurance policy number
