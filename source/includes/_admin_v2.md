@@ -167,7 +167,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-sort_by | string? | Either `{"created_at":"asc"}`, `{"created_at":"desc"}`, `{"updated_at":"asc"}` or `{"updated_at":"desc"}`. Default field is `{"updated_at":"desc"}`.
+sort_by | string? | Either `{"created_at":"asc"}`, `{"created_at":"desc"}`, `{"updated_at":"asc"}`, `{"updated_at":"desc"}`, `{"appointment_date":"asc"}` or `{"appointment_date":"desc"}`. Default field is `{"updated_at":"desc"}`.
 filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Record requests also supports `id`, `user_id`, `pet_id` and `place_id`/`vet_id`.
 
 ## Get a record request
@@ -534,6 +534,7 @@ Gets an individual intake form.
 {
   "status": "complete",
   "review_notes": "Bites hands occasionally",
+  "empty_reason": "No records",
   "admin_id": 1
 }
 ```
@@ -544,8 +545,7 @@ Gets an individual intake form.
 (none)
 ```
 
-Updates an intake form. Only the admin, review notes or status can be updated. Setting the status to `complete` will cause the
-Pawprint Summary to be automatically generated and the URL stored in `intake.link`.
+Updates an intake form. Only the admin, review notes, empty reason or status can be updated. Setting the status to `complete` will cause the Pawprint Summary to be automatically generated and the URL stored in `intake.link`.
 
 ### HTTP Request
 `PUT /admin/v2/intake/:intake_id`
@@ -554,6 +554,7 @@ Pawprint Summary to be automatically generated and the URL stored in `intake.lin
 Parameter | Type | Description
 --------- | ---- | -----------
 status | string? | One of "in review", "complete" or "cancelled".
+empty_reason | string? | Freeform string explaining why the intake has been completed or cancelled with 0 records attached.
 review_notes | string? | Important observations that came up during the admin review.
 admin_id | int? | Assigns an admin to handle this case.
 

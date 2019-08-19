@@ -85,6 +85,9 @@ appointment.reason | string? | More details about why this appointment is being 
     "breed": "Australian Cattle Dog Mix",
     "birthdate": "2018-02-16"
   },
+  "screening": {
+    "is_new_client": true
+  },
 	"appointment": {
     "place": 27015,
     "date": "2019-07-20",
