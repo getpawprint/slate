@@ -245,7 +245,17 @@ Gets information available to the general public about a place, for the purpose 
         "species": "dog",
         "breed": "Australian Cattle Dog Mix",
         "birthdate": "2018-02-16",
-        "profile_pic": "base64:jpeg,Ax08uoawnyCAOA-Muaw3=="
+        "profile_pic": "image/jpeg;base64:jpeg,Ax08uoawnyCAOA-Muaw3==",
+        "files": [
+        {
+          "name": "Medical History",
+          "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+        },
+        {
+          "name": "Jellystone records",
+          "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+        }
+      ]
       },
       "place_ids": [ 27015, 2101 ],
       "vets": [
@@ -272,7 +282,17 @@ Gets information available to the general public about a place, for the purpose 
         "species": "cat",
         "breed": "Domestic Short Hair",
         "birthdate": "2009-07-11",
-        "profile_pic": "base64:jpeg,9ua-v9XASef2-="
+        "profile_pic": "base64:jpeg,9ua-v9XASef2-=",
+        "files": [
+        {
+          "name": "Medical History",
+          "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+        },
+        {
+          "name": "Jellystone records",
+          "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+        }
+      ]
       },
       "place_ids": [ 2101 ],
       "vets": [
@@ -291,17 +311,7 @@ Gets information available to the general public about a place, for the purpose 
         "type": "Illness/injury",
         "reason": "Persistent cough"
       },
-      "note": "Doesn't like being touched on the head",
-      "files": [
-        {
-          "name": "Medical History",
-          "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
-        },
-        {
-          "name": "Jellystone records",
-          "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
-        }
-      ]
+      "note": "Doesn't like being touched on the head"
     }
   ],
   "appointment_request": {
@@ -350,6 +360,9 @@ bookings.pet.species | string | Pet's species, e.g. `cat` or `dog`.
 bookings.pet.breed | string? | Pet's breed.
 bookings.pet.birthdate | date? | Date portion of the pet's birthdate
 bookings.pet.profile_pic | base64? | Base64 encoded image of the pet
+bookings.pet.files | object[]? | User uploaded files
+bookings.pet.files.name | string | User-submitted description of the file
+bookings.pet.files.data | string | Base64 encoded file
 bookings.place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. One of `place_ids` or `vets` must be specified, or else `empty_reason` must be given.
 bookings.vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. One of `place_ids` or `vets` must be specified, or else `empty_reason` must be given.
 bookings.vets.name | string | Vet name.
@@ -364,9 +377,6 @@ bookings.appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_
 bookings.appointment.type | string? | Broad category; see `appointment_type` table in database
 bookings.appointment.reason | string? | More details about why this appointment is being made
 bookings.note | string? | Note to the vets.
-bookings.files | object[]? | User uploaded files
-bookings.files.name | string | User-submitted description of the file
-bookings.files.data | string | base64 encoded file
 signature | string | Base64 encoded signature of the user's consent.
 appointment_request | object? | Appointment request object; this is exclusively for sending to the vet and does not affect the intake in any way.
 appointment_request.date | string? | Date portion of the appointment, e.g. "2019-07-20".
