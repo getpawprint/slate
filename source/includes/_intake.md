@@ -142,7 +142,17 @@ the intake form.
   ],
   "empty_reason": "New puppy/kitten",
   "note": "Milo used to be called Olim",
-  "signature": "https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png"
+  "signature": "https://s3.aws.amazon.com/pawprint/pawprint-intake-signatures/eXa8nzcsSp_sig.png",
+  "files": [
+    {
+      "name": "Medical History",
+      "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+    },
+    {
+      "name": "Jellystone records",
+      "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+    }
+  ]
 }
 ```
 
@@ -188,6 +198,9 @@ vets.zip | string? | Vet's zip code.
 empty_reason | string? | If `place_ids` and `vets` are not specified, this is the reason why - e.g., "I forgot which vets my pet has seen" or "New puppy/kitten". Otherwise, this string is ignored.
 note | string? | Note to the vets.
 signature | string | Signature of the user's consent.
+files | object[]? | User uploaded files
+files.name | string | User-submitted description of the file
+files.data | string | base64 encoded file
 
 ## Get place info
 
@@ -251,7 +264,7 @@ Gets information available to the general public about a place, for the purpose 
         "type": "Wellness Exam",
         "reason": "Just moved to town"
       },
-      "note": "Milo used to be called Olim",
+      "note": "Milo used to be called Olim"
     },
     {
       "pet": {
@@ -279,6 +292,16 @@ Gets information available to the general public about a place, for the purpose 
         "reason": "Persistent cough"
       },
       "note": "Doesn't like being touched on the head",
+      "files": [
+        {
+          "name": "Medical History",
+          "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+        },
+        {
+          "name": "Jellystone records",
+          "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+        }
+      ]
     }
   ],
   "appointment_request": {
@@ -341,6 +364,9 @@ bookings.appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_
 bookings.appointment.type | string? | Broad category; see `appointment_type` table in database
 bookings.appointment.reason | string? | More details about why this appointment is being made
 bookings.note | string? | Note to the vets.
+bookings.files | object[]? | User uploaded files
+bookings.files.name | string | User-submitted description of the file
+bookings.files.data | string | base64 encoded file
 signature | string | Base64 encoded signature of the user's consent.
 appointment_request | object? | Appointment request object; this is exclusively for sending to the vet and does not affect the intake in any way.
 appointment_request.date | string? | Date portion of the appointment, e.g. "2019-07-20".
