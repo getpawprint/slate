@@ -465,6 +465,9 @@
                   <li>
                     <a href="#confirm-a-pawprint-vet-appointment" class="toc-h2 toc-link" data-title="confirm-a-pawprint-vet-appointment">Confirm a Pawprint vet appointment</a>
                   </li>
+                  <li>
+                    <a href="#create-a-partial-appointment-request" class="toc-h2 toc-link" data-title="create-a-partial-appointment-request">Create a partial appointment request</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -3837,6 +3840,137 @@ This is a public API and does not require authentication.
 </aside>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /appointment_confirmation/:code</code></p>
+<h2 id='create-a-partial-appointment-request'>Create a partial appointment request</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"425-555-6174"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pochi"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Golden retriever"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-06-02"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"birthdate_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"day"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"appointment_request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-08-30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"times"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"8:00 AM-11:00 AM"</span><span class="p">,</span><span class="w"> </span><span class="s2">"11:00 AM-1:00 PM"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New client"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Persistent cough"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Creates a partial appointment request. <code>user.email</code> is the only required field, and everything else is optional.
+If <code>user.email</code> matches an existing <code>partial_appointment_request</code> entry, the whole row is overwritten.
+Users may be sent a followup email reminding them to complete their appointment request and intake.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST /place/:place_id/appointment_requests/partial</code></p>
+<h3 id='post-parameters-3'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>object</td>
+<td>Information about the requesting user</td>
+</tr>
+<tr>
+<td>user.email</td>
+<td>string</td>
+<td>User&#39;s email address</td>
+</tr>
+<tr>
+<td>user.phone</td>
+<td>string?</td>
+<td>User&#39;s phone numbewr</td>
+</tr>
+<tr>
+<td>user.first_name</td>
+<td>string?</td>
+<td>User&#39;s first name</td>
+</tr>
+<tr>
+<td>user.last_name</td>
+<td>string?</td>
+<td>User&#39;s last name</td>
+</tr>
+<tr>
+<td>pet</td>
+<td>object?</td>
+<td>Information about the pet</td>
+</tr>
+<tr>
+<td>pet.name</td>
+<td>string</td>
+<td>Pet&#39;s name</td>
+</tr>
+<tr>
+<td>pet.species</td>
+<td>string?</td>
+<td>Pet&#39;s species</td>
+</tr>
+<tr>
+<td>pet.breed</td>
+<td>string?</td>
+<td>Pet&#39;s breed</td>
+</tr>
+<tr>
+<td>pet.gender</td>
+<td>string?</td>
+<td>Pet&#39;s sex</td>
+</tr>
+<tr>
+<td>pet.birthdate</td>
+<td>string?</td>
+<td>Pet&#39;s birthdate (best estimate)</td>
+</tr>
+<tr>
+<td>pet.birthdate_level</td>
+<td>string?</td>
+<td>Granularity of the pet&#39;s birthdate estimate (<code>year</code>, <code>month</code>, <code>day</code>); defaults to <code>day</code> if <code>pet.birthdate</code> is given and <code>pet.birthdate_level</code> is not</td>
+</tr>
+<tr>
+<td>appointment_request</td>
+<td>object</td>
+<td>Requested appointment time(s)</td>
+</tr>
+<tr>
+<td>appointment_request.date</td>
+<td>string?</td>
+<td>Date portion of the appointment, e.g. &quot;2019-07-20&quot;.</td>
+</tr>
+<tr>
+<td>appointment_request.times</td>
+<td>string[]?</td>
+<td>Array of requested times; these are passed through the backend and sent to the vet directly.</td>
+</tr>
+<tr>
+<td>appointment_request.type</td>
+<td>string?</td>
+<td>Broad category; see <code>appointment_type</code> table in database</td>
+</tr>
+<tr>
+<td>appointment_request.reason</td>
+<td>string?</td>
+<td>More details about why this appointment is being made</td>
+</tr>
+</tbody></table>
 <h1 id='events-v2'>Events V2</h1>
 <p>Use these as a template by copying and pasting them.</p>
 <h2 id='get-pet-events'>Get pet events</h2>
@@ -4879,9 +5013,11 @@ record requests are created as soon the intake form has been submitted the first
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone Animal Hospital"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9001</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"appointment_request_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Gets information available to the general public about a place, for the purpose of creating intakes.</p>
+<p>Gets information available to the general public about a place, for the purpose of creating intakes. The <code>:place_id</code> URL parameter can be either the place&#39;s ID or the <code>partner_place.vanity_slug</code>.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /place/:place_id/intake</code></p>
 <h2 id='create-complete-intake-form-user'>Create complete intake form (user)</h2>
@@ -4957,7 +5093,13 @@ record requests are created as soon the intake form has been submitted the first
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doesn't like being touched on the head"</span><span class="p">,</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"appointment_request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-08-30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"times"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"8:00 AM-11:00 AM"</span><span class="p">,</span><span class="w"> </span><span class="s2">"11:00 AM-1:00 PM"</span><span class="w"> </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New client"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Persistent cough"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -4968,7 +5110,10 @@ record requests are created as soon the intake form has been submitted the first
   </span><span class="s2">"Pumpkin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98cgckxlf3DDmf9AFjv4089pz"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This creates an intake form all in one go, without the need for action on the vet side.</p>
+<p>This creates an intake form all in one go, without the need for action on the vet side.
+Appointments can come in two forms: the <code>booking.appointment</code> object and the <code>appointment_request</code> object.
+The difference between them is that <code>booking.appointment</code> should be used when the appointment has already been set up, whereas <code>appointment_request</code> is simply to connect the client with the vet so they can agree upon a specific appointment time.
+Setting <code>booking.appointment</code> will apply a due date to the intake and associated record requests and make it eligible for reminders, while the information in <code>appointment_request</code> is used solely for sending an email to the vet and/or client, and nothing else.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /intake/place/:place_id</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
@@ -5138,6 +5283,31 @@ record requests are created as soon the intake form has been submitted the first
 <td>signature</td>
 <td>string</td>
 <td>Base64 encoded signature of the user&#39;s consent.</td>
+</tr>
+<tr>
+<td>appointment_request</td>
+<td>object?</td>
+<td>Appointment request object; this is exclusively for sending to the vet and does not affect the intake in any way.</td>
+</tr>
+<tr>
+<td>appointment_request.date</td>
+<td>string?</td>
+<td>Date portion of the appointment, e.g. &quot;2019-07-20&quot;.</td>
+</tr>
+<tr>
+<td>appointment_request.times</td>
+<td>string[]?</td>
+<td>Array of requested times; these are passed through the backend and sent to the vet directly.</td>
+</tr>
+<tr>
+<td>appointment_request.type</td>
+<td>string?</td>
+<td>Broad category; see <code>appointment_type</code> table in database</td>
+</tr>
+<tr>
+<td>appointment_request.reason</td>
+<td>string?</td>
+<td>More details about why this appointment is being made</td>
 </tr>
 </tbody></table>
 <h2 id='update-pet-profile-pic-user'>Update pet profile pic (user)</h2>

@@ -227,3 +227,65 @@ This is a public API and does not require authentication.
 
 ### HTTP Request
 `GET /appointment_confirmation/:code`
+
+## Create a partial appointment request
+> Request example
+
+```json
+{
+  "user": {
+    "email": "johnsmith@getpawprint.com",
+    "phone": "425-555-6174",
+    "first_name": "John",
+    "last_name": "Smith"
+  },
+  "pet": {
+      "name": "Pochi",
+      "species": "dog",
+      "breed": "Golden retriever",
+      "gender": "m",
+      "birthdate": "2018-06-02",
+      "birthdate_level": "day"
+  },
+  "appointment_request": {
+    "date": "2019-08-30",
+    "times": [ "8:00 AM-11:00 AM", "11:00 AM-1:00 PM" ],
+    "type": "New client",
+    "reason": "Persistent cough"
+  }
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Creates a partial appointment request. `user.email` is the only required field, and everything else is optional.
+If `user.email` matches an existing `partial_appointment_request` entry, the whole row is overwritten.
+Users may be sent a followup email reminding them to complete their appointment request and intake.
+
+### HTTP Request
+`POST /place/:place_id/appointment_requests/partial`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+user | object | Information about the requesting user
+user.email | string | User's email address
+user.phone | string? | User's phone numbewr
+user.first_name | string? | User's first name
+user.last_name | string? | User's last name
+pet | object? | Information about the pet
+pet.name | string | Pet's name
+pet.species | string? | Pet's species
+pet.breed | string? | Pet's breed
+pet.gender | string? | Pet's sex
+pet.birthdate | string? | Pet's birthdate (best estimate)
+pet.birthdate_level | string? | Granularity of the pet's birthdate estimate (`year`, `month`, `day`); defaults to `day` if `pet.birthdate` is given and `pet.birthdate_level` is not
+appointment_request | object | Requested appointment time(s)
+appointment_request.date | string? | Date portion of the appointment, e.g. "2019-07-20".
+appointment_request.times | string[]? | Array of requested times; these are passed through the backend and sent to the vet directly.
+appointment_request.type | string? | Broad category; see `appointment_type` table in database
+appointment_request.reason | string? | More details about why this appointment is being made

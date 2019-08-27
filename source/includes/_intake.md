@@ -197,10 +197,12 @@ signature | string | Signature of the user's consent.
 {
   "name": "Jellystone Animal Hospital",
   "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
+  "place_id": 9001,
+  "appointment_request_enabled": true
 }
 ```
 
-Gets information available to the general public about a place, for the purpose of creating intakes.
+Gets information available to the general public about a place, for the purpose of creating intakes. The `:place_id` URL parameter can be either the place's ID or the `partner_place.vanity_slug`.
 
 ### HTTP Request
 `GET /place/:place_id/intake`
@@ -278,7 +280,13 @@ Gets information available to the general public about a place, for the purpose 
       },
       "note": "Doesn't like being touched on the head",
     }
-  ]
+  ],
+  "appointment_request": {
+    "date": "2019-08-30",
+    "times": [ "8:00 AM-11:00 AM", "11:00 AM-1:00 PM" ],
+    "type": "New client",
+    "reason": "Persistent cough"
+  }
 }
 ```
 
@@ -292,6 +300,9 @@ Gets information available to the general public about a place, for the purpose 
 ```
 
 This creates an intake form all in one go, without the need for action on the vet side.
+Appointments can come in two forms: the `booking.appointment` object and the `appointment_request` object.
+The difference between them is that `booking.appointment` should be used when the appointment has already been set up, whereas `appointment_request` is simply to connect the client with the vet so they can agree upon a specific appointment time.
+Setting `booking.appointment` will apply a due date to the intake and associated record requests and make it eligible for reminders, while the information in `appointment_request` is used solely for sending an email to the vet and/or client, and nothing else.
 
 ### HTTP Request
 `POST /intake/place/:place_id`
@@ -331,6 +342,12 @@ bookings.appointment.type | string? | Broad category; see `appointment_type` tab
 bookings.appointment.reason | string? | More details about why this appointment is being made
 bookings.note | string? | Note to the vets.
 signature | string | Base64 encoded signature of the user's consent.
+appointment_request | object? | Appointment request object; this is exclusively for sending to the vet and does not affect the intake in any way.
+appointment_request.date | string? | Date portion of the appointment, e.g. "2019-07-20".
+appointment_request.times | string[]? | Array of requested times; these are passed through the backend and sent to the vet directly.
+appointment_request.type | string? | Broad category; see `appointment_type` table in database
+appointment_request.reason | string? | More details about why this appointment is being made
+
 
 ## Update pet profile pic (user)
 > Request example
