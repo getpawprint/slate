@@ -210,3 +210,71 @@ If the Google Places ID already existed in the `place` table, then the existing 
 Parameter | Type | Description
 --------- | ---- | -----------
 placesid | String | A Google Place ID.
+
+## Get recent vets
+
+> Response example
+
+```json
+[
+    {
+        "id": 27015,
+        "name": "Pawprint, Inc.",
+        "placesid": null,
+        "website": "https://www.getpawprint.com",
+        "address": "814 Mission Street, San Francisco, CA",
+        "email": "echoi@getpawprint.com",
+        "phone": "555-555-5555",
+        "verified": null,
+        "custom_message": null,
+        "vet_logo": "http://www.getpawprint.com/img/logo-text-brand.png",
+        "pawprint_vet": true,
+        "pawprint_vet_id": 5,
+        "last_requested_at": "2019-03-07T01:42:50.678Z",
+        "practiceName": "Pawprint, Inc.",
+        "originalAddress": "814 Mission Street, San Francisco, CA",
+        "unformattedPhone": "555-555-5555"
+    },
+    {
+        "id": 9477,
+        "name": "VCA Bellevue Veterinary Hospital",
+        "placesid": "ChIJc26HdVFskFQRS_yMm087nnw",
+        "website": "http://www.vcahospitals.com/bellevue?utm_source=maps&utm_medium=organic&utm_campaign=VCA_Bellevue_Veterinary_Hospital",
+        "address": "13655 NE 8th St, Bellevue, WA 98005",
+        "email": null,
+        "phone": "(425) 747-1770",
+        "verified": true,
+        "custom_message": null,
+        "vet_logo": null,
+        "pawprint_vet": false,
+        "pawprint_vet_id": null,
+        "last_requested_at": "2017-12-08T02:04:18.874Z",
+        "practiceName": "VCA Bellevue Veterinary Hospital",
+        "originalAddress": "13655 NE 8th St, Bellevue, WA 98005",
+        "unformattedPhone": "(425) 747-1770"
+    },
+    {
+        "id": 12316,
+        "name": "Bellevue Animal Hospital",
+        "placesid": "ChIJI5iEwH1skFQRbYBnLnURvIQ",
+        "website": "http://www.bellevueanimalhospital.net/",
+        "address": "10415 Main St, Bellevue, WA 98004",
+        "email": null,
+        "phone": "(425) 454-1246",
+        "verified": null,
+        "custom_message": null,
+        "vet_logo": null,
+        "pawprint_vet": false,
+        "pawprint_vet_id": null,
+        "last_requested_at": "2017-11-20T20:46:44.536Z",
+        "practiceName": "Bellevue Animal Hospital",
+        "originalAddress": "10415 Main St, Bellevue, WA 98004",
+        "unformattedPhone": "(425) 454-1246"
+    }
+]
+```
+
+Gets places where the user has previously made a request (that wasn't cancelled) and the last time they made a request there (in the `last_requested_at` field). The list is in descending order of `last_requested_at`.
+
+### HTTP Request
+`GET /user/v3/recent_vets`

@@ -675,6 +675,9 @@
                   <li>
                     <a href="#create-place-entry-from-google-place-id" class="toc-h2 toc-link" data-title="create-place-entry-from-google-place-id">Create place entry from Google Place ID</a>
                   </li>
+                  <li>
+                    <a href="#get-recent-vets" class="toc-h2 toc-link" data-title="get-recent-vets">Get recent vets</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -7029,6 +7032,70 @@ If the Google Places ID already existed in the <code>place</code> table, then th
 <td>A Google Place ID.</td>
 </tr>
 </tbody></table>
+<h2 id='get-recent-vets'>Get recent vets</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint, Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.getpawprint.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"814 Mission Street, San Francisco, CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echoi@getpawprint.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vet_logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.getpawprint.com/img/logo-text-brand.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_requested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-07T01:42:50.678Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"practiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint, Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"814 Mission Street, San Francisco, CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unformattedPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9477</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VCA Bellevue Veterinary Hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJc26HdVFskFQRS_yMm087nnw"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.vcahospitals.com/bellevue?utm_source=maps&amp;utm_medium=organic&amp;utm_campaign=VCA_Bellevue_Veterinary_Hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13655 NE 8th St, Bellevue, WA 98005"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(425) 747-1770"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vet_logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_requested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-08T02:04:18.874Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"practiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VCA Bellevue Veterinary Hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13655 NE 8th St, Bellevue, WA 98005"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unformattedPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(425) 747-1770"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12316</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bellevue Animal Hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"placesid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ChIJI5iEwH1skFQRbYBnLnURvIQ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.bellevueanimalhospital.net/"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10415 Main St, Bellevue, WA 98004"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(425) 454-1246"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"custom_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vet_logo"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_vet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_requested_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-20T20:46:44.536Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"practiceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bellevue Animal Hospital"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"originalAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10415 Main St, Bellevue, WA 98004"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"unformattedPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(425) 454-1246"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets places where the user has previously made a request (that wasn&#39;t cancelled) and the last time they made a request there (in the <code>last_requested_at</code> field). The list is in descending order of <code>last_requested_at</code>.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /user/v3/recent_vets</code></p>
 <h1 id='places-v3'>Places V3</h1>
 <p>Location-aware search. Why did Place v2 get skipped? There was already an internal place V2 in the backend, and so an internal place V3 was created. The new external-facing place API was versioned to V3 to follow suit.</p>
 <h2 id='location-aware-search'>Location-aware search</h2>
