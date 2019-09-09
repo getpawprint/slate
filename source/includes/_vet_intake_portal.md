@@ -351,11 +351,19 @@ filter | string? | JSON object, where the key is the filter name and the value i
     ],
     "review_notes": "Rocky is 80% blind in left eye. No hearing",
     "pdfs": [
-      "https://pawprint-request-pdf.s3.amazonaws.com/123.pdf",
-      "https://pawprint-request-pdf.s3.amazonaws.com/456.pdf",
-      "https://pawprint-request-pdf.s3.amazonaws.com/789.pdf",
-      "https://pawprint-request-pdf.s3.amazonaws.com/0ab.pdf",
-      "https://pawprint-request-pdf.s3.amazonaws.com/cde.pdf"
+      {
+        "id": 41256,
+        "link": "https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf",
+        "title": "Cat Care Professionals: 08/14/2019",
+        "description": "Medical history",
+        "created_at": "2019-08-14T18:51:43.895Z"
+      }
+    ],
+    "user_files": [
+      {
+        "name": "Rabies records",
+        "link": "https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf"
+      }
     ]
   }
 }
