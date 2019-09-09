@@ -678,6 +678,9 @@
                   <li>
                     <a href="#get-recent-vets" class="toc-h2 toc-link" data-title="get-recent-vets">Get recent vets</a>
                   </li>
+                  <li>
+                    <a href="#create-referral-partner-from-place" class="toc-h2 toc-link" data-title="create-referral-partner-from-place">Create referral partner from place</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -7096,6 +7099,23 @@ If the Google Places ID already existed in the <code>place</code> table, then th
 <p>Gets places where the user has previously made a request (that wasn&#39;t cancelled) and the last time they made a request there (in the <code>last_requested_at</code> field). The list is in descending order of <code>last_requested_at</code>.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /user/v3/recent_vets</code></p>
+<h2 id='create-referral-partner-from-place'>Create referral partner from place</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Creates a referral partner from the given place ID. If the place already exists as a partner, HTTP 204 is returned; if not, new entries are created in the <code>partner</code>, <code>partner_place</code> and <code>product</code> tables and HTTP 201 is returned.
+Once this call returns, intakes can be created for it (i.e. <code>POST /intake/place/:place_id</code>).</p>
+
+<p>However, referral partners differ from onboarded partners in that we don&#39;t have a signed agreement with them, so the standard consent form is used, and we don&#39;t have a vet logo.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>POST /place/:place_id/referral</code></p>
 <h1 id='places-v3'>Places V3</h1>
 <p>Location-aware search. Why did Place v2 get skipped? There was already an internal place V2 in the backend, and so an internal place V3 was created. The new external-facing place API was versioned to V3 to follow suit.</p>
 <h2 id='location-aware-search'>Location-aware search</h2>

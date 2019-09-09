@@ -278,3 +278,24 @@ Gets places where the user has previously made a request (that wasn't cancelled)
 
 ### HTTP Request
 `GET /user/v3/recent_vets`
+
+## Create referral partner from place
+> Request example
+
+```json
+(none)
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Creates a referral partner from the given place ID. If the place already exists as a partner, HTTP 204 is returned; if not, new entries are created in the `partner`, `partner_place` and `product` tables and HTTP 201 is returned.
+Once this call returns, intakes can be created for it (i.e. `POST /intake/place/:place_id`).
+
+However, referral partners differ from onboarded partners in that we don't have a signed agreement with them, so the standard consent form is used, and we don't have a vet logo.
+
+### HTTP Request
+`POST /place/:place_id/referral`
