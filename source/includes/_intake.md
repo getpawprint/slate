@@ -489,3 +489,28 @@ pet | object? | Pet details
 pet.insurance | object? | Pet's insurance info
 pet.insurance.insurance_id | string | Insurance company from calling `GET /insurance`
 pet.insurance.policy_number | string | Pet's insurance policy number
+
+## Send magic link
+> Request example
+
+```json
+{
+  "email":"johnsmith@getpawprint.com"
+}
+```
+
+> Response example
+
+```json
+(none))
+```
+
+Sends a link to the given email; the email should of an existing Pawprint user. See `GET /activation/email` to check if an email belongs to an existing Pawprint user. The link goes back to the intake form, but includes an auth token so that user and pet profile APIs can be called.
+
+### HTTP Request
+`POST /intake/:external_id/magic_link`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+email | string | Client's email
