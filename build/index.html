@@ -534,6 +534,9 @@
                     <a href="#update-submit-intake-form-user" class="toc-h2 toc-link" data-title="update-submit-intake-form-user">Update/submit intake form (user)</a>
                   </li>
                   <li>
+                    <a href="#get-place-terms-of-service" class="toc-h2 toc-link" data-title="get-place-terms-of-service">Get place terms of service</a>
+                  </li>
+                  <li>
                     <a href="#get-place-info" class="toc-h2 toc-link" data-title="get-place-info">Get place info</a>
                   </li>
                   <li>
@@ -4842,7 +4845,13 @@ the intake form.</p>
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"secondary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-6666"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"screening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"is_new_client"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -4854,7 +4863,14 @@ the intake form.</p>
     </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"birthdate_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"day"</span><span class="w">
+    </span><span class="s2">"birthdate_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"day"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"neuter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Outdoor"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"marketing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"media_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sms_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Word of mouth"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w"> </span><span class="mi">2101</span><span class="w"> </span><span class="p">],</span><span class="w">
   </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -4930,6 +4946,31 @@ record requests are created as soon the intake form has been submitted the first
 <td>New client&#39;s address.</td>
 </tr>
 <tr>
+<td>user.birthdate</td>
+<td>datetime?</td>
+<td>New client&#39;s birthdate (for DEA reporting of prescriptions of controlled substances)</td>
+</tr>
+<tr>
+<td>secondary</td>
+<td>object?</td>
+<td>Secondary contact information, like a spouse</td>
+</tr>
+<tr>
+<td>secondary.first_name</td>
+<td>Secondary contact&#39;s first name.</td>
+<td></td>
+</tr>
+<tr>
+<td>secondary.last_name</td>
+<td>Secondary contact&#39;s last name.</td>
+<td></td>
+</tr>
+<tr>
+<td>secondary.phone</td>
+<td>Secondary contact&#39;s phone.</td>
+<td></td>
+</tr>
+<tr>
 <td>screening</td>
 <td>object</td>
 <td>Screening questions</td>
@@ -4978,6 +5019,36 @@ record requests are created as soon the intake form has been submitted the first
 <td>pet.birthdate_level</td>
 <td>string?</td>
 <td>The accuracy of the pet&#39;s birthdate, e.g. if user only chose a <code>year</code>, a year and a <code>month</code>, or a complete date (<code>day</code>).</td>
+</tr>
+<tr>
+<td>pet.gender</td>
+<td>string</td>
+<td>&quot;m&quot; or &quot;f&quot;</td>
+</tr>
+<tr>
+<td>pet.neuter</td>
+<td>bool?</td>
+<td>Whether or not the pet has been neutered/spayed.</td>
+</tr>
+<tr>
+<td>marketing</td>
+<td>object?</td>
+<td>Marketing fields for vet (no effect on intake)</td>
+</tr>
+<tr>
+<td>marketing.media_opt_in</td>
+<td>bool</td>
+<td>Does the client release rights to clinic to use photos for social</td>
+</tr>
+<tr>
+<td>marketing.sms_opt_in</td>
+<td>bool</td>
+<td>Does the client opt into text</td>
+</tr>
+<tr>
+<td>marketing.referral</td>
+<td>string</td>
+<td>How you heard about the clinic - string (include a couple default options like yelp, google, friend)</td>
 </tr>
 <tr>
 <td>place_ids</td>
@@ -5040,6 +5111,17 @@ record requests are created as soon the intake form has been submitted the first
 <td>base64 encoded file</td>
 </tr>
 </tbody></table>
+<h2 id='get-place-terms-of-service'>Get place terms of service</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets payment terms and terms of service copy for a particular vet.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /place/:place_id/tos</code></p>
 <h2 id='get-place-info'>Get place info</h2>
 <blockquote>
 <p>Response example</p>
@@ -5052,7 +5134,7 @@ record requests are created as soon the intake form has been submitted the first
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets information available to the general public about a place, for the purpose of creating intakes. The <code>:place_id</code> URL parameter can be either the place&#39;s ID or the <code>partner_place.vanity_slug</code>.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /place/:place_id/intake</code></p>
 <h2 id='create-complete-intake-form-user'>Create complete intake form (user)</h2>
 <blockquote>
@@ -5065,12 +5147,23 @@ record requests are created as soon the intake form has been submitted the first
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"secondary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-6666"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"screening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"is_new_client"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"has_been_elsewhere"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"has_been_vaccinated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"marketing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"media_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sms_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Word of mouth"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -5079,7 +5172,9 @@ record requests are created as soon the intake form has been submitted the first
         </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg;base64:jpeg,Ax08uoawnyCAOA-Muaw3=="</span><span class="w">
+        </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg;base64:jpeg,Ax08uoawnyCAOA-Muaw3=="</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"neuter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w"> </span><span class="mi">2101</span><span class="w"> </span><span class="p">],</span><span class="w">
       </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5116,7 +5211,9 @@ record requests are created as soon the intake form has been submitted the first
         </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cat"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Short Hair"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-07-11"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64:jpeg,9ua-v9XASef2-="</span><span class="w">
+        </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64:jpeg,9ua-v9XASef2-="</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"neuter"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2101</span><span class="w"> </span><span class="p">],</span><span class="w">
       </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5168,7 +5265,7 @@ record requests are created as soon the intake form has been submitted the first
 Appointments can come in two forms: the <code>booking.appointment</code> object and the <code>appointment_request</code> object.
 The difference between them is that <code>booking.appointment</code> should be used when the appointment has already been set up, whereas <code>appointment_request</code> is simply to connect the client with the vet so they can agree upon a specific appointment time.
 Setting <code>booking.appointment</code> will apply a due date to the intake and associated record requests and make it eligible for reminders, while the information in <code>appointment_request</code> is used solely for sending an email to the vet and/or client, and nothing else.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>POST /intake/place/:place_id</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
@@ -5209,6 +5306,31 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <td>New client&#39;s address.</td>
 </tr>
 <tr>
+<td>user.birthdate</td>
+<td>datetime?</td>
+<td>New client&#39;s birthdate (for DEA reporting of prescriptions of controlled substances)</td>
+</tr>
+<tr>
+<td>secondary</td>
+<td>object?</td>
+<td>Secondary contact information, like a spouse</td>
+</tr>
+<tr>
+<td>secondary.first_name</td>
+<td>Secondary contact&#39;s first name.</td>
+<td></td>
+</tr>
+<tr>
+<td>secondary.last_name</td>
+<td>Secondary contact&#39;s last name.</td>
+<td></td>
+</tr>
+<tr>
+<td>secondary.phone</td>
+<td>Secondary contact&#39;s phone.</td>
+<td></td>
+</tr>
+<tr>
 <td>screening</td>
 <td>object</td>
 <td>Screening questions</td>
@@ -5227,6 +5349,26 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <td>screening.has_been_vaccinated</td>
 <td>bool?</td>
 <td>Answers &quot;Have any of your pets been vaccinated before?&quot; (only relevant if <code>has_been_elsewhere</code> was false)</td>
+</tr>
+<tr>
+<td>marketing</td>
+<td>object?</td>
+<td>Marketing fields for vet (no effect on intake)</td>
+</tr>
+<tr>
+<td>marketing.media_opt_in</td>
+<td>bool</td>
+<td>Does the client release rights to clinic to use photos for social</td>
+</tr>
+<tr>
+<td>marketing.sms_opt_in</td>
+<td>bool</td>
+<td>Does the client opt into text</td>
+</tr>
+<tr>
+<td>marketing.referral</td>
+<td>string</td>
+<td>How you heard about the clinic - string (include a couple default options like yelp, google, friend)</td>
 </tr>
 <tr>
 <td>bookings</td>
@@ -5257,6 +5399,16 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <td>bookings.pet.birthdate</td>
 <td>date?</td>
 <td>Date portion of the pet&#39;s birthdate</td>
+</tr>
+<tr>
+<td>bookings.pet.gender</td>
+<td>string</td>
+<td>&quot;m&quot; or &quot;f&quot;</td>
+</tr>
+<tr>
+<td>bookings.pet.neuter</td>
+<td>bool?</td>
+<td>Whether or not the pet has been neutered/spayed.</td>
 </tr>
 <tr>
 <td>bookings.pet.profile_pic</td>
@@ -5393,7 +5545,7 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Updates a pet&#39;s profile picture; this can be done at any stage of the intake process at and after <code>pending user</code>.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /intake/:intake_id/image</code></p>
 <h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
@@ -5430,7 +5582,7 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 </span></code></pre>
 <p><strong>Deprecated, please use <code>PATCH /intake/:intake_id</code></strong>
 Updates the appointment on the intake; anyone with the link/intake external ID can update this.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>PUT /intake/:intake_id/appointment</code></p>
 <h3 id='put-parameters-2'>PUT parameters</h3>
 <table><thead>
@@ -5487,7 +5639,7 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Updates the intake; anyone with the link/intake external ID can update certain parts of the submitted data.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>PATCH /intake/:intake_id</code></p>
 <h3 id='patch-parameters'>PATCH parameters</h3>
 <table><thead>
@@ -5551,8 +5703,8 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none))</span><span class="w">
 </span></code></pre>
-<p>Sends a link to the given email; the email should of an existing Pawprint user. See <code>GET /activation/email</code> to check if an email belongs to an existing Pawprint user. The link goes back to the intake form, but includes an auth token so that user and pet profile APIs can be called.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<p>Sends a link to the given email; the email should be of an existing Pawprint user. See <code>GET /activation/email</code> to check if an email belongs to an existing Pawprint user. The link goes back to the intake form, but includes an auth token so that user and pet profile APIs can be called.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST /intake/:external_id/magic_link</code></p>
 <h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>
@@ -5842,13 +5994,25 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
       </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"American Staffordshire Terrier"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tri"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"microchip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1337"</span><span class="w">
+      </span><span class="s2">"microchip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1337"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indoor"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Momo"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nguyen"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5504"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"momonguyen@getpawprint.com"</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"momonguyen@getpawprint.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"secondary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Popo"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nguyen"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-6616"</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"marketing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"media_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sms_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Word of mouth"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"places"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">

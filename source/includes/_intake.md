@@ -117,7 +117,13 @@ the intake form.
     "last_name": "Smith",
     "email": "johnsmith@getpawprint.com",
     "phone": "555-555-5555",
-    "address": "123 Main St, Palo Alto, CA 94305"
+    "address": "123 Main St, Palo Alto, CA 94305",
+    "birthdate": "1990-01-01"
+  },
+  "secondary": {
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "phone": "555-555-6666"
   },
   "screening": {
     "is_new_client": true,
@@ -129,7 +135,14 @@ the intake form.
     "species": "dog",
     "breed": "Australian Cattle Dog Mix",
     "birthdate": "2018-02-16",
-    "birthdate_level": "day"
+    "birthdate_level": "day",
+    "neuter": true,
+    "type": "Outdoor"
+  },
+  "marketing": {
+    "media_opt_in": false,
+    "sms_opt_in": false,
+    "referral": "Word of mouth"
   },
   "place_ids": [ 27015, 2101 ],
   "vets": [
@@ -179,6 +192,11 @@ user.last_name | string | New client's last name.
 user.email | string | New client's email address.
 user.phone | string | New client's phone number.
 user.address | string? | New client's address.
+user.birthdate | datetime? | New client's birthdate (for DEA reporting of prescriptions of controlled substances)
+secondary | object? | Secondary contact information, like a spouse
+secondary.first_name | Secondary contact's first name.
+secondary.last_name | Secondary contact's last name.
+secondary.phone | Secondary contact's phone.
 screening | object | Screening questions
 screening.is_new_client | bool | Answers "Are you a new client?"
 screening.has_been_elsewhere | bool | Answers "Have you been to any other vets?"
@@ -189,6 +207,12 @@ pet.species | string | Pet's species, e.g. `cat` or `dog`.
 pet.breed | string | Pet's breed.
 pet.birthdate | date? | Date portion of the pet's birthdate
 pet.birthdate_level | string? | The accuracy of the pet's birthdate, e.g. if user only chose a `year`, a year and a `month`, or a complete date (`day`).
+pet.gender | string | "m" or "f"
+pet.neuter | bool? | Whether or not the pet has been neutered/spayed.
+marketing | object? | Marketing fields for vet (no effect on intake)
+marketing.media_opt_in | bool | Does the client release rights to clinic to use photos for social
+marketing.sms_opt_in | bool | Does the client opt into text
+marketing.referral | string | How you heard about the clinic - string (include a couple default options like yelp, google, friend)
 place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets.name | string | Vet name.
@@ -201,6 +225,21 @@ signature | string | Signature of the user's consent.
 files | object[]? | User uploaded files
 files.name | string | User-submitted description of the file
 files.data | string | base64 encoded file
+
+## Get place terms of service
+
+> Response example
+
+```json
+{
+  "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+}
+```
+
+Gets payment terms and terms of service copy for a particular vet.
+
+### HTTP Request
+`GET /place/:place_id/tos`
 
 ## Get place info
 
@@ -231,12 +270,23 @@ Gets information available to the general public about a place, for the purpose 
     "last_name": "Smith",
     "email": "johnsmith@getpawprint.com",
     "phone": "555-555-5555",
-    "address": "123 Main St, Palo Alto, CA 94305"
+    "address": "123 Main St, Palo Alto, CA 94305",
+    "birthdate": "1990-01-01"
+  },
+  "secondary": {
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "phone": "555-555-6666"
   },
   "screening": {
     "is_new_client": true,
     "has_been_elsewhere": false,
     "has_been_vaccinated": true
+  },
+  "marketing": {
+    "media_opt_in": false,
+    "sms_opt_in": false,
+    "referral": "Word of mouth"
   },
   "bookings": [
     {
@@ -245,7 +295,9 @@ Gets information available to the general public about a place, for the purpose 
         "species": "dog",
         "breed": "Australian Cattle Dog Mix",
         "birthdate": "2018-02-16",
-        "profile_pic": "image/jpeg;base64:jpeg,Ax08uoawnyCAOA-Muaw3=="
+        "profile_pic": "image/jpeg;base64:jpeg,Ax08uoawnyCAOA-Muaw3==",
+        "gender": "m",
+        "neuter": true
       },
       "place_ids": [ 27015, 2101 ],
       "vets": [
@@ -282,7 +334,9 @@ Gets information available to the general public about a place, for the purpose 
         "species": "cat",
         "breed": "Domestic Short Hair",
         "birthdate": "2009-07-11",
-        "profile_pic": "base64:jpeg,9ua-v9XASef2-="
+        "profile_pic": "base64:jpeg,9ua-v9XASef2-=",
+        "gender": "f",
+        "neuter": false
       },
       "place_ids": [ 2101 ],
       "vets": [
@@ -349,16 +403,27 @@ user.last_name | string | New client's last name.
 user.email | string | New client's email address.
 user.phone | string | New client's phone number.
 user.address | string | New client's address.
+user.birthdate | datetime? | New client's birthdate (for DEA reporting of prescriptions of controlled substances)
+secondary | object? | Secondary contact information, like a spouse
+secondary.first_name | Secondary contact's first name.
+secondary.last_name | Secondary contact's last name.
+secondary.phone | Secondary contact's phone.
 screening | object | Screening questions
 screening.is_new_client | bool | Answers "Are you a new client?"
 screening.has_been_elsewhere | bool | Answers "Have you been to any other vets?"
 screening.has_been_vaccinated | bool? | Answers "Have any of your pets been vaccinated before?" (only relevant if `has_been_elsewhere` was false)
+marketing | object? | Marketing fields for vet (no effect on intake)
+marketing.media_opt_in | bool | Does the client release rights to clinic to use photos for social
+marketing.sms_opt_in | bool | Does the client opt into text
+marketing.referral | string | How you heard about the clinic - string (include a couple default options like yelp, google, friend)
 bookings | object[] | Contains information about each pet and appointment
 bookings.pet | object | The pet to be seen.
 bookings.pet.name | name | Pet's name.
 bookings.pet.species | string | Pet's species, e.g. `cat` or `dog`.
 bookings.pet.breed | string? | Pet's breed.
 bookings.pet.birthdate | date? | Date portion of the pet's birthdate
+bookings.pet.gender | string | "m" or "f"
+bookings.pet.neuter | bool? | Whether or not the pet has been neutered/spayed.
 bookings.pet.profile_pic | base64? | Base64 encoded image of the pet
 bookings.place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. One of `place_ids` or `vets` must be specified, or else `empty_reason` must be given.
 bookings.vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. One of `place_ids` or `vets` must be specified, or else `empty_reason` must be given.
@@ -505,7 +570,7 @@ pet.insurance.policy_number | string | Pet's insurance policy number
 (none))
 ```
 
-Sends a link to the given email; the email should of an existing Pawprint user. See `GET /activation/email` to check if an email belongs to an existing Pawprint user. The link goes back to the intake form, but includes an auth token so that user and pet profile APIs can be called.
+Sends a link to the given email; the email should be of an existing Pawprint user. See `GET /activation/email` to check if an email belongs to an existing Pawprint user. The link goes back to the intake form, but includes an auth token so that user and pet profile APIs can be called.
 
 ### HTTP Request
 `POST /intake/:external_id/magic_link`

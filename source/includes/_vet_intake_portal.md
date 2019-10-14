@@ -256,13 +256,25 @@ filter | string? | JSON object, where the key is the filter name and the value i
       "breed": "American Staffordshire Terrier",
       "color": "Tri",
       "weight": null,
-      "microchip": "1337"
+      "microchip": "1337",
+      "type": "Indoor"
     },
     "user": {
       "first_name": "Momo",
       "last_name": "Nguyen",
       "phone": "(555) 555-5504",
-      "email": "momonguyen@getpawprint.com"
+      "email": "momonguyen@getpawprint.com",
+      "birthdate": "1990-01-01"
+    },
+    "secondary": {
+      "first_name": "Popo",
+      "last_name": "Nguyen",
+      "phone": "(555) 555-6616",
+    },
+    "marketing": {
+      "media_opt_in": false,
+      "sms_opt_in": true,
+      "referral": "Word of mouth"
     },
     "places": [
       {
