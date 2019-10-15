@@ -5031,6 +5031,11 @@ record requests are created as soon the intake form has been submitted the first
 <td>Whether or not the pet has been neutered/spayed.</td>
 </tr>
 <tr>
+<td>pet.type</td>
+<td>string?</td>
+<td>Cats only - &quot;Indoor only&quot;, &quot;Outdoor only&quot; or &quot;Both&quot;</td>
+</tr>
+<tr>
 <td>marketing</td>
 <td>object?</td>
 <td>Marketing fields for vet (no effect on intake)</td>
@@ -5213,7 +5218,8 @@ record requests are created as soon the intake form has been submitted the first
         </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-07-11"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base64:jpeg,9ua-v9XASef2-="</span><span class="p">,</span><span class="w">
         </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"neuter"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="s2">"neuter"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indoor only"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">2101</span><span class="w"> </span><span class="p">],</span><span class="w">
       </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5414,6 +5420,11 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <td>bookings.pet.profile_pic</td>
 <td>base64?</td>
 <td>Base64 encoded image of the pet</td>
+</tr>
+<tr>
+<td>bookings.pet.type</td>
+<td>string?</td>
+<td>Cats only - &quot;Indoor only&quot;, &quot;Outdoor only&quot; or &quot;Both&quot;</td>
 </tr>
 <tr>
 <td>bookings.place_ids</td>
@@ -5630,6 +5641,9 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
       </span><span class="s2">"insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IPC013297"</span><span class="w">
     </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"marketing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Word of mouth"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -5688,6 +5702,11 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
 <td>pet.insurance.policy_number</td>
 <td>string</td>
 <td>Pet&#39;s insurance policy number</td>
+</tr>
+<tr>
+<td>marketing.referral</td>
+<td>string</td>
+<td>How you heard about the clinic - string (include a couple default options like yelp, google, friend)</td>
 </tr>
 </tbody></table>
 <h2 id='send-magic-link'>Send magic link</h2>

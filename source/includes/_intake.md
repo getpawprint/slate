@@ -209,6 +209,7 @@ pet.birthdate | date? | Date portion of the pet's birthdate
 pet.birthdate_level | string? | The accuracy of the pet's birthdate, e.g. if user only chose a `year`, a year and a `month`, or a complete date (`day`).
 pet.gender | string | "m" or "f"
 pet.neuter | bool? | Whether or not the pet has been neutered/spayed.
+pet.type | string? | Cats only - "Indoor only", "Outdoor only" or "Both"
 marketing | object? | Marketing fields for vet (no effect on intake)
 marketing.media_opt_in | bool | Does the client release rights to clinic to use photos for social
 marketing.sms_opt_in | bool | Does the client opt into text
@@ -336,7 +337,8 @@ Gets information available to the general public about a place, for the purpose 
         "birthdate": "2009-07-11",
         "profile_pic": "base64:jpeg,9ua-v9XASef2-=",
         "gender": "f",
-        "neuter": false
+        "neuter": false,
+        "type": "Indoor only"
       },
       "place_ids": [ 2101 ],
       "vets": [
@@ -425,6 +427,7 @@ bookings.pet.birthdate | date? | Date portion of the pet's birthdate
 bookings.pet.gender | string | "m" or "f"
 bookings.pet.neuter | bool? | Whether or not the pet has been neutered/spayed.
 bookings.pet.profile_pic | base64? | Base64 encoded image of the pet
+bookings.pet.type | string? | Cats only - "Indoor only", "Outdoor only" or "Both"
 bookings.place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. One of `place_ids` or `vets` must be specified, or else `empty_reason` must be given.
 bookings.vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. One of `place_ids` or `vets` must be specified, or else `empty_reason` must be given.
 bookings.vets.name | string | Vet name.
@@ -528,6 +531,9 @@ appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_databa
       "insurance_id": 1,
       "policy_number": "IPC013297"
     }
+  },
+  "marketing": {
+    "referral": "Word of mouth"
   }
 }
 ```
@@ -554,6 +560,7 @@ pet | object? | Pet details
 pet.insurance | object? | Pet's insurance info
 pet.insurance.insurance_id | string | Insurance company from calling `GET /insurance`
 pet.insurance.policy_number | string | Pet's insurance policy number
+marketing.referral | string | How you heard about the clinic - string (include a couple default options like yelp, google, friend)
 
 ## Send magic link
 > Request example
