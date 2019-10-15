@@ -5643,6 +5643,8 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"marketing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"media_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sms_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Word of mouth"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -5707,6 +5709,16 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
 <td>marketing</td>
 <td>object?</td>
 <td>Marketing details</td>
+</tr>
+<tr>
+<td>marketing.media_opt_in</td>
+<td>bool</td>
+<td>Does the client release rights to clinic to use photos for social</td>
+</tr>
+<tr>
+<td>marketing.sms_opt_in</td>
+<td>bool</td>
+<td>Does the client opt into text</td>
 </tr>
 <tr>
 <td>marketing.referral</td>

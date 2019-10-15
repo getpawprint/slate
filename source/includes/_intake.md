@@ -533,6 +533,8 @@ appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_databa
     }
   },
   "marketing": {
+    "media_opt_in": true,
+    "sms_opt_in": true,
     "referral": "Word of mouth"
   }
 }
@@ -561,6 +563,8 @@ pet.insurance | object? | Pet's insurance info
 pet.insurance.insurance_id | string | Insurance company from calling `GET /insurance`
 pet.insurance.policy_number | string | Pet's insurance policy number
 marketing | object? | Marketing details
+marketing.media_opt_in | bool | Does the client release rights to clinic to use photos for social
+marketing.sms_opt_in | bool | Does the client opt into text
 marketing.referral | string | How you heard about the clinic - string (include a couple default options like yelp, google, friend)
 
 ## Send magic link
