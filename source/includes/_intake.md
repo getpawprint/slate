@@ -560,6 +560,7 @@ pet | object? | Pet details
 pet.insurance | object? | Pet's insurance info
 pet.insurance.insurance_id | string | Insurance company from calling `GET /insurance`
 pet.insurance.policy_number | string | Pet's insurance policy number
+marketing | object? | Marketing details
 marketing.referral | string | How you heard about the clinic - string (include a couple default options like yelp, google, friend)
 
 ## Send magic link
