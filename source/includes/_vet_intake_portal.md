@@ -192,14 +192,17 @@ Gets partner place info for the caller identifed in the auth header, like place 
       "appointment": {
         "date": "2019-04-20",
         "time": "10:00 AM"
-      }
+      },
+      "has_new_files": true,
+      "file_count": 5,
+      "empty_reason": "New puppy"
     }
   ],
   "count": 1
 }
 ```
 
-Gets information about intakes for a partner place. Paginated.
+Gets information about intakes for a partner place. Paginated. If `file_count` is 0, then `empty_reason` will be populated; otherwise it will be `null`.
 
 *Filters:*
 Multiple filters are joined by AND.
@@ -374,8 +377,12 @@ filter | string? | JSON object, where the key is the filter name and the value i
     "user_files": [
       {
         "name": "Rabies records",
-        "link": "https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf"
+        "link": "https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"
       }
+    ],
+    "opened_files": [
+      "https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf",
+      "https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"
     ]
   }
 }
@@ -385,6 +392,33 @@ Get detailed information about a specific intake for a partner place. There are 
 ### HTTP Request
 `GET /partners/intake/:intake_id`
 
+## Log file open event
+> Request example
+
+```json
+{
+  "url": "https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf",
+  "opened": true
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Sets opened/not opened status on a file within an intake. The file can be any URL - the profile picture, the snapshot PDF link,
+a user-uploaded file, or a file from a record request.
+
+### HTTP Request
+`POST /partners/intake/:intake_id/file_open`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+url | string | URL of the file from a request 
+opened | bool? | Defaults to `true` if not specified; `false` will set it back to new.
 
 ## Update intake (vet)
 > Request example

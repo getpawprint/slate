@@ -587,6 +587,9 @@
                     <a href="#get-intake-details" class="toc-h2 toc-link" data-title="get-intake-details">Get intake details</a>
                   </li>
                   <li>
+                    <a href="#log-file-open-event" class="toc-h2 toc-link" data-title="log-file-open-event">Log file open event</a>
+                  </li>
+                  <li>
                     <a href="#update-intake-vet" class="toc-h2 toc-link" data-title="update-intake-vet">Update intake (vet)</a>
                   </li>
               </ul>
@@ -5945,13 +5948,16 @@ Always returns HTTP 200.</p>
       </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-20"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10:00 AM"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"has_new_files"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"file_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"empty_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New puppy"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Gets information about intakes for a partner place. Paginated.</p>
+<p>Gets information about intakes for a partner place. Paginated. If <code>file_count</code> is 0, then <code>empty_reason</code> will be populated; otherwise it will be <code>null</code>.</p>
 
 <p><em>Filters:</em>
 Multiple filters are joined by AND.</p>
@@ -6148,8 +6154,12 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
     </span><span class="s2">"user_files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rabies records"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf"</span><span class="w">
+        </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"</span><span class="w">
       </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"opened_files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6157,6 +6167,43 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
 <p>Get detailed information about a specific intake for a partner place. There are two main fields - <code>appointment</code> and <code>summary</code>; <code>summary</code> is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal. HTTP 403 is returned if the <code>intake_id</code> does not belong to the partner place.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /partners/intake/:intake_id</code></p>
+<h2 id='log-file-open-event'>Log file open event</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"opened"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Sets opened/not opened status on a file within an intake. The file can be any URL - the profile picture, the snapshot PDF link,
+a user-uploaded file, or a file from a record request.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>POST /partners/intake/:intake_id/file_open</code></p>
+<h3 id='post-parameters-3'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>URL of the file from a request</td>
+</tr>
+<tr>
+<td>opened</td>
+<td>bool?</td>
+<td>Defaults to <code>true</code> if not specified; <code>false</code> will set it back to new.</td>
+</tr>
+</tbody></table>
 <h2 id='update-intake-vet'>Update intake (vet)</h2>
 <blockquote>
 <p>Request example</p>
@@ -6189,7 +6236,7 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
 <p>Allows vets to update an intake, but only when <code>status</code> is <code>missing info</code> or <code>pending user</code>.
 <code>user.email</code> and <code>user.phone</code> can only be updated when <code>status</code> is <code>missing info</code>, and either of those fields is entered,
 the intake will automatically enter <code>pending user</code> status and the <code>intake-form</code> email/SMS will be sent to the user.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>PUT /partners/intake/:intake_id</code></p>
 <h3 id='put-parameters'>PUT parameters</h3>
 <table><thead>
