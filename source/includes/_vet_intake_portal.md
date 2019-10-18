@@ -267,7 +267,11 @@ filter | string? | JSON object, where the key is the filter name and the value i
       "last_name": "Nguyen",
       "phone": "(555) 555-5504",
       "email": "momonguyen@getpawprint.com",
-      "birthdate": "1990-01-01"
+      "birthdate": "1990-01-01",
+      "name_changed": false,
+      "email_changed": true,
+      "phone_changed": false,
+      "address_changed": false
     },
     "secondary": {
       "first_name": "Popo",
