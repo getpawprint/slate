@@ -251,11 +251,35 @@ Gets payment terms and terms of service copy for a particular vet.
   "name": "Jellystone Animal Hospital",
   "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
   "place_id": 9001,
-  "appointment_request_enabled": true
+  "appointment_request_enabled": true,
+  "overrides": {
+    "address": {
+      "is_required": true,
+      "is_visible": true
+    },
+    "user_birthdate": {
+      "is_required": true,
+      "is_visible": true
+    },
+    "referral": {
+      "is_required": false,
+      "is_visible": true
+    },
+    "media_opt_in": {
+      "is_required": false,
+      "is_visible": false
+    },
+    "sms_opt_in": {
+      "is_required": false,
+      "is_visible": false
+    }
+  }
 }
 ```
 
 Gets information available to the general public about a place, for the purpose of creating intakes. The `:place_id` URL parameter can be either the place's ID or the `partner_place.vanity_slug`.
+
+Also contains configuration for place-specific form overrides. Current overridable fields are `address`, `user_birthdate`, `referral`, `media_opt_in`, and `sms_opt_in`. Current overridable settings are `is_required` and `is_visible`.
 
 ### HTTP Request
 `GET /place/:place_id/intake`
