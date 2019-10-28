@@ -194,6 +194,7 @@ Gets partner place info for the caller identifed in the auth header, like place 
         "time": "10:00 AM"
       },
       "has_new_files": true,
+      "show_dot": true,
       "file_count": 5,
       "empty_reason": "New puppy"
     }
@@ -384,6 +385,7 @@ filter | string? | JSON object, where the key is the filter name and the value i
         "link": "https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"
       }
     ],
+    "new_client_link": "https://pawprint-intake-new-client.s3.amazonaws.com/New_Client_Form_-_Milo_Choi_NeIyuw.pdf",
     "opened_files": [
       "https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf",
       "https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"
