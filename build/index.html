@@ -5992,6 +5992,8 @@ Multiple filters are joined by AND.</p>
 <li><code>appointment_date</code> - Restricts results down to a specific day; format is <code>YYYY-MM-DD</code>. <em>Sort field is locked to <code>appointment_date</code> and direction defaults to <code>desc</code> when this filter is selected, but the direction remains changeable (<code>asc</code>/<code>desc</code>).</em></li>
 <li><code>pet_name</code> - Peforms partial name on pets. (e.g. <code>chi</code> will match both <code>Mochi</code> and <code>Chip</code>)</li>
 <li><code>user_name</code> - Performs partial name match on user first name OR last name (e.g. &#39;smi&#39; will match both &quot;Jasmine Wong&quot; and &quot;Jane Smith&quot;, but not &quot;Jess Milan&quot;)</li>
+<li><code>has_new_files</code> - boolean; returns only the intakes that should be highlighted with a blue dot indicator. The definition of the indicator is subject to change but is currently a combination of unopened files and changed user contact info.</li>
+<li><code>show_dot</code> - the new name for the <code>has_new_files</code> filter</li>
 </ul>
 
 <p><em>Sorting:</em>

@@ -212,6 +212,8 @@ Multiple filters are joined by AND.
 - `appointment_date` - Restricts results down to a specific day; format is `YYYY-MM-DD`. *Sort field is locked to `appointment_date` and direction defaults to `desc` when this filter is selected, but the direction remains changeable (`asc`/`desc`).*
 - `pet_name` - Peforms partial name on pets. (e.g. `chi` will match both `Mochi` and `Chip`)
 - `user_name` - Performs partial name match on user first name OR last name (e.g. 'smi' will match both "Jasmine Wong" and "Jane Smith", but not "Jess Milan")
+- `has_new_files` - boolean; returns only the intakes that should be highlighted with a blue dot indicator. The definition of the indicator is subject to change but is currently a combination of unopened files and changed user contact info.
+- `show_dot` - the new name for the `has_new_files` filter
 
 
 *Sorting:*
