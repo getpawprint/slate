@@ -531,6 +531,9 @@
                     <a href="#get-intake-form-user" class="toc-h2 toc-link" data-title="get-intake-form-user">Get intake form (user)</a>
                   </li>
                   <li>
+                    <a href="#get-intake-bundle-user" class="toc-h2 toc-link" data-title="get-intake-bundle-user">Get intake bundle (user)</a>
+                  </li>
+                  <li>
                     <a href="#update-submit-intake-form-user" class="toc-h2 toc-link" data-title="update-submit-intake-form-user">Update/submit intake form (user)</a>
                   </li>
                   <li>
@@ -4838,6 +4841,53 @@ which can be used to fill in the rest of the fields. The external ID is also ret
 the intake form.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /intake/:intake_id</code></p>
+<h2 id='get-intake-bundle-user'>Get intake bundle (user)</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, San Francisco, CA 94302"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just moved here from Chicago"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"screening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"is_new_client"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"intakes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aXclIS89"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OOX-09_HL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Shorthair"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-31"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets multiple intake forms. Bundles are predefined on the server. A bundle can contain one or more intakes, and each intake can only belong to one bundle. Client and appointment information will be consolidated. Bundles are formed based on combined client email + phone (including nulls) and appointment date. Consequently, all intakes in a bundle will have the same client email, phone and appointment date (but the times may be different).</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /intake/b/:bundle_id</code></p>
 <h2 id='update-submit-intake-form-user'>Update/submit intake form (user)</h2>
 <blockquote>
 <p>Request example</p>
@@ -4908,7 +4958,7 @@ the intake form.</p>
 
 <p>After an intake form has been submitted, it cannot be submitted again, and HTTP 400/Bad Request is returned. This is because the
 record requests are created as soon the intake form has been submitted the first time. If <code>intake.status</code> from <code>GET /intake/:external_id</code> is anything but <code>pending user</code>, the user should be blocked from submitting the request again.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>PUT /intake/:intake_id</code></p>
 <h3 id='put-parameters'>PUT parameters</h3>
 <table><thead>
@@ -5128,7 +5178,7 @@ record requests are created as soon the intake form has been submitted the first
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets payment terms and terms of service copy for a particular vet.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /place/:place_id/tos</code></p>
 <h2 id='get-place-info'>Get place info</h2>
 <blockquote>
@@ -5166,7 +5216,7 @@ record requests are created as soon the intake form has been submitted the first
 <p>Gets information available to the general public about a place, for the purpose of creating intakes. The <code>:place_id</code> URL parameter can be either the place&#39;s ID or the <code>partner_place.vanity_slug</code>.</p>
 
 <p>Also contains configuration for place-specific form overrides. Current overridable fields are <code>address</code>, <code>user_birthdate</code>, <code>referral</code>, <code>media_opt_in</code>, and <code>sms_opt_in</code>. Current overridable settings are <code>is_required</code> and <code>is_visible</code>.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /place/:place_id/intake</code></p>
 <h2 id='create-complete-intake-form-user'>Create complete intake form (user)</h2>
 <blockquote>
@@ -5298,7 +5348,7 @@ record requests are created as soon the intake form has been submitted the first
 Appointments can come in two forms: the <code>booking.appointment</code> object and the <code>appointment_request</code> object.
 The difference between them is that <code>booking.appointment</code> should be used when the appointment has already been set up, whereas <code>appointment_request</code> is simply to connect the client with the vet so they can agree upon a specific appointment time.
 Setting <code>booking.appointment</code> will apply a due date to the intake and associated record requests and make it eligible for reminders, while the information in <code>appointment_request</code> is used solely for sending an email to the vet and/or client, and nothing else.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>POST /intake/place/:place_id</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
@@ -5583,7 +5633,7 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Updates a pet&#39;s profile picture; this can be done at any stage of the intake process at and after <code>pending user</code>.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /intake/:intake_id/image</code></p>
 <h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
@@ -5620,7 +5670,7 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 </span></code></pre>
 <p><strong>Deprecated, please use <code>PATCH /intake/:intake_id</code></strong>
 Updates the appointment on the intake; anyone with the link/intake external ID can update this.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>PUT /intake/:intake_id/appointment</code></p>
 <h3 id='put-parameters-2'>PUT parameters</h3>
 <table><thead>
@@ -5682,7 +5732,7 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Updates the intake; anyone with the link/intake external ID can update certain parts of the submitted data.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>PATCH /intake/:intake_id</code></p>
 <h3 id='patch-parameters'>PATCH parameters</h3>
 <table><thead>
@@ -5767,7 +5817,7 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
 <pre class="highlight json tab-json"><code><span class="err">(none))</span><span class="w">
 </span></code></pre>
 <p>Sends a link to the given email; the email should be of an existing Pawprint user. See <code>GET /activation/email</code> to check if an email belongs to an existing Pawprint user. The link goes back to the intake form, but includes an auth token so that user and pet profile APIs can be called.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST /intake/:external_id/magic_link</code></p>
 <h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>

@@ -107,6 +107,57 @@ the intake form.
 ### HTTP Request
 `GET /intake/:intake_id`
 
+## Get intake bundle (user)
+
+> Response example
+
+```json
+{
+  "user": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "johnsmith@getpawprint.com",
+    "phone": "555-555-5555",
+    "address": "123 Main St, San Francisco, CA 94302"
+  },
+  "appointment": {
+    "place": 27015,
+    "date": "2019-07-20",
+    "type": "Wellness Exam",
+    "reason": "Just moved here from Chicago"
+  },
+  "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
+  "screening": {
+    "is_new_client": true
+  },
+  "intakes": [
+    {
+      "external_id": "aXclIS89",
+      "pet": {
+        "name": "Milo",
+        "species": "dog",
+        "breed": "Australian Cattle Dog Mix",
+        "birthdate": "2018-02-16"
+      }
+    },
+    {
+      "external_id": "OOX-09_HL",
+      "pet": {
+        "name": "Pumpkin",
+        "species": "Cat",
+        "breed": "Domestic Shorthair",
+        "birthdate": "2009-10-31"
+      }
+    }
+  ]
+}
+```
+
+Gets multiple intake forms. Bundles are predefined on the server. A bundle can contain one or more intakes, and each intake can only belong to one bundle. Client and appointment information will be consolidated. Bundles are formed based on combined client email + phone (including nulls) and appointment date. Consequently, all intakes in a bundle will have the same client email, phone and appointment date (but the times may be different).
+
+### HTTP Request
+`GET /intake/b/:bundle_id`
+
 ## Update/submit intake form (user)
 > Request example
 
