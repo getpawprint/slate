@@ -163,7 +163,7 @@ the intake form.
 Gets multiple intake forms. Bundles are predefined on the server. A bundle can contain one or more intakes, and each intake can only belong to one bundle. Bundles are formed based on combined client email + phone (including nulls) and appointment date. Consequently, all intakes in a bundle will have the same client email, phone and appointment date (but the times may be different).
 
 ### HTTP Request
-`GET /intake/b/:bundle_id`
+`GET /intake/bundle/:bundle_id`
 
 ## Update/submit intake form (user)
 > Request example
