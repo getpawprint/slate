@@ -128,6 +128,7 @@ the intake form.
   "bookings": [
     {
       "external_id": "aXclIS89",
+      "status": "pending user",
       "pet": {
         "name": "Milo",
         "species": "dog",
@@ -143,6 +144,7 @@ the intake form.
     },
     {
       "external_id": "OOX-09_HL",
+      "status": "pending user",
       "pet": {
         "name": "Pumpkin",
         "species": "Cat",

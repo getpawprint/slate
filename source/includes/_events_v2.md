@@ -35,7 +35,7 @@ Use these as a template by copying and pasting them.
       "first_name": "Eric",
       "last_name": "Choi",
       "timestamp": "2017-08-08T17:12:06.000Z",
-      "show_time": true,
+      "show_time": false,
       "status": null,
       "data": null,
       "verified": false,
@@ -50,6 +50,10 @@ Use these as a template by copying and pasting them.
           "expiry": "2018-08-08T07:00:00.000Z",
           "tagnumber": "43245",
           "expiryStatus": "expired"
+      },
+      "place": {
+        "id": 27015,
+        "name": "Test Animal Clinic"
       }
     },
     {
@@ -61,9 +65,9 @@ Use these as a template by copying and pasting them.
       "timestamp": "2017-08-08T17:11:13.000Z",
       "show_time": true,
       "status": "Type 2 poo",
-    "data": null,
-    "verified": false,
-    "images": []
+      "data": null,
+      "verified": false,
+      "images": []
     },
     {
       "id": 3839524,
