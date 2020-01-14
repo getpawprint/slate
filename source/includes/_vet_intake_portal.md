@@ -491,8 +491,8 @@ appointment.reason | string? | Reason for the appointment.
 
 ```json
 {
-  "email": "override_email@getpawprint.com",
-  "phone": "555-555-6789"
+  "phone": true,
+  "email": "override_email@getpawprint.com"
 }
 ```
 
@@ -502,7 +502,7 @@ appointment.reason | string? | Reason for the appointment.
 (none)
 ```
 
-Resends a reminder email or text to the client in the intake. Email address and phone number are overridable.
+Resends a reminder email or text to the client in the intake. If the `email` or `phone` parameters are strings, the email address or phone number will be overridden; otherwise, an email or SMS is sent to the contact info on file.
 The intake's email and/or phone will be updated in the database if overrides were provided.
 
 ### HTTP Request
@@ -511,5 +511,5 @@ The intake's email and/or phone will be updated in the database if overrides wer
 ### POST parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-email | string | Overrides email address
-phone | string | Overrides phone number
+email | boolean or string | Send by email; if string, overrides email address
+phone | boolean or string | Send by SMS; if string, overrides phone number

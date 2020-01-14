@@ -6449,8 +6449,8 @@ the intake will automatically enter <code>pending user</code> status and the <co
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"override_email@getpawprint.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-6789"</span><span class="w">
+  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"override_email@getpawprint.com"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -6458,7 +6458,7 @@ the intake will automatically enter <code>pending user</code> status and the <co
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Resends a reminder email or text to the client in the intake. Email address and phone number are overridable.
+<p>Resends a reminder email or text to the client in the intake. If the <code>email</code> or <code>phone</code> parameters are strings, the email address or phone number will be overridden; otherwise, an email or SMS is sent to the contact info on file.
 The intake&#39;s email and/or phone will be updated in the database if overrides were provided.</p>
 <h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST /intake/:intake_id/reminder</code></p>
@@ -6472,13 +6472,13 @@ The intake&#39;s email and/or phone will be updated in the database if overrides
 </thead><tbody>
 <tr>
 <td>email</td>
-<td>string</td>
-<td>Overrides email address</td>
+<td>boolean or string</td>
+<td>Send by email; if string, overrides email address</td>
 </tr>
 <tr>
 <td>phone</td>
-<td>string</td>
-<td>Overrides phone number</td>
+<td>boolean or string</td>
+<td>Send by SMS; if string, overrides phone number</td>
 </tr>
 </tbody></table>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
