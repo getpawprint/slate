@@ -107,6 +107,21 @@ the intake form.
 ### HTTP Request
 `GET /intake/:intake_id`
 
+## Get intake form by confirmation code
+
+> Response example
+
+```json
+(see above)
+```
+
+Same as getting an intake by its external ID, except that the route takes a `place_id` and `confirmation_code` pair instead of `external_id`.
+Confirmation codes are separate IDs that are shorter than external IDs, are not globally unique by themselves.
+They are generated for datasync intakes, and erased when the intake is submitted, completed, cancelled or expired.
+
+### HTTP Request
+`GET /intake/code/:place_id/:confirmation_code`
+
 ## Get intake bundle (user)
 
 > Response example
@@ -166,6 +181,20 @@ Gets multiple intake forms. Bundles are predefined on the server. A bundle can c
 
 ### HTTP Request
 `GET /intake/bundle/:bundle_id`
+
+## Get intake bundle by confirmation code
+
+> Response example
+
+```json
+(see above)
+```
+
+Same as getting a set of intakes by its bundle ID, except that the route takes a `place_id` and `confirmation_code` pair instead of `bundle_id`.
+All intakes in the same bundle have the same confirmation code.
+
+### HTTP Request
+`GET /intake/bundle/:place_id/:confirmation_code`
 
 ## Update/submit intake form (user)
 > Request example

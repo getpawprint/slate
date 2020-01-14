@@ -531,7 +531,13 @@
                     <a href="#get-intake-form-user" class="toc-h2 toc-link" data-title="get-intake-form-user">Get intake form (user)</a>
                   </li>
                   <li>
+                    <a href="#get-intake-form-by-confirmation-code" class="toc-h2 toc-link" data-title="get-intake-form-by-confirmation-code">Get intake form by confirmation code</a>
+                  </li>
+                  <li>
                     <a href="#get-intake-bundle-user" class="toc-h2 toc-link" data-title="get-intake-bundle-user">Get intake bundle (user)</a>
+                  </li>
+                  <li>
+                    <a href="#get-intake-bundle-by-confirmation-code" class="toc-h2 toc-link" data-title="get-intake-bundle-by-confirmation-code">Get intake bundle by confirmation code</a>
                   </li>
                   <li>
                     <a href="#update-submit-intake-form-user" class="toc-h2 toc-link" data-title="update-submit-intake-form-user">Update/submit intake form (user)</a>
@@ -594,6 +600,9 @@
                   </li>
                   <li>
                     <a href="#update-intake-vet" class="toc-h2 toc-link" data-title="update-intake-vet">Update intake (vet)</a>
+                  </li>
+                  <li>
+                    <a href="#re-send-intake-reminder" class="toc-h2 toc-link" data-title="re-send-intake-reminder">Re-send intake reminder</a>
                   </li>
               </ul>
           </li>
@@ -4845,6 +4854,17 @@ which can be used to fill in the rest of the fields. The external ID is also ret
 the intake form.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /intake/:intake_id</code></p>
+<h2 id='get-intake-form-by-confirmation-code'>Get intake form by confirmation code</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(see</span><span class="w"> </span><span class="err">above)</span><span class="w">
+</span></code></pre>
+<p>Same as getting an intake by its external ID, except that the route takes a <code>place_id</code> and <code>confirmation_code</code> pair instead of <code>external_id</code>.
+Confirmation codes are separate IDs that are shorter than external IDs, are not globally unique by themselves.
+They are generated for datasync intakes, and erased when the intake is submitted, completed, cancelled or expired.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /intake/code/:place_id/:confirmation_code</code></p>
 <h2 id='get-intake-bundle-user'>Get intake bundle (user)</h2>
 <blockquote>
 <p>Response example</p>
@@ -4899,8 +4919,18 @@ the intake form.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets multiple intake forms. Bundles are predefined on the server. A bundle can contain one or more intakes, and each intake can only belong to one bundle. Bundles are formed based on combined client email + phone (including nulls) and appointment date. Consequently, all intakes in a bundle will have the same client email, phone and appointment date (but the times may be different).</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /intake/bundle/:bundle_id</code></p>
+<h2 id='get-intake-bundle-by-confirmation-code'>Get intake bundle by confirmation code</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(see</span><span class="w"> </span><span class="err">above)</span><span class="w">
+</span></code></pre>
+<p>Same as getting a set of intakes by its bundle ID, except that the route takes a <code>place_id</code> and <code>confirmation_code</code> pair instead of <code>bundle_id</code>.
+All intakes in the same bundle have the same confirmation code.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /intake/bundle/:place_id/:confirmation_code</code></p>
 <h2 id='update-submit-intake-form-user'>Update/submit intake form (user)</h2>
 <blockquote>
 <p>Request example</p>
@@ -4971,7 +5001,7 @@ the intake form.</p>
 
 <p>After an intake form has been submitted, it cannot be submitted again, and HTTP 400/Bad Request is returned. This is because the
 record requests are created as soon the intake form has been submitted the first time. If <code>intake.status</code> from <code>GET /intake/:external_id</code> is anything but <code>pending user</code>, the user should be blocked from submitting the request again.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>PUT /intake/:intake_id</code></p>
 <h3 id='put-parameters'>PUT parameters</h3>
 <table><thead>
@@ -5191,7 +5221,7 @@ record requests are created as soon the intake form has been submitted the first
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets payment terms and terms of service copy for a particular vet.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /place/:place_id/tos</code></p>
 <h2 id='get-place-info'>Get place info</h2>
 <blockquote>
@@ -5229,7 +5259,7 @@ record requests are created as soon the intake form has been submitted the first
 <p>Gets information available to the general public about a place, for the purpose of creating intakes. The <code>:place_id</code> URL parameter can be either the place&#39;s ID or the <code>partner_place.vanity_slug</code>.</p>
 
 <p>Also contains configuration for place-specific form overrides. Current overridable fields are <code>address</code>, <code>user_birthdate</code>, <code>referral</code>, <code>media_opt_in</code>, and <code>sms_opt_in</code>. Current overridable settings are <code>is_required</code> and <code>is_visible</code>.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /place/:place_id/intake</code></p>
 <h2 id='create-complete-intake-form-user'>Create complete intake form (user)</h2>
 <blockquote>
@@ -5361,7 +5391,7 @@ record requests are created as soon the intake form has been submitted the first
 Appointments can come in two forms: the <code>booking.appointment</code> object and the <code>appointment_request</code> object.
 The difference between them is that <code>booking.appointment</code> should be used when the appointment has already been set up, whereas <code>appointment_request</code> is simply to connect the client with the vet so they can agree upon a specific appointment time.
 Setting <code>booking.appointment</code> will apply a due date to the intake and associated record requests and make it eligible for reminders, while the information in <code>appointment_request</code> is used solely for sending an email to the vet and/or client, and nothing else.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST /intake/place/:place_id</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
@@ -5646,7 +5676,7 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Updates a pet&#39;s profile picture; this can be done at any stage of the intake process at and after <code>pending user</code>.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>POST /intake/:intake_id/image</code></p>
 <h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
@@ -5683,7 +5713,7 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 </span></code></pre>
 <p><strong>Deprecated, please use <code>PATCH /intake/:intake_id</code></strong>
 Updates the appointment on the intake; anyone with the link/intake external ID can update this.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>PUT /intake/:intake_id/appointment</code></p>
 <h3 id='put-parameters-2'>PUT parameters</h3>
 <table><thead>
@@ -5745,7 +5775,7 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Updates the intake; anyone with the link/intake external ID can update certain parts of the submitted data.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>PATCH /intake/:intake_id</code></p>
 <h3 id='patch-parameters'>PATCH parameters</h3>
 <table><thead>
@@ -5830,7 +5860,7 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
 <pre class="highlight json tab-json"><code><span class="err">(none))</span><span class="w">
 </span></code></pre>
 <p>Sends a link to the given email; the email should be of an existing Pawprint user. See <code>GET /activation/email</code> to check if an email belongs to an existing Pawprint user. The link goes back to the intake form, but includes an auth token so that user and pet profile APIs can be called.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>POST /intake/:external_id/magic_link</code></p>
 <h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>
@@ -6025,6 +6055,7 @@ Always returns HTTP 200.</p>
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">93</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"confirmation_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NCCL7A"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"user_full_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hiro"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"pet_species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
@@ -6410,6 +6441,43 @@ the intake will automatically enter <code>pending user</code> status and the <co
 <td>appointment.reason</td>
 <td>string?</td>
 <td>Reason for the appointment.</td>
+</tr>
+</tbody></table>
+<h2 id='re-send-intake-reminder'>Re-send intake reminder</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"override_email@getpawprint.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-6789"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Resends a reminder email or text to the client in the intake. Email address and phone number are overridable.
+The intake&#39;s email and/or phone will be updated in the database if overrides were provided.</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>POST /intake/:intake_id/reminder</code></p>
+<h3 id='post-parameters-4'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Overrides email address</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>Overrides phone number</td>
 </tr>
 </tbody></table>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>

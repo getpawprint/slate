@@ -182,6 +182,7 @@ Gets partner place info for the caller identifed in the auth header, like place 
   "data": [
     {
       "id": 93,
+      "confirmation_code": "NCCL7A",
       "user_full_name": "John Smith",
       "pet_name": "Hiro",
       "pet_species": "dog",
@@ -483,3 +484,31 @@ appointment.time | string? | Time portion of the appointment in 24 hour time, e.
 appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
 appointment.type | string? | Type of appointment.
 appointment.reason | string? | Reason for the appointment.
+
+## Re-send intake reminder
+> Request example
+
+```json
+{
+  "email": "override_email@getpawprint.com",
+  "phone": "555-555-6789"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Resends a reminder email or text to the client in the intake. Email address and phone number are overridable.
+The intake's email and/or phone will be updated in the database if overrides were provided.
+
+### HTTP Request
+`POST /intake/:intake_id/reminder`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+email | string | Overrides email address
+phone | string | Overrides phone number
