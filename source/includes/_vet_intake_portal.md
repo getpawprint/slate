@@ -506,7 +506,7 @@ Resends a reminder email or text to the client in the intake. If the `email` or 
 The intake's email and/or phone will be updated in the database if overrides were provided.
 
 ### HTTP Request
-`POST /intake/:intake_id/reminder`
+`POST /partners/intake/:intake_id/reminder`
 
 ### POST parameters
 Parameter | Type | Description
