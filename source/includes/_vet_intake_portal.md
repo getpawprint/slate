@@ -188,6 +188,7 @@ Gets partner place info for the caller identifed in the auth header, like place 
       "pet_species": "dog",
       "pet_breed": "Shiba Inu",
       "status": "in progress",
+      "link": null,
       "created_at": "2019-04-17T23:58:12.932Z",
       "updated_at": "2019-04-17T23:58:19.764Z",
       "appointment": {
@@ -197,9 +198,9 @@ Gets partner place info for the caller identifed in the auth header, like place 
       "has_new_files": true,
       "show_dot": true,
       "file_count": 5,
+      "empty_reason": "New puppy",
       "completed_requests": 1,
-      "total_requests": 2,
-      "empty_reason": "New puppy"
+      "total_requests": 2
     }
   ],
   "count": 1
