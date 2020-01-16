@@ -197,6 +197,8 @@ Gets partner place info for the caller identifed in the auth header, like place 
       "has_new_files": true,
       "show_dot": true,
       "file_count": 5,
+      "completed_requests": 1,
+      "total_requests": 2,
       "empty_reason": "New puppy"
     }
   ],
