@@ -604,6 +604,9 @@
                   <li>
                     <a href="#re-send-intake-reminder" class="toc-h2 toc-link" data-title="re-send-intake-reminder">Re-send intake reminder</a>
                   </li>
+                  <li>
+                    <a href="#download-all-files-in-a-zip-archive" class="toc-h2 toc-link" data-title="download-all-files-in-a-zip-archive">Download all files in a .zip archive</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -6484,6 +6487,20 @@ The intake&#39;s email and/or phone will be updated in the database if overrides
 <td>Send by SMS; if string, overrides phone number</td>
 </tr>
 </tbody></table>
+<h2 id='download-all-files-in-a-zip-archive'>Download all files in a .zip archive</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(binary</span><span class="w"> </span><span class="err">data</span><span class="p">,</span><span class="w"> </span><span class="err">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="err">application/zip)</span><span class="w">
+</span></code></pre>
+<p>Generates a .zip archive on demand for all files in an intake. Files include (if available):
+- Intake form
+- New client form
+- Pet photo
+- Record request PDFs
+- User uploaded files</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET /partners/intake/:intake_id/zip</code></p>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
 if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after

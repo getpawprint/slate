@@ -516,3 +516,20 @@ Parameter | Type | Description
 --------- | ---- | -----------
 email | boolean or string | Send by email; if string, overrides email address
 phone | boolean or string | Send by SMS; if string, overrides phone number
+
+## Download all files in a .zip archive
+> Response example
+
+```json
+(binary data, Content-Type: application/zip)
+```
+
+Generates a .zip archive on demand for all files in an intake. Files include (if available):
+- Intake form
+- New client form
+- Pet photo
+- Record request PDFs
+- User uploaded files
+
+### HTTP Request
+`GET /partners/intake/:intake_id/zip`
