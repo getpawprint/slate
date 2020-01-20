@@ -506,8 +506,10 @@ Appointments can come in two forms: the `booking.appointment` object and the `ap
 The difference between them is that `booking.appointment` should be used when the appointment has already been set up, whereas `appointment_request` is simply to connect the client with the vet so they can agree upon a specific appointment time.
 Setting `booking.appointment` will apply a due date to the intake and associated record requests and make it eligible for reminders, while the information in `appointment_request` is used solely for sending an email to the vet and/or client, and nothing else.
 
+The optional `realtime` query parameter will mark the intake as a realtime intake, which increases its priority and immediately notifies an admin to process it.
+
 ### HTTP Request
-`POST /intake/place/:place_id`
+`POST /intake/place/:place_id[?realtime=true]`
 
 ### POST parameters
 Parameter | Type | Description
