@@ -296,3 +296,84 @@ signature | string | URL to the image file containing the client's signature.
 checkout_notes | string? | Checkout note to Pawprint.
 promocode | string? | If specified, attempts to apply the promo code to the order. If the promo code didn't work, HTTP 400 is returned along with an error message.
 stripe_token | string? | Stripe token that will be charged for payment (one-time use)
+
+## Request insurance quote
+> Request example
+
+```json
+{
+  "user": {
+    "first_name": "Eric",
+    "last_name": "Choi",
+    "zip": "98004",
+    "email": "echoi@getpawprint.com"
+  },
+  "pets": [
+    {
+      "species": "dog",
+      "breed": "Labrador Retriever",
+      "birthdate": "2019-02-20",
+      "gender": "m",
+      "neuter": true
+    }
+  ],
+  "companies": [ "6" ]
+}
+```
+
+> Response example
+
+```json
+[
+  {
+    "insurance_id": 6,
+    "link": "http://healthypawspetinsurance.com/quote/retrievequote/?sessionid=echoi@getpawprint.com"
+  }
+]
+```
+
+Public API. Requests an insurance quote from one or more companies and returns a URL where the quote can be viewed.
+If the email address in the `user` object matches an existing user's, the link will be saved to the `pet_insurance_quote` table.
+Other user profile information will not be updated because this is a public API.
+
+Quotes from multiple companies can be requested; the only companies currently supported are "6" (Healthy Paws) and "5" (Embrace).
+
+### HTTP Request
+`POST /insurance_quotes`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+user | object | Client profile.
+user.first_name | string | Client's first name.
+user.last_name | string | Client's first name.
+user.zip | string | Client's first name.
+pets | object[] | Pets for insuring.
+pets.species | string | `dog` or `cat`.
+pets.breed | ? | TBD; Healthy Paws requires an integer breed ID from their list while Embrace requires a string from their own list.
+pets.birthdate | date | Pet's birthdate.
+pets.gender | string | `m` or `f`.
+pets.neuter | boolean? | Pet's neuter status.
+companies | string[] | Insurance company IDs from which a quote is requested.
+
+## Get user's insurance quotes
+
+> Response example
+
+```json
+[
+    {
+        "updated_at": "2020-01-28T22:40:52.292Z",
+        "link": "http://healthypawspetinsurance.com/quote/retrievequote/?sessionid=echoi@getpawprint.com",
+        "insurance_id": 6,
+        "name": "Healthy Paws",
+        "logo": "healthypaws.png",
+        "description": null
+    }
+]
+```
+
+Gets all insurance quotes that were requested by the user.
+
+### HTTP Request
+`GET /user/insurance_quotes`

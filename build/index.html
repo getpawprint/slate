@@ -519,6 +519,12 @@
                   <li>
                     <a href="#record-request-order-from-a-claim" class="toc-h2 toc-link" data-title="record-request-order-from-a-claim">Record request order from a claim</a>
                   </li>
+                  <li>
+                    <a href="#request-insurance-quote" class="toc-h2 toc-link" data-title="request-insurance-quote">Request insurance quote</a>
+                  </li>
+                  <li>
+                    <a href="#get-user-39-s-insurance-quotes" class="toc-h2 toc-link" data-title="get-user-s-insurance-quotes">Get user's insurance quotes</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -4684,6 +4690,128 @@ Returns an array of the newly created request IDs.</p>
 <td>Stripe token that will be charged for payment (one-time use)</td>
 </tr>
 </tbody></table>
+<h2 id='request-insurance-quote'>Request insurance quote</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eric"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Choi"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98004"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echoi@getpawprint.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Labrador Retriever"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"neuter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"companies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"6"</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://healthypawspetinsurance.com/quote/retrievequote/?sessionid=echoi@getpawprint.com"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Public API. Requests an insurance quote from one or more companies and returns a URL where the quote can be viewed.
+If the email address in the <code>user</code> object matches an existing user&#39;s, the link will be saved to the <code>pet_insurance_quote</code> table.
+Other user profile information will not be updated because this is a public API.</p>
+
+<p>Quotes from multiple companies can be requested; the only companies currently supported are &quot;6&quot; (Healthy Paws) and &quot;5&quot; (Embrace).</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>POST /insurance_quotes</code></p>
+<h3 id='post-parameters-4'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>object</td>
+<td>Client profile.</td>
+</tr>
+<tr>
+<td>user.first_name</td>
+<td>string</td>
+<td>Client&#39;s first name.</td>
+</tr>
+<tr>
+<td>user.last_name</td>
+<td>string</td>
+<td>Client&#39;s first name.</td>
+</tr>
+<tr>
+<td>user.zip</td>
+<td>string</td>
+<td>Client&#39;s first name.</td>
+</tr>
+<tr>
+<td>pets</td>
+<td>object[]</td>
+<td>Pets for insuring.</td>
+</tr>
+<tr>
+<td>pets.species</td>
+<td>string</td>
+<td><code>dog</code> or <code>cat</code>.</td>
+</tr>
+<tr>
+<td>pets.breed</td>
+<td>?</td>
+<td>TBD; Healthy Paws requires an integer breed ID from their list while Embrace requires a string from their own list.</td>
+</tr>
+<tr>
+<td>pets.birthdate</td>
+<td>date</td>
+<td>Pet&#39;s birthdate.</td>
+</tr>
+<tr>
+<td>pets.gender</td>
+<td>string</td>
+<td><code>m</code> or <code>f</code>.</td>
+</tr>
+<tr>
+<td>pets.neuter</td>
+<td>boolean?</td>
+<td>Pet&#39;s neuter status.</td>
+</tr>
+<tr>
+<td>companies</td>
+<td>string[]</td>
+<td>Insurance company IDs from which a quote is requested.</td>
+</tr>
+</tbody></table>
+<h2 id='get-user-39-s-insurance-quotes'>Get user&#39;s insurance quotes</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-28T22:40:52.292Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://healthypawspetinsurance.com/quote/retrievequote/?sessionid=echoi@getpawprint.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Healthy Paws"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"healthypaws.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all insurance quotes that were requested by the user.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET /user/insurance_quotes</code></p>
 <h1 id='intake-forms'>Intake forms</h1>
 <p>Intake forms are for vets who are taking on new clients. The vet enters basic information about the new client,
 such as name, email address and pet name into a form, then submits the form. An external ID is created for the partially
