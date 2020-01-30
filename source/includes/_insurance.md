@@ -310,6 +310,7 @@ stripe_token | string? | Stripe token that will be charged for payment (one-time
   },
   "pets": [
     {
+      "name": "Billy",
       "species": "dog",
       "breed": "Labrador Retriever",
       "birthdate": "2019-02-20",
@@ -349,6 +350,7 @@ user.first_name | string | Client's first name.
 user.last_name | string | Client's first name.
 user.zip | string | Client's first name.
 pets | object[] | Pets for insuring.
+pets.name | string | Pet's name
 pets.species | string | `dog` or `cat`.
 pets.breed | ? | TBD; Healthy Paws requires an integer breed ID from their list while Embrace requires a string from their own list.
 pets.birthdate | date | Pet's birthdate.
