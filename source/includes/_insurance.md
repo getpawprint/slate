@@ -350,9 +350,9 @@ user.first_name | string | Client's first name.
 user.last_name | string | Client's first name.
 user.zip | string | Client's first name.
 pets | object[] | Pets for insuring.
-pets.name | string | Pet's name
+pets.name | string | Pet's name.
 pets.species | string | `dog` or `cat`.
-pets.breed | ? | TBD; Healthy Paws requires an integer breed ID from their list while Embrace requires a string from their own list.
+pets.breed | string | Breed name from `breed` table.
 pets.birthdate | date | Pet's birthdate.
 pets.gender | string | `m` or `f`.
 pets.neuter | boolean? | Pet's neuter status.
