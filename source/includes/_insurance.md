@@ -312,7 +312,7 @@ stripe_token | string? | Stripe token that will be charged for payment (one-time
     {
       "name": "Billy",
       "species": "dog",
-      "breed": "Labrador Retriever",
+      "breeds": [ "Labrador Retriever" ],
       "birthdate": "2019-02-20",
       "gender": "m",
       "neuter": true
@@ -352,7 +352,7 @@ user.zip | string | Client's first name.
 pets | object[] | Pets for insuring.
 pets.name | string | Pet's name.
 pets.species | string | `dog` or `cat`.
-pets.breed | string | Breed name from `breed` table.
+pets.breeds | string[] | List of 0 or more breed names from the `breed` table.
 pets.birthdate | date | Pet's birthdate.
 pets.gender | string | `m` or `f`.
 pets.neuter | boolean? | Pet's neuter status.

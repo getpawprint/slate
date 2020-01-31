@@ -4705,7 +4705,7 @@ Returns an array of the newly created request IDs.</p>
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Billy"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Labrador Retriever"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"breeds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Labrador Retriever"</span><span class="w"> </span><span class="p">],</span><span class="w">
       </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"neuter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
@@ -4775,9 +4775,9 @@ Other user profile information will not be updated because this is a public API.
 <td><code>dog</code> or <code>cat</code>.</td>
 </tr>
 <tr>
-<td>pets.breed</td>
-<td>string</td>
-<td>Breed name from <code>breed</code> table.</td>
+<td>pets.breeds</td>
+<td>string[]</td>
+<td>List of 0 or more breed names from the <code>breed</code> table.</td>
 </tr>
 <tr>
 <td>pets.birthdate</td>
