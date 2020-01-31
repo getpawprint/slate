@@ -340,7 +340,7 @@ Other user profile information will not be updated because this is a public API.
 Quotes from multiple companies can be requested; the only companies currently supported are "6" (Healthy Paws) and "5" (Embrace).
 
 ### HTTP Request
-`POST /insurance_quotes`
+`POST /insurance_quote`
 
 ### POST parameters
 Parameter | Type | Description
