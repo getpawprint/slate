@@ -535,3 +535,44 @@ Generates a .zip archive on demand for all files in an intake. Files include (if
 
 ### HTTP Request
 `GET /partners/intake/:intake_id/zip`
+
+## Websocket updates
+> Notification example
+
+```json
+{
+  "data": {
+    "id": 93,
+    "confirmation_code": "NCCL7A",
+    "user_full_name": "John Smith",
+    "pet_name": "Hiro",
+    "pet_species": "dog",
+    "pet_breed": "Shiba Inu",
+    "status": "in progress",
+    "link": null,
+    "created_at": "2019-04-17T23:58:12.932Z",
+    "updated_at": "2019-04-17T23:58:19.764Z",
+    "appointment": {
+      "date": "2019-04-20",
+      "time": "10:00 AM"
+    },
+    "has_new_files": true,
+    "show_dot": true,
+    "file_count": 5,
+    "empty_reason": "New puppy",
+    "completed_requests": 1,
+    "total_requests": 2,
+    "last_email_at": "2020-01-20T10:01:12Z",
+    "last_sms_at": "2020-01-20T10:02:00Z"
+  },
+  "event": "updated"
+}
+```
+
+Connect to a websocket to receive creation and update notifications. The response schema for the `data` field is the same
+as the intake summary object in `GET /partners/intake`.
+
+`event` is either `created` or `updated`. In most cases, it will be `updated`; the `created` notification only fires when an embedded/standalone intake is created (followed immediately by an `updated` notification).
+
+### Connection Request
+`ws://www.getpawprint.com/ws/partners/intake?access_token=${authToken}`
