@@ -66,7 +66,7 @@ There used to be plans to support Pawprint vets customizing their own appointmen
 `GET /place/appointment_type_options`
 
 
-## Book an appointment
+<!-- ## Book an appointment
 > Request example
 
 ```json
@@ -114,7 +114,7 @@ pet_breed | string | Pet breed, e.g. Chihuahua, Persian, Angora
 appointment_type_id | int | ID from the `appointment_type` table (see above).
 time | array of datetimes | Requester's desired times (vet/admin should pick one)
 notes | string? | Notes to the vet
-user_name | string | Requester's name
+user_name | string | Requester's name -->
 
 
 ## Get appointment requests
@@ -228,7 +228,7 @@ This is a public API and does not require authentication.
 ### HTTP Request
 `GET /appointment_confirmation/:code`
 
-## Create a partial appointment request
+<!-- ## Create a partial appointment request
 > Request example
 
 ```json
@@ -288,4 +288,4 @@ appointment_request | object | Requested appointment time(s)
 appointment_request.date | string? | Date portion of the appointment, e.g. "2019-07-20".
 appointment_request.times | string[]? | Array of requested times; these are passed through the backend and sent to the vet directly.
 appointment_request.type | string? | Broad category; see `appointment_type` table in database
-appointment_request.reason | string? | More details about why this appointment is being made
+appointment_request.reason | string? | More details about why this appointment is being made -->
