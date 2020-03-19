@@ -306,7 +306,8 @@ marketing | object? | Marketing fields for vet (no effect on intake)
 marketing.media_opt_in | bool | Does the client release rights to clinic to use photos for social
 marketing.sms_opt_in | bool | Does the client opt into text
 marketing.referral | string | How you heard about the clinic - string (include a couple default options like yelp, google, friend)
-insurance | boolean | Whether or not the pet is insured
+insurance | object? | Pet's insurance information
+insurance.has_insurance | boolean | Whether or not the pet is insured
 place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets.name | string | Vet name.
@@ -444,7 +445,10 @@ Also contains configuration for place-specific form overrides. Current overridab
           "name": "Jellystone records",
           "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
         }
-      ]
+      ],
+      "insurance": {
+        "has_insurance": false
+      }
     },
     {
       "pet": {
@@ -484,7 +488,10 @@ Also contains configuration for place-specific form overrides. Current overridab
           "name": "Jellystone records",
           "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
         }
-      ]
+      ],
+      "insurance": {
+        "has_insurance": false
+      }
     }
   ],
   "appointment_request": {
@@ -564,6 +571,8 @@ bookings.note | string? | Note to the vets.
 bookings.files | object[]? | User uploaded files
 bookings.files.name | string | User-submitted description of the file
 bookings.files.data | string | Base64 encoded file
+bookings.insurance | object? | Pet's insurance information
+bookings.insurance.has_insurance | boolean | Whether or not the pet is insured
 signature | string | Base64 encoded signature of the user's consent.
 appointment_request | object? | Appointment request object; this is exclusively for sending to the vet and does not affect the intake in any way.
 appointment_request.date | string? | Date portion of the appointment, e.g. "2019-07-20".
