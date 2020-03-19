@@ -233,6 +233,9 @@ All intakes in the same bundle have the same confirmation code.
     "sms_opt_in": false,
     "referral": "Word of mouth"
   },
+  "insurance": {
+    "has_insurance": false
+  },
   "place_ids": [ 27015, 2101 ],
   "vets": [
     {
@@ -303,6 +306,7 @@ marketing | object? | Marketing fields for vet (no effect on intake)
 marketing.media_opt_in | bool | Does the client release rights to clinic to use photos for social
 marketing.sms_opt_in | bool | Does the client opt into text
 marketing.referral | string | How you heard about the clinic - string (include a couple default options like yelp, google, friend)
+insurance | boolean | Whether or not the pet is insured
 place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets.name | string | Vet name.
@@ -647,6 +651,9 @@ appointment.timezone | string? | https://en.wikipedia.org/wiki/List_of_tz_databa
       "policy_number": "IPC013297"
     }
   },
+  "insurance": {
+    "interest": "interested"
+  },
   "marketing": {
     "media_opt_in": true,
     "sms_opt_in": true,
@@ -677,6 +684,8 @@ pet | object? | Pet details
 pet.insurance | object? | Pet's insurance info
 pet.insurance.insurance_id | string | Insurance company from calling `GET /insurance`
 pet.insurance.policy_number | string | Pet's insurance policy number
+insurance | object? | User's interest in getting an insurance quote
+insurance.interest | string | One of `interested` or `not now`
 marketing | object? | Marketing details
 marketing.media_opt_in | bool | Does the client release rights to clinic to use photos for social
 marketing.sms_opt_in | bool | Does the client opt into text
