@@ -4857,10 +4857,15 @@ which can be used to fill in the rest of the fields. The external ID is also ret
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="w">
+    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HealthyPaws"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A00097"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"screening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"is_new_client"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="s2">"is_new_client"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_active_client"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
     </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
@@ -4870,8 +4875,18 @@ which can be used to fill in the rest of the fields. The external ID is also ret
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just moved here from Chicago"</span><span class="w">
   </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"form_signature_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending user"</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending user"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"previous_vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Test Vet"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"814 Mission St, San Francisco, CA 94302"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets the specified intake form. Not all fields are guaranteed to be populated, based on what the vet filled out when creating
@@ -4904,8 +4919,10 @@ They are generated for datasync intakes, and erased when the intake is submitted
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"screening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"is_new_client"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="s2">"is_new_client"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"is_active_client"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"form_signature_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="s2">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aXclIS89"</span><span class="p">,</span><span class="w">
@@ -4914,7 +4931,11 @@ They are generated for datasync intakes, and erased when the intake is submitted
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="w">
+        </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HealthyPaws"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A00097"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
@@ -4930,7 +4951,11 @@ They are generated for datasync intakes, and erased when the intake is submitted
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cat"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Shorthair"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-31"</span><span class="w">
+        </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2009-10-31"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HealthyPaws"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A00097"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-20"</span><span class="p">,</span><span class="w">
@@ -4938,6 +4963,15 @@ They are generated for datasync intakes, and erased when the intake is submitted
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just moved here from Chicago"</span><span class="w">
       </span><span class="p">},</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"previous_vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Test Vet"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"814 Mission St, San Francisco, CA 94302"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">

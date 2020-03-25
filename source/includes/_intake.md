@@ -83,10 +83,15 @@ appointment.reason | string? | More details about why this appointment is being 
     "name": "Milo",
     "species": "dog",
     "breed": "Australian Cattle Dog Mix",
-    "birthdate": "2018-02-16"
+    "birthdate": "2018-02-16",
+    "insurance": {
+      "name": "HealthyPaws",
+      "policy_number": "A00097"
+    }
   },
   "screening": {
-    "is_new_client": true
+    "is_new_client": true,
+    "is_active_client": true
   },
 	"appointment": {
     "place": 27015,
@@ -96,8 +101,18 @@ appointment.reason | string? | More details about why this appointment is being 
     "type": "Wellness Exam",
     "reason": "Just moved here from Chicago"
   },
+  "form_signature_required": false,
   "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
-  "status": "pending user"
+  "status": "pending user",
+  "previous_vets": [
+    {
+      "id": 27015,
+      "name": "Pawprint Test Vet",
+      "address": "814 Mission St, San Francisco, CA 94302",
+      "city": "San Francisco",
+      "state": "CA"
+    }
+  ]
 }
 ```
 
@@ -138,8 +153,10 @@ They are generated for datasync intakes, and erased when the intake is submitted
   },
   "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
   "screening": {
-    "is_new_client": true
+    "is_new_client": true,
+    "is_active_client": true
   },
+  "form_signature_required": false,
   "bookings": [
     {
       "external_id": "aXclIS89",
@@ -148,7 +165,11 @@ They are generated for datasync intakes, and erased when the intake is submitted
         "name": "Milo",
         "species": "dog",
         "breed": "Australian Cattle Dog Mix",
-        "birthdate": "2018-02-16"
+        "birthdate": "2018-02-16",
+        "insurance": {
+          "name": "HealthyPaws",
+          "policy_number": "A00097"
+        }
       },
       "appointment": {
         "date": "2019-07-20",
@@ -164,7 +185,11 @@ They are generated for datasync intakes, and erased when the intake is submitted
         "name": "Pumpkin",
         "species": "Cat",
         "breed": "Domestic Shorthair",
-        "birthdate": "2009-10-31"
+        "birthdate": "2009-10-31",
+        "insurance": {
+          "name": "HealthyPaws",
+          "policy_number": "A00097"
+        }
       },
       "appointment": {
         "date": "2019-07-20",
@@ -172,6 +197,15 @@ They are generated for datasync intakes, and erased when the intake is submitted
         "type": "Wellness Exam",
         "reason": "Just moved here from Chicago"
       },
+    }
+  ],
+  "previous_vets": [
+    {
+      "id": 27015,
+      "name": "Pawprint Test Vet",
+      "address": "814 Mission St, San Francisco, CA 94302",
+      "city": "San Francisco",
+      "state": "CA"
     }
   ]
 }
