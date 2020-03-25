@@ -5019,15 +5019,16 @@ All intakes in the same bundle have the same confirmation code.</p>
     </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"birthdate_level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"day"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"neuter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Outdoor"</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Outdoor"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A0097"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"marketing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"media_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sms_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Word of mouth"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"has_insurance"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w"> </span><span class="mi">2101</span><span class="w"> </span><span class="p">],</span><span class="w">
   </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5193,6 +5194,21 @@ record requests are created as soon the intake form has been submitted the first
 <td>Cats only - &quot;Indoor only&quot;, &quot;Outdoor only&quot; or &quot;Both&quot;</td>
 </tr>
 <tr>
+<td>pet.insurance</td>
+<td>object?</td>
+<td>Pet&#39;s insurance information</td>
+</tr>
+<tr>
+<td>pet.insurance.insurance_id</td>
+<td>integer</td>
+<td>ID from insurance table (call <code>GET /insurance</code> for a list)</td>
+</tr>
+<tr>
+<td>pet.insurance.policy_number</td>
+<td>string</td>
+<td>Insurance policy number</td>
+</tr>
+<tr>
 <td>marketing</td>
 <td>object?</td>
 <td>Marketing fields for vet (no effect on intake)</td>
@@ -5211,16 +5227,6 @@ record requests are created as soon the intake form has been submitted the first
 <td>marketing.referral</td>
 <td>string</td>
 <td>How you heard about the clinic - string (include a couple default options like yelp, google, friend)</td>
-</tr>
-<tr>
-<td>insurance</td>
-<td>object?</td>
-<td>Pet&#39;s insurance information</td>
-</tr>
-<tr>
-<td>insurance.has_insurance</td>
-<td>boolean</td>
-<td>Whether or not the pet is insured</td>
 </tr>
 <tr>
 <td>place_ids</td>
@@ -5370,7 +5376,11 @@ record requests are created as soon the intake form has been submitted the first
         </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-16"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg;base64:jpeg,Ax08uoawnyCAOA-Muaw3=="</span><span class="p">,</span><span class="w">
         </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"neuter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="s2">"neuter"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"insurance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"policy_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A0097"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"place_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">27015</span><span class="p">,</span><span class="w"> </span><span class="mi">2101</span><span class="w"> </span><span class="p">],</span><span class="w">
       </span><span class="s2">"vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5400,9 +5410,6 @@ record requests are created as soon the intake form has been submitted the first
           </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"has_insurance"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-      </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -5442,10 +5449,7 @@ record requests are created as soon the intake form has been submitted the first
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jellystone records"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="</span><span class="w">
         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"insurance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"has_insurance"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"appointment_request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -5626,6 +5630,21 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <td>Cats only - &quot;Indoor only&quot;, &quot;Outdoor only&quot; or &quot;Both&quot;</td>
 </tr>
 <tr>
+<td>bookings.pet.insurance</td>
+<td>object?</td>
+<td>Pet&#39;s insurance information</td>
+</tr>
+<tr>
+<td>bookings.pet.insurance.insurance_id</td>
+<td>integer</td>
+<td>ID from insurance table (call <code>GET /insurance</code> for a list)</td>
+</tr>
+<tr>
+<td>bookings.pet.insurance.policy_number</td>
+<td>string</td>
+<td>Insurance policy number</td>
+</tr>
+<tr>
 <td>bookings.place_ids</td>
 <td>int[]?</td>
 <td>List of IDs from the <code>place</code> table who we will contact for the pet&#39;s medical history. One of <code>place_ids</code> or <code>vets</code> must be specified, or else <code>empty_reason</code> must be given.</td>
@@ -5709,16 +5728,6 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <td>bookings.files.data</td>
 <td>string</td>
 <td>Base64 encoded file</td>
-</tr>
-<tr>
-<td>bookings.insurance</td>
-<td>object?</td>
-<td>Pet&#39;s insurance information</td>
-</tr>
-<tr>
-<td>bookings.insurance.has_insurance</td>
-<td>boolean</td>
-<td>Whether or not the pet is insured</td>
 </tr>
 <tr>
 <td>signature</td>

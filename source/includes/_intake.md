@@ -260,15 +260,16 @@ All intakes in the same bundle have the same confirmation code.
     "birthdate": "2018-02-16",
     "birthdate_level": "day",
     "neuter": true,
-    "type": "Outdoor"
+    "type": "Outdoor",
+    "insurance": {
+      "insurance_id": 6,
+      "policy_number": "A0097"
+    }
   },
   "marketing": {
     "media_opt_in": false,
     "sms_opt_in": false,
     "referral": "Word of mouth"
-  },
-  "insurance": {
-    "has_insurance": false
   },
   "place_ids": [ 27015, 2101 ],
   "vets": [
@@ -336,12 +337,13 @@ pet.birthdate_level | string? | The accuracy of the pet's birthdate, e.g. if use
 pet.gender | string | "m" or "f"
 pet.neuter | bool? | Whether or not the pet has been neutered/spayed.
 pet.type | string? | Cats only - "Indoor only", "Outdoor only" or "Both"
+pet.insurance | object? | Pet's insurance information
+pet.insurance.insurance_id | integer | ID from insurance table (call `GET /insurance` for a list)
+pet.insurance.policy_number | string | Insurance policy number
 marketing | object? | Marketing fields for vet (no effect on intake)
 marketing.media_opt_in | bool | Does the client release rights to clinic to use photos for social
 marketing.sms_opt_in | bool | Does the client opt into text
 marketing.referral | string | How you heard about the clinic - string (include a couple default options like yelp, google, friend)
-insurance | object? | Pet's insurance information
-insurance.has_insurance | boolean | Whether or not the pet is insured
 place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. If `place_ids` and `vets` are not specified, `empty_reason` must be given.
 vets.name | string | Vet name.
@@ -450,7 +452,11 @@ Also contains configuration for place-specific form overrides. Current overridab
         "birthdate": "2018-02-16",
         "profile_pic": "image/jpeg;base64:jpeg,Ax08uoawnyCAOA-Muaw3==",
         "gender": "m",
-        "neuter": true
+        "neuter": true,
+        "insurance": {
+          "insurance_id": 6,
+          "policy_number": "A0097"
+        }
       },
       "place_ids": [ 27015, 2101 ],
       "vets": [
@@ -480,9 +486,6 @@ Also contains configuration for place-specific form overrides. Current overridab
           "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
         }
       ],
-      "insurance": {
-        "has_insurance": false
-      }
     },
     {
       "pet": {
@@ -522,10 +525,7 @@ Also contains configuration for place-specific form overrides. Current overridab
           "name": "Jellystone records",
           "data": "image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
         }
-      ],
-      "insurance": {
-        "has_insurance": false
-      }
+      ]
     }
   ],
   "appointment_request": {
@@ -588,6 +588,9 @@ bookings.pet.gender | string | "m" or "f"
 bookings.pet.neuter | bool? | Whether or not the pet has been neutered/spayed.
 bookings.pet.profile_pic | base64? | Base64 encoded image of the pet
 bookings.pet.type | string? | Cats only - "Indoor only", "Outdoor only" or "Both"
+bookings.pet.insurance | object? | Pet's insurance information
+bookings.pet.insurance.insurance_id | integer | ID from insurance table (call `GET /insurance` for a list)
+bookings.pet.insurance.policy_number | string | Insurance policy number
 bookings.place_ids | int[]? | List of IDs from the `place` table who we will contact for the pet's medical history. One of `place_ids` or `vets` must be specified, or else `empty_reason` must be given.
 bookings.vets | object[]? | Vets who we will contact for the pet's medical history. These will become new `place` table entries. One of `place_ids` or `vets` must be specified, or else `empty_reason` must be given.
 bookings.vets.name | string | Vet name.
@@ -605,8 +608,6 @@ bookings.note | string? | Note to the vets.
 bookings.files | object[]? | User uploaded files
 bookings.files.name | string | User-submitted description of the file
 bookings.files.data | string | Base64 encoded file
-bookings.insurance | object? | Pet's insurance information
-bookings.insurance.has_insurance | boolean | Whether or not the pet is insured
 signature | string | Base64 encoded signature of the user's consent.
 appointment_request | object? | Appointment request object; this is exclusively for sending to the vet and does not affect the intake in any way.
 appointment_request.date | string? | Date portion of the appointment, e.g. "2019-07-20".
