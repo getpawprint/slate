@@ -563,6 +563,15 @@
                   <li>
                     <a href="#send-magic-link" class="toc-h2 toc-link" data-title="send-magic-link">Send magic link</a>
                   </li>
+                  <li>
+                    <a href="#preview-additional-documents" class="toc-h2 toc-link" data-title="preview-additional-documents">Preview additional documents</a>
+                  </li>
+                  <li>
+                    <a href="#save-intake-state-standalone-and-vetstoria-and-send-verification" class="toc-h2 toc-link" data-title="save-intake-state-standalone-and-vetstoria-and-send-verification">Save intake state (standalone and Vetstoria) and send verification</a>
+                  </li>
+                  <li>
+                    <a href="#load-intake-state-standalone-and-vetstoria" class="toc-h2 toc-link" data-title="load-intake-state-standalone-and-vetstoria">Load intake state (standalone and Vetstoria)</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -5987,6 +5996,188 @@ Updates the appointment on the intake; anyone with the link/intake external ID c
 <td>Client&#39;s email</td>
 </tr>
 </tbody></table>
+<h2 id='preview-additional-documents'>Preview additional documents</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cat"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exotic Shorthair"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cancellation policy 2020"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div&gt;
+      &lt;h2&gt;Cancellation policy&lt;/h2&gt;
+      &lt;p&gt;No refunds for cancellations made less than 24 hours in advance.&lt;/p&gt;
+    &lt;/div&gt;"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Surgery form"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div&gt;
+      &lt;h2&gt;Surgery agreement for Milo&lt;/h2&gt;
+      &lt;p&gt;
+        &lt;input type=</span><span class="se">\"</span><span class="s2">checkbox</span><span class="se">\"</span><span class="s2"> /&gt;&lt;label&gt;I understand animals may have an adverse reaction to anesthesia.&lt;/label&gt;&lt;br /&gt;
+        &lt;input type=</span><span class="se">\"</span><span class="s2">checkbox</span><span class="se">\"</span><span class="s2"> /&gt;&lt;label&gt;For spays and neuters, I understand that pets get a spay/neuter tattoo.&lt;/label&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets a preview of additional documents that the user must sign. The contents of the text field depends on the template used
+to generate the document; each custom document for each vet has its own template.</p>
+
+<p>If there are no additional documents, an empty array is returned.</p>
+
+<p>This API is only for datasync bundles; standalone and Vetstoria intakes should only display the partner&#39;s standard Terms of Service.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>POST /intake/bundle/:bundle_id/documents</code></p>
+<h3 id='post-parameters-5'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user</td>
+<td>object</td>
+<td>Client details</td>
+</tr>
+<tr>
+<td>user.first_name</td>
+<td>string</td>
+<td>Client&#39;s first name.</td>
+</tr>
+<tr>
+<td>user.last_name</td>
+<td>string</td>
+<td>Client&#39;s last name.</td>
+</tr>
+<tr>
+<td>user.email</td>
+<td>string</td>
+<td>Client&#39;s email address.</td>
+</tr>
+<tr>
+<td>user.phone</td>
+<td>string</td>
+<td>Cient&#39;s phone number.</td>
+</tr>
+<tr>
+<td>user.address</td>
+<td>string?</td>
+<td>Client&#39;s address.</td>
+</tr>
+<tr>
+<td>pet</td>
+<td>object</td>
+<td>Patient details</td>
+</tr>
+<tr>
+<td>pet.name</td>
+<td>name</td>
+<td>Patient&#39;s name.</td>
+</tr>
+<tr>
+<td>pet.species</td>
+<td>string</td>
+<td>Patient&#39;s species, e.g. <code>Cat</code> or <code>Dog</code>.</td>
+</tr>
+<tr>
+<td>pet.breed</td>
+<td>string?</td>
+<td>Patient&#39;s breed.</td>
+</tr>
+</tbody></table>
+<h2 id='save-intake-state-standalone-and-vetstoria-and-send-verification'>Save intake state (standalone and Vetstoria) and send verification</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cat"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exotic Shorthair"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>There is no response content; instead, the backend generates a secret verification link which is emailed to the user.</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>POST /intake/state</code></p>
+<h3 id='post-parameters-6'>POST parameters</h3>
+<p>Anything you want; the entire blob is saved to the database as is.</p>
+<h2 id='load-intake-state-standalone-and-vetstoria'>Load intake state (standalone and Vetstoria)</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Milo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australian Cattle Dog Mix"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cat"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exotic Shorthair"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The response content is the blob that was passed in the <code>POST /intake/state</code> call.
+<code>:token</code> is generated in the <code>POST /intake/state</code> call and emailed to the user for verification.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>GET /intake/state/:token</code></p>
 <h1 id='vet-intake-portal'>Vet intake portal</h1>
 <p>This API is for the vet side of intakes - account management, intake summaries and intake detail.</p>
 <h2 id='login'>Login</h2>

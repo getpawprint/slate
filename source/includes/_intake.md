@@ -759,3 +759,153 @@ Sends a link to the given email; the email should be of an existing Pawprint use
 Parameter | Type | Description
 --------- | ---- | -----------
 email | string | Client's email
+
+## Preview additional documents
+> Request example
+
+```json
+{
+  "user": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "johnsmith@getpawprint.com",
+    "phone": "555-555-5555",
+    "address": "123 Main St, Palo Alto, CA 94305"
+  },
+  "pets": [
+    {
+    "name": "Milo",
+    "species": "dog",
+    "breed": "Australian Cattle Dog Mix"
+    },
+    {
+    "name": "Pumpkin",
+    "species": "cat",
+    "breed": "Exotic Shorthair"
+    }
+  ]
+}
+```
+
+> Response example
+
+```json
+[
+  {
+    "title": "Cancellation policy 2020",
+    "text": "<div>
+      <h2>Cancellation policy</h2>
+      <p>No refunds for cancellations made less than 24 hours in advance.</p>
+    </div>"
+  },
+  {
+    "title": "Surgery form",
+    "text": "<div>
+      <h2>Surgery agreement for Milo</h2>
+      <p>
+        <input type=\"checkbox\" /><label>I understand animals may have an adverse reaction to anesthesia.</label><br />
+        <input type=\"checkbox\" /><label>For spays and neuters, I understand that pets get a spay/neuter tattoo.</label>
+      </p>
+    </div>"
+  }
+]
+```
+
+Gets a preview of additional documents that the user must sign. The contents of the text field depends on the template used
+to generate the document; each custom document for each vet has its own template.
+
+If there are no additional documents, an empty array is returned.
+
+This API is only for datasync bundles; standalone and Vetstoria intakes should only display the partner's standard Terms of Service.
+
+### HTTP Request
+`POST /intake/bundle/:bundle_id/documents`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+user | object | Client details
+user.first_name | string | Client's first name.
+user.last_name | string | Client's last name.
+user.email | string | Client's email address.
+user.phone | string | Cient's phone number.
+user.address | string? | Client's address.
+pet | object | Patient details
+pet.name | name | Patient's name.
+pet.species | string | Patient's species, e.g. `Cat` or `Dog`.
+pet.breed | string? | Patient's breed.
+
+## Save intake state (standalone and Vetstoria) and send verification
+> Request example
+
+```json
+{
+    "user": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "johnsmith@getpawprint.com",
+    "phone": "555-555-5555",
+    "address": "123 Main St, Palo Alto, CA 94305"
+  },
+  "pets": [
+    {
+    "name": "Milo",
+    "species": "dog",
+    "breed": "Australian Cattle Dog Mix"
+    },
+    {
+    "name": "Pumpkin",
+    "species": "cat",
+    "breed": "Exotic Shorthair"
+    }
+  ]
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+There is no response content; instead, the backend generates a secret verification link which is emailed to the user.
+
+### HTTP Request
+`POST /intake/state`
+
+### POST parameters
+Anything you want; the entire blob is saved to the database as is.
+
+## Load intake state (standalone and Vetstoria)
+> Response example
+
+```json
+{
+    "user": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "johnsmith@getpawprint.com",
+    "phone": "555-555-5555",
+    "address": "123 Main St, Palo Alto, CA 94305"
+  },
+  "pets": [
+    {
+    "name": "Milo",
+    "species": "dog",
+    "breed": "Australian Cattle Dog Mix"
+    },
+    {
+    "name": "Pumpkin",
+    "species": "cat",
+    "breed": "Exotic Shorthair"
+    }
+  ]
+}
+```
+
+The response content is the blob that was passed in the `POST /intake/state` call.
+`:token` is generated in the `POST /intake/state` call and emailed to the user for verification.
+
+### HTTP Request
+`GET /intake/state/:token`
+
