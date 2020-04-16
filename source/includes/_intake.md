@@ -830,10 +830,10 @@ user.last_name | string | Client's last name.
 user.email | string | Client's email address.
 user.phone | string | Cient's phone number.
 user.address | string? | Client's address.
-pet | object | Patient details
-pet.name | name | Patient's name.
-pet.species | string | Patient's species, e.g. `Cat` or `Dog`.
-pet.breed | string? | Patient's breed.
+pets | object[] | List of patients
+pets.name | name | Patient's name.
+pets.species | string | Patient's species, e.g. `Cat` or `Dog`.
+pets.breed | string? | Patient's breed.
 
 ## Save intake state (standalone and Vetstoria) and send verification
 > Request example
