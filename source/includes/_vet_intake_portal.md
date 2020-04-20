@@ -395,6 +395,13 @@ filter | string? | JSON object, where the key is the filter name and the value i
       }
     ],
     "new_client_link": "https://pawprint-intake-new-client.s3.amazonaws.com/New_Client_Form_-_Milo_Choi_NeIyuw.pdf",
+    "signed_forms": [
+      {
+        "name": "Surgery Risk Acknowledgement",
+        "link": "https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf",
+        "created_at": "2020-04-19T12:59:323Z"
+      }
+    ],
     "opened_files": [
       "https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf",
       "https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"
