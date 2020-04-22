@@ -188,6 +188,7 @@ Gets partner place info for the caller identifed in the auth header, like place 
       "pet_species": "dog",
       "pet_breed": "Shiba Inu",
       "status": "in progress",
+      "questionnaire_status": "pending user",
       "link": null,
       "created_at": "2019-04-17T23:58:12.932Z",
       "updated_at": "2019-04-17T23:58:19.764Z",
@@ -257,6 +258,8 @@ filter | string? | JSON object, where the key is the filter name and the value i
     "external_id": "-HiX2CpDBA_tukyYkldcN5gGwqwPyAsh",
     "admin_name": "Eric Choi",
     "date": "05-08-2019",
+    "status": "complete",
+    "questionnaire_status": "complete",
     "pet": {
       "name": "Rocky",
       "image": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/65389-39561-1496970785752.jpg",
@@ -406,10 +409,41 @@ filter | string? | JSON object, where the key is the filter name and the value i
       "https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf",
       "https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"
     ]
+  },
+  "questionnaire": {
+    "name": "Pet questionnaire",
+    "responses": [{
+      "question": {
+      "name": "thirst",
+      "label": "Changes in thirst",
+      "input_type": "select",
+      "default_answer": "Same",
+      "options": ["Less", "Same", "More"]
+      },
+      "response": "More"
+    },
+    {
+      "question": {
+      "name": "medication",
+      "input_type": "medications"
+      },
+      "response": [{"id": 42, "refill": true}, {"id": 37, "refill": false}]
+    },
+    {
+      "question": {
+      "name": "activity_level",
+      "label": "Activity level",
+      "input_type": "checkboxes",
+      "options": ["Park","Leash Walks","Daycare"]
+      },
+      "response": ["Park","Leash Walks"]
+    }]
   }
 }
 ```
-Get detailed information about a specific intake for a partner place. There are two main fields - `appointment` and `summary`; `summary` is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal. HTTP 403 is returned if the `intake_id` does not belong to the partner place.
+Get detailed information about a specific intake for a partner place. There are three main fields - `appointment` and `summary`; `summary` is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal.
+`questionnaire` will be null if the client did not fill out an intake questionnaire.
+HTTP 403 is returned if the `intake_id` does not belong to the partner place.
 
 ### HTTP Request
 `GET /partners/intake/:intake_id`

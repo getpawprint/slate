@@ -572,6 +572,9 @@
                   <li>
                     <a href="#load-intake-state-standalone-and-vetstoria" class="toc-h2 toc-link" data-title="load-intake-state-standalone-and-vetstoria">Load intake state (standalone and Vetstoria)</a>
                   </li>
+                  <li>
+                    <a href="#submit-questionnaire-answers" class="toc-h2 toc-link" data-title="submit-questionnaire-answers">Submit questionnaire answers</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -4895,11 +4898,45 @@ which can be used to fill in the rest of the fields. The external ID is also ret
       </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"questionnaire"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet_questionnaire"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"per"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Appointment Details"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We are seeing Bowser for: Wellness Exam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other_concerns"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do you have any other concerns you'd like to address?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"textarea"</span><span class="w">
+      </span><span class="p">}]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medical"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please list your pet's allergies, if any"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Diet: Please list everything your pet will eat in a typical day, from treats to meals"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="w">
+      </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets the specified intake form. Not all fields are guaranteed to be populated, based on what the vet filled out when creating
-the intake form.</p>
+the intake form. The <code>questionnaire</code> field may not be present if there is more than 48 hours before the appointment;
+full example of a question can be found at https://pawprint.slite.com/app/channels/6M2TLvSBWU/notes/peYMA8k23x.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /intake/:intake_id</code></p>
 <h2 id='get-intake-form-by-confirmation-code'>Get intake form by confirmation code</h2>
@@ -4952,6 +4989,40 @@ They are generated for datasync intakes, and erased when the intake is submitted
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just moved here from Chicago"</span><span class="w">
       </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"questionnaire"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet_questionnaire"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"per"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Appointment Details"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We are seeing Pumpkin for: Wellness Exam"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other_concerns"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do you have any other concerns you'd like to address?"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"textarea"</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medical"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please list your pet's allergies, if any"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diet"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Diet: Please list everything your pet will eat in a typical day, from treats to meals"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OOX-09_HL"</span><span class="p">,</span><span class="w">
@@ -4972,6 +5043,40 @@ They are generated for datasync intakes, and erased when the intake is submitted
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just moved here from Chicago"</span><span class="w">
       </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"questionnaire"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet_questionnaire"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"per"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Appointment Details"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We are seeing Pumpkin for: Wellness Exam"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other_concerns"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do you have any other concerns you'd like to address?"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"textarea"</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medical"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please list your pet's allergies, if any"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diet"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Diet: Please list everything your pet will eat in a typical day, from treats to meals"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="w">
+          </span><span class="p">}]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"previous_vets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -4986,6 +5091,9 @@ They are generated for datasync intakes, and erased when the intake is submitted
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets multiple intake forms. Bundles are predefined on the server. A bundle can contain one or more intakes, and each intake can only belong to one bundle. Bundles are formed based on combined client email + phone (including nulls) and appointment date. Consequently, all intakes in a bundle will have the same client email, phone and appointment date (but the times may be different).</p>
+
+<p>The <code>questionnaire</code> field may not be present if there is more than 48 hours before the appointment;
+full example of a question can be found at https://pawprint.slite.com/app/channels/6M2TLvSBWU/notes/peYMA8k23x.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /intake/bundle/:bundle_id</code></p>
 <h2 id='get-intake-bundle-by-confirmation-code'>Get intake bundle by confirmation code</h2>
@@ -6178,6 +6286,29 @@ to generate the document; each custom document for each vet has its own template
 <code>:token</code> is generated in the <code>POST /intake/state</code> call and emailed to the user for verification.</p>
 <h3 id='http-request-16'>HTTP Request</h3>
 <p><code>GET /intake/state/:token</code></p>
+<h2 id='submit-questionnaire-answers'>Submit questionnaire answers</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"other_concerns"</span><span class="p">:</span><span class="w"> </span><span class="s2">"n/a"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">textarea</span><span class="w">
+  </span><span class="s2">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beef, dairy"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">text</span><span class="w">
+  </span><span class="s2">"diet"</span><span class="p">:</span><span class="w"> </span><span class="s2">"grain free, Dr. Hill's I/D"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">text</span><span class="w">
+  </span><span class="s2">"medications"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="s2">"refill"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w"> </span><span class="s2">"refill"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}],</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">medications</span><span class="w">
+  </span><span class="s2">"activity_level"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Park"</span><span class="p">,</span><span class="s2">"Leash Walks"</span><span class="p">],</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">checkboxes</span><span class="w">
+  </span><span class="s2">"other_pets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"cats"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s2">"dogs"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">other_pets</span><span class="w">
+  </span><span class="s2">"thirst"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Same"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">select</span><span class="w">
+  </span><span class="s2">"urination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Same"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">select</span><span class="w">
+  </span><span class="s2">"appetite"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Same"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">select</span><span class="w">
+  </span><span class="s2">"energy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Same"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">select</span><span class="w">
+  </span><span class="s2">"vomiting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">select</span><span class="w">
+  </span><span class="s2">"diarrhea"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">select</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>These are simply key value pairs based on the <code>questions[].name</code> field in the <code>questionnaire</code> object attached
+to intake and bundle responses.</p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>POST /intake/:external_id/questionnaire</code></p>
 <h1 id='vet-intake-portal'>Vet intake portal</h1>
 <p>This API is for the vet side of intakes - account management, intake summaries and intake detail.</p>
 <h2 id='login'>Login</h2>
@@ -6363,6 +6494,7 @@ Always returns HTTP 200.</p>
       </span><span class="s2">"pet_species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"pet_breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shiba Inu"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in progress"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"questionnaire_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending user"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T23:58:12.932Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T23:58:19.764Z"</span><span class="p">,</span><span class="w">
@@ -6453,6 +6585,8 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
     </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-HiX2CpDBA_tukyYkldcN5gGwqwPyAsh"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"admin_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eric Choi"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"05-08-2019"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"questionnaire_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rocky"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-user-upload.s3-us-west-2.amazonaws.com/65389-39561-1496970785752.jpg"</span><span class="p">,</span><span class="w">
@@ -6602,10 +6736,41 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
       </span><span class="s2">"https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"questionnaire"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pet questionnaire"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"question"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thirst"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Changes in thirst"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"select"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"default_answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Same"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Less"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Same"</span><span class="p">,</span><span class="w"> </span><span class="s2">"More"</span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"More"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"question"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medication"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="s2">"refill"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w"> </span><span class="s2">"refill"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"question"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"activity_level"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Activity level"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkboxes"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Park"</span><span class="p">,</span><span class="s2">"Leash Walks"</span><span class="p">,</span><span class="s2">"Daycare"</span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Park"</span><span class="p">,</span><span class="s2">"Leash Walks"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Get detailed information about a specific intake for a partner place. There are two main fields - <code>appointment</code> and <code>summary</code>; <code>summary</code> is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal. HTTP 403 is returned if the <code>intake_id</code> does not belong to the partner place.</p>
+<p>Get detailed information about a specific intake for a partner place. There are three main fields - <code>appointment</code> and <code>summary</code>; <code>summary</code> is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal.
+<code>questionnaire</code> will be null if the client did not fill out an intake questionnaire.
+HTTP 403 is returned if the <code>intake_id</code> does not belong to the partner place.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /partners/intake/:intake_id</code></p>
 <h2 id='log-file-open-event'>Log file open event</h2>

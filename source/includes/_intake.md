@@ -112,12 +112,46 @@ appointment.reason | string? | More details about why this appointment is being 
       "city": "San Francisco",
       "state": "CA"
     }
-  ]
+  ],
+  "questionnaire": {
+    "name": "pet_questionnaire",
+    "per": "pet",
+    "modules": [{
+      "label": "Appointment Details",
+      "questions": [{
+        "name": "label1",
+        "label": "We are seeing Bowser for: Wellness Exam",
+        "input_type": "label"
+      },
+      {
+        "name": "other_concerns",
+        "label": "Do you have any other concerns you'd like to address?",
+        "input_type": "textarea"
+      }]
+    },
+    {
+      "label": "Medical",
+      "questions": [{
+        "name": "allergies",
+        "label": "Please list your pet's allergies, if any",
+        "input_type": "text"
+      },
+      {
+        "name": "diet",
+        "label": "Diet: Please list everything your pet will eat in a typical day, from treats to meals",
+        "input_type": "text"
+      },
+      {
+        "name": "medications",
+        "input_type": "medications"
+      }]
+  }
 }
 ```
 
 Gets the specified intake form. Not all fields are guaranteed to be populated, based on what the vet filled out when creating
-the intake form.
+the intake form. The `questionnaire` field may not be present if there is more than 48 hours before the appointment;
+full example of a question can be found at https://pawprint.slite.com/app/channels/6M2TLvSBWU/notes/peYMA8k23x.
 
 ### HTTP Request
 `GET /intake/:intake_id`
@@ -177,6 +211,40 @@ They are generated for datasync intakes, and erased when the intake is submitted
         "type": "Wellness Exam",
         "reason": "Just moved here from Chicago"
       },
+      "questionnaire": {
+        "name": "pet_questionnaire",
+        "per": "pet",
+        "modules": [{
+          "label": "Appointment Details",
+          "questions": [{
+            "name": "label1",
+            "label": "We are seeing Pumpkin for: Wellness Exam",
+            "input_type": "label"
+          },
+          {
+            "name": "other_concerns",
+            "label": "Do you have any other concerns you'd like to address?",
+            "input_type": "textarea"
+          }]
+        },
+        {
+          "label": "Medical",
+          "questions": [{
+            "name": "allergies",
+            "label": "Please list your pet's allergies, if any",
+            "input_type": "text"
+          },
+          {
+            "name": "diet",
+            "label": "Diet: Please list everything your pet will eat in a typical day, from treats to meals",
+            "input_type": "text"
+          },
+          {
+            "name": "medications",
+            "input_type": "medications"
+          }]
+        }
+      }
     },
     {
       "external_id": "OOX-09_HL",
@@ -197,6 +265,40 @@ They are generated for datasync intakes, and erased when the intake is submitted
         "type": "Wellness Exam",
         "reason": "Just moved here from Chicago"
       },
+      "questionnaire": {
+        "name": "pet_questionnaire",
+        "per": "pet",
+        "modules": [{
+          "label": "Appointment Details",
+          "questions": [{
+            "name": "label1",
+            "label": "We are seeing Pumpkin for: Wellness Exam",
+            "input_type": "label"
+          },
+          {
+            "name": "other_concerns",
+            "label": "Do you have any other concerns you'd like to address?",
+            "input_type": "textarea"
+          }]
+        },
+        {
+          "label": "Medical",
+          "questions": [{
+            "name": "allergies",
+            "label": "Please list your pet's allergies, if any",
+            "input_type": "text"
+          },
+          {
+            "name": "diet",
+            "label": "Diet: Please list everything your pet will eat in a typical day, from treats to meals",
+            "input_type": "text"
+          },
+          {
+            "name": "medications",
+            "input_type": "medications"
+          }]
+        }
+      }
     }
   ],
   "previous_vets": [
@@ -212,6 +314,9 @@ They are generated for datasync intakes, and erased when the intake is submitted
 ```
 
 Gets multiple intake forms. Bundles are predefined on the server. A bundle can contain one or more intakes, and each intake can only belong to one bundle. Bundles are formed based on combined client email + phone (including nulls) and appointment date. Consequently, all intakes in a bundle will have the same client email, phone and appointment date (but the times may be different).
+
+The `questionnaire` field may not be present if there is more than 48 hours before the appointment;
+full example of a question can be found at https://pawprint.slite.com/app/channels/6M2TLvSBWU/notes/peYMA8k23x.
 
 ### HTTP Request
 `GET /intake/bundle/:bundle_id`
@@ -909,3 +1014,29 @@ The response content is the blob that was passed in the `POST /intake/state` cal
 ### HTTP Request
 `GET /intake/state/:token`
 
+
+## Submit questionnaire answers
+> Request example
+
+```json
+{
+  "other_concerns": "n/a",  // textarea
+  "allergies": "beef, dairy",  // text
+  "diet": "grain free, Dr. Hill's I/D", // text
+  "medications": [{"id": 42, "refill": true}, {"id": 37, "refill": false}],  // medications
+  "activity_level": ["Park","Leash Walks"],    // checkboxes
+  "other_pets": {"cats": 0, "dogs": 1},  // other_pets
+  "thirst": "Same",    // select
+  "urination": "Same",    // select
+  "appetite": "Same",    // select
+  "energy": "Same",    // select
+  "vomiting": "No",    // select
+  "diarrhea": "No"    // select
+}
+```
+
+These are simply key value pairs based on the `questions[].name` field in the `questionnaire` object attached
+to intake and bundle responses.
+
+### HTTP Request
+`POST /intake/:external_id/questionnaire`
