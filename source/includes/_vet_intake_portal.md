@@ -410,34 +410,34 @@ filter | string? | JSON object, where the key is the filter name and the value i
       "https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"
     ],
     "questionnaire": {
-    "name": "Pet questionnaire",
-    "responses": [{
-      "question": {
-      "name": "thirst",
-      "label": "Changes in thirst",
-      "input_type": "select",
-      "default_answer": "Same",
-      "options": ["Less", "Same", "More"]
+      "name": "Pet questionnaire",
+      "responses": [{
+        "question": {
+        "name": "thirst",
+        "label": "Changes in thirst",
+        "input_type": "select",
+        "default_answer": "Same",
+        "options": ["Less", "Same", "More"]
+        },
+        "response": "More"
       },
-      "response": "More"
-    },
-    {
-      "question": {
-      "name": "medication",
-      "input_type": "medications"
+      {
+        "question": {
+        "name": "medication",
+        "input_type": "medications"
+        },
+        "response": [{"id": 42, "refill": true}, {"id": 37, "refill": false}]
       },
-      "response": [{"id": 42, "refill": true}, {"id": 37, "refill": false}]
-    },
-    {
-      "question": {
-      "name": "activity_level",
-      "label": "Activity level",
-      "input_type": "checkboxes",
-      "options": ["Park","Leash Walks","Daycare"]
-      },
-      "response": ["Park","Leash Walks"]
-    }]
-  }
+      {
+        "question": {
+        "name": "activity_level",
+        "label": "Activity level",
+        "input_type": "checkboxes",
+        "options": ["Park","Leash Walks","Daycare"]
+        },
+        "response": ["Park","Leash Walks"]
+      }]
+    }
   }
 }
 ```
