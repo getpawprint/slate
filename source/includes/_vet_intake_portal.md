@@ -408,9 +408,8 @@ filter | string? | JSON object, where the key is the filter name and the value i
     "opened_files": [
       "https://pawprint-request-pdf.s3.amazonaws.com/48905-1565808703446.pdf",
       "https://pawprint-user-upload.s3.amazonaws.com/495-ABC-vaccines.pdf"
-    ]
-  },
-  "questionnaire": {
+    ],
+    "questionnaire": {
     "name": "Pet questionnaire",
     "responses": [{
       "question": {
@@ -438,6 +437,7 @@ filter | string? | JSON object, where the key is the filter name and the value i
       },
       "response": ["Park","Leash Walks"]
     }]
+  }
   }
 }
 ```
