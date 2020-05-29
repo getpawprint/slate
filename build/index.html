@@ -5117,7 +5117,8 @@ All intakes in the same bundle have the same confirmation code.</p>
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="w">
+    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"car_make_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ford Taurus, grey"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"secondary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
@@ -5193,37 +5194,42 @@ record requests are created as soon the intake form has been submitted the first
 <tr>
 <td>user</td>
 <td>object</td>
-<td>The new client.</td>
+<td>Client.</td>
 </tr>
 <tr>
 <td>user.first_name</td>
 <td>string</td>
-<td>New client&#39;s first name.</td>
+<td>Client&#39;s first name.</td>
 </tr>
 <tr>
 <td>user.last_name</td>
 <td>string</td>
-<td>New client&#39;s last name.</td>
+<td>Client&#39;s last name.</td>
 </tr>
 <tr>
 <td>user.email</td>
 <td>string</td>
-<td>New client&#39;s email address.</td>
+<td>Client&#39;s email address.</td>
 </tr>
 <tr>
 <td>user.phone</td>
 <td>string</td>
-<td>New client&#39;s phone number.</td>
+<td>Client&#39;s phone number.</td>
 </tr>
 <tr>
 <td>user.address</td>
 <td>string?</td>
-<td>New client&#39;s address.</td>
+<td>Client&#39;s address.</td>
 </tr>
 <tr>
 <td>user.birthdate</td>
 <td>datetime?</td>
-<td>New client&#39;s birthdate (for DEA reporting of prescriptions of controlled substances)</td>
+<td>Client&#39;s birthdate (for DEA reporting of prescriptions of controlled substances)</td>
+</tr>
+<tr>
+<td>user.car_make_model</td>
+<td>string?</td>
+<td>Client&#39;s vehicle information (for curbside operation)</td>
 </tr>
 <tr>
 <td>secondary</td>
@@ -5467,7 +5473,8 @@ record requests are created as soon the intake form has been submitted the first
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="w">
+    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"car_make_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ford Taurus, grey"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"secondary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
@@ -5635,6 +5642,11 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <td>user.birthdate</td>
 <td>datetime?</td>
 <td>New client&#39;s birthdate (for DEA reporting of prescriptions of controlled substances)</td>
+</tr>
+<tr>
+<td>user.car_make_model</td>
+<td>string?</td>
+<td>Client&#39;s vehicle information (for curbside operation)</td>
 </tr>
 <tr>
 <td>secondary</td>
@@ -6611,7 +6623,8 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
       </span><span class="s2">"name_changed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="s2">"email_changed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"phone_changed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"address_changed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="s2">"address_changed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"car_make_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ford Taurus, grey"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"secondary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Popo"</span><span class="p">,</span><span class="w">
