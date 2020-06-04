@@ -5597,9 +5597,19 @@ record requests are created as soon the intake form has been submitted the first
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">(v</span><span class="mi">1</span><span class="err">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="s2">"Milo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eXIjl3poE05z8vvvJqaofn"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"Pumpkin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98cgckxlf3DDmf9AFjv4089pz"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">(v</span><span class="mi">2</span><span class="err">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"bundle_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asdf"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"intake_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Milo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eXIjl3poE05z8vvvJqaofn"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Pumpkin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98cgckxlf3DDmf9AFjv4089pz"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This creates an intake form all in one go, without the need for action on the vet side.
@@ -5609,7 +5619,7 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 
 <p>The optional <code>realtime</code> query parameter will mark the intake as a realtime intake, which increases its priority and immediately notifies an admin to process it.</p>
 <h3 id='http-request-9'>HTTP Request</h3>
-<p><code>POST /intake/place/:place_id[?realtime=true]</code></p>
+<p><code>POST [v2]/intake/place/:place_id[?realtime=true]</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
 <tr>

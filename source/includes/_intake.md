@@ -658,9 +658,19 @@ Also contains configuration for place-specific form overrides. Current overridab
 > Response example
 
 ```json
+(v1)
 {
   "Milo": "eXIjl3poE05z8vvvJqaofn",
   "Pumpkin": "98cgckxlf3DDmf9AFjv4089pz"
+}
+
+(v2)
+{
+  "bundle_id": "asdf",
+  "intake_ids": {
+    "Milo": "eXIjl3poE05z8vvvJqaofn",
+    "Pumpkin": "98cgckxlf3DDmf9AFjv4089pz"
+  }
 }
 ```
 
@@ -672,7 +682,7 @@ Setting `booking.appointment` will apply a due date to the intake and associated
 The optional `realtime` query parameter will mark the intake as a realtime intake, which increases its priority and immediately notifies an admin to process it.
 
 ### HTTP Request
-`POST /intake/place/:place_id[?realtime=true]`
+`POST [v2]/intake/place/:place_id[?realtime=true]`
 
 ### POST parameters
 Parameter | Type | Description
