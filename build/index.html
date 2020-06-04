@@ -5432,6 +5432,16 @@ record requests are created as soon the intake form has been submitted the first
   </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9001</span><span class="p">,</span><span class="w">
   </span><span class="s2">"appointment_request_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"appointment_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness exam"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Illness/injury"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="s2">"overrides"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -5460,7 +5470,7 @@ record requests are created as soon the intake form has been submitted the first
 
 <p>Also contains configuration for place-specific form overrides. Current overridable fields are <code>address</code>, <code>user_birthdate</code>, <code>referral</code>, <code>media_opt_in</code>, and <code>sms_opt_in</code>. Current overridable settings are <code>is_required</code> and <code>is_visible</code>.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET /place/:place_id/intake</code></p>
+<p><code>GET /v2/place/:place_id/intake</code></p>
 <h2 id='create-complete-intake-form-user'>Create complete intake form (user)</h2>
 <blockquote>
 <p>Request example</p>

@@ -489,6 +489,16 @@ Gets payment terms and terms of service copy for a particular vet.
   "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
   "place_id": 9001,
   "appointment_request_enabled": true,
+  "appointment_types": [
+    {
+      "id": 1,
+      "description": "Wellness exam"
+    },
+    {
+      "id": 2,
+      "description": "Illness/injury"
+    }
+  ],
   "overrides": {
     "address": {
       "is_required": true,
@@ -519,7 +529,7 @@ Gets information available to the general public about a place, for the purpose 
 Also contains configuration for place-specific form overrides. Current overridable fields are `address`, `user_birthdate`, `referral`, `media_opt_in`, and `sms_opt_in`. Current overridable settings are `is_required` and `is_visible`.
 
 ### HTTP Request
-`GET /place/:place_id/intake`
+`GET /v2/place/:place_id/intake`
 
 ## Create complete intake form (user)
 > Request example
