@@ -8,13 +8,10 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - activation
-  - activation_v2
   - admin
   - admin_v2
   - appointment_requests
   - events_v2
-  - followups
   - insurance
   - intake
   - vet_intake_portal
@@ -23,7 +20,6 @@ includes:
   - payments
   - places
   - places_v3
-  - postcards
   - reminders_v2
   - requests_v1
   - requests_v2
@@ -33,6 +29,7 @@ includes:
   - web_requests
   - web_requests_branded
   - vetstoria
+  - legacy_portal
 
 search: true
 ---
