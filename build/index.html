@@ -925,6 +925,12 @@
                   <li>
                     <a href="#mark-sms-as-read" class="toc-h2 toc-link" data-title="mark-sms-as-read">Mark SMS as read</a>
                   </li>
+                  <li>
+                    <a href="#get-smses-from-a-specific-unknown-phone-number" class="toc-h2 toc-link" data-title="get-smses-from-a-specific-unknown-phone-number">Get SMSes from a specific unknown phone number</a>
+                  </li>
+                  <li>
+                    <a href="#get-list-of-unknown-phone-numbers-with-messages" class="toc-h2 toc-link" data-title="get-list-of-unknown-phone-numbers-with-messages">Get list of unknown phone numbers with messages</a>
+                  </li>
               </ul>
           </li>
       </div>
@@ -9818,16 +9824,67 @@ The result is that both parameters will end up in the URL when they redirect to 
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">223957</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-03T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"duration"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"confirmed"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"props"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pet_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ein DataDog"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eric"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Choi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eli@scoutvet.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"604-364-8024"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Returns scheduled appointments for a vet, over a time range.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /partners/schedules</code></p>
+<p><code>GET /partners/schedule</code></p>
 <h2 id='get-reminders-for-approval'>Get reminders for approval</h2>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jared"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Luxenberg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+17817184182"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"push_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jared@jaredlux.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contact_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxx"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"activation_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"872070"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email_permission"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"push_permission"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sms_permission"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">48621</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vetBanner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3-us-west-1.amazonaws.com/pawprint-place-img/AnimalEmpireLogo.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vetEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"animalempire@getpawprint.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vetName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Animal Empire Veterinary Clinic"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vetPhone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7188999200"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vetPlaceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4665</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vetShortName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Animal Empire"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"appointmentCTA"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please call (718) 899-9200"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"appointmentWebsite"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reminders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-18"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"expiryDescriptionHtml"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;b&gt;is due in 1 month&lt;/b&gt;"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"petName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Leki"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canine Rabies Vaccination"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"approved"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-18T23:17:27.256Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-18T23:17:27.256Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Returns list of reminders for a vet to approve.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
@@ -9888,27 +9945,27 @@ Currently does not include clients that were created in the ScoutVet database vi
 </thead><tbody>
 <tr>
 <td>order_by</td>
-<td>string</td>
-<td>Corresponds to a database column</td>
+<td>string?</td>
+<td>Corresponds to a database column; defaults to <code>last_name</code></td>
 </tr>
 <tr>
 <td>dir</td>
-<td>string</td>
-<td><code>asc</code> or <code>desc</code></td>
+<td>string?</td>
+<td><code>asc</code> or <code>desc</code>; defaults to <code>asc</code></td>
 </tr>
 <tr>
 <td>limit</td>
-<td>int</td>
+<td>int?</td>
 <td>Number of results to return</td>
 </tr>
 <tr>
 <td>offset</td>
-<td>int</td>
+<td>int?</td>
 <td>Start index</td>
 </tr>
 <tr>
 <td>filter</td>
-<td>string</td>
+<td>string?</td>
 <td>Filter by last name (case insensitive)</td>
 </tr>
 </tbody></table>
@@ -9969,17 +10026,17 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 </thead><tbody>
 <tr>
 <td>limit</td>
-<td>int</td>
+<td>int?</td>
 <td>Number of results to return</td>
 </tr>
 <tr>
 <td>offset</td>
-<td>int</td>
+<td>int?</td>
 <td>Start index</td>
 </tr>
 <tr>
 <td>filter</td>
-<td>string</td>
+<td>string?</td>
 <td>Filter by first name concatenated with last name (case insensitive)</td>
 </tr>
 </tbody></table>
@@ -10131,27 +10188,27 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 </thead><tbody>
 <tr>
 <td>order_by</td>
-<td>string</td>
-<td>Corresponds to a database column</td>
+<td>string?</td>
+<td>Corresponds to a database column; defaults to <code>created_at</code></td>
 </tr>
 <tr>
 <td>dir</td>
-<td>string</td>
-<td><code>asc</code> or <code>desc</code></td>
+<td>string?</td>
+<td><code>asc</code> or <code>desc</code>; defaults to <code>desc</code></td>
 </tr>
 <tr>
 <td>limit</td>
-<td>int</td>
+<td>int?</td>
 <td>Number of results to return</td>
 </tr>
 <tr>
 <td>offset</td>
-<td>int</td>
+<td>int?</td>
 <td>Start index</td>
 </tr>
 <tr>
 <td>filter</td>
-<td>string</td>
+<td>string?</td>
 <td>Filter by last name (case insensitive)</td>
 </tr>
 </tbody></table>
@@ -10200,27 +10257,27 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 </thead><tbody>
 <tr>
 <td>order_by</td>
-<td>string</td>
-<td>Corresponds to a database column</td>
+<td>string?</td>
+<td>Corresponds to a database column; defaults to <code>created_at</code></td>
 </tr>
 <tr>
 <td>dir</td>
-<td>string</td>
-<td><code>asc</code> or <code>desc</code></td>
+<td>string?</td>
+<td><code>asc</code> or <code>desc</code>; defaults to <code>desc</code></td>
 </tr>
 <tr>
 <td>limit</td>
-<td>int</td>
+<td>int?</td>
 <td>Number of results to return</td>
 </tr>
 <tr>
 <td>offset</td>
-<td>int</td>
+<td>int?</td>
 <td>Start index</td>
 </tr>
 <tr>
 <td>filter</td>
-<td>string</td>
+<td>string?</td>
 <td>Filter by last name (case insensitive)</td>
 </tr>
 </tbody></table>
@@ -10267,44 +10324,62 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 <blockquote>
 <p>Request example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(TODO)</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"vet_integration_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"push"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"delta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"vet_integration_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(TODO)</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"cadence"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Creates a reminder cadence (yes, this is PUT)</p>
+<p>Creates a reminder cadence (yes, this is PUT).</p>
 <h3 id='http-request-13'>HTTP Request</h3>
 <p><code>PUT /partners/reminder_cadence</code></p>
 <h2 id='update-reminder-cadence'>Update reminder cadence</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(TODO)</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"vet_integration_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"push"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"delta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"vet_integration_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">999</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(TODO)</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"cadence"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Updates an existing reminder cadence (yes, this is POST)</p>
+<p>Updates an existing reminder cadence (yes, this is POST).</p>
 <h3 id='http-request-14'>HTTP Request</h3>
 <p><code>POST /partners/reminder_cadence</code></p>
 <h2 id='delete-reminder-cadence'>Delete reminder cadence</h2>
 <blockquote>
-<p>Request example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(TODO)</span><span class="w">
-</span></code></pre>
-<blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(TODO)</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Deletes a reminder cadence</p>
+<p>Deletes a reminder cadence.</p>
 <h3 id='http-request-15'>HTTP Request</h3>
-<p><code>DELETE /partners/reminder_cadence</code></p>
+<p><code>DELETE /partners/reminder_cadence/:cadence_id</code></p>
 <h2 id='send-sms-to-user'>Send SMS to user</h2>
 <blockquote>
 <p>Request example</p>
@@ -10322,7 +10397,7 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 </span></code></pre>
 <p>Sends an SMS to the <code>vet_user</code> and phone number.</p>
 <h3 id='http-request-16'>HTTP Request</h3>
-<p><code>POST /sms/send</code></p>
+<p><code>POST /partners/sms/send</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -10357,7 +10432,7 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 </span></code></pre>
 <p>Gets full chat history between vet and vet_user_id as a union of 2-way text messages and Pawprint-originated messages</p>
 <h3 id='http-request-17'>HTTP Request</h3>
-<p><code>GET /sms/history/all/:vet_user_id</code></p>
+<p><code>GET /partners/sms/history/all/:vet_user_id</code></p>
 <h2 id='get-sms-history-with-a-phone-number'>Get SMS history with a phone number</h2>
 <blockquote>
 <p>Response example</p>
@@ -10429,6 +10504,59 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 <td>vet_user_phone</td>
 <td>string</td>
 <td>User&#39;s phone number - in case it&#39;s different from the phone number on file</td>
+</tr>
+</tbody></table>
+<h2 id='get-smses-from-a-specific-unknown-phone-number'>Get SMSes from a specific unknown phone number</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"vet_user_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15555551212"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'd like to set up an appointment for next week"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-20T15:32:32Z"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns SMS messages from the given phone number that doesn&#39;t match any phone number in the <code>vet_user</code> or <code>vet_user_phone</code> tables.</p>
+<h3 id='http-request-21'>HTTP Request</h3>
+<p><code>GET /partners/sms/unknown/:phone</code></p>
+<h2 id='get-list-of-unknown-phone-numbers-with-messages'>Get list of unknown phone numbers with messages</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"clients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"vet_user_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15555551212"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_contacted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-16T12:15:37.000Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"first_contacted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-17T21:50:09.340Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns list of clients, first by users with unread messages, then the rest of the clients sorted by last contacted</p>
+<h3 id='http-request-22'>HTTP Request</h3>
+<p><code>GET /partners/sms/unknown</code></p>
+<h3 id='query-string-parameters-6'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>int?</td>
+<td>Number of results to return</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int?</td>
+<td>Start index</td>
 </tr>
 </tbody></table>
 

@@ -6,20 +6,71 @@ Redistribute/reorganize these as they are integrated into the vet portal
 > Response example
 
 ```json
-
+[
+    {
+        "id": 223957,
+        "date": "2017-12-03T00:00:00.000Z",
+        "duration": null,
+        "status": "confirmed",
+        "props": null,
+        "pet_name": "Ein DataDog",
+        "first_name": "Eric",
+        "last_name": "Choi",
+        "email": "eli@scoutvet.com",
+        "phone": "604-364-8024"
+    }
+]
 ```
 
 Returns scheduled appointments for a vet, over a time range.
 
 ### HTTP Request
-`GET /partners/schedules`
+`GET /partners/schedule`
 
 ## Get reminders for approval
 
 > Response example
 
 ```json
-
+[
+    {
+        "id": 2,
+        "firstName": "Jared",
+        "lastName": "Luxenberg",
+        "phone": "+17817184182",
+        "platform": null,
+        "push_token": null,
+        "email": "jared@jaredlux.com",
+        "user_id": null,
+        "contact_token": "xxx",
+        "activation_code": "872070",
+        "email_permission": true,
+        "push_permission": false,
+        "sms_permission": true,
+        "vetId": 48621,
+        "vetBanner": "https://s3-us-west-1.amazonaws.com/pawprint-place-img/AnimalEmpireLogo.png",
+        "vetEmail": "animalempire@getpawprint.com",
+        "vetName": "Animal Empire Veterinary Clinic",
+        "vetPhone": "7188999200",
+        "vetPlaceId": 4665,
+        "vetShortName": "Animal Empire",
+        "appointmentCTA": "Please call (718) 899-9200",
+        "appointmentWebsite": null,
+        "reminders": [
+            {
+                "expiry": "2017-10-18",
+                "expiryDescriptionHtml": "<b>is due in 1 month</b>",
+                "petName": "Leki",
+                "pet_id": null,
+                "status": "Canine Rabies Vaccination"
+            }
+        ],
+        "approved": null,
+        "created_at": "2017-09-18T23:17:27.256Z",
+        "updated_at": "2017-09-18T23:17:27.256Z",
+        "vet_user_id": null
+    }
+]
 ```
 
 Returns list of reminders for a vet to approve.
@@ -84,11 +135,11 @@ Currently does not include clients that were created in the ScoutVet database vi
 ### Query string parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-order_by | string | Corresponds to a database column
-dir | string | `asc` or `desc`
-limit | int | Number of results to return
-offset | int | Start index
-filter | string | Filter by last name (case insensitive)
+order_by | string? | Corresponds to a database column; defaults to `last_name`
+dir | string? | `asc` or `desc`; defaults to `asc`
+limit | int? | Number of results to return
+offset | int? | Start index
+filter | string? | Filter by last name (case insensitive)
 
 ## List clients by last contacted date
 
@@ -144,9 +195,9 @@ If `filter` query parameter is specified: Number of unread messages becomes irre
 ### Query string parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-limit | int | Number of results to return
-offset | int | Start index
-filter | string | Filter by first name concatenated with last name (case insensitive)
+limit | int? | Number of results to return
+offset | int? | Start index
+filter | string? | Filter by first name concatenated with last name (case insensitive)
 
 ## Get client
 
@@ -312,11 +363,11 @@ Gets all reminder deliveries (`delivery.message_type = reminder`), regardless of
 ### Query string parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-order_by | string | Corresponds to a database column
-dir | string | `asc` or `desc`
-limit | int | Number of results to return
-offset | int | Start index
-filter | string | Filter by last name (case insensitive)
+order_by | string? | Corresponds to a database column; defaults to `created_at`
+dir | string? | `asc` or `desc`; defaults to `desc`
+limit | int? | Number of results to return
+offset | int? | Start index
+filter | string? | Filter by last name (case insensitive)
 
 ## Get sent emails and SMSes for reminders and confirmations
 
@@ -359,11 +410,11 @@ Same as above (`GET /partners/delivery`), but also includes `delivery.message_ty
 ### Query string parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-order_by | string | Corresponds to a database column
-dir | string | `asc` or `desc`
-limit | int | Number of results to return
-offset | int | Start index
-filter | string | Filter by last name (case insensitive)
+order_by | string? | Corresponds to a database column; defaults to `created_at`
+dir | string? | `asc` or `desc`; defaults to `desc`
+limit | int? | Number of results to return
+offset | int? | Start index
+filter | string? | Filter by last name (case insensitive)
 
 ## Get reminder cadence
 
@@ -413,16 +464,27 @@ Gets reminder cadence.
 > Request example
 
 ```json
-(TODO)
+{
+  "vet_integration_id": 999,
+  "sms": false,
+  "email": true,
+  "push": true,
+  "delta": {
+      "days": -1
+  },
+  "vet_integration_id": 999
+}
 ```
 
 > Response example
 
 ```json
-(TODO)
+{
+  "cadence": 55
+}
 ```
 
-Creates a reminder cadence (yes, this is PUT)
+Creates a reminder cadence (yes, this is PUT).
 
 ### HTTP Request
 `PUT /partners/reminder_cadence`
@@ -432,38 +494,44 @@ Creates a reminder cadence (yes, this is PUT)
 > Request example
 
 ```json
-(TODO)
+{
+  "id": 55,
+  "vet_integration_id": 999,
+  "sms": false,
+  "email": true,
+  "push": true,
+  "delta": {
+      "days": -1
+  },
+  "vet_integration_id": 999
+}
 ```
 
 > Response example
 
 ```json
-(TODO)
+{
+  "cadence": 55
+}
 ```
 
-Updates an existing reminder cadence (yes, this is POST)
+Updates an existing reminder cadence (yes, this is POST).
 
 ### HTTP Request
 `POST /partners/reminder_cadence`
 
 ## Delete reminder cadence
 
-> Request example
-
-```json
-(TODO)
-```
-
 > Response example
 
 ```json
-(TODO)
+(none)
 ```
 
-Deletes a reminder cadence
+Deletes a reminder cadence.
 
 ### HTTP Request
-`DELETE /partners/reminder_cadence`
+`DELETE /partners/reminder_cadence/:cadence_id`
 
 ## Send SMS to user
 
@@ -486,7 +554,7 @@ Deletes a reminder cadence
 Sends an SMS to the `vet_user` and phone number.
 
 ### HTTP Request
-`POST /sms/send`
+`POST /partners/sms/send`
 
 ### POST parameters
 Parameter | Type | Description
@@ -508,7 +576,7 @@ message | string | Message text
 Gets full chat history between vet and vet_user_id as a union of 2-way text messages and Pawprint-originated messages
 
 ### HTTP Request
-`GET /sms/history/all/:vet_user_id`
+`GET /partners/sms/history/all/:vet_user_id`
 
 ## Get SMS history with a phone number
 
@@ -572,3 +640,51 @@ Parameter | Type | Description
 --------- | ---- | -----------
 vet_user_id | integer | Value from `vet_user.id` column
 vet_user_phone | string | User's phone number - in case it's different from the phone number on file
+
+## Get SMSes from a specific unknown phone number
+
+> Response example
+
+```json
+{
+    "messages": [
+      {
+        "vet_user_phone": "+15555551212",
+        "message_body": "I'd like to set up an appointment for next week",
+        "created_at": "2020-06-20T15:32:32Z"
+      }
+    ]
+}
+```
+
+Returns SMS messages from the given phone number that doesn't match any phone number in the `vet_user` or `vet_user_phone` tables.
+
+### HTTP Request
+`GET /partners/sms/unknown/:phone`
+
+## Get list of unknown phone numbers with messages
+
+> Response example
+
+```json
+{
+    "clients": [
+        {
+            "vet_user_phone": "+15555551212",
+            "last_contacted": "2020-06-16T12:15:37.000Z",
+            "first_contacted": "2019-06-17T21:50:09.340Z"
+        }
+    ]
+}
+```
+
+Returns list of clients, first by users with unread messages, then the rest of the clients sorted by last contacted
+
+### HTTP Request
+`GET /partners/sms/unknown`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+limit | int? | Number of results to return
+offset | int? | Start index
