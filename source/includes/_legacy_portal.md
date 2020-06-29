@@ -666,30 +666,28 @@ vet_user_phone | string | Client's phone number
 > Response example
 
 ```json
-{
-    "history": [
-        {
-            "source": "+14255554321",
-            "destination": "+14255551234",
-            "direction": "inbound",
-            "automated": false,
-            "message_body": "Hi, I've just arrived in a white BMW",
-            "status": "received",
-            "timestamp": "2020-06-28T05:13:32Z",
-            "read": true
-        },
-        {
-            "source": "+14255551234",
-            "destination": "+14255554321",
-            "direction": "outbound",
-            "automated": false,
-            "message_body": "Are you here yet?",
-            "status": "delivered",
-            "timestamp": "2020-06-28T05:08:11Z",
-            "read": true
-        }
-    ]
-}
+[
+    {
+        "source": "+14255554321",
+        "destination": "+14255551234",
+        "direction": "inbound",
+        "automated": false,
+        "message_body": "Hi, I've just arrived in a white BMW",
+        "status": "received",
+        "timestamp": "2020-06-28T05:13:32Z",
+        "read": true
+    },
+    {
+        "source": "+14255551234",
+        "destination": "+14255554321",
+        "direction": "outbound",
+        "automated": false,
+        "message_body": "Are you here yet?",
+        "status": "delivered",
+        "timestamp": "2020-06-28T05:08:11Z",
+        "read": true
+    }
+]
 ```
 
 Gets full chat history between the vet and any phone number as a union of 2-way text messages and automated texts.
