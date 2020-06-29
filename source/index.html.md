@@ -20,14 +20,9 @@ includes:
   - payments
   - places
   - places_v3
-  - reminders_v2
-  - requests_v1
-  - requests_v2
   - requests_v3
   - sharing
   - user
-  - web_requests
-  - web_requests_branded
   - vetstoria
   - legacy_portal
 
