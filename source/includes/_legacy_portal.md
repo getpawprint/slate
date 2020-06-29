@@ -694,7 +694,7 @@ Gets full chat history between the vet and any phone number as a union of 2-way 
 
 Because pagination is affected by active conversations, this endpoint tries to return `$top` items before the `$max_timestamp` parameter (not including `$max_timestamp` itself), depending on how many messages have the exact same timestamp.
 
-An empty array for `history` indicates that the very beginning of SMS history has been reached and no more calls need to be made.
+An empty array indicates that the very beginning of SMS history has been reached and no more calls need to be made.
 
 direction | description
 --------- | -----------
