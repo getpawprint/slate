@@ -550,6 +550,23 @@
               </ul>
           </li>
           <li>
+            <a href="#vet-portal-communications" class="toc-h1 toc-link" data-title="vet-portal-communications">Vet portal communications</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-clients-by-last-incoming-sms-date" class="toc-h2 toc-link" data-title="list-clients-by-last-incoming-sms-date">List clients by last incoming SMS date</a>
+                  </li>
+                  <li>
+                    <a href="#get-sms-history-with-a-phone-number-v2" class="toc-h2 toc-link" data-title="get-sms-history-with-a-phone-number-v2">Get SMS history with a phone number V2</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-communication-history-with-a-vet_user" class="toc-h2 toc-link" data-title="get-all-communication-history-with-a-vet_user">Get all communication history with a vet_user</a>
+                  </li>
+                  <li>
+                    <a href="#get-count-of-unread-smses" class="toc-h2 toc-link" data-title="get-count-of-unread-smses">Get count of unread SMSes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#machine-learning-algo-tagging" class="toc-h1 toc-link" data-title="machine-learning-algo-tagging">Machine learning/algo tagging</a>
               <ul class="toc-list-h2">
                   <li>
@@ -736,9 +753,6 @@
                     <a href="#list-clients-by-last-contacted-date" class="toc-h2 toc-link" data-title="list-clients-by-last-contacted-date">List clients by last contacted date</a>
                   </li>
                   <li>
-                    <a href="#list-clients-by-last-contacted-date-v2" class="toc-h2 toc-link" data-title="list-clients-by-last-contacted-date-v2">List clients by last contacted date V2</a>
-                  </li>
-                  <li>
                     <a href="#get-client" class="toc-h2 toc-link" data-title="get-client">Get client</a>
                   </li>
                   <li>
@@ -776,15 +790,6 @@
                   </li>
                   <li>
                     <a href="#get-sms-history-with-a-phone-number" class="toc-h2 toc-link" data-title="get-sms-history-with-a-phone-number">Get SMS history with a phone number</a>
-                  </li>
-                  <li>
-                    <a href="#get-sms-history-with-a-phone-number-v2" class="toc-h2 toc-link" data-title="get-sms-history-with-a-phone-number-v2">Get SMS history with a phone number V2</a>
-                  </li>
-                  <li>
-                    <a href="#get-all-communication-history-with-a-vet_user" class="toc-h2 toc-link" data-title="get-all-communication-history-with-a-vet_user">Get all communication history with a vet_user</a>
-                  </li>
-                  <li>
-                    <a href="#get-count-of-unread-smses" class="toc-h2 toc-link" data-title="get-count-of-unread-smses">Get count of unread SMSes</a>
                   </li>
                   <li>
                     <a href="#mark-sms-as-read" class="toc-h2 toc-link" data-title="mark-sms-as-read">Mark SMS as read</a>
@@ -5993,6 +5998,203 @@ as the intake summary object in <code>GET /partners/intake</code>.</p>
 <p><code>event</code> is either <code>created</code> or <code>updated</code>. In most cases, it will be <code>updated</code>; the <code>created</code> notification only fires when an embedded/standalone intake is created (followed immediately by an <code>updated</code> notification).</p>
 <h3 id='connection-request'>Connection Request</h3>
 <p><code>ws://www.getpawprint.com/ws/partners/intake?access_token=${authToken}</code></p>
+<h1 id='vet-portal-communications'>Vet portal communications</h1>
+<p>Communication with users via 2-way text and automated messages</p>
+<h2 id='list-clients-by-last-incoming-sms-date'>List clients by last incoming SMS date</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">84159</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echoi@scoutvet.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-1234"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eric"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Choi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Are you here yet?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_contact_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:23:32Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-3456"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm bringing in a kitten today"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_contact_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:23:32Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Returns paginated list of clients from the <code>vet_user</code> table, combined with unknown phone numbers, sorted by
+last contact date (most recent first), and with the latest SMS to or from that client.
+Phone numbers not associated with a <code>vet_user</code> will have a null <code>id</code> and only a phone number.
+Currently does not include clients that were created in the ScoutVet database via standalone, Vetstoria or vet portal intakes.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/clients</code></p>
+<h3 id='query-string-parameters'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>$top</td>
+<td>int?</td>
+<td>Number of results to return; defaults to 10</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>string?</td>
+<td>Filter by first name or last name or phone number (case insensitive)</td>
+</tr>
+</tbody></table>
+<h2 id='get-sms-history-with-a-phone-number-v2'>Get SMS history with a phone number V2</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255554321"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255551234"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inbound"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"automated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, I've just arrived in a white BMW"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"received"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:13:32Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255551234"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255554321"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outbound"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"automated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Are you here yet?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivered"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:08:11Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets full chat history between the vet and any phone number as a union of 2-way text messages and automated texts.</p>
+
+<p>Because pagination is affected by active conversations, this endpoint tries to return <code>$top</code> items before the <code>$max_timestamp</code> parameter (not including <code>$max_timestamp</code> itself), depending on how many messages have the exact same timestamp.</p>
+
+<p>An empty array indicates that the very beginning of SMS history has been reached and no more calls need to be made.</p>
+
+<p>Directions: <code>inbound</code>, <code>outbound</code></p>
+
+<p>Automated: boolean</p>
+
+<p>Statuses: <code>sending...</code>, <code>sent</code>, <code>delivered</code>, <code>undelivered</code>, <code>received</code></p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /partners/sms/:phone</code></p>
+<h3 id='query-string-parameters-2'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>$top</td>
+<td>integer?</td>
+<td>Number of texts to return; default is 25.</td>
+</tr>
+<tr>
+<td>$max_timestamp</td>
+<td>datetime?</td>
+<td>Returns texts earlier than, but not including the timestamp; if unspecified, the most recent texts are returned.</td>
+</tr>
+</tbody></table>
+<h2 id='get-all-communication-history-with-a-vet_user'>Get all communication history with a vet_user</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sms"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255554321"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255551234"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inbound"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"automated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, I've just arrived in a white BMW"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"twilio_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"received"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"received"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:13:32Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sms"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255551234"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255554321"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outbound"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"automated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Are you here yet?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivered"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:08:11Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@scoutvet.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outbound"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"automated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sent intake form for an upcoming appointment"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:08:11Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all communication history between the vet and client, including backend-generated messages.</p>
+
+<p>Because pagination is affected by active conversations, this endpoint tries to return <code>$top</code> items before the <code>$max_timestamp</code> parameter (not including <code>$max_timestamp</code> itself), depending on how many messages have the exact same timestamp.</p>
+
+<p>An empty array indicates that the very beginning of communication history has been reached and no more calls need to be made.</p>
+
+<p>Channels: <code>email</code> or <code>sms</code></p>
+
+<p>Directions: <code>inbound</code>, <code>outbound</code></p>
+
+<p>Automated: boolean</p>
+
+<p>Statuses: <code>sending...</code>, <code>sent</code>, <code>delivered</code>, <code>undelivered</code>, <code>received</code></p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /partners/clients/:vet_user_id/communications</code></p>
+<h3 id='query-string-parameters-3'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>$top</td>
+<td>integer?</td>
+<td>Number of texts to return; default is 25.</td>
+</tr>
+<tr>
+<td>$max_timestamp</td>
+<td>datetime?</td>
+<td>Returns texts earlier than, but not including the timestamp; if unspecified, the most recent texts are returned.</td>
+</tr>
+</tbody></table>
+<h2 id='get-count-of-unread-smses'>Get count of unread SMSes</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"unknown"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"existing"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns count of unread text messages from unknown phone numbers and phone numbers associated with a <code>vet_user</code>.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /partners/sms/unread</code></p>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
 if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after
@@ -8032,58 +8234,6 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 <td>Filter by first name concatenated with last name (case insensitive)</td>
 </tr>
 </tbody></table>
-<h2 id='list-clients-by-last-contacted-date-v2'>List clients by last contacted date V2</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">84159</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"echoi@scoutvet.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-1234"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eric"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Choi"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Are you here yet?"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_contact_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:23:32Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-3456"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I'm bringing in a kitten today"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"last_contact_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:23:32Z"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>Returns paginated list of clients from the <code>vet_user</code> table, combined with unknown phone numbers, sorted by
-last contact date (most recent first), and with the latest message to or from that client.
-Phone numbers not associated with a <code>vet_user</code> will have a null <code>id</code> and only a phone number.
-Currently does not include clients that were created in the ScoutVet database via standalone, Vetstoria or vet portal intakes.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>GET /partners/clients</code></p>
-<h3 id='query-string-parameters-3'>Query string parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>$top</td>
-<td>int?</td>
-<td>Number of results to return; defaults to 10</td>
-</tr>
-<tr>
-<td>filter</td>
-<td>string?</td>
-<td>Filter by first name or last name or phone number (case insensitive)</td>
-</tr>
-</tbody></table>
 <h2 id='get-client'>Get client</h2>
 <blockquote>
 <p>Response example</p>
@@ -8105,7 +8255,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets a client from the <code>vet_user</code> table.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /partners/clients/:vet_user_id</code></p>
 <h2 id='get-client-39-s-pets'>Get client&#39;s pets</h2>
 <blockquote>
@@ -8137,7 +8287,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets a client&#39;s pets from the <code>vet_pet</code> table.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /partners/clients/:vet_user_id/pets</code></p>
 <h2 id='get-emails-sent-to-a-client'>Get emails sent to a client</h2>
 <blockquote>
@@ -8167,7 +8317,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Gets emails sent to a <code>vet_user</code> from the <code>delivery</code> table.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>GET /partners/clients/:vet_user_id/emails</code></p>
 <h2 id='get-client-39-s-appointments-with-confirmation-cancellations'>Get client&#39;s appointments with confirmation/cancellations</h2>
 <blockquote>
@@ -8185,7 +8335,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets appointments from the <code>vet_schedule</code> table where the <code>vet_user</code> has responded with confirm/cancel.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET /partners/clients/:vet_user_id/schedule</code></p>
 <h2 id='get-sent-emails-and-smses-for-reminders'>Get sent emails and SMSes for reminders</h2>
 <blockquote>
@@ -8220,9 +8370,9 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets all reminder deliveries (<code>delivery.message_type = reminder</code>), regardless of type (<code>email</code> or <code>sms</code>)</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET /partners/delivery</code></p>
-<h3 id='query-string-parameters-4'>Query string parameters</h3>
+<h3 id='query-string-parameters-3'>Query string parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8289,9 +8439,9 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Same as above (<code>GET /partners/delivery</code>), but also includes <code>delivery.message_type = confirmation</code>.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET /partners/delivery/vet_history</code></p>
-<h3 id='query-string-parameters-5'>Query string parameters</h3>
+<h3 id='query-string-parameters-4'>Query string parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8362,7 +8512,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets reminder cadence.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>GET /partners/reminder_cadence</code></p>
 <h2 id='create-reminder-cadence'>Create reminder cadence</h2>
 <blockquote>
@@ -8387,7 +8537,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Creates a reminder cadence (yes, this is PUT).</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>PUT /partners/reminder_cadence</code></p>
 <h2 id='update-reminder-cadence'>Update reminder cadence</h2>
 <blockquote>
@@ -8413,7 +8563,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Updates an existing reminder cadence (yes, this is POST).</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>POST /partners/reminder_cadence</code></p>
 <h2 id='delete-reminder-cadence'>Delete reminder cadence</h2>
 <blockquote>
@@ -8422,7 +8572,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Deletes a reminder cadence.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>DELETE /partners/reminder_cadence/:cadence_id</code></p>
 <h2 id='send-sms-to-user'>Send SMS to user</h2>
 <blockquote>
@@ -8440,7 +8590,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Sends an SMS to the <code>vet_user</code> and phone number.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>POST /partners/sms/send</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
@@ -8475,7 +8625,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets full chat history between vet and vet_user_id as a union of 2-way text messages and Pawprint-originated messages</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET /partners/sms/history/all/:vet_user_id</code></p>
 <h2 id='get-sms-history-with-a-phone-number'>Get SMS history with a phone number</h2>
 <blockquote>
@@ -8505,9 +8655,9 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets full chat history between vet and any phone number as a union of 2-way text messages and Pawprint-originated messages</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>GET /partners/sms/history</code></p>
-<h3 id='query-string-parameters-6'>Query string parameters</h3>
+<h3 id='query-string-parameters-5'>Query string parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8521,189 +8671,6 @@ Currently does not include clients that were created in the ScoutVet database vi
 <td>Client&#39;s phone number</td>
 </tr>
 </tbody></table>
-<h2 id='get-sms-history-with-a-phone-number-v2'>Get SMS history with a phone number V2</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255554321"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255551234"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inbound"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"automated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, I've just arrived in a white BMW"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"received"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:13:32Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255551234"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255554321"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outbound"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"automated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Are you here yet?"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivered"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:08:11Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>Gets full chat history between the vet and any phone number as a union of 2-way text messages and automated texts.</p>
-
-<p>Because pagination is affected by active conversations, this endpoint tries to return <code>$top</code> items before the <code>$max_timestamp</code> parameter (not including <code>$max_timestamp</code> itself), depending on how many messages have the exact same timestamp.</p>
-
-<p>An empty array indicates that the very beginning of SMS history has been reached and no more calls need to be made.</p>
-
-<table><thead>
-<tr>
-<th>direction</th>
-<th>description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>inbound</code></td>
-<td>Written by a human client</td>
-</tr>
-<tr>
-<td><code>outbound</code></td>
-<td>Written by a human vet</td>
-</tr>
-<tr>
-<td><code>automated_outbound</code></td>
-<td>Generated by the backend, e.g. an appointment confirmation or intake link</td>
-</tr>
-<tr>
-<td><code>text_command</code></td>
-<td>Written by a human client; backend parsed it and took an action, e.g. an appointment cancellation</td>
-</tr>
-</tbody></table>
-
-<p>Twilio statuses: <code>sending...</code>, <code>sent</code>, <code>delivered</code>, <code>undelivered</code>, <code>received</code></p>
-<h3 id='http-request-20'>HTTP Request</h3>
-<p><code>GET /partners/sms/:phone</code></p>
-<h3 id='query-string-parameters-7'>Query string parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>$top</td>
-<td>integer?</td>
-<td>Number of texts to return; default is 25.</td>
-</tr>
-<tr>
-<td>$max_timestamp</td>
-<td>datetime?</td>
-<td>Returns texts earlier than, but not including the timestamp; if unspecified, the most recent texts are returned.</td>
-</tr>
-</tbody></table>
-<h2 id='get-all-communication-history-with-a-vet_user'>Get all communication history with a vet_user</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sms"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255554321"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255551234"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inbound"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"automated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, I've just arrived in a white BMW"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"twilio_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"received"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"received"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:13:32Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sms"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255551234"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14255554321"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outbound"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"automated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Are you here yet?"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivered"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:08:11Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@scoutvet.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outbound"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"automated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sent intake form for an upcoming appointment"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-28T05:08:11Z"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>Gets all communication history between the vet and client, including backend-generated messages.</p>
-
-<p>Because pagination is affected by active conversations, this endpoint tries to return <code>$top</code> items before the <code>$max_timestamp</code> parameter (not including <code>$max_timestamp</code> itself), depending on how many messages have the exact same timestamp.</p>
-
-<p>An empty array indicates that the very beginning of communication history has been reached and no more calls need to be made.</p>
-
-<p>Channels: <code>email</code> or <code>sms</code></p>
-
-<table><thead>
-<tr>
-<th>direction</th>
-<th>description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>inbound</code></td>
-<td>Written by a human client. Currently applies to SMS only.</td>
-</tr>
-<tr>
-<td><code>outbound</code></td>
-<td>Written by a human vet. Currently applies to SMS only.</td>
-</tr>
-<tr>
-<td><code>automated_outbound</code></td>
-<td>Generated by the backend, e.g. an appointment confirmation or intake link. All emails currently have this status.</td>
-</tr>
-<tr>
-<td><code>text_command</code></td>
-<td>Written by a human client; backend parsed it and took an action, e.g. an appointment cancellation. Currently applies to SMS only.</td>
-</tr>
-</tbody></table>
-
-<p>Twilio statuses: <code>sending...</code>, <code>sent</code>, <code>delivered</code>, <code>undelivered</code>, <code>received</code></p>
-<h3 id='http-request-21'>HTTP Request</h3>
-<p><code>GET /partners/clients/:vet_user_id/communications</code></p>
-<h3 id='query-string-parameters-8'>Query string parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>$top</td>
-<td>integer?</td>
-<td>Number of texts to return; default is 25.</td>
-</tr>
-<tr>
-<td>$max_timestamp</td>
-<td>datetime?</td>
-<td>Returns texts earlier than, but not including the timestamp; if unspecified, the most recent texts are returned.</td>
-</tr>
-</tbody></table>
-<h2 id='get-count-of-unread-smses'>Get count of unread SMSes</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"unknown"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"existing"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Returns count of unread text messages from unknown phone numbers and phone numbers associated with a <code>vet_user</code>.</p>
-<h3 id='http-request-22'>HTTP Request</h3>
-<p><code>GET /partners/sms/unread</code></p>
 <h2 id='mark-sms-as-read'>Mark SMS as read</h2>
 <blockquote>
 <p>Request example</p>
@@ -8719,7 +8686,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Sets all SMSes as &quot;read&quot; for the given vet user ID and phone number.</p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST /partners/sms/mark_read</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
@@ -8755,7 +8722,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Returns SMS messages from the given phone number that doesn&#39;t match any phone number in the <code>vet_user</code> or <code>vet_user_phone</code> tables.</p>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET /partners/sms/unknown/:phone</code></p>
 <h2 id='get-list-of-unknown-phone-numbers-with-messages'>Get list of unknown phone numbers with messages</h2>
 <blockquote>
@@ -8772,9 +8739,9 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Returns list of clients, first by users with unread messages, then the rest of the clients sorted by last contacted</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>GET /partners/sms/unknown</code></p>
-<h3 id='query-string-parameters-9'>Query string parameters</h3>
+<h3 id='query-string-parameters-6'>Query string parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
