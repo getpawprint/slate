@@ -13,6 +13,16 @@ Communication with users via 2-way text and automated messages
         "phone": "(555) 555-1234",
         "first_name": "Eric",
         "last_name": "Choi",
+        "pets": [
+            {
+                "name": "Glumpy",
+                "deceased": false
+            },
+            {
+                "name": "Pumpkin",
+                "deceased": true
+            },
+        ]
         "message_body": "Are you here yet?",
         "read": false,
         "last_contact_at": "2020-06-28T05:23:32Z"
@@ -51,6 +61,7 @@ filter | string? | Filter by first name or last name or phone number (case insen
 ```json
 [
     {
+        "id": 45,
         "source": "+14255554321",
         "destination": "+14255551234",
         "direction": "inbound",
@@ -61,6 +72,7 @@ filter | string? | Filter by first name or last name or phone number (case insen
         "read": true
     },
     {
+        "id": 44,
         "source": "+14255551234",
         "destination": "+14255554321",
         "direction": "outbound",
@@ -101,6 +113,7 @@ $max_timestamp | datetime? |  Returns texts earlier than, but not including the 
 ```json
 [
     {
+        "id": 45,
         "channel": "sms",
         "source": "+14255554321",
         "destination": "+14255551234",
@@ -112,6 +125,7 @@ $max_timestamp | datetime? |  Returns texts earlier than, but not including the 
         "timestamp": "2020-06-28T05:13:32Z"
     },
     {
+        "id": 44,
         "channel": "sms",
         "source": "+14255551234",
         "destination": "+14255554321",
@@ -122,6 +136,7 @@ $max_timestamp | datetime? |  Returns texts earlier than, but not including the 
         "timestamp": "2020-06-28T05:08:11Z"
     },
     {
+        "id": 10090,
         "channel": "email",
         "source": null,
         "destination": "demo2@scoutvet.com",
