@@ -567,6 +567,23 @@
               </ul>
           </li>
           <li>
+            <a href="#configuration" class="toc-h1 toc-link" data-title="configuration">Configuration</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-configuration-vet" class="toc-h2 toc-link" data-title="get-configuration-vet">Get configuration (vet)</a>
+                  </li>
+                  <li>
+                    <a href="#update-configuration-vet" class="toc-h2 toc-link" data-title="update-configuration-vet">Update configuration (vet)</a>
+                  </li>
+                  <li>
+                    <a href="#get-configuration-admin" class="toc-h2 toc-link" data-title="get-configuration-admin">Get configuration (admin)</a>
+                  </li>
+                  <li>
+                    <a href="#update-configuration-admin" class="toc-h2 toc-link" data-title="update-configuration-admin">Update configuration (admin)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#machine-learning-algo-tagging" class="toc-h1 toc-link" data-title="machine-learning-algo-tagging">Machine learning/algo tagging</a>
               <ul class="toc-list-h2">
                   <li>
@@ -6215,6 +6232,769 @@ Currently does not include clients that were created in the ScoutVet database vi
 <p>Returns count of unread text messages from unknown phone numbers and phone numbers associated with a <code>vet_user</code>.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /partners/sms/unread</code></p>
+<h1 id='configuration'>Configuration</h1>
+<p>Switch features on and off; vet-specific customizations.</p>
+<h2 id='get-configuration-vet'>Get configuration (vet)</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@snoutid.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pawprint_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@snoutid.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint, Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"814 Mission Street, San Francisco, CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.scoutvet.com/images/logo-header.png"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"confirmations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"reminders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"appointment_website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://snoutid.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reminder_cadence"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"sms_messaging"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"twilio_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18559654492"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"auto_reply"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"auto_reply_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"intake"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"vanity_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"terms_of_service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I agree to everything"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"intake_form_override"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"user_birthdate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"car_make_model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"sms_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"media_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"questionnaire_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"checkin_instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please wear a mask when you arrive to comply with the governor's mandate."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a vet configuration.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/settings</code></p>
+<h2 id='update-configuration-vet'>Update configuration (vet)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@snoutid.com"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint, Inc."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"814 Mission Street, San Francisco, CA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-5555"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"confirmations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"reminders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"appointment_website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://snoutid.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reminder_cadence"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"sms_messaging"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"auto_reply"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"auto_reply_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"intake"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"intake_form_override"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"car_make_model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"sms_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"media_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"checkin_instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please wear a mask when you arrive to comply with the governor's mandate."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(Same</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">vet</span><span class="w"> </span><span class="err">configuration)</span><span class="w">
+</span></code></pre>
+<p>Updates a vet configuration; one section may be specified at a time, but all its properties must be present.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>PATCH /partners/settings</code></p>
+<h3 id='patch-parameters'>PATCH parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account</td>
+<td>object?</td>
+<td>Account information for SnoutID emails and banner image</td>
+</tr>
+<tr>
+<td>account.email</td>
+<td>string</td>
+<td>Login email</td>
+</tr>
+<tr>
+<td>place</td>
+<td>object?</td>
+<td>Place information for email, phone and physical contact</td>
+</tr>
+<tr>
+<td>place.name</td>
+<td>string</td>
+<td>Place&#39;s official name</td>
+</tr>
+<tr>
+<td>place.shortname</td>
+<td>string</td>
+<td>Place&#39;s short name, used in SMS messages</td>
+</tr>
+<tr>
+<td>place.address</td>
+<td>string</td>
+<td>Place&#39;s physical address</td>
+</tr>
+<tr>
+<td>place.phone</td>
+<td>string</td>
+<td>Place&#39;s phone number</td>
+</tr>
+<tr>
+<td>confirmations</td>
+<td>object?</td>
+<td>Appointment confirmation settings</td>
+</tr>
+<tr>
+<td>confirmations.enabled</td>
+<td>boolean</td>
+<td>Feature on/off</td>
+</tr>
+<tr>
+<td>reminders</td>
+<td>object?</td>
+<td>Reminder settings</td>
+</tr>
+<tr>
+<td>reminders.enabled</td>
+<td>boolean</td>
+<td>Feature on/off</td>
+</tr>
+<tr>
+<td>reminders.appointment_website</td>
+<td>string?</td>
+<td>Booking link in reminder email</td>
+</tr>
+<tr>
+<td>reminders.reminder_cadence</td>
+<td>object[]</td>
+<td>Reminder schedule</td>
+</tr>
+<tr>
+<td>reminders.reminder_cadence.email</td>
+<td>boolean</td>
+<td>Whether or not an email reminder should be sent (if possible)</td>
+</tr>
+<tr>
+<td>reminders.reminder_cadence.sms</td>
+<td>boolean</td>
+<td>Whether or not an SMS reminder should be sent (if possible)</td>
+</tr>
+<tr>
+<td>reminders.reminder_cadence.days</td>
+<td>integer</td>
+<td>Days from expiration the reminder should be sent; positive numbers are before the due date and negative numbers are after the due date.</td>
+</tr>
+<tr>
+<td>sms_messaging</td>
+<td>object?</td>
+<td>2-way text settings; vets will always get a twilio_phone number, but must contact us to enable/disable 2-way text</td>
+</tr>
+<tr>
+<td>sms_messaging.auto_reply</td>
+<td>boolean</td>
+<td>Whether or not to send an automatic reply to the client&#39;s first incoming text</td>
+</tr>
+<tr>
+<td>sms_messaging.auto_reply_message</td>
+<td>string</td>
+<td>The automatic reply to the client&#39;s first incoming text</td>
+</tr>
+<tr>
+<td>intake</td>
+<td>object?</td>
+<td>Intake settings</td>
+</tr>
+<tr>
+<td>intake.intake_form_override</td>
+<td>object</td>
+<td>Intake form customizations</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.birthdate</td>
+<td>object</td>
+<td>Birthdate customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.birthdate.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s birthdate should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.birthdate.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s birthdate should be required</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.address</td>
+<td>object</td>
+<td>Client address customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.address.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s address should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.address.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s address should be required</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.referral</td>
+<td>object</td>
+<td>Referral customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.referral.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for how the client found the vet should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.referral.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for how the client found the vet should be required</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.car_make_model</td>
+<td>object</td>
+<td>Car make and model customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.car_make_model.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s car make and model should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.car_make_model.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s car make and model should be required</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.sms_opt_in</td>
+<td>object</td>
+<td>SMS opt-in customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.sms_opt_in.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s SMS opt-in should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.sms_opt_in.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s SMS opt-in should be required</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.media_opt_in</td>
+<td>object</td>
+<td>Social media customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.media_opt_in.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for if the vet is allowed to use pictures of the client&#39;s pet on social media should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.media_opt_in.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for if the vet is allowed to use pictures of the client&#39;s pet on social media should be required</td>
+</tr>
+</tbody></table>
+<h2 id='get-configuration-admin'>Get configuration (admin)</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"login_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@scoutvet.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pawprint_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@snoutid.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Super Test Veterinary Clinic"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Super Test Vet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.scoutvet.com/images/logo-header.png"</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Bellevue, WA 98004"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15555554567"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"confirmations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reminders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reminder_cadence"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"appointment_request_instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What's this?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"appointment_website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scoutvet.com/contact"</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"sms_messaging"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"twilio_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15555554567"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auto_reply"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auto_reply_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thank you for contacting Super Test Vet. We normally return messages within 48 hours."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"intake"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"vanity_slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"supertestvet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"terms_of_service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I hereby agree to everything."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"intake_form_override"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"car_make_model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"user_birthdate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"user_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"media_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"questionnaire_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"checkin_instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please wear a mask to comply with the governor's mandate."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vetstoria"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"base_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://nva.vestoria.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"site_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"becf2349baf"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a vet configuration; some sections are read-only: <code>place.pawprint_email</code>, <code>intake.vanity_slug</code>, <code>sms_messaging.twilio_phone_number</code></p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /admin/vet/:place_id/settings</code></p>
+<h2 id='update-configuration-admin'>Update configuration (admin)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"login_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@scoutvet.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pawprint_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo2@snoutid.com"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Super Test Veterinary Clinic"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Bellevue, WA 98004"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15555554567"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@scoutvet.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shortname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Super Test Vet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.scoutvet.com/images/logo-header.png"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"confirmations"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"reminders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reminder_cadence"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sms"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"days"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"appointment_website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://scoutvet.com/contact"</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"sms_messaging"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"twilio_phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15555554567"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auto_reply"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auto_reply_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thank you for contacting Super Test Vet. We normally return messages within 48 hours."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"intake"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"datasync_intake"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"active_client_intakes"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"terms_of_service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I hereby agree to everything."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"intake_form_override"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"car_make_model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"user_birthdate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"user_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"media_opt_in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"questionnaire_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"checkin_instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please wear a mask to comply with the governor's mandate."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"vetstoria"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"base_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://nva.vestoria.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"site_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"becf2349baf"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(Same</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">admin</span><span class="w"> </span><span class="err">configuration)</span><span class="w">
+</span></code></pre>
+<p>Updates a vet configuration; sections may be partially specified.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>PATCH /admin/vet/:place_id/settings</code></p>
+<h3 id='patch-parameters-2'>PATCH parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account</td>
+<td>object?</td>
+<td>Account information for SnoutID emails and banner image</td>
+</tr>
+<tr>
+<td>account.email</td>
+<td>string</td>
+<td>Login email</td>
+</tr>
+<tr>
+<td>place</td>
+<td>object?</td>
+<td>Place information for email, phone and physical contact</td>
+</tr>
+<tr>
+<td>place.name</td>
+<td>string</td>
+<td>Place&#39;s official name</td>
+</tr>
+<tr>
+<td>place.shortname</td>
+<td>string</td>
+<td>Place&#39;s short name, used in SMS messages</td>
+</tr>
+<tr>
+<td>place.address</td>
+<td>string</td>
+<td>Place&#39;s physical address</td>
+</tr>
+<tr>
+<td>place.phone</td>
+<td>string</td>
+<td>Place&#39;s phone number</td>
+</tr>
+<tr>
+<td>confirmations</td>
+<td>object?</td>
+<td>Appointment confirmation settings</td>
+</tr>
+<tr>
+<td>confirmations.enabled</td>
+<td>boolean</td>
+<td>Feature on/off</td>
+</tr>
+<tr>
+<td>reminders</td>
+<td>object?</td>
+<td>Reminder settings</td>
+</tr>
+<tr>
+<td>reminders.enabled</td>
+<td>boolean</td>
+<td>Feature on/off</td>
+</tr>
+<tr>
+<td>reminders.appointment_website</td>
+<td>string?</td>
+<td>Booking link in reminder email</td>
+</tr>
+<tr>
+<td>reminders.reminder_cadence</td>
+<td>object[]</td>
+<td>Reminder schedule</td>
+</tr>
+<tr>
+<td>reminders.reminder_cadence.email</td>
+<td>boolean</td>
+<td>Whether or not an email reminder should be sent (if possible)</td>
+</tr>
+<tr>
+<td>reminders.reminder_cadence.sms</td>
+<td>boolean</td>
+<td>Whether or not an SMS reminder should be sent (if possible)</td>
+</tr>
+<tr>
+<td>reminders.reminder_cadence.days</td>
+<td>integer</td>
+<td>Days from expiration the reminder should be sent; positive numbers are before the due date and negative numbers are after the due date.</td>
+</tr>
+<tr>
+<td>sms_messaging</td>
+<td>object?</td>
+<td>2-way text settings; vets will always get a twilio_phone number, but must contact us to enable/disable 2-way text</td>
+</tr>
+<tr>
+<td>sms_messaging.enabled</td>
+<td>boolean</td>
+<td>Feature on/off</td>
+</tr>
+<tr>
+<td>sms_messaging.auto_reply</td>
+<td>boolean</td>
+<td>Whether or not to send an automatic reply to the client&#39;s first incoming text</td>
+</tr>
+<tr>
+<td>sms_messaging.auto_reply_message</td>
+<td>string</td>
+<td>The automatic reply to the client&#39;s first incoming text</td>
+</tr>
+<tr>
+<td>intake</td>
+<td>object?</td>
+<td>Intake settings</td>
+</tr>
+<tr>
+<td>intake.datasync_intake</td>
+<td>boolean</td>
+<td>Whether or not to generate intakes from the <code>vet_schedule</code> table</td>
+</tr>
+<tr>
+<td>intake.active_client_intakes</td>
+<td>boolean</td>
+<td>Whether or not to generate intakes for clients that had an appointment in the past 6 months</td>
+</tr>
+<tr>
+<td>intake.intake_form_override</td>
+<td>object</td>
+<td>Intake form customizations</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.birthdate</td>
+<td>object</td>
+<td>Birthdate customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.birthdate.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s birthdate should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.birthdate.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s birthdate should be required</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.address</td>
+<td>object</td>
+<td>Client address customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.address.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s address should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.address.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s address should be required</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.referral</td>
+<td>object</td>
+<td>Referral customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.referral.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for how the client found the vet should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.referral.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for how the client found the vet should be required</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.car_make_model</td>
+<td>object</td>
+<td>Car make and model customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.car_make_model.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s car make and model should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.car_make_model.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s car make and model should be required</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.sms_opt_in</td>
+<td>object</td>
+<td>SMS opt-in customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.sms_opt_in.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s SMS opt-in should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.sms_opt_in.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for the client&#39;s SMS opt-in should be required</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.media_opt_in</td>
+<td>object</td>
+<td>Social media customization</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.media_opt_in.is_visible</td>
+<td>boolean</td>
+<td>Whether or not the input for if the vet is allowed to use pictures of the client&#39;s pet on social media should be shown</td>
+</tr>
+<tr>
+<td>intake.intake_form_override.media_opt_in.is_required</td>
+<td>boolean</td>
+<td>Whether or not the input for if the vet is allowed to use pictures of the client&#39;s pet on social media should be required</td>
+</tr>
+<tr>
+<td>intake.questionnaire_id</td>
+<td>integer?</td>
+<td><code>null</code> to disable questionnaires, otherwise a foreign reference to <code>form.id</code>.</td>
+</tr>
+<tr>
+<td>vetstoria</td>
+<td>object?</td>
+<td>Vetstoria configuration</td>
+</tr>
+<tr>
+<td>vetstoria.base_url</td>
+<td>string</td>
+<td>Vetstoria base URL</td>
+</tr>
+<tr>
+<td>vetstoria.site_hash</td>
+<td>string</td>
+<td>Vetstoria site hash</td>
+</tr>
+</tbody></table>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
 if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after

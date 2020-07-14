@@ -16,6 +16,7 @@ includes:
   - intake
   - vet_intake_portal
   - vet_portal_communications
+  - configuration
   - machine_learning
   - medication
   - payments
