@@ -122,7 +122,7 @@ Gets a vet configuration.
     },
     "intake": {
         "intake_form_override": {
-            "birthdate": {
+            "user_birthdate": {
                 "is_visible": false,
                 "is_required": false
             },
@@ -186,9 +186,9 @@ sms_messaging.auto_reply | boolean | Whether or not to send an automatic reply t
 sms_messaging.auto_reply_message | string | The automatic reply to the client's first incoming text
 intake | object? | Intake settings
 intake.intake_form_override | object | Intake form customizations
-intake.intake_form_override.birthdate | object | Birthdate customization
-intake.intake_form_override.birthdate.is_visible | boolean | Whether or not the input for the client's birthdate should be shown
-intake.intake_form_override.birthdate.is_required | boolean | Whether or not the input for the client's birthdate should be required
+intake.intake_form_override.user_birthdate | object | Birthdate customization
+intake.intake_form_override.user_birthdate.is_visible | boolean | Whether or not the input for the client's birthdate should be shown
+intake.intake_form_override.user_birthdate.is_required | boolean | Whether or not the input for the client's birthdate should be required
 intake.intake_form_override.address | object | Client address customization
 intake.intake_form_override.address.is_visible | boolean | Whether or not the input for the client's address should be shown
 intake.intake_form_override.address.is_required | boolean | Whether or not the input for the client's address should be required
@@ -402,9 +402,9 @@ intake | object? | Intake settings
 intake.datasync_intake | boolean | Whether or not to generate intakes from the `vet_schedule` table
 intake.active_client_intakes | boolean | Whether or not to generate intakes for clients that had an appointment in the past 6 months
 intake.intake_form_override | object | Intake form customizations
-intake.intake_form_override.birthdate | object | Birthdate customization
-intake.intake_form_override.birthdate.is_visible | boolean | Whether or not the input for the client's birthdate should be shown
-intake.intake_form_override.birthdate.is_required | boolean | Whether or not the input for the client's birthdate should be required
+intake.intake_form_override.user_birthdate | object | Birthdate customization
+intake.intake_form_override.user_birthdate.is_visible | boolean | Whether or not the input for the client's birthdate should be shown
+intake.intake_form_override.user_birthdate.is_required | boolean | Whether or not the input for the client's birthdate should be required
 intake.intake_form_override.address | object | Client address customization
 intake.intake_form_override.address.is_visible | boolean | Whether or not the input for the client's address should be shown
 intake.intake_form_override.address.is_required | boolean | Whether or not the input for the client's address should be required
