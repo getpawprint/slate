@@ -212,7 +212,7 @@ intake.intake_form_override.media_opt_in.is_required | boolean | Whether or not 
 ```json
 {
   "account": {
-    "login_email": "info@scoutvet.com",
+    "email": "info@scoutvet.com",
     "pawprint_email": "demo2@snoutid.com"
   },
   "place": {
@@ -293,7 +293,7 @@ Gets a vet configuration; some sections are read-only: `place.pawprint_email`, `
 ```json
 {
   "account": {
-    "login_email": "info@scoutvet.com",
+    "email": "info@scoutvet.com",
     "pawprint_email": "demo2@snoutid.com"
   },
   "place": {
