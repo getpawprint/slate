@@ -89,11 +89,11 @@ stripe_payment_method_id | string | Stripe Payment Method ID, chosen from `GET /
 ]
 ```
 
-Gets the user's payment history. `amount` is in cents. `status` is loosely translated from https://stripe.com/docs/payments/intents#intent-statuses and is one of the following:
+Gets the user's payment history. `amount` is in cents. `status` is based on https://stripe.com/docs/payments/intents#intent-statuses and is one of the following:
 
-- `requires_payment_method`
-- `requires_confirmation`
-- `requires_action`
+- `requires payment method`
+- `requires confirmation`
+- `requires action`
 - `pending`
 - `cancelled`
 - `complete`

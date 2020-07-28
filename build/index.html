@@ -7774,12 +7774,12 @@ The <code>client_secret</code> should be consumed on the client side by calling 
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>Gets the user&#39;s payment history. <code>amount</code> is in cents. <code>status</code> is loosely translated from https://stripe.com/docs/payments/intents#intent-statuses and is one of the following:</p>
+<p>Gets the user&#39;s payment history. <code>amount</code> is in cents. <code>status</code> is based on https://stripe.com/docs/payments/intents#intent-statuses and is one of the following:</p>
 
 <ul>
-<li><code>requires_payment_method</code></li>
-<li><code>requires_confirmation</code></li>
-<li><code>requires_action</code></li>
+<li><code>requires payment method</code></li>
+<li><code>requires confirmation</code></li>
+<li><code>requires action</code></li>
 <li><code>pending</code></li>
 <li><code>cancelled</code></li>
 <li><code>complete</code></li>
