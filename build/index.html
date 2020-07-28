@@ -7723,6 +7723,7 @@ Note that <code>exp_month</code> is 1-based, i.e. January = 1 and December = 12,
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness exam"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"stripe_payment_method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pm_jLp1XcLD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -7747,6 +7748,11 @@ The <code>client_secret</code> should be consumed on the client side by calling 
 <td>amount</td>
 <td>integer</td>
 <td>Charge amount, in cents</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Charge description</td>
 </tr>
 <tr>
 <td>stripe_payment_method_id</td>

@@ -49,6 +49,7 @@ Note that `exp_month` is 1-based, i.e. January = 1 and December = 12, instead of
 ```json
 {
 	"amount": "3000",
+	"description": "Wellness exam",
 	"stripe_payment_method_id": "pm_jLp1XcLD"
 }
 ```
@@ -69,6 +70,7 @@ The `client_secret` should be consumed on the client side by calling stripe.conf
 Parameter | Type | Description
 --------- | ---- | -----------
 amount | integer | Charge amount, in cents
+description | string | Charge description
 stripe_payment_method_id | string | Stripe Payment Method ID, chosen from `GET /user/:user_id/payment_methods`
 
 ## List payment history
