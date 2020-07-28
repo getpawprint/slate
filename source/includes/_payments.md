@@ -17,7 +17,7 @@ Creates a Stripe SetupIntent on the server side, then returns the Stripe `client
 The `client_secret` should be consumed on the client side by calling `stripe.confirmCardSetup()` (https://stripe.com/docs/js/setup_intents/confirm_card_setup#stripe_confirm_card_setup-with_element).
 
 ### HTTP Request
-`POST /user/:user_id/setup_intent`
+`POST /partners/user/:user_id/setup_intent`
 
 ## List payment methods
 
@@ -40,7 +40,7 @@ Note that `exp_month` is 1-based, i.e. January = 1 and December = 12, instead of
 
 
 ### HTTP Request
-`GET /user/:user_id/payment_methods`
+`GET /partners/user/:user_id/payment_methods`
 
 ## Charge a user
 
@@ -64,7 +64,7 @@ Creates a Stripe PaymentIntent on the server side, then returns the Stripe `clie
 The `client_secret` should be consumed on the client side by calling stripe.confirmCardPayment().
 
 ### HTTP Request
-`POST /user/:user_id/payment_intent`
+`POST /partners/user/:user_id/payment_intent`
 
 ### POST parameters
 Parameter | Type | Description
@@ -79,11 +79,24 @@ stripe_payment_method_id | string | Stripe Payment Method ID, chosen from `GET /
 
 ```json
 [
-	TBD
+	{		
+		"date": "2020-05-20",
+		"description": "Wellness exam",
+		"amount": "20000",
+		"status": "complete",
+		"stripe_payment_id": "pi_1H9zrzDZqIsjxz1b7Iw5VLmL"
+	}
 ]
 ```
 
-Gets the user's payment history.
+Gets the user's payment history. `amount` is in cents. `status` is loosely translated from https://stripe.com/docs/payments/intents#intent-statuses and is one of the following:
+
+- `requires_payment_method`
+- `requires_confirmation`
+- `requires_action`
+- `pending`
+- `cancelled`
+- `complete`
 
 ### HTTP Request
-`GET /user/:user_id/payments`
+`GET /partners/user/:user_id/payments`

@@ -7698,7 +7698,7 @@ at a later date which suggests the same medication.</p>
 <p>Creates a Stripe SetupIntent on the server side, then returns the Stripe <code>client_secret</code>.
 The <code>client_secret</code> should be consumed on the client side by calling <code>stripe.confirmCardSetup()</code> (https://stripe.com/docs/js/setup_intents/confirm_card_setup#stripe_confirm_card_setup-with_element).</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /user/:user_id/setup_intent</code></p>
+<p><code>POST /partners/user/:user_id/setup_intent</code></p>
 <h2 id='list-payment-methods'>List payment methods</h2>
 <blockquote>
 <p>Response example</p>
@@ -7716,7 +7716,7 @@ The <code>client_secret</code> should be consumed on the client side by calling 
 <p>Gets all the payment methods for a user, which can later be used to create a charge.
 Note that <code>exp_month</code> is 1-based, i.e. January = 1 and December = 12, instead of Javascript&#39;s 0-based months.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET /user/:user_id/payment_methods</code></p>
+<p><code>GET /partners/user/:user_id/payment_methods</code></p>
 <h2 id='charge-a-user'>Charge a user</h2>
 <blockquote>
 <p>Request example</p>
@@ -7735,7 +7735,7 @@ Note that <code>exp_month</code> is 1-based, i.e. January = 1 and December = 12,
 <p>Creates a Stripe PaymentIntent on the server side, then returns the Stripe <code>client_secret</code>.
 The <code>client_secret</code> should be consumed on the client side by calling stripe.confirmCardPayment().</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST /user/:user_id/payment_intent</code></p>
+<p><code>POST /partners/user/:user_id/payment_intent</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -7765,12 +7765,27 @@ The <code>client_secret</code> should be consumed on the client side by calling 
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="err">TBD</span><span class="w">
+    </span><span class="p">{</span><span class="w">       
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-20"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness exam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"stripe_payment_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pi_1H9zrzDZqIsjxz1b7Iw5VLmL"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>Gets the user&#39;s payment history.</p>
+<p>Gets the user&#39;s payment history. <code>amount</code> is in cents. <code>status</code> is loosely translated from https://stripe.com/docs/payments/intents#intent-statuses and is one of the following:</p>
+
+<ul>
+<li><code>requires_payment_method</code></li>
+<li><code>requires_confirmation</code></li>
+<li><code>requires_action</code></li>
+<li><code>pending</code></li>
+<li><code>cancelled</code></li>
+<li><code>complete</code></li>
+</ul>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET /user/:user_id/payments</code></p>
+<p><code>GET /partners/user/:user_id/payments</code></p>
 <h1 id='places'>Places</h1>
 <p>Places are backed by the <code>place</code> table and are referenced by a lot of other
 tables, such as <code>request</code>, <code>business_pet</code>, and <code>event</code>.</p>
