@@ -183,7 +183,8 @@ They are generated for datasync intakes, and erased when the intake is submitted
     "last_name": "Smith",
     "email": "johnsmith@getpawprint.com",
     "phone": "555-555-5555",
-    "address": "123 Main St, San Francisco, CA 94302"
+    "address": "123 Main St, San Francisco, CA 94302",
+    "has_payment_method": true
   },
   "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
   "screening": {
@@ -544,7 +545,8 @@ Also contains configuration for place-specific form overrides. Current overridab
     "phone": "555-555-5555",
     "address": "123 Main St, Palo Alto, CA 94305",
     "birthdate": "1990-01-01",
-    "car_make_model": "Ford Taurus, grey"
+    "car_make_model": "Ford Taurus, grey",
+    "stripe_payment_method_id": "pm_czX1jil"
   },
   "secondary": {
     "first_name": "Jane",
@@ -695,6 +697,7 @@ user.phone | string | New client's phone number.
 user.address | string | New client's address.
 user.birthdate | datetime? | New client's birthdate (for DEA reporting of prescriptions of controlled substances)
 user.car_make_model | string? | Client's vehicle information (for curbside operation)
+user.stripe_payment_method_id | string? | Payment method ID (obtained from Stripe call)
 secondary | object? | Secondary contact information, like a spouse
 secondary.first_name | Secondary contact's first name.
 secondary.last_name | Secondary contact's last name.

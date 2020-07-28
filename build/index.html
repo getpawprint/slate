@@ -654,7 +654,16 @@
             <a href="#payments" class="toc-h1 toc-link" data-title="payments">Payments</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#update-payment-information" class="toc-h2 toc-link" data-title="update-payment-information">Update payment information</a>
+                    <a href="#create-a-setup-intent" class="toc-h2 toc-link" data-title="create-a-setup-intent">Create a Setup Intent</a>
+                  </li>
+                  <li>
+                    <a href="#list-payment-methods" class="toc-h2 toc-link" data-title="list-payment-methods">List payment methods</a>
+                  </li>
+                  <li>
+                    <a href="#charge-a-user" class="toc-h2 toc-link" data-title="charge-a-user">Charge a user</a>
+                  </li>
+                  <li>
+                    <a href="#list-payment-history" class="toc-h2 toc-link" data-title="list-payment-history">List payment history</a>
                   </li>
               </ul>
           </li>
@@ -3931,7 +3940,8 @@ They are generated for datasync intakes, and erased when the intake is submitted
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@getpawprint.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, San Francisco, CA 94302"</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, San Francisco, CA 94302"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"has_payment_method"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"screening"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4454,7 +4464,8 @@ record requests are created as soon the intake form has been submitted the first
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"555-555-5555"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Palo Alto, CA 94305"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1990-01-01"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"car_make_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ford Taurus, grey"</span><span class="w">
+    </span><span class="s2">"car_make_model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ford Taurus, grey"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stripe_payment_method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pm_czX1jil"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"secondary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
@@ -4637,6 +4648,11 @@ Setting <code>booking.appointment</code> will apply a due date to the intake and
 <td>user.car_make_model</td>
 <td>string?</td>
 <td>Client&#39;s vehicle information (for curbside operation)</td>
+</tr>
+<tr>
+<td>user.stripe_payment_method_id</td>
+<td>string?</td>
+<td>Payment method ID (obtained from Stripe call)</td>
 </tr>
 <tr>
 <td>secondary</td>
@@ -7662,12 +7678,45 @@ at a later date which suggests the same medication.</p>
 <p><code>DELETE /admin/pets/medications/:pet_medication_id</code></p>
 <h1 id='payments'>Payments</h1>
 <p>We use <a href="http://stripe.com/">Stripe</a> for managing payments.</p>
-<h2 id='update-payment-information'>Update payment information</h2>
+<h2 id='create-a-setup-intent'>Create a Setup Intent</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jLp1XcLD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>For setting up a payment method.</p>
+
+<p>Creates a Stripe SetupIntent on the server side, then returns the Stripe <code>client_secret</code>.
+The <code>client_secret</code> should be consumed on the client side by calling <code>stripe.confirmCardSetup()</code> (https://stripe.com/docs/js/setup_intents/confirm_card_setup#stripe_confirm_card_setup-with_element).</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /user/:user_id/setup_intent</code></p>
+<h2 id='list-payment-methods'>List payment methods</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"stripe_payment_method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pm_jLp1XcLD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all the payment methods for a user, which can later be used to create a charge.
+Note that <code>exp_month</code> is 1-based, i.e. January = 1 and December = 12, instead of Javascript&#39;s 0-based months.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /user/:user_id/payment_methods</code></p>
+<h2 id='charge-a-user'>Charge a user</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tok_b3ad9ff2c01vcf"</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"stripe_payment_method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pm_jLp1XcLD"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -7675,18 +7724,10 @@ at a later date which suggests the same medication.</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Sets the user&#39;s payment source with the given Stripe token. If a Stripe customer doesn&#39;t exist yet,
-the token is used to create a Stripe customer with a payment source. If the Stripe customer does exist,
-the token is used to update the Stripe customer&#39;s payment source.</p>
-
-<aside class="notice">
-Stripe tokens can be used only once, and then they are considered consumed.
-It is generated from payment information by the client, and can be used to
-either set up an account with a payment source, or update the payment source on
-an existing account.
-</aside>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /user/stripe/:userid/source</code></p>
+<p>Creates a Stripe PaymentIntent on the server side, then returns the Stripe <code>client_secret</code>.
+The <code>client_secret</code> should be consumed on the client side by calling stripe.confirmCardPayment().</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /user/:user_id/payment_intent</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -7696,11 +7737,27 @@ an existing account.
 </tr>
 </thead><tbody>
 <tr>
-<td>token</td>
+<td>amount</td>
+<td>integer</td>
+<td>Charge amount, in cents</td>
+</tr>
+<tr>
+<td>stripe_payment_method_id</td>
 <td>string</td>
-<td>Stripe token returned by the client-side Stripe API.</td>
+<td>Stripe Payment Method ID, chosen from <code>GET /user/:user_id/payment_methods</code></td>
 </tr>
 </tbody></table>
+<h2 id='list-payment-history'>List payment history</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="err">TBD</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets the user&#39;s payment history.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET /user/:user_id/payments</code></p>
 <h1 id='places'>Places</h1>
 <p>Places are backed by the <code>place</code> table and are referenced by a lot of other
 tables, such as <code>request</code>, <code>business_pet</code>, and <code>event</code>.</p>
