@@ -60,8 +60,8 @@ Note that `exp_month` is 1-based, i.e. January = 1 and December = 12, instead of
 (none)
 ```
 
-Creates a Stripe PaymentIntent on the server side, then returns the Stripe `client_secret`.
-The `client_secret` should be consumed on the client side by calling stripe.confirmCardPayment().
+Creates a Stripe PaymentIntent on the server side and automatically charges it.
+No action should be required on the client's part.
 
 ### HTTP Request
 `POST /partners/user/:user_id/payment_intent`

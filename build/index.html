@@ -7732,8 +7732,8 @@ Note that <code>exp_month</code> is 1-based, i.e. January = 1 and December = 12,
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Creates a Stripe PaymentIntent on the server side, then returns the Stripe <code>client_secret</code>.
-The <code>client_secret</code> should be consumed on the client side by calling stripe.confirmCardPayment().</p>
+<p>Creates a Stripe PaymentIntent on the server side and automatically charges it.
+No action should be required on the client&#39;s part.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /partners/user/:user_id/payment_intent</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
