@@ -281,6 +281,7 @@ filter | string? | JSON object, where the key is the filter name and the value i
       "type": "Indoor"
     },
     "user": {
+      "id": 37683,
       "first_name": "Momo",
       "last_name": "Nguyen",
       "phone": "(555) 555-5504",
