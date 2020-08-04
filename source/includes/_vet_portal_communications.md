@@ -187,3 +187,76 @@ Returns count of unread text messages from unknown phone numbers and phone numbe
 
 ### HTTP Request
 `GET /partners/sms/unread`
+
+## Websocket - User chat
+
+> Response example
+
+```json
+{
+    "id": 123456,
+    "type": "new_chat_line",
+    "vet_user_phone": "+14257536174",
+    "pawprint_vet_twilio_phone": "+1205",
+    "direction": "inbound",
+    "message_body": "Hi there!",
+    "timestamp": "2020-08-04T02:55:00Z"
+}
+
+{
+    "id": 123456,
+    "type": "update_delivery_status",
+    "twilio_status": "delivered"
+}
+```
+
+Websocket connection for the backend to notify vets of messages received from an individual user.
+One of vet_user_id or vet_user_phone must be specified.
+Twilio status is one of `sending...`, `received`, `sent`, `delivered` and `undelivered`.
+
+### Connection
+`/ws/partners/chat`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+access_token | string | Auth token (because Websockets don't have auth built in)
+vet_user_id | int? | vet_user_id for the individual connection
+vet_user_phone | string? | Phone number (if vet_user_id is unknown)
+
+## Websocket - unread messages (global)
+
+> Response example
+
+```json
+[
+    {
+        "id": 84159,
+        "vet_user_id": 84159,
+        "vet_user_phone": "+14257536174",
+        "first_name": "John",
+        "last_name": "Smith",
+        "phone": "+14257536174",
+        "email": "echoi@snoutid.com",
+        "street_address": "123 Main Street",
+        "street_address2": "Unit 300",
+        "city": "Stanford",
+        "state": "CA",
+        "zip": "94305",
+        "do_not_contact": null,
+        "message_body": "Hi there!",
+        last_contacted: "2020-08-04T04:55:00Z",
+        count: 2
+    }
+]
+```
+
+Websocket connection for the backend to notify vets that a message has been received from any user.
+
+### Connection
+`/ws/partners/unread`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+access_token | string | Auth token (because Websockets don't have auth built in)
