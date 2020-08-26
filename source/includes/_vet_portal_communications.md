@@ -204,7 +204,7 @@ Returns count of unread text messages from unknown phone numbers and phone numbe
 }
 
 {
-    "id": 123456,
+    "id": 123457,
     "type": "update_delivery_status",
     "twilio_status": "delivered"
 }
@@ -245,8 +245,8 @@ vet_user_phone | string? | Phone number (if vet_user_id is unknown)
         "zip": "94305",
         "do_not_contact": null,
         "message_body": "Hi there!",
-        last_contacted: "2020-08-04T04:55:00Z",
-        count: 2
+        "last_contacted": "2020-08-04T04:55:00Z",
+        "count": 2
     }
 ]
 ```

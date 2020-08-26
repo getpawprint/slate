@@ -17,6 +17,7 @@ includes:
   - vet_intake_portal
   - vet_portal_communications
   - configuration
+  - form_library
   - machine_learning
   - medication
   - payments

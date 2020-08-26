@@ -590,6 +590,26 @@
               </ul>
           </li>
           <li>
+            <a href="#form-library" class="toc-h1 toc-link" data-title="form-library">Form Library</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-list-of-template-forms" class="toc-h2 toc-link" data-title="get-list-of-template-forms">Get list of template forms</a>
+                  </li>
+                  <li>
+                    <a href="#get-list-of-vet-39-s-active-forms" class="toc-h2 toc-link" data-title="get-list-of-vet-s-active-forms">Get list of vet's active forms</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-form-or-template" class="toc-h2 toc-link" data-title="get-a-specific-form-or-template">Get a specific form or template</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-new-form" class="toc-h2 toc-link" data-title="create-a-new-form">Create a new form</a>
+                  </li>
+                  <li>
+                    <a href="#get-list-of-appointment-types" class="toc-h2 toc-link" data-title="get-list-of-appointment-types">Get list of appointment types</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#machine-learning-algo-tagging" class="toc-h1 toc-link" data-title="machine-learning-algo-tagging">Machine learning/algo tagging</a>
               <ul class="toc-list-h2">
                   <li>
@@ -6276,7 +6296,7 @@ Currently does not include clients that were created in the ScoutVet database vi
 </span><span class="p">}</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123457</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"update_delivery_status"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"twilio_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivered"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6330,8 +6350,8 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
         </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94305"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"do_not_contact"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"message_body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi there!"</span><span class="p">,</span><span class="w">
-        </span><span class="err">last_contacted</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-04T04:55:00Z"</span><span class="p">,</span><span class="w">
-        </span><span class="err">count</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="s2">"last_contacted"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-04T04:55:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
@@ -7115,6 +7135,329 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
 <td>Vetstoria site hash</td>
 </tr>
 </tbody></table>
+<h1 id='form-library'>Form Library</h1>
+<p>Endpoints for vets to list, create and update forms.</p>
+<h2 id='get-list-of-template-forms'>Get list of template forms</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Surgery"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boarding/dropoff"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Estimates"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets a list of form templates. These are form bases provided by Snout; no instance should use these directly.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partner/templates</code></p>
+<h2 id='get-list-of-vet-39-s-active-forms'>Get list of vet&#39;s active forms</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">510</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jacksonville surgery"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"appointment_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"surgery"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dental"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-08"</span><span class="w">
+  </span><span class="p">}</span><span class="w"> 
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets a list of forms, ordered by creation date in chronological order. If a form is edited, its ID in this list gets replaced with the &quot;new&quot; one, while the previous version is frozen.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /partner/forms</code></p>
+<h2 id='get-a-specific-form-or-template'>Get a specific form or template</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"appointment_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"surgery"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dental"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jacksonville Surgery"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"per"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vivamus sagittis lacus vel augue laoreet rutrum faucibu."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"List Menu"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum Menu Title"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Option 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 4"</span><span class="p">],</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single-option selector"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single-option selector"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Signature"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signature"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Date"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Returns a form. The form name can be <code>null</code> if the <code>form_id</code> parameter is for a form template.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /partner/forms/:form_id</code></p>
+<h2 id='create-a-new-form'>Create a new form</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"appointment_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"surgery"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dental"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"previous_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">510</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Surgery"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"per"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vivamus sagittis lacus vel augue laoreet rutrum faucibu."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"List Menu"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum Menu Title"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Option 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 4"</span><span class="p">],</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single-option selector"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single-option selector"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Signature"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signature"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Date"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">511</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Creates a form. If <code>previous_id</code> is specified, that form is taken out of the vet&#39;s list of active forms and replaced with the newly created form instead.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /partner/forms</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>meta</td>
+<td>object</td>
+<td>Metadata for library management</td>
+</tr>
+<tr>
+<td>meta.appointment_types</td>
+<td>string[]</td>
+<td>Datasync intakes only - an instance of this form is generated on appointment type match.</td>
+</tr>
+<tr>
+<td>meta.template_id</td>
+<td>int</td>
+<td>Form template ID</td>
+</tr>
+<tr>
+<td>meta.previous_id</td>
+<td>int?</td>
+<td>Form ID; if specified, the previous form will be deactivated and this form will be activated to simulate an &quot;edit&quot; while preserving the form history for previous instances.</td>
+</tr>
+<tr>
+<td>form</td>
+<td>object</td>
+<td>Form specification</td>
+</tr>
+<tr>
+<td>form.name</td>
+<td>string</td>
+<td>Form name (human-friendly string)</td>
+</tr>
+<tr>
+<td>form.per</td>
+<td>string</td>
+<td>One of <code>user</code> or <code>pet</code></td>
+</tr>
+<tr>
+<td>form.modules</td>
+<td>object[]</td>
+<td>Form modules, which may contain multiple questions</td>
+</tr>
+<tr>
+<td>form.modules.label</td>
+<td>string</td>
+<td>Section name (human-friendly string)</td>
+</tr>
+<tr>
+<td>form.modules.is_visible</td>
+<td>boolean</td>
+<td>Whether or not this section is visible</td>
+</tr>
+<tr>
+<td>form.modules.questions</td>
+<td>object[]</td>
+<td>Questions that appear in this section</td>
+</tr>
+<tr>
+<td>form.modules.questions.name</td>
+<td>string</td>
+<td>Internal name for data binding</td>
+</tr>
+<tr>
+<td>form.modules.question.label</td>
+<td>string</td>
+<td>Human-friendly string</td>
+</tr>
+<tr>
+<td>form.modules.question.input_type</td>
+<td>string</td>
+<td>One of <code>label</code> (not required to be answered), <code>text</code>, <code>signature</code> (answer is a base64 image), <code>date</code> (no time), <code>radio</code> or <code>checkbox</code></td>
+</tr>
+<tr>
+<td>form.modules.question.options</td>
+<td>string[]</td>
+<td>Options for <code>radio</code> or <code>checkbox</code> input types only</td>
+</tr>
+<tr>
+<td>form.modules.question.filled_by</td>
+<td>string?</td>
+<td>One of <code>client</code> or <code>vet</code></td>
+</tr>
+</tbody></table>
+<h2 id='get-list-of-appointment-types'>Get list of appointment types</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"Vaccinations"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"New Kitten"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"New Puppy"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Dental"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Neuter"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Spay"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Surgery"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Euthanasia"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets list of vet&#39;s appointment types found in <code>vet_schedule.type</code>, ordered by most to least frequently used.
+If the vet does not have datasync enabled, then this will return HTTP 204/No Content.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /partner/appointment_types</code></p>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
 if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after
