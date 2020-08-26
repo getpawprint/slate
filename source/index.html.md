@@ -18,6 +18,7 @@ includes:
   - vet_portal_communications
   - configuration
   - form_library
+  - form_instance
   - machine_learning
   - medication
   - payments
@@ -40,7 +41,7 @@ Use these as a template by copying and pasting them.
 ```json
 {
 	"user_id": 1,
-	"pet_id": 2
+	"pet_id": 2,
 	"notes": [ "Hey", "there" ],
 	"timestamp": "2018-02-20T21:00:00.000Z"
 }

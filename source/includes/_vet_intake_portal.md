@@ -208,7 +208,9 @@ Gets partner place info for the caller identifed in the auth header, like place 
       "completed_requests": 1,
       "total_requests": 2,
       "last_email_at": "2020-01-20T10:01:12Z",
-      "last_sms_at": "2020-01-20T10:02:00Z"
+      "last_sms_at": "2020-01-20T10:02:00Z",
+      "pending_vet_forms": 1,
+      "total_forms": 2
     }
   ],
   "count": 1
@@ -258,6 +260,24 @@ filter | string? | JSON object, where the key is the filter name and the value i
     "type": "Wellness exam",
     "reason": "Puppy shots"
   },
+  "form_instances": [{
+    "id": 12,
+    "name": "Surgery estimate",
+    "status": "cancelled",
+    "completed_at": null
+  },
+  {
+    "id": 13,
+    "name": "Anesthesia consent",
+    "status": "pending vet",
+    "completed_at": null
+  },
+  {
+    "id": 14,
+    "name": "Surgery estimate",
+    "status": "completed",
+    "completed_at": "2020-08-22T10:34:45Z"
+  }],
   "summary": {
     "id": 31,
     "external_id": "-HiX2CpDBA_tukyYkldcN5gGwqwPyAsh",

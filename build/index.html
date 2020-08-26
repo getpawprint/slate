@@ -610,6 +610,26 @@
               </ul>
           </li>
           <li>
+            <a href="#form-library" class="toc-h1 toc-link" data-title="form-library">Form Library</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#attach-form-to-intake" class="toc-h2 toc-link" data-title="attach-form-to-intake">Attach form to intake</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-a-form-from-an-intake" class="toc-h2 toc-link" data-title="cancel-a-form-from-an-intake">Cancel a form from an intake</a>
+                  </li>
+                  <li>
+                    <a href="#fill-in-a-form-instance-vet" class="toc-h2 toc-link" data-title="fill-in-a-form-instance-vet">Fill in a form instance (vet)</a>
+                  </li>
+                  <li>
+                    <a href="#fill-in-a-form-instance-client" class="toc-h2 toc-link" data-title="fill-in-a-form-instance-client">Fill in a form instance (client)</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-form-instance-vet-portal" class="toc-h2 toc-link" data-title="get-a-form-instance-vet-portal">Get a form instance (vet portal)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#machine-learning-algo-tagging" class="toc-h1 toc-link" data-title="machine-learning-algo-tagging">Machine learning/algo tagging</a>
               <ul class="toc-list-h2">
                   <li>
@@ -870,7 +890,7 @@
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="s2">"pet_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"Hey"</span><span class="p">,</span><span class="w"> </span><span class="s2">"there"</span><span class="w"> </span><span class="p">],</span><span class="w">
     </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-20T21:00:00.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -3995,39 +4015,147 @@ They are generated for datasync intakes, and erased when the intake is submitted
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just moved here from Chicago"</span><span class="w">
       </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"form_instances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jacksonville Surgery"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"per"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending user"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vivamus sagittis lacus vel augue laoreet rutrum faucibu."</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"List Menu"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum Menu Title"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"Option 1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Option 2"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Option 3"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Option 4"</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single-option selector"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"Accept"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Decline"</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single-option selector"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"Accept"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"Decline"</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accept"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Signature"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signature"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Date"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed_date"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
       </span><span class="s2">"questionnaire"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet_questionnaire"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"per"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Appointment Details"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We are seeing Pumpkin for: Wellness Exam"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+        </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Appointment Details"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We are seeing Pumpkin for: Wellness Exam"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other_concerns"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do you have any other concerns you'd like to address?"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"textarea"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other_concerns"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do you have any other concerns you'd like to address?"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"textarea"</span><span class="w">
-          </span><span class="p">}]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medical"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please list your pet's allergies, if any"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diet"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Diet: Please list everything your pet will eat in a typical day, from treats to meals"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="w">
-          </span><span class="p">}]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medical"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please list your pet's allergies, if any"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diet"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Diet: Please list everything your pet will eat in a typical day, from treats to meals"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -4049,39 +4177,46 @@ They are generated for datasync intakes, and erased when the intake is submitted
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just moved here from Chicago"</span><span class="w">
       </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"form_instances"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
       </span><span class="s2">"questionnaire"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet_questionnaire"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"per"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Appointment Details"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We are seeing Pumpkin for: Wellness Exam"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+        </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Appointment Details"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We are seeing Pumpkin for: Wellness Exam"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other_concerns"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do you have any other concerns you'd like to address?"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"textarea"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other_concerns"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do you have any other concerns you'd like to address?"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"textarea"</span><span class="w">
-          </span><span class="p">}]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medical"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please list your pet's allergies, if any"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diet"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Diet: Please list everything your pet will eat in a typical day, from treats to meals"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="w">
-          </span><span class="p">}]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medical"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please list your pet's allergies, if any"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diet"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Diet: Please list everything your pet will eat in a typical day, from treats to meals"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medications"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
@@ -5564,7 +5699,9 @@ Always returns HTTP 200.</p>
       </span><span class="s2">"completed_requests"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_requests"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="s2">"last_email_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-20T10:01:12Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last_sms_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-20T10:02:00Z"</span><span class="w">
+      </span><span class="s2">"last_sms_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-20T10:02:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pending_vet_forms"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_forms"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
@@ -5635,6 +5772,24 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness exam"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Puppy shots"</span><span class="w">
   </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"form_instances"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Surgery estimate"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancelled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anesthesia consent"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Surgery estimate"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-22T10:34:45Z"</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
   </span><span class="s2">"summary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
     </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-HiX2CpDBA_tukyYkldcN5gGwqwPyAsh"</span><span class="p">,</span><span class="w">
@@ -7449,6 +7604,193 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
 If the vet does not have datasync enabled, then this will return HTTP 204/No Content.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /partner/appointment_types</code></p>
+<h1 id='form-library'>Form Library</h1>
+<p>Endpoints for vets to attach, remove, and partially fill out forms.</p>
+<h2 id='attach-form-to-intake'>Attach form to intake</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"form_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">510</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"form_instance_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Creates an instance of a form an attaches it to an intake. Its initial state will be <code>pending vet</code> or <code>pending user</code>. Returns a form instance ID that can be used to update or cancel a form instance. A notification is sent to the user, prompting them to fill out the form.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /partner/intake/:intake_id/forms</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>form_id</td>
+<td>integer</td>
+<td>Form ID (from the form library)</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-a-form-from-an-intake'>Cancel a form from an intake</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Changes the state of a form instance to <code>cancelled</code>. Form instances cannot be removed from intakes.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>DELETE /partner/intake/form_instances/:form_instance_id</code></p>
+<h2 id='fill-in-a-form-instance-vet'>Fill in a form instance (vet)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Beef"</span><span class="p">,</span><span class="s2">"Dairy"</span><span class="p">],</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">checkboxes</span><span class="w">
+  </span><span class="s2">"my_radio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accept"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">radio</span><span class="w">
+  </span><span class="s2">"procedure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dental cleaning"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">text</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64,iVBORw0KGgoAAARK5CYII="</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">signature</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">text</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Fills in a form on the vet side. The form must be in the <code>pending vet</code> state, and filling in all the vet-required fields (denoted by <code>question.filled_by</code>) will automatically advance the form_instance state to <code>pending user</code>.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>PATCH /partner/intake/form_instances/:form_instance_id</code></p>
+<h3 id='patch-parameters'>PATCH parameters</h3>
+<p>Object keys should match the <code>question.name</code> fields and object values should be appropriate for their control types.</p>
+<h2 id='fill-in-a-form-instance-client'>Fill in a form instance (client)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"allergies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Beef"</span><span class="p">,</span><span class="s2">"Dairy"</span><span class="p">],</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">checkboxes</span><span class="w">
+  </span><span class="s2">"my_radio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accept"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">radio</span><span class="w">
+  </span><span class="s2">"procedure"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dental cleaning"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">text</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"data:image/png;base64,iVBORw0KGgoAAARK5CYII="</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">signature</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">text</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-28"</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">date</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Fills in a form on the client side. The form must be in the <code>pending user</code> state, and filling in all the client-required fields (denoted by <code>question.filled_by</code>) will automatically advance the form_instance state to <code>complete</code>.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>PATCH /form_instances/:form_instance_external_id</code></p>
+<h3 id='patch-parameters-2'>PATCH parameters</h3>
+<p>Object keys should match the <code>question.name</code> fields and object values should be appropriate for their control types.</p>
+<h2 id='get-a-form-instance-vet-portal'>Get a form instance (vet portal)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending vet"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-22T20:32:14Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-22T20:34:34Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"form_instance"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jacksonville Surgery"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"per"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"modules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vivamus sagittis lacus vel augue laoreet rutrum faucibu."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"List Menu"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allergies"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum Menu Title"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Option 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 4"</span><span class="p">],</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single-option selector"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Single-option selector"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accept"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Signature"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signature"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Date"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed_date"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Gets a form instance.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET /partner/intake/form_instances/:form_instance_id</code></p>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
 if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after
