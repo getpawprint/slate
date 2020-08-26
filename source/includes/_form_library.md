@@ -53,10 +53,8 @@ Gets a list of forms, ordered by creation date in chronological order. If a form
 
 ```json
 {
-  "meta": {
-    "appointment_types": ["surgery", "dental"],
-    "template_id": 10
-  },
+  "appointment_types": ["surgery", "dental"],
+  "template_id": 10,
   "form": {
     "name": "Jacksonville Surgery",
     "per": "pet",
@@ -140,11 +138,9 @@ Returns a form. The form name can be `null` if the `form_id` parameter is for a 
 
 ```json
 {
-  "meta": {
-    "appointment_types": ["surgery", "dental"],
-    "template_id": 10,
-    "previous_id": 510
-  },
+  "appointment_types": ["surgery", "dental"],
+  "template_id": 10,
+  "previous_id": 510,
   "form": {
     "name": "Surgery",
     "per": "pet",
@@ -233,10 +229,9 @@ Creates a form. If `previous_id` is specified, that form is taken out of the vet
 ### POST parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-meta | object | Metadata for library management
-meta.appointment_types | string[] | Datasync intakes only - an instance of this form is generated on appointment type match.
-meta.template_id | int | Form template ID
-meta.previous_id | int? | Form ID; if specified, the previous form will be deactivated and this form will be activated to simulate an "edit" while preserving the form history for previous instances.
+appointment_types | string[] | Datasync intakes only - an instance of this form is generated on appointment type match.
+template_id | int | Form template ID
+previous_id | int? | Form ID; if specified, the previous form will be deactivated and this form will be activated to simulate an "edit" while preserving the form history for previous instances.
 form | object | Form specification
 form.name | string | Form name (human-friendly string)
 form.per | string | One of `user` or `pet`
