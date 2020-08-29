@@ -19,7 +19,6 @@ includes:
   - configuration
   - form_library
   - form_instance
-  - machine_learning
   - medication
   - payments
   - places

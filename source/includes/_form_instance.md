@@ -45,7 +45,7 @@ form_id | integer | Form ID (from the form library)
 Changes the state of a form instance to `cancelled`. Form instances cannot be removed from intakes.
 
 ### HTTP Request
-`DELETE /partners/intake/form_instances/:form_instance_id`
+`DELETE /partners/form_instances/:form_instance_id`
 
 ## Fill in a form instance (vet)
 > Request example
@@ -69,7 +69,7 @@ Changes the state of a form instance to `cancelled`. Form instances cannot be re
 Fills in a form on the vet side. The form must be in the `pending vet` state, and filling in all the vet-required fields (denoted by `question.filled_by`) will automatically advance the form_instance state to `pending user`.
 
 ### HTTP Request
-`PATCH /partners/intake/form_instances/:form_instance_id`
+`PATCH /partners/form_instances/:form_instance_id`
 
 ### PATCH parameters
 Object keys should match the `question.name` fields and object values should be appropriate for their control types.
@@ -198,4 +198,4 @@ Object keys should match the `question.name` fields and object values should be 
 Gets a form instance.
 
 ### HTTP Request
-`GET /partners/intake/form_instances/:form_instance_id`
+`GET /partners/form_instances/:form_instance_id`

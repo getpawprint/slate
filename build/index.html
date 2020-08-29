@@ -630,35 +630,6 @@
               </ul>
           </li>
           <li>
-            <a href="#machine-learning-algo-tagging" class="toc-h1 toc-link" data-title="machine-learning-algo-tagging">Machine learning/algo tagging</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#query-algorithm" class="toc-h2 toc-link" data-title="query-algorithm">Query algorithm</a>
-                  </li>
-                  <li>
-                    <a href="#get-pending-feedback" class="toc-h2 toc-link" data-title="get-pending-feedback">Get pending feedback</a>
-                  </li>
-                  <li>
-                    <a href="#submit-feedback" class="toc-h2 toc-link" data-title="submit-feedback">Submit feedback</a>
-                  </li>
-                  <li>
-                    <a href="#delete-pending-feedback-item" class="toc-h2 toc-link" data-title="delete-pending-feedback-item">Delete pending feedback item</a>
-                  </li>
-                  <li>
-                    <a href="#refit" class="toc-h2 toc-link" data-title="refit">Refit</a>
-                  </li>
-                  <li>
-                    <a href="#save-state" class="toc-h2 toc-link" data-title="save-state">Save state</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-page-of-reminders" class="toc-h2 toc-link" data-title="get-a-page-of-reminders">Get a page of reminders</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-page-of-invoices" class="toc-h2 toc-link" data-title="get-a-page-of-invoices">Get a page of invoices</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#medications" class="toc-h1 toc-link" data-title="medications">Medications</a>
               <ul class="toc-list-h2">
                   <li>
@@ -7651,7 +7622,7 @@ If the vet does not have datasync enabled, then this will return HTTP 204/No Con
 </span></code></pre>
 <p>Changes the state of a form instance to <code>cancelled</code>. Form instances cannot be removed from intakes.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>DELETE /partners/intake/form_instances/:form_instance_id</code></p>
+<p><code>DELETE /partners/form_instances/:form_instance_id</code></p>
 <h2 id='fill-in-a-form-instance-vet'>Fill in a form instance (vet)</h2>
 <blockquote>
 <p>Request example</p>
@@ -7671,7 +7642,7 @@ If the vet does not have datasync enabled, then this will return HTTP 204/No Con
 </span></code></pre>
 <p>Fills in a form on the vet side. The form must be in the <code>pending vet</code> state, and filling in all the vet-required fields (denoted by <code>question.filled_by</code>) will automatically advance the form_instance state to <code>pending user</code>.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>PATCH /partners/intake/form_instances/:form_instance_id</code></p>
+<p><code>PATCH /partners/form_instances/:form_instance_id</code></p>
 <h3 id='patch-parameters'>PATCH parameters</h3>
 <p>Object keys should match the <code>question.name</code> fields and object values should be appropriate for their control types.</p>
 <h2 id='fill-in-a-form-instance-client'>Fill in a form instance (client)</h2>
@@ -7790,220 +7761,7 @@ If the vet does not have datasync enabled, then this will return HTTP 204/No Con
 </span></code></pre>
 <p>Gets a form instance.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET /partners/intake/form_instances/:form_instance_id</code></p>
-<h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
-<p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
-if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after
-the last save will be lost.</p>
-<h2 id='query-algorithm'>Query algorithm</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reminder_event"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Parvovirus"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.654672550128199</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Queries the machine learning model with free text. The response contains the table name (<code>reminder_event</code> or <code>medication</code>), ID and name
-of the most probable match, and returns the probability (between 0 and 1) in the <code>score</code> field. In the response example,
-&quot;Parvovirus&quot; is the best match with a 65.46% probability.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /ml/query</code></p>
-<h3 id='query-string-parameters'>Query string parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>q</td>
-<td>string</td>
-<td>Input string for the algorithm.</td>
-</tr>
-</tbody></table>
-<h2 id='get-pending-feedback'>Get pending feedback</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prom"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"medication"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"vocab_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PromAce, Aceproject"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rabies annual"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"reminder_event"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"vocab_string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rabies"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>Gets all pending feedback for the machine learning algorithm that was submitted from vet portals in a list.
-This will return an empty list if a refit (see below) was run recently.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET /ml/feedback</code></p>
-<h2 id='submit-feedback'>Submit feedback</h2>
-<blockquote>
-<p>Request example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"query"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rabies annual"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"reminder_event"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"is_correct"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
-</span></code></pre>
-<p>Add a training example to the machine learning feedback table. These are eventually fed back
-into the training algorithm to produce a new prediction model.</p>
-
-<p>If you called <code>GET /ml/query</code> and the result was <strong>correct</strong>, then you would call <code>POST /vet/ml/feedback</code> with
-<code>is_correct: true</code>, and the <code>type</code> and <code>id</code> from the result. This gives positive reinforcement for the query.</p>
-
-<p>If the result was <strong>incorrect</strong> , then you would call <code>POST /vet/ml/feedback</code> with <code>is_correct: false</code>, and the
-<code>type</code> and <code>id</code> of the correct entry, e.g. (<code>type: reminder_event</code>, <code>id: 24</code>, which corresponds to rabies.) The next
-time the training algorithm is run, the new model should not return that incorrect result again.</p>
-
-<p>To get the correct entry, you can call <code>GET /user/medications</code> to get a list of all medications and <code>GET /user/reminder_events</code>
-to get a list of all reminder_events.</p>
-
-<aside class="notice">
-Must be logged in as a vet to call this. That is, the auth token must be for a user ID in pawprint_vet.user_id.
-</aside>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>POST /vet/ml/feedback</code></p>
-<h2 id='delete-pending-feedback-item'>Delete pending feedback item</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
-</span></code></pre>
-<p>Deletes a pending feedback item. Expected to be called from the ML refitting page in the admin dashboard.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><code>DELETE /admin/ml/feedback/:feedback_id</code></p>
-<h2 id='refit'>Refit</h2>
-<blockquote>
-<p>Request example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
-</span></code></pre>
-<p>Refits all pending feedback items into the machine learning model.</p>
-
-<aside class="notice">
-Must be logged in as an admin to call this. That is, the auth token must be for a user ID in user where type = 0.
-</aside>
-<h3 id='http-request-5'>HTTP Request</h3>
-<p><code>POST /admin/ml/refit</code></p>
-<h2 id='save-state'>Save state</h2>
-<blockquote>
-<p>Request example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
-</span></code></pre>
-<p>Saves the state of the machine learning model to Google Cloud Storage. If the virtual machine or container hosting the machine learning service
-is reset, the state of the machine learning model will be restored.</p>
-
-<aside class="notice">
-Must be logged in as an admin to call this. That is, the auth token must be for a user ID in user where type = 0.
-</aside>
-<h3 id='http-request-6'>HTTP Request</h3>
-<p><code>POST /admin/ml/save</code></p>
-<h2 id='get-a-page-of-reminders'>Get a page of reminders</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exam- Wellness"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">127333</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vaccination-Rabies"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">99835</span><span class="p">,</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>Gets a page of text from the vet_reminder table that hasn&#39;t had feedback yet, ordered by frequency (most frequently seen strings will be at the top)
-then by alphabetical order.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET /admin/ml/reminders</code></p>
-<h3 id='query-string-parameters-2'>Query string parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>skip</td>
-<td>int</td>
-<td>Page offset</td>
-</tr>
-<tr>
-<td>top</td>
-<td>int</td>
-<td>Page size</td>
-</tr>
-</tbody></table>
-<h2 id='get-a-page-of-invoices'>Get a page of invoices</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exam- Wellness"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">127333</span><span class="p">,</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vaccination-Rabies"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">99835</span><span class="p">,</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>Gets a page of text from the vet_invoice table that hasn&#39;t had feedback yet, ordered by frequency (most frequently seen strings will be at the top)
-then by alphabetical order.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET /admin/ml/invoices</code></p>
-<h3 id='query-string-parameters-3'>Query string parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>skip</td>
-<td>int</td>
-<td>Page offset</td>
-</tr>
-<tr>
-<td>top</td>
-<td>int</td>
-<td>Page size</td>
-</tr>
-</tbody></table>
+<p><code>GET /partners/form_instances/:form_instance_id</code></p>
 <h1 id='medications'>Medications</h1>
 <p>Medications - both built-in and user-added medications.</p>
 <h2 id='get-all-built-in-medications'>Get all built-in medications</h2>
