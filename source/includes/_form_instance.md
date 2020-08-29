@@ -1,4 +1,4 @@
-# Form Library
+# Form Instances
 Endpoints for vets to attach, remove, and partially fill out forms.
 
 ## Attach form to intake
@@ -21,7 +21,7 @@ Endpoints for vets to attach, remove, and partially fill out forms.
 Creates an instance of a form an attaches it to an intake. Its initial state will be `pending vet` or `pending user`. Returns a form instance ID that can be used to update or cancel a form instance. A notification is sent to the user, prompting them to fill out the form.
 
 ### HTTP Request
-`POST /partner/intake/:intake_id/forms`
+`POST /partners/intake/:intake_id/forms`
 
 ### POST parameters
 Parameter | Type | Description
@@ -45,7 +45,7 @@ form_id | integer | Form ID (from the form library)
 Changes the state of a form instance to `cancelled`. Form instances cannot be removed from intakes.
 
 ### HTTP Request
-`DELETE /partner/intake/form_instances/:form_instance_id`
+`DELETE /partners/intake/form_instances/:form_instance_id`
 
 ## Fill in a form instance (vet)
 > Request example
@@ -69,7 +69,7 @@ Changes the state of a form instance to `cancelled`. Form instances cannot be re
 Fills in a form on the vet side. The form must be in the `pending vet` state, and filling in all the vet-required fields (denoted by `question.filled_by`) will automatically advance the form_instance state to `pending user`.
 
 ### HTTP Request
-`PATCH /partner/intake/form_instances/:form_instance_id`
+`PATCH /partners/intake/form_instances/:form_instance_id`
 
 ### PATCH parameters
 Object keys should match the `question.name` fields and object values should be appropriate for their control types.
@@ -198,4 +198,4 @@ Object keys should match the `question.name` fields and object values should be 
 Gets a form instance.
 
 ### HTTP Request
-`GET /partner/intake/form_instances/:form_instance_id`
+`GET /partners/intake/form_instances/:form_instance_id`

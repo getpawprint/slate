@@ -25,7 +25,7 @@ Endpoints for vets to list, create and update forms.
 Gets a list of form templates. These are form bases provided by Snout; no instance should use these directly.
 
 ### HTTP Request
-`GET /partner/templates`
+`GET /partners/templates`
 
 ## Get list of vet's active forms
 
@@ -45,7 +45,7 @@ Gets a list of form templates. These are form bases provided by Snout; no instan
 Gets a list of forms, ordered by creation date in chronological order. If a form is edited, its ID in this list gets replaced with the "new" one, while the previous version is frozen.
 
 ### HTTP Request
-`GET /partner/forms`
+`GET /partners/forms`
 
 ## Get a specific form or template
 
@@ -130,7 +130,7 @@ Gets a list of forms, ordered by creation date in chronological order. If a form
 Returns a form. The form name can be `null` if the `form_id` parameter is for a form template.
 
 ### HTTP Request
-`GET /partner/forms/:form_id`
+`GET /partners/forms/:form_id`
 
 ## Create a new form
 
@@ -224,7 +224,7 @@ Returns a form. The form name can be `null` if the `form_id` parameter is for a 
 Creates a form. If `previous_id` is specified, that form is taken out of the vet's list of active forms and replaced with the newly created form instead.
 
 ### HTTP Request
-`POST /partner/forms`
+`POST /partners/forms`
 
 ### POST parameters
 Parameter | Type | Description
@@ -267,4 +267,4 @@ Gets list of vet's appointment types found in `vet_schedule.type`, ordered by mo
 If the vet does not have datasync enabled, then this will return HTTP 204/No Content.
 
 ### HTTP Request
-`GET /partner/appointment_types`
+`GET /partners/appointment_types`

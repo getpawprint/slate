@@ -610,7 +610,7 @@
               </ul>
           </li>
           <li>
-            <a href="#form-library" class="toc-h1 toc-link" data-title="form-library">Form Library</a>
+            <a href="#form-instances" class="toc-h1 toc-link" data-title="form-instances">Form Instances</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#attach-form-to-intake" class="toc-h2 toc-link" data-title="attach-form-to-intake">Attach form to intake</a>
@@ -7313,7 +7313,7 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
 </span></code></pre>
 <p>Gets a list of form templates. These are form bases provided by Snout; no instance should use these directly.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /partner/templates</code></p>
+<p><code>GET /partners/templates</code></p>
 <h2 id='get-list-of-vet-39-s-active-forms'>Get list of vet&#39;s active forms</h2>
 <blockquote>
 <p>Response example</p>
@@ -7329,7 +7329,7 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
 </span></code></pre>
 <p>Gets a list of forms, ordered by creation date in chronological order. If a form is edited, its ID in this list gets replaced with the &quot;new&quot; one, while the previous version is frozen.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET /partner/forms</code></p>
+<p><code>GET /partners/forms</code></p>
 <h2 id='get-a-specific-form-or-template'>Get a specific form or template</h2>
 <blockquote>
 <p>Response example</p>
@@ -7410,7 +7410,7 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
 </span></code></pre>
 <p>Returns a form. The form name can be <code>null</code> if the <code>form_id</code> parameter is for a form template.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>GET /partner/forms/:form_id</code></p>
+<p><code>GET /partners/forms/:form_id</code></p>
 <h2 id='create-a-new-form'>Create a new form</h2>
 <blockquote>
 <p>Request example</p>
@@ -7499,7 +7499,7 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
 </span></code></pre>
 <p>Creates a form. If <code>previous_id</code> is specified, that form is taken out of the vet&#39;s list of active forms and replaced with the newly created form instead.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>POST /partner/forms</code></p>
+<p><code>POST /partners/forms</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -7603,8 +7603,8 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
 <p>Gets list of vet&#39;s appointment types found in <code>vet_schedule.type</code>, ordered by most to least frequently used.
 If the vet does not have datasync enabled, then this will return HTTP 204/No Content.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET /partner/appointment_types</code></p>
-<h1 id='form-library'>Form Library</h1>
+<p><code>GET /partners/appointment_types</code></p>
+<h1 id='form-instances'>Form Instances</h1>
 <p>Endpoints for vets to attach, remove, and partially fill out forms.</p>
 <h2 id='attach-form-to-intake'>Attach form to intake</h2>
 <blockquote>
@@ -7623,7 +7623,7 @@ If the vet does not have datasync enabled, then this will return HTTP 204/No Con
 </span></code></pre>
 <p>Creates an instance of a form an attaches it to an intake. Its initial state will be <code>pending vet</code> or <code>pending user</code>. Returns a form instance ID that can be used to update or cancel a form instance. A notification is sent to the user, prompting them to fill out the form.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /partner/intake/:intake_id/forms</code></p>
+<p><code>POST /partners/intake/:intake_id/forms</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
 <table><thead>
 <tr>
@@ -7651,7 +7651,7 @@ If the vet does not have datasync enabled, then this will return HTTP 204/No Con
 </span></code></pre>
 <p>Changes the state of a form instance to <code>cancelled</code>. Form instances cannot be removed from intakes.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>DELETE /partner/intake/form_instances/:form_instance_id</code></p>
+<p><code>DELETE /partners/intake/form_instances/:form_instance_id</code></p>
 <h2 id='fill-in-a-form-instance-vet'>Fill in a form instance (vet)</h2>
 <blockquote>
 <p>Request example</p>
@@ -7671,7 +7671,7 @@ If the vet does not have datasync enabled, then this will return HTTP 204/No Con
 </span></code></pre>
 <p>Fills in a form on the vet side. The form must be in the <code>pending vet</code> state, and filling in all the vet-required fields (denoted by <code>question.filled_by</code>) will automatically advance the form_instance state to <code>pending user</code>.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>PATCH /partner/intake/form_instances/:form_instance_id</code></p>
+<p><code>PATCH /partners/intake/form_instances/:form_instance_id</code></p>
 <h3 id='patch-parameters'>PATCH parameters</h3>
 <p>Object keys should match the <code>question.name</code> fields and object values should be appropriate for their control types.</p>
 <h2 id='fill-in-a-form-instance-client'>Fill in a form instance (client)</h2>
@@ -7790,7 +7790,7 @@ If the vet does not have datasync enabled, then this will return HTTP 204/No Con
 </span></code></pre>
 <p>Gets a form instance.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET /partner/intake/form_instances/:form_instance_id</code></p>
+<p><code>GET /partners/intake/form_instances/:form_instance_id</code></p>
 <h1 id='machine-learning-algo-tagging'>Machine learning/algo tagging</h1>
 <p>For demo pages and machine learning feedback. The state of the machine learning model must be explicitly saved;
 if the virtual machine/container which hosts the machine learning service (https://173.255.119.25) is reset, then model changes after
