@@ -21,7 +21,7 @@ Endpoints for vets to attach, remove, and partially fill out forms.
 Creates an instance of a form an attaches it to an intake. Its initial state will be `pending vet` or `pending user`. Returns a form instance ID that can be used to update or cancel a form instance. A notification is sent to the user, prompting them to fill out the form.
 
 ### HTTP Request
-`POST /partners/intake/:intake_id/forms`
+`POST /partners/intake/:intake_id/form_instances`
 
 ### POST parameters
 Parameter | Type | Description
