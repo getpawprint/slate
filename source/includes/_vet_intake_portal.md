@@ -209,7 +209,7 @@ Gets partner place info for the caller identifed in the auth header, like place 
       "total_requests": 2,
       "last_email_at": "2020-01-20T10:01:12Z",
       "last_sms_at": "2020-01-20T10:02:00Z",
-      "pending_vet_forms": 1,
+      "completed_forms": 1,
       "total_forms": 2
     }
   ],
