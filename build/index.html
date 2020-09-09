@@ -7017,6 +7017,7 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"intake"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"datasync_intake"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"preview_mode"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"active_client_intakes"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"terms_of_service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I hereby agree to everything."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"intake_form_override"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -7175,6 +7176,11 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
 <td>intake.datasync_intake</td>
 <td>boolean</td>
 <td>Whether or not to generate intakes from the <code>vet_schedule</code> table</td>
+</tr>
+<tr>
+<td>intake.preview_mode</td>
+<td>boolean</td>
+<td>Whether or not preview mode is enabled (all client notifications suppressed; intake hard reset function becomes available)</td>
 </tr>
 <tr>
 <td>intake.active_client_intakes</td>
