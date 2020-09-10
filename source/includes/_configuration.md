@@ -331,6 +331,7 @@ Gets a vet configuration; some sections are read-only: `place.pawprint_email`, `
   },
   "intake": {
     "datasync_intake": true,
+    "preview_mode": false,
     "active_client_intakes": true,
     "terms_of_service": "I hereby agree to everything.",
     "intake_form_override": {
@@ -400,6 +401,7 @@ sms_messaging.auto_reply | boolean | Whether or not to send an automatic reply t
 sms_messaging.auto_reply_message | string | The automatic reply to the client's first incoming text
 intake | object? | Intake settings
 intake.datasync_intake | boolean | Whether or not to generate intakes from the `vet_schedule` table
+intake.preview_mode | boolean | Whether or not preview mode is enabled (all client notifications suppressed; intake hard reset function becomes available)
 intake.active_client_intakes | boolean | Whether or not to generate intakes for clients that had an appointment in the past 6 months
 intake.intake_form_override | object | Intake form customizations
 intake.intake_form_override.user_birthdate | object | Birthdate customization
