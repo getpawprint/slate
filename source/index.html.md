@@ -16,6 +16,7 @@ includes:
   - intake
   - vet_intake_portal
   - vet_portal_communications
+  - billing
   - configuration
   - form_library
   - form_instance

@@ -573,6 +573,20 @@
               </ul>
           </li>
           <li>
+            <a href="#vet-billing" class="toc-h1 toc-link" data-title="vet-billing">Vet Billing</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-a-setup-intent" class="toc-h2 toc-link" data-title="create-a-setup-intent">Create a Setup Intent</a>
+                  </li>
+                  <li>
+                    <a href="#list-payment-methods" class="toc-h2 toc-link" data-title="list-payment-methods">List payment methods</a>
+                  </li>
+                  <li>
+                    <a href="#list-payment-history" class="toc-h2 toc-link" data-title="list-payment-history">List payment history</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#configuration" class="toc-h1 toc-link" data-title="configuration">Configuration</a>
               <ul class="toc-list-h2">
                   <li>
@@ -6534,6 +6548,66 @@ Twilio status is one of <code>sending...</code>, <code>received</code>, <code>se
 <td>Auth token (because Websockets don&#39;t have auth built in)</td>
 </tr>
 </tbody></table>
+<h1 id='vet-billing'>Vet Billing</h1>
+<p>This is for the vets&#39; subscriptions for services that we provide; see the Payments section for client payments.</p>
+<h2 id='create-a-setup-intent'>Create a Setup Intent</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jLp1XcLD"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>For setting up a payment method.</p>
+
+<p>Creates a Stripe SetupIntent on the server side, then returns the Stripe <code>client_secret</code>.
+The <code>client_secret</code> should be consumed on the client side by calling <code>stripe.confirmCardSetup()</code> (https://stripe.com/docs/js/setup_intents/confirm_card_setup#stripe_confirm_card_setup-with_element).</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /partners/billing/setup_intent</code></p>
+<h2 id='list-payment-methods'>List payment methods</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"stripe_payment_method_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pm_jLp1XcLD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets all the payment methods for a user, which can later be used to create a charge.
+Note that <code>exp_month</code> is 1-based, i.e. January = 1 and December = 12, instead of Javascript&#39;s 0-based months.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /partners/billing/payment_methods</code></p>
+<h2 id='list-payment-history'>List payment history</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">       
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-20"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"May intake subscription"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"stripe_payment_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pi_1H9zrzDZqIsjxz1b7Iw5VLmL"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets the user&#39;s payment history. <code>amount</code> is in cents. <code>status</code> is based on https://stripe.com/docs/payments/intents#intent-statuses and is one of the following:</p>
+
+<ul>
+<li><code>requires payment method</code></li>
+<li><code>requires confirmation</code></li>
+<li><code>requires action</code></li>
+<li><code>pending</code></li>
+<li><code>cancelled</code></li>
+<li><code>complete</code></li>
+</ul>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /partners/billing/payments</code></p>
 <h1 id='configuration'>Configuration</h1>
 <p>Switch features on and off; vet-specific customizations.</p>
 <h2 id='get-configuration-vet'>Get configuration (vet)</h2>
