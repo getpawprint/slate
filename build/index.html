@@ -621,6 +621,9 @@
                   <li>
                     <a href="#get-list-of-appointment-types" class="toc-h2 toc-link" data-title="get-list-of-appointment-types">Get list of appointment types</a>
                   </li>
+                  <li>
+                    <a href="#get-price-estimate-groups" class="toc-h2 toc-link" data-title="get-price-estimate-groups">Get price estimate groups</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -7691,6 +7694,30 @@ Note that <code>exp_month</code> is 1-based, i.e. January = 1 and December = 12,
 If the vet does not have datasync enabled, then this will return HTTP 204/No Content.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /partners/appointment_types</code></p>
+<h2 id='get-price-estimate-groups'>Get price estimate groups</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="err">group</span><span class="p">:</span><span class="w"> </span><span class="err">'Feline</span><span class="w"> </span><span class="err">Spay'</span><span class="p">,</span><span class="w">
+    </span><span class="err">items</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="err">item</span><span class="p">:</span><span class="w"> </span><span class="err">'Anesthesia</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">Inhalant</span><span class="w"> </span><span class="err">-</span><span class="w"> </span><span class="err">First</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="err">Mins'</span><span class="p">,</span><span class="w">
+        </span><span class="err">unit_price</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mf">77.57</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">quantity</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="err">min</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="err">max</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets line items for treatment estimates, usually for surgery. Vets&#39; cost estimates for a procedure (like spay/neuter)
+are commonly comprised of a group of line items. Estimates come from the database table <code>place_estimate</code>.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET /partners/estimates</code></p>
 <h1 id='form-instances'>Form Instances</h1>
 <p>Endpoints for vets to attach, remove, and partially fill out forms.</p>
 <h2 id='attach-form-to-intake'>Attach form to intake</h2>

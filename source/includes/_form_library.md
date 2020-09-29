@@ -268,3 +268,31 @@ If the vet does not have datasync enabled, then this will return HTTP 204/No Con
 
 ### HTTP Request
 `GET /partners/appointment_types`
+
+## Get price estimate groups
+
+> Response example
+
+```json
+[
+  {
+    group: 'Feline Spay',
+    items: [
+      {
+        item: 'Anesthesia - Inhalant - First 30 Mins',
+        unit_price: '77.57',
+        quantity: {
+          min: 1,
+          max: null,
+        },
+      },
+    ]
+  }
+]
+```
+
+Gets line items for treatment estimates, usually for surgery. Vets' cost estimates for a procedure (like spay/neuter)
+are commonly comprised of a group of line items. Estimates come from the database table `place_estimate`.
+
+### HTTP Request
+`GET /partners/estimates`
