@@ -42,6 +42,41 @@ Note that `exp_month` is 1-based, i.e. January = 1 and December = 12, instead of
 ### HTTP Request
 `GET /partners/billing/payment_methods`
 
+## Remove payment method
+
+> Response example
+
+```json
+(none)
+```
+
+Removes the payment method specified by `stripe_payment_method_id`.
+
+### HTTP Request
+`DELETE /partners/billing/payment_methods/:stripe_payment_method_id`
+
+## Get default payment method
+
+> Response example
+
+```json
+{
+	"stripe_payment_method_id": "pm_jLp1XcLD",
+	"brand": "visa",
+	"exp_month": 8,
+	"exp_year": 2021,
+	"last4": "4242"
+}
+```
+
+Gets the default payment method for the vet account.
+If no default payment method is set up, `stripe_payment_method_id` will be null.
+Only payment methods of type `card` are supported; if the default payment type is not a credit/debit card
+(we have no customers set up this way and don't expect any), then HTTP 501 is returned.
+
+### HTTP Request
+`GET /partners/billing/payment_methods/default`
+
 ## List payment history
 
 > Response example
