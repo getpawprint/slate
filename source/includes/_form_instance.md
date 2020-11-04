@@ -91,10 +91,15 @@ Object keys should match the `question.name` fields and object values should be 
 > Response example
 
 ```json
-(none)
+{
+  "status": "pending user",
+  "message": "Please answer the following questions: Allergies"
+}
 ```
 
 Fills in a form on the client side. The form must be in the `pending user` state, and filling in all the client-required fields (denoted by `question.filled_by`) will automatically advance the form_instance state to `complete`.
+
+If a required question remains unanswered, `message` will contain a human-friendly string which tells the client which required questions still need to be answered.
 
 ### HTTP Request
 `PATCH /form_instances/:form_instance_external_id`
@@ -121,7 +126,8 @@ Object keys should match the `question.name` fields and object values should be 
           "name": "label1",
           "label": "Vivamus sagittis lacus vel augue laoreet rutrum faucibu.",
           "input_type": "label",
-          "response": null
+          "response": null,
+          "required": false
         }],
       },
       {
@@ -133,7 +139,8 @@ Object keys should match the `question.name` fields and object values should be 
           "input_type": "checkbox",
           "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
           "filled_by": "client",
-          "response": null
+          "response": null,
+          "required": false
         }]
       },
       {
@@ -145,7 +152,8 @@ Object keys should match the `question.name` fields and object values should be 
           "input_type": "radio",
           "options": ["Accept", "Decline"],
           "filled_by": "client",
-          "response": null
+          "response": null,
+          "required": true
         }]
       },
       {
@@ -157,7 +165,8 @@ Object keys should match the `question.name` fields and object values should be 
           "input_type": "radio",
           "options": ["Accept", "Decline"],
           "filled_by": "vet",
-          "response": "Accept"
+          "response": "Accept",
+          "required": true
         }]
       },
       {
@@ -168,20 +177,23 @@ Object keys should match the `question.name` fields and object values should be 
           "label": "Cras mattis consectetur purus sit amet fermentum.",
           "input_type": "signature",
           "filled_by": "client",
-          "response": null
+          "response": null,
+          "required": true
         },
         {
           "name": "Name",
           "label": null,
           "input_type": "text",
           "filled_by": "client",
-          "response": null
+          "response": null,
+          "required": true
         },
         {
           "name": "Date",
           "label": null,
           "input_type": "completed_date",
-          "response": null
+          "response": null,
+          "required": false
         }]
       }
     ]

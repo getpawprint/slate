@@ -7470,7 +7470,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
         </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vivamus sagittis lacus vel augue laoreet rutrum faucibu."</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}],</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7481,7 +7482,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum Menu Title"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Option 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 4"</span><span class="p">],</span><span class="w">
-          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7492,7 +7494,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
-          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7503,7 +7506,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
-          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7513,18 +7517,21 @@ Only payment methods of type <code>card</code> are supported; if the default pay
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signature"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Date"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -7552,7 +7559,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
         </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vivamus sagittis lacus vel augue laoreet rutrum faucibu."</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}],</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7563,7 +7571,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum Menu Title"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Option 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 4"</span><span class="p">],</span><span class="w">
-          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7585,7 +7594,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
-          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7595,18 +7605,21 @@ Only payment methods of type <code>card</code> are supported; if the default pay
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lorem Ipsum"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signature"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="w">
+          </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Date"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="w">
+          </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"date"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -7705,6 +7718,11 @@ Only payment methods of type <code>card</code> are supported; if the default pay
 <td>form.modules.question.filled_by</td>
 <td>string?</td>
 <td>One of <code>client</code> or <code>vet</code></td>
+</tr>
+<tr>
+<td>form.modules.question.required</td>
+<td>boolean</td>
+<td>Whether or not a response is required for this question</td>
 </tr>
 </tbody></table>
 <h2 id='get-list-of-appointment-types'>Get list of appointment types</h2>
@@ -7837,9 +7855,14 @@ are commonly comprised of a group of line items. Estimates come from the databas
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending user"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please answer the following questions: Allergies"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Fills in a form on the client side. The form must be in the <code>pending user</code> state, and filling in all the client-required fields (denoted by <code>question.filled_by</code>) will automatically advance the form_instance state to <code>complete</code>.</p>
+
+<p>If a required question remains unanswered, <code>message</code> will contain a human-friendly string which tells the client which required questions still need to be answered.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>PATCH /form_instances/:form_instance_external_id</code></p>
 <h3 id='patch-parameters-2'>PATCH parameters</h3>
@@ -7863,7 +7886,8 @@ are commonly comprised of a group of line items. Estimates come from the databas
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label1"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vivamus sagittis lacus vel augue laoreet rutrum faucibu."</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"label"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}],</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7875,7 +7899,8 @@ are commonly comprised of a group of line items. Estimates come from the databas
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Option 1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Option 4"</span><span class="p">],</span><span class="w">
           </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7887,7 +7912,8 @@ are commonly comprised of a group of line items. Estimates come from the databas
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
           </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7899,7 +7925,8 @@ are commonly comprised of a group of line items. Estimates come from the databas
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"radio"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Accept"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Decline"</span><span class="p">],</span><span class="w">
           </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vet"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accept"</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accept"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
@@ -7910,20 +7937,23 @@ are commonly comprised of a group of line items. Estimates come from the databas
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cras mattis consectetur purus sit amet fermentum."</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"signature"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"filled_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"client"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Date"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
           </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"completed_date"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}]</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">

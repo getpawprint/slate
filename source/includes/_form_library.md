@@ -65,7 +65,8 @@ Gets a list of forms, ordered by creation date in chronological order. If a form
         "questions": [{
           "name": "label1",
           "label": "Vivamus sagittis lacus vel augue laoreet rutrum faucibu.",
-          "input_type": "label"
+          "input_type": "label",
+          "required": false
         }],
       },
       {
@@ -76,7 +77,8 @@ Gets a list of forms, ordered by creation date in chronological order. If a form
           "label": "Lorem Ipsum Menu Title",
           "input_type": "checkbox",
           "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
-          "filled_by": "client"
+          "filled_by": "client",
+          "required": false
         }]
       },
       {
@@ -87,7 +89,8 @@ Gets a list of forms, ordered by creation date in chronological order. If a form
           "label": "Cras mattis consectetur purus sit amet fermentum.",
           "input_type": "radio",
           "options": ["Accept", "Decline"],
-          "filled_by": "client"
+          "filled_by": "client",
+          "required": false
         }]
       },
       {
@@ -98,7 +101,8 @@ Gets a list of forms, ordered by creation date in chronological order. If a form
           "label": "Cras mattis consectetur purus sit amet fermentum.",
           "input_type": "radio",
           "options": ["Accept", "Decline"],
-          "filled_by": "vet"
+          "filled_by": "vet",
+          "required": true
         }]
       },
       {
@@ -108,18 +112,21 @@ Gets a list of forms, ordered by creation date in chronological order. If a form
           "name": "Lorem Ipsum",
           "label": "Cras mattis consectetur purus sit amet fermentum.",
           "input_type": "signature",
-          "filled_by": "client"
+          "filled_by": "client",
+          "required": true
         },
         {
           "name": "Name",
           "label": null,
           "input_type": "text",
-          "filled_by": "client"
+          "filled_by": "client",
+          "required": true
         },
         {
           "name": "Date",
           "label": null,
-          "input_type": "date"
+          "input_type": "date",
+          "required": false
         }]
       }
     ]
@@ -151,7 +158,8 @@ Returns a form. The form name can be `null` if the `form_id` parameter is for a 
         "questions": [{
           "name": "label1",
           "label": "Vivamus sagittis lacus vel augue laoreet rutrum faucibu.",
-          "input_type": "label"
+          "input_type": "label",
+          "required": false
         }],
       },
       {
@@ -162,7 +170,8 @@ Returns a form. The form name can be `null` if the `form_id` parameter is for a 
           "label": "Lorem Ipsum Menu Title",
           "input_type": "checkbox",
           "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
-          "filled_by": "client"
+          "filled_by": "client",
+          "required": false
         }]
       },
       {
@@ -184,7 +193,8 @@ Returns a form. The form name can be `null` if the `form_id` parameter is for a 
           "label": "Cras mattis consectetur purus sit amet fermentum.",
           "input_type": "radio",
           "options": ["Accept", "Decline"],
-          "filled_by": "client"
+          "filled_by": "client",
+          "required": true
         }]
       },
       {
@@ -194,18 +204,21 @@ Returns a form. The form name can be `null` if the `form_id` parameter is for a 
           "name": "Lorem Ipsum",
           "label": "Cras mattis consectetur purus sit amet fermentum.",
           "input_type": "signature",
-          "filled_by": "client"
+          "filled_by": "client",
+          "required": true
         },
         {
           "name": "Name",
           "label": null,
           "input_type": "text",
-          "filled_by": "client"
+          "filled_by": "client",
+          "required": true
         },
         {
           "name": "Date",
           "label": null,
-          "input_type": "date"
+          "input_type": "date",
+          "required": false
         }]
       }
     ]
@@ -244,6 +257,7 @@ form.modules.question.label | string | Human-friendly string
 form.modules.question.input_type | string | One of `label` (not required to be answered), `text`, `signature` (answer is a base64 image), `date` (no time), `radio` or `checkbox`
 form.modules.question.options | string[] | Options for `radio` or `checkbox` input types only
 form.modules.question.filled_by | string? | One of `client` or `vet`
+form.modules.question.required | boolean | Whether or not a response is required for this question
 
 ## Get list of appointment types
 
