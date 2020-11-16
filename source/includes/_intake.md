@@ -101,6 +101,10 @@ appointment.reason | string? | More details about why this appointment is being 
     "type": "Wellness Exam",
     "reason": "Just moved here from Chicago"
   },
+  "checkin": {
+    "checked_in_at": "2020-01-20T16:30:12Z",
+    "location": "Next to the handicap spot"
+  },
   "form_signature_required": false,
   "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
   "status": "pending user",
@@ -1220,3 +1224,30 @@ to intake and bundle responses.
 
 ### HTTP Request
 `POST /intake/:external_id/questionnaire`
+
+## Check in for an appointment
+> Request example
+
+```json
+{
+  "car_make_model": "Grey Subaru Outback",
+  "location": "Next to the handicap spot"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+There is no response content; instead, the backend generates a secret verification link which is emailed to the user.
+
+### HTTP Request
+`POST /intake/:external_id/checkin`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+car_make_model | string? | Car make & model if different from what we have on file
+location | string? | Description of client's physical location

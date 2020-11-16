@@ -210,7 +210,11 @@ Gets partner place info for the caller identifed in the auth header, like place 
       "last_email_at": "2020-01-20T10:01:12Z",
       "last_sms_at": "2020-01-20T10:02:00Z",
       "completed_forms": 1,
-      "total_forms": 2
+      "total_forms": 2,
+      "checkin": {
+        "checked_in_at": "2020-01-20T16:30:12Z",
+        "location": "Next to the handicap spot"
+      }
     }
   ],
   "count": 1
@@ -259,6 +263,10 @@ filter | string? | JSON object, where the key is the filter name and the value i
     "time": "10:00 AM",
     "type": "Wellness exam",
     "reason": "Puppy shots"
+  },
+  "checkin": {
+    "checked_in_at": "2020-01-20T16:30:12Z",
+    "location": "Next to the handicap spot"
   },
   "form_instances": [{
     "id": 12,
