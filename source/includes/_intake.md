@@ -225,7 +225,8 @@ They are generated for datasync intakes, and erased when the intake is submitted
     "email": "johnsmith@getpawprint.com",
     "phone": "555-555-5555",
     "address": "123 Main St, San Francisco, CA 94302",
-    "has_payment_method": true
+    "has_payment_method": true,
+    "car_make_model": "Grey Subaru Outback"
   },
   "banner_image": "https://s3.aws.amazon.com/pawprint/pawprint-images/partner_logo.jpg",
   "screening": {
