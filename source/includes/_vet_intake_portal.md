@@ -612,6 +612,31 @@ Generates a .zip archive on demand for all files in an intake. Files include (if
 ### HTTP Request
 `GET /partners/intake/:intake_id/zip`
 
+## Check in/un-check in a client manually
+> Request example
+
+```json
+{
+  "status": true
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Sets checked-in or not-checked-in status of all the intakes in a given bundle.
+
+### HTTP Request
+`POST /partners/bundle/:bundle_id/checkin`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+status | bool | New checkin status for the bundle
+
 ## Websocket updates
 > Notification example
 

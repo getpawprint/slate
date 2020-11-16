@@ -74,6 +74,10 @@ Switch features on and off; vet-specific customizations.
         },
         "questionnaire_enabled": true,
         "checkin_instructions": "Please wear a mask when you arrive to comply with the governor's mandate."
+    },
+    "checkin": {
+      "custom_instructions": "Please wear a mask when you arrive to comply with the governor's mandate.",
+      "curbside_enabled": true
     }
 }
 ```
@@ -148,6 +152,10 @@ Gets a vet configuration.
             }
         },
         "checkin_instructions": "Please wear a mask when you arrive to comply with the governor's mandate."
+    },
+    "checkin": {
+      "custom_instructions": "Please wear a mask when you arrive to comply with the governor's mandate.",
+      "curbside_enabled": true
     }
 }
 ```
@@ -204,6 +212,10 @@ intake.intake_form_override.sms_opt_in.is_required | boolean | Whether or not th
 intake.intake_form_override.media_opt_in | object | Social media customization
 intake.intake_form_override.media_opt_in.is_visible | boolean | Whether or not the input for if the vet is allowed to use pictures of the client's pet on social media should be shown
 intake.intake_form_override.media_opt_in.is_required | boolean | Whether or not the input for if the vet is allowed to use pictures of the client's pet on social media should be required
+intake.checkin_instructions | string | Custom checkin instructions; displayed in client intake confirmation email (deprecated in favor of checkin.custom_instructions)
+checkin | object? | Controls day-of-appointment checkin customizations 
+checkin.curbside_enabled | boolean | Whether or not to show the "I'm here" button in the client access page and if checkin email should be sent
+checkin.custom_instructions | string | Custom checkin instructions; displayed in client intake confirmation email
 
 ## Get configuration (admin)
 
@@ -278,7 +290,11 @@ intake.intake_form_override.media_opt_in.is_required | boolean | Whether or not 
         "base_url": "https://nva.vestoria.com",
         "site_hash": "becf2349baf"
       }
-    }
+    } 
+  },
+  "checkin": {
+    "custom_instructions": "Please wear a mask when you arrive to comply with the governor's mandate.",
+    "curbside_enabled": true
   }
 }
 ```
@@ -362,6 +378,10 @@ Gets a vet configuration; some sections are read-only: `place.pawprint_email`, `
         "site_hash": "becf2349baf"
       }
     }
+  },
+  "checkin": {
+    "custom_instructions": "Please wear a mask when you arrive to comply with the governor's mandate.",
+    "curbside_enabled": true
   }
 }
 ```
@@ -423,6 +443,10 @@ intake.intake_form_override.media_opt_in | object | Social media customization
 intake.intake_form_override.media_opt_in.is_visible | boolean | Whether or not the input for if the vet is allowed to use pictures of the client's pet on social media should be shown
 intake.intake_form_override.media_opt_in.is_required | boolean | Whether or not the input for if the vet is allowed to use pictures of the client's pet on social media should be required
 intake.questionnaire_id | integer? | `null` to disable questionnaires, otherwise a foreign reference to `form.id`.
+checkin.checkin_instructions | string | Custom checkin instructions; displayed in client intake confirmation email (deprecated in favor of checkin.custom_instructions)
+checkin | object? | Controls day-of-appointment checkin customizations 
+checkin.curbside_enabled | boolean | Whether or not to show the "I'm here" button in the client access page and if checkin email should be sent
+checkin.custom_instructions | string | Custom checkin instructions; displayed in client intake confirmation email
 vetstoria | object? | Vetstoria configuration
 vetstoria.base_url | string | Vetstoria base URL
 vetstoria.site_hash | string | Vetstoria site hash

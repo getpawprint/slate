@@ -77,7 +77,8 @@ appointment.reason | string? | More details about why this appointment is being 
     "last_name": "Smith",
     "email": "johnsmith@getpawprint.com",
     "phone": "555-555-5555",
-    "address": "123 Main St, San Francisco, CA 94302"
+    "address": "123 Main St, San Francisco, CA 94302",
+    "car_make_model": "Grey Subaru Outback"
   },
   "pet": {
     "name": "Milo",
@@ -232,6 +233,10 @@ They are generated for datasync intakes, and erased when the intake is submitted
     "is_active_client": true
   },
   "form_signature_required": false,
+  "checkin": {
+    "checked_in_at": "2020-01-20T16:30:12Z",
+    "location": "Next to the handicap spot"
+  },
   "bookings": [
     {
       "external_id": "aXclIS89",
@@ -678,7 +683,8 @@ Gets payment terms and terms of service copy for a particular vet. May include H
       "is_required": false,
       "is_visible": false
     }
-  }
+  },
+  "curbside_enabled": true
 }
 ```
 
@@ -1241,10 +1247,10 @@ to intake and bundle responses.
 (none)
 ```
 
-There is no response content; instead, the backend generates a secret verification link which is emailed to the user.
+Logs a checkin timestamp and location for each intake in the bundle. If `car_make_model` is specified, it will update that information in the user profile.
 
 ### HTTP Request
-`POST /intake/:external_id/checkin`
+`POST /intake/bundle/:bundle_id/checkin`
 
 ### POST parameters
 Parameter | Type | Description
