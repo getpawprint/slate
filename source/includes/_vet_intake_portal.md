@@ -186,6 +186,7 @@ Gets partner place info for the caller identifed in the auth header, like place 
       "user_full_name": "John Smith",
       "user_email": "johnsmith@snoutid.com",
       "user_phone": "(425) 753-6174",
+      "user_car_make_model": "Grey Subaru Outback",
       "normalized_phone": "+14257536174",
       "vet_user_id": 84159,
       "unread_sms": true,
