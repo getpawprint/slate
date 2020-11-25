@@ -186,7 +186,22 @@ appointment.reason | string? | More details about why this appointment is being 
         ]
       }
     }
-  ]
+  ],
+  "records": [{
+    "request_id": 44326,
+    "place": {
+      "id": 27015,
+      "name": "Pawprint Test Vet",
+      "address": "814 Mission St, San Francisco, CA 94302",
+      "phone": "(650) 555-5551",
+      "website": "https://snoutid.com/"
+    },
+    "files": [{
+      "title": "Medical History 2020",
+      "url": "https://s3.aws.amazon.com/snoutid/snoutid-records/record_129389.pdf",
+      "created_at": "2020-11-01T10:36:12.123Z"
+    }]
+  }]
 }
 ```
 
@@ -195,7 +210,7 @@ the intake form. The `questionnaire` field may not be present if there is more t
 full example of a question can be found at https://pawprint.slite.com/app/channels/6M2TLvSBWU/notes/peYMA8k23x.
 
 ### HTTP Request
-`GET /intake/:intake_id`
+`GET /intake/:external_id`
 
 ## Get intake form by confirmation code
 
@@ -399,7 +414,22 @@ They are generated for datasync intakes, and erased when the intake is submitted
             ]
           }
         ]
-      }
+      },
+      "records": [{
+        "request_id": 44326,
+        "place": {
+          "id": 27015,
+          "name": "Pawprint Test Vet",
+          "address": "814 Mission St, San Francisco, CA 94302",
+          "phone": "(650) 555-5551",
+          "website": "https://snoutid.com/"
+        },
+        "files": [{
+          "title": "Medical History 2020",
+          "url": "https://s3.aws.amazon.com/snoutid/snoutid-records/record_129389.pdf",
+          "created_at": "2020-11-01T10:36:12.123Z"
+        }]
+      }]
     },
     {
       "external_id": "OOX-09_HL",
@@ -460,7 +490,27 @@ They are generated for datasync intakes, and erased when the intake is submitted
             ]
           }
         ]
-      }
+      },
+      "records": [{
+        "request_id": 44327,
+        "place": {
+          "id": 3,
+          "name": "Super Test Vet",
+          "address": "1500 145th Ave NE, San Francisco, CA 94302",
+          "phone": "(650) 555-5555",
+          "website": "https://demo.snoutid.com/super"
+        },
+        "files": [{
+          "title": "Medical History 6/5/2020",
+          "url": "https://s3.aws.amazon.com/snoutid/snoutid-records/record_a3kXj.pdf",
+          "created_at": "2020-11-01T10:36:12.123Z"
+        },
+        {
+          "title": "Medical History 6/5/2020 (2)",
+          "url": "https://s3.aws.amazon.com/snoutid/snoutid-records/record_kk21e.pdf",
+          "created_at": "2020-11-01T10:36:17.123Z"
+        }]
+      }]
     }
   ],
   "previous_vets": [
@@ -468,6 +518,13 @@ They are generated for datasync intakes, and erased when the intake is submitted
       "id": 27015,
       "name": "Pawprint Test Vet",
       "address": "814 Mission St, San Francisco, CA 94302",
+      "city": "San Francisco",
+      "state": "CA"
+    },
+    {
+      "id": 3,
+      "name": "Super Test Vet",
+      "address": "1500 145th Ave NE, San Francisco, CA 94302",
       "city": "San Francisco",
       "state": "CA"
     }
