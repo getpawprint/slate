@@ -37,6 +37,8 @@ Gets a list of form templates. These are form bases provided by Snout; no instan
     "id": 510,
     "name": "Jacksonville surgery",
     "appointment_types": ["surgery", "dental"],
+    "species": ["Canine"],
+    "breeds": ["Pomeranian", "Chow"],
     "created_at": "2020-08-08"
   } 
 ]
@@ -54,6 +56,8 @@ Gets a list of forms, ordered by creation date in chronological order. If a form
 ```json
 {
   "appointment_types": ["surgery", "dental"],
+  "species": ["Canine"],
+  "breeds": ["Pomeranian", "Chow"],
   "template_id": 10,
   "form": {
     "name": "Jacksonville Surgery",
@@ -146,6 +150,8 @@ Returns a form. The form name can be `null` if the `form_id` parameter is for a 
 ```json
 {
   "appointment_types": ["surgery", "dental"],
+  "species": ["Canine"],
+  "breeds": ["Pomeranian", "Chow"],
   "template_id": 10,
   "previous_id": 510,
   "form": {
@@ -235,6 +241,7 @@ Returns a form. The form name can be `null` if the `form_id` parameter is for a 
 ```
 
 Creates a form. If `previous_id` is specified, that form is taken out of the vet's list of active forms and replaced with the newly created form instead.
+Form autoassignment can be configured by appointment type, species and breed. Appointment type, species and breed are lists; an intake must have a match in each list before the form is automatically assigned.
 
 ### HTTP Request
 `POST /partners/forms`
@@ -243,6 +250,8 @@ Creates a form. If `previous_id` is specified, that form is taken out of the vet
 Parameter | Type | Description
 --------- | ---- | -----------
 appointment_types | string[] | Datasync intakes only - an instance of this form is generated on appointment type match.
+species | string[] | Datasync intakes only - an instance of this form is generated on species match.
+breeds | string[] | Datasync intakes only - an instance of this form is generated on breed match.
 template_id | int | Form template ID
 previous_id | int? | Form ID; if specified, the previous form will be deactivated and this form will be activated to simulate an "edit" while preserving the form history for previous instances.
 form | object | Form specification
@@ -277,7 +286,7 @@ form.modules.question.required | boolean | Whether or not a response is required
 ]
 ```
 
-Gets list of vet's appointment types found in `vet_schedule.type`, ordered by most to least frequently used.
+Gets list of vet's appointment types found in `vet_appointment_type`, in alphabetical order.
 If the vet does not have datasync enabled, then this will return HTTP 204/No Content.
 
 ### HTTP Request
@@ -310,3 +319,62 @@ are commonly comprised of a group of line items. Estimates come from the databas
 
 ### HTTP Request
 `GET /partners/estimates`
+
+## Get list of species
+
+> Response example
+
+```json
+[
+  "Canine",
+  "Feline",
+  "Reptilian",
+  "Avian/Parrot",
+  "Avian/Poultry",
+  "Avian/Waterfowl",
+  "Guinea Pig",
+  "Surgery",
+  "Other"
+]
+```
+
+Gets list of vet's species found in `vet_species`, in alphabetical order.
+If the vet does not have datasync enabled, then this will return HTTP 204/No Content.
+
+### HTTP Request
+`GET /partners/species`
+
+## Get list of breeds
+
+> Response example
+
+```json
+[
+  {
+    "species": "Canine",
+    "breed": "Affenpinscher"
+  },
+  {
+    "species": "Canine",
+    "breed": "Yorkshire Terrier"
+  },
+  {
+    "species": "Feline",
+    "breed": "Domestic Shorthair"
+  },
+  {
+    "species": "Avian/Parrot",
+    "breed": "African Grey"
+  },
+  {
+    "species": null,
+    "breed": "Cottontail"
+  }
+]
+```
+
+Gets list of vet's breeds found in `vet_breeds`, in no particular order. Depending on the vet integration, `species` may be null.
+If the vet does not have datasync enabled, then this will return HTTP 204/No Content.
+
+### HTTP Request
+`GET /partners/breeds`

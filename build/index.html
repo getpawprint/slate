@@ -636,6 +636,12 @@
                   <li>
                     <a href="#get-price-estimate-groups" class="toc-h2 toc-link" data-title="get-price-estimate-groups">Get price estimate groups</a>
                   </li>
+                  <li>
+                    <a href="#get-list-of-species" class="toc-h2 toc-link" data-title="get-list-of-species">Get list of species</a>
+                  </li>
+                  <li>
+                    <a href="#get-list-of-breeds" class="toc-h2 toc-link" data-title="get-list-of-breeds">Get list of breeds</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -7651,6 +7657,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">510</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jacksonville surgery"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"appointment_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"surgery"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dental"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Canine"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"breeds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Pomeranian"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Chow"</span><span class="p">],</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-08"</span><span class="w">
   </span><span class="p">}</span><span class="w"> 
 </span><span class="p">]</span><span class="w">
@@ -7664,6 +7672,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"appointment_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"surgery"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dental"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Canine"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"breeds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Pomeranian"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Chow"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
   </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jacksonville Surgery"</span><span class="p">,</span><span class="w">
@@ -7752,6 +7762,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"appointment_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"surgery"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dental"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Canine"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"breeds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Pomeranian"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Chow"</span><span class="p">],</span><span class="w">
   </span><span class="s2">"template_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
   </span><span class="s2">"previous_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">510</span><span class="p">,</span><span class="w">
   </span><span class="s2">"form"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -7838,7 +7850,8 @@ Only payment methods of type <code>card</code> are supported; if the default pay
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">511</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Creates a form. If <code>previous_id</code> is specified, that form is taken out of the vet&#39;s list of active forms and replaced with the newly created form instead.</p>
+<p>Creates a form. If <code>previous_id</code> is specified, that form is taken out of the vet&#39;s list of active forms and replaced with the newly created form instead.
+Form autoassignment can be configured by appointment type, species and breed. Appointment type, species and breed are lists; an intake must have a match in each list before the form is automatically assigned.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /partners/forms</code></p>
 <h3 id='post-parameters'>POST parameters</h3>
@@ -7853,6 +7866,16 @@ Only payment methods of type <code>card</code> are supported; if the default pay
 <td>appointment_types</td>
 <td>string[]</td>
 <td>Datasync intakes only - an instance of this form is generated on appointment type match.</td>
+</tr>
+<tr>
+<td>species</td>
+<td>string[]</td>
+<td>Datasync intakes only - an instance of this form is generated on species match.</td>
+</tr>
+<tr>
+<td>breeds</td>
+<td>string[]</td>
+<td>Datasync intakes only - an instance of this form is generated on breed match.</td>
 </tr>
 <tr>
 <td>template_id</td>
@@ -7946,7 +7969,7 @@ Only payment methods of type <code>card</code> are supported; if the default pay
   </span><span class="s2">"Euthanasia"</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>Gets list of vet&#39;s appointment types found in <code>vet_schedule.type</code>, ordered by most to least frequently used.
+<p>Gets list of vet&#39;s appointment types found in <code>vet_appointment_type</code>, in alphabetical order.
 If the vet does not have datasync enabled, then this will return HTTP 204/No Content.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET /partners/appointment_types</code></p>
@@ -7974,6 +7997,57 @@ If the vet does not have datasync enabled, then this will return HTTP 204/No Con
 are commonly comprised of a group of line items. Estimates come from the database table <code>place_estimate</code>.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET /partners/estimates</code></p>
+<h2 id='get-list-of-species'>Get list of species</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="s2">"Canine"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Feline"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Reptilian"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Avian/Parrot"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Avian/Poultry"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Avian/Waterfowl"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Guinea Pig"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Surgery"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Other"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets list of vet&#39;s species found in <code>vet_species</code>, in alphabetical order.
+If the vet does not have datasync enabled, then this will return HTTP 204/No Content.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET /partners/species</code></p>
+<h2 id='get-list-of-breeds'>Get list of breeds</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canine"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Affenpinscher"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canine"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yorkshire Terrier"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Feline"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Shorthair"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Avian/Parrot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"African Grey"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cottontail"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Gets list of vet&#39;s breeds found in <code>vet_breeds</code>, in no particular order. Depending on the vet integration, <code>species</code> may be null.
+If the vet does not have datasync enabled, then this will return HTTP 204/No Content.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET /partners/breeds</code></p>
 <h1 id='form-instances'>Form Instances</h1>
 <p>Endpoints for vets to attach, remove, and partially fill out forms.</p>
 <h2 id='attach-form-to-intake'>Attach form to intake</h2>
