@@ -338,7 +338,7 @@ Gets list of intakes for the given day for the vet. The `:date` parameter is an 
 
 **`status` filter**
 Value | Description
---------- | ---- | -----------
+--------- | -----------
 default | Returns everything except archived intakes.
 all | Returns everything.
 pending | Returns intakes that are still in progress, but don't require the practice's attention. Specifying this causes the date parameter to be ignored.
