@@ -254,6 +254,112 @@ $skip | int? | Offsets number of results.
 sort_by | string? | Default is `{"updated_at":"desc"}`. This parameter is ignored if the `date` filter is specified unless it is `appointment_date`, which allows the sort direction to be changed.
 filter | string? | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"status":"missing info"}`.
 
+
+## Get list of intakes V2
+> Response example
+
+```json
+[
+  {
+    "id": 93,
+    "archived": false,
+    "user": {
+      "first_name": "John",
+      "last_name": "Smith",
+      "email": "johnsmith@snoutid.com",
+      "phone": "(555) 550-1234",
+      "normalized_phone": "+15555501234"
+    },
+    "pet": {
+      "name": "Hachi",
+      "species": "dog",
+      "breed": "Akita",
+      "image_url": "https://s3.aws.amazon.com/snoutid-profile-pic/AbXjoie.jpg"
+    },
+    "appointment": {
+      "datetime": "2020-01-20T15:45:00-04:00",
+      "type": "Wellness Exam",
+      "last_email_at": "2020-01-20T10:01:12-04:00",
+      "last_sms_at": "2020-01-20T10:01:28-04:00",
+      "confirmation_code": "NCC1701D"
+    },
+    "new_client_form": {
+      "url": "https://s3.aws.amazon.com/snoutid-new-client/AbXjoie.pdf", // Can be null
+      "opened": true 
+    },
+    "snapshot_form": {
+      "url": "https://s3.aws.amazon.com/snoutid-snapshot/AbXjoie.pdf", // Can be null
+      "opened": false
+    },
+    "questionnaire": {
+      "status": "complete",   // "pending user", "complete"
+      "url": "https://s3.aws.amazon.com/snoutid-questionnaire/AbXjoie.pdf",
+      "opened": false
+    },
+    "forms": [
+      {
+        "name": "Surgery Form",
+        "status": "pending vet",  // "pending user", "pending vet", "cancelled", "complete"
+        "url": null,
+        "opened": null
+      }
+    ],
+    "requests": [
+      {
+        "place": {
+          "name": "ABC Animal Hospital"
+        },
+        "status": "in progress",    // "in progress", "cancelled", "complete"
+        "url": null,
+        "opened": null
+      }
+    ]
+  }
+]
+```
+
+Gets list of intakes for the given day for the vet. The `:date` parameter is an ISO-8601 date (without time), e.g. '2020-11-15'; if not specified, it defaults to the current day in the vet's time zone.
+
+*Filters:*
+- `status` - `default`, `all`, `pending`, `action_required`, `new_files`. `default` will return everything except archived intakes, while `all` will return everything.
+If unspecified, the `default` filter will be used.
+
+Parameter | Type | Description
+--------- | ---- | -----------
+default | Returns everything except archived intakes.
+all | Returns everything.
+pending | Returns intakes that are still in progress, but don't require the practice's attention.
+action_required | Returns intakes that require the practice's attention (i.e. form needs to be filled out)
+new_files | Returns unarchived intakes that have undownloaded files. If an archived intake has new files attached to it (e.g. client filled out a form late), the intake will automatically be unarchived.
+
+### HTTP Request
+`GET /partners/v2/intake/:date`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+filter | string? | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"status":"all"}`.
+
+## Archive an intake
+> Request example
+
+```json
+(none)
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Archives an intake. All files will be marked as downloaded. If a new file is attached to the intake after it is archived
+(e.g. record request was fulfilled or client filled out a form), it will be unarchived on the backend.
+
+### HTTP Request
+`POST /partners/intake/:intake_id/archive`
+
+
 ## Get intake details
 > Response example
 
