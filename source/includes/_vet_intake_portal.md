@@ -254,6 +254,22 @@ $skip | int? | Offsets number of results.
 sort_by | string? | Default is `{"updated_at":"desc"}`. This parameter is ignored if the `date` filter is specified unless it is `appointment_date`, which allows the sort direction to be changed.
 filter | string? | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"status":"missing info"}`.
 
+## Get intake counts
+> Response example
+
+```json
+{
+  "new_files": 6,
+  "staff_attn": 12,
+  "pending": 89
+}
+```
+
+Returns the number of intakes with certain statuses, regardless of date. An intake may be counted for multiple statuses.
+
+### HTTP Request
+`GET /partners/intake/count`
+
 
 ## Get list of intakes V2
 > Response example
@@ -320,17 +336,14 @@ filter | string? | JSON object, where the key is the filter name and the value i
 
 Gets list of intakes for the given day for the vet. The `:date` parameter is an ISO-8601 date (without time), e.g. '2020-11-15'; if not specified, it defaults to the current day in the vet's time zone.
 
-*Filters:*
-- `status` - `default`, `all`, `pending`, `action_required`, `new_files`. `default` will return everything except archived intakes, while `all` will return everything.
-If unspecified, the `default` filter will be used.
-
-Parameter | Type | Description
+**`status` filter**
+Value | Description
 --------- | ---- | -----------
 default | Returns everything except archived intakes.
 all | Returns everything.
-pending | Returns intakes that are still in progress, but don't require the practice's attention.
-action_required | Returns intakes that require the practice's attention (i.e. form needs to be filled out)
-new_files | Returns unarchived intakes that have undownloaded files. If an archived intake has new files attached to it (e.g. client filled out a form late), the intake will automatically be unarchived.
+pending | Returns intakes that are still in progress, but don't require the practice's attention. Specifying this causes the date parameter to be ignored.
+staff_attn | Returns intakes that require the practice's attention (i.e. form needs to be filled out). Specifying this causes the date parameter to be ignored.
+new_files | Returns unarchived intakes that have undownloaded files. If an archived intake has new files attached to it (e.g. client filled out a form late), the intake will automatically be unarchived. Specifying this causes the date parameter to be ignored.
 
 ### HTTP Request
 `GET /partners/v2/intake/:date`
@@ -338,7 +351,7 @@ new_files | Returns unarchived intakes that have undownloaded files. If an archi
 ### Query string parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-filter | string? | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"status":"all"}`.
+filter | string? | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"status":"action_required"}`.
 
 ## Archive an intake
 > Request example
