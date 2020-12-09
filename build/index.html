@@ -5999,14 +5999,35 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
 </span></code></pre>
 <p>Gets list of intakes for the given day for the vet. The <code>:date</code> parameter is an ISO-8601 date (without time), e.g. &#39;2020-11-15&#39;; if not specified, it defaults to the current day in the vet&#39;s time zone.</p>
 
-<p><strong><code>status</code> filter</strong>
-Value | Description
------ | -----------
-default | Returns everything except archived intakes.
-all | Returns everything.
-pending | Returns intakes that are still in progress, but don&#39;t require the practice&#39;s attention. Specifying this causes the date parameter to be ignored.
-staff_attn | Returns intakes that require the practice&#39;s attention (i.e. form needs to be filled out). Specifying this causes the date parameter to be ignored.
-new_files | Returns unarchived intakes that have undownloaded files. If an archived intake has new files attached to it (e.g. client filled out a form late), the intake will automatically be unarchived. Specifying this causes the date parameter to be ignored.</p>
+<p><strong><code>status</code> filter</strong></p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>default</td>
+<td>Returns everything except archived intakes.</td>
+</tr>
+<tr>
+<td>all</td>
+<td>Returns everything.</td>
+</tr>
+<tr>
+<td>pending</td>
+<td>Returns intakes that are still in progress, but don&#39;t require the practice&#39;s attention. Specifying this causes the date parameter to be ignored.</td>
+</tr>
+<tr>
+<td>staff_attn</td>
+<td>Returns intakes that require the practice&#39;s attention (i.e. form needs to be filled out). Specifying this causes the date parameter to be ignored.</td>
+</tr>
+<tr>
+<td>new_files</td>
+<td>Returns unarchived intakes that have undownloaded files. If an archived intake has new files attached to it (e.g. client filled out a form late), the intake will automatically be unarchived. Specifying this causes the date parameter to be ignored.</td>
+</tr>
+</tbody></table>
 <h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET /partners/v2/intake/:date</code></p>
 <h3 id='query-string-parameters-2'>Query string parameters</h3>

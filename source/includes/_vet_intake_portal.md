@@ -337,6 +337,7 @@ Returns the number of intakes with certain statuses, regardless of date. An inta
 Gets list of intakes for the given day for the vet. The `:date` parameter is an ISO-8601 date (without time), e.g. '2020-11-15'; if not specified, it defaults to the current day in the vet's time zone.
 
 **`status` filter**
+
 Value | Description
 ----- | -----------
 default | Returns everything except archived intakes.
