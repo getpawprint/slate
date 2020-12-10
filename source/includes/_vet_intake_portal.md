@@ -326,8 +326,12 @@ Returns the number of intakes with certain statuses, regardless of date. An inta
           "name": "ABC Animal Hospital"
         },
         "status": "in progress",    // "in progress", "cancelled", "complete"
-        "url": null,
-        "opened": null
+        "files": [
+          {
+            "url": null,
+            "opened": null
+          }
+        ]
       }
     ]
   }
