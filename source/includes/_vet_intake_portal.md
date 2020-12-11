@@ -364,7 +364,7 @@ new_files | Returns unarchived intakes that have undownloaded files. If an archi
 ### Query string parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-filter | string? | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"status":"action_required"}`.
+filter | string? | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"status":"staff_attn"}`.
 
 ## Archive an intake
 > Request example
