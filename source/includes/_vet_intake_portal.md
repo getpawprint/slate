@@ -285,6 +285,7 @@ Returns the number of intakes with certain statuses, regardless of date. An inta
       "new_files": true
     },
     "user": {
+      "id": 37683,
       "first_name": "John",
       "last_name": "Smith",
       "email": "johnsmith@snoutid.com",
