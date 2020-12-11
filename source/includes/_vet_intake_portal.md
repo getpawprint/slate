@@ -307,18 +307,18 @@ Returns the number of intakes with certain statuses, regardless of date. An inta
     "files": [
       {
         "name": "New Client Form",
-        "status": "complete",   // 'pending' or 'complete',
+        "status": "complete",   // "pending", "complete" or "staff_attn"
         "url": "https://s3.aws.amazon.com/snoutid-new-client/AbXjoie.pdf",
         "opened": true
       },
       {
         "name": "Snapshot",
-        "status": "complete",   // 'pending' or 'complete',
+        "status": "complete",
         "url": "https://s3.aws.amazon.com/snoutid-new-client/AbXjoie.pdf",
         "opened": false
       },
       {
-        "name: "Questionnaire",
+        "name": "Questionnaire",
         "status": "pending",
         "url": null,
         "opened": null
