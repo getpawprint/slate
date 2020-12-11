@@ -278,7 +278,12 @@ Returns the number of intakes with certain statuses, regardless of date. An inta
 [
   {
     "id": 93,
-    "archived": false,
+    "status": {
+      "archived": false,
+      "pending": true,
+      "staff_attn": true,
+      "new_files": true
+    },
     "user": {
       "first_name": "John",
       "last_name": "Smith",
@@ -299,39 +304,42 @@ Returns the number of intakes with certain statuses, regardless of date. An inta
       "last_sms_at": "2020-01-20T10:01:28-04:00",
       "confirmation_code": "NCC1701D"
     },
-    "new_client_form": {
-      "url": "https://s3.aws.amazon.com/snoutid-new-client/AbXjoie.pdf", // Can be null
-      "opened": true 
-    },
-    "snapshot_form": {
-      "url": "https://s3.aws.amazon.com/snoutid-snapshot/AbXjoie.pdf", // Can be null
-      "opened": false
-    },
-    "questionnaire": {
-      "status": "complete",   // "pending user", "complete"
-      "url": "https://s3.aws.amazon.com/snoutid-questionnaire/AbXjoie.pdf",
-      "opened": false
-    },
-    "forms": [
+    "files": [
       {
-        "name": "Surgery Form",
-        "status": "pending vet",  // "pending user", "pending vet", "cancelled", "complete"
+        "name": "New Client Form",
+        "status": "complete",   // 'pending' or 'complete',
+        "url": "https://s3.aws.amazon.com/snoutid-new-client/AbXjoie.pdf",
+        "opened": true
+      },
+      {
+        "name": "Snapshot",
+        "status": "complete",   // 'pending' or 'complete',
+        "url": "https://s3.aws.amazon.com/snoutid-new-client/AbXjoie.pdf",
+        "opened": false
+      },
+      {
+        "name: "Questionnaire",
+        "status": "pending",
         "url": null,
         "opened": null
-      }
-    ],
-    "requests": [
+      },
       {
-        "place": {
-          "name": "ABC Animal Hospital"
-        },
-        "status": "in progress",    // "in progress", "cancelled", "complete"
-        "files": [
-          {
-            "url": null,
-            "opened": null
-          }
-        ]
+        "name": "Surgery Estimate",
+        "status": "staff_attn",
+        "url": null,
+        "opened": null
+      },
+      {
+        "name": "Anesthesia Consent",
+        "staus": "pending",
+        "url": null,
+        "opened": null
+      },
+      {
+        "name": "Records from ABC Animal Hospital",
+        "status": "complete",
+        "url": "https://s3.aws.amazon.com/snoutid-snapshot/AbXjoie.pdf",
+        "opened": true
       }
     ]
   }
