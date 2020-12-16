@@ -539,6 +539,9 @@
                     <a href="#get-list-of-intakes-v2" class="toc-h2 toc-link" data-title="get-list-of-intakes-v2">Get list of intakes V2</a>
                   </li>
                   <li>
+                    <a href="#get-list-of-intakes-by-status" class="toc-h2 toc-link" data-title="get-list-of-intakes-by-status">Get list of intakes by status</a>
+                  </li>
+                  <li>
                     <a href="#archive-an-intake" class="toc-h2 toc-link" data-title="archive-an-intake">Archive an intake</a>
                   </li>
                   <li>
@@ -5973,46 +5976,47 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Client Form"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w"> </span><span class="s2">"complete"</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="s2">"staff_attn"</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/snoutid-new-client/AbXjoie.pdf"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"opened"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="s2">"downloaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snapshot"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/snoutid-new-client/AbXjoie.pdf"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"opened"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="s2">"downloaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Questionnaire"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"opened"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="s2">"downloaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Surgery Estimate"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"staff_attn"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"opened"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="s2">"downloaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anesthesia Consent"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"staus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"opened"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="s2">"downloaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Records from ABC Animal Hospital"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/snoutid-snapshot/AbXjoie.pdf"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"opened"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="s2">"downloaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>Gets list of intakes for the given day for the vet. The <code>:date</code> parameter is an ISO-8601 date (without time), e.g. &#39;2020-11-15&#39;; if not specified, it defaults to the current day in the vet&#39;s time zone.</p>
-
-<p><strong><code>status</code> filter</strong></p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>GET /partners/v2/intake/:date?</code></p>
+<h2 id='get-list-of-intakes-by-status'>Get list of intakes by status</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(see</span><span class="w"> </span><span class="err">above)</span><span class="w">
+</span></code></pre>
+<p>Gets a list of intakes across all dates filtered by status.</p>
 
 <table><thead>
 <tr>
@@ -6041,22 +6045,8 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
 <td>Returns unarchived intakes that have undownloaded files. If an archived intake has new files attached to it (e.g. client filled out a form late), the intake will automatically be unarchived. Specifying this causes the date parameter to be ignored.</td>
 </tr>
 </tbody></table>
-<h3 id='http-request-10'>HTTP Request</h3>
-<p><code>GET /partners/v2/intake/:date</code></p>
-<h3 id='query-string-parameters-2'>Query string parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>filter</td>
-<td>string?</td>
-<td>JSON object, where the key is the filter name and the value is the filter value, e.g. <code>&amp;filter={&quot;status&quot;:&quot;staff_attn&quot;}</code>.</td>
-</tr>
-</tbody></table>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>GET /partners/intake/status/:status</code></p>
 <h2 id='archive-an-intake'>Archive an intake</h2>
 <blockquote>
 <p>Request example</p>
@@ -6070,7 +6060,7 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
 </span></code></pre>
 <p>Archives an intake. All files will be marked as downloaded. If a new file is attached to the intake after it is archived
 (e.g. record request was fulfilled or client filled out a form), it will be unarchived on the backend.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST /partners/intake/:intake_id/archive</code></p>
 <h2 id='get-intake-details'>Get intake details</h2>
 <blockquote>
@@ -6298,7 +6288,7 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
 <p>Get detailed information about a specific intake for a partner place. There are three main fields - <code>appointment</code> and <code>summary</code>; <code>summary</code> is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal.
 <code>questionnaire</code> will be null if the client did not fill out an intake questionnaire.
 HTTP 403 is returned if the <code>intake_id</code> does not belong to the partner place.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET /partners/intake/:intake_id</code></p>
 <h2 id='log-file-open-event'>Log file open event</h2>
 <blockquote>
@@ -6316,7 +6306,7 @@ HTTP 403 is returned if the <code>intake_id</code> does not belong to the partne
 </span></code></pre>
 <p>Sets opened/not opened status on a file within an intake. The file can be any URL - the profile picture, the snapshot PDF link,
 a user-uploaded file, or a file from a record request.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code>POST /partners/intake/:intake_id/file_open</code></p>
 <h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
@@ -6369,7 +6359,7 @@ a user-uploaded file, or a file from a record request.</p>
 <p>Allows vets to update an intake, but only when <code>status</code> is <code>missing info</code> or <code>pending user</code>.
 <code>user.email</code> and <code>user.phone</code> can only be updated when <code>status</code> is <code>missing info</code>, and either of those fields is entered,
 the intake will automatically enter <code>pending user</code> status and the <code>intake-form</code> email/SMS will be sent to the user.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>PUT /partners/intake/:intake_id</code></p>
 <h3 id='put-parameters'>PUT parameters</h3>
 <table><thead>
@@ -6466,7 +6456,7 @@ the intake will automatically enter <code>pending user</code> status and the <co
 </span></code></pre>
 <p>Resends a reminder email or text to the client in the intake. If the <code>email</code> or <code>phone</code> parameters are strings, the email address or phone number will be overridden; otherwise, an email or SMS is sent to the contact info on file.
 The intake&#39;s email and/or phone will be updated in the database if overrides were provided.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>POST /partners/intake/:intake_id/reminder</code></p>
 <h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>
@@ -6499,7 +6489,7 @@ The intake&#39;s email and/or phone will be updated in the database if overrides
 - Pet photo
 - Record request PDFs
 - User uploaded files</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>GET /partners/intake/:intake_id/zip</code></p>
 <h2 id='check-in-un-check-in-a-client-manually'>Check in/un-check in a client manually</h2>
 <blockquote>
@@ -6515,7 +6505,7 @@ The intake&#39;s email and/or phone will be updated in the database if overrides
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Sets checked-in or not-checked-in status of all the intakes in a given bundle.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>POST /partners/bundle/:bundle_id/checkin</code></p>
 <h3 id='post-parameters-5'>POST parameters</h3>
 <table><thead>

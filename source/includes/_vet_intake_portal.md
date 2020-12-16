@@ -309,38 +309,32 @@ Returns the number of intakes with certain statuses, regardless of date. An inta
       {
         "name": "New Client Form",
         "status": "complete",   // "pending", "complete" or "staff_attn"
-        "url": "https://s3.aws.amazon.com/snoutid-new-client/AbXjoie.pdf",
-        "opened": true
+        "downloaded": true
       },
       {
         "name": "Snapshot",
         "status": "complete",
-        "url": "https://s3.aws.amazon.com/snoutid-new-client/AbXjoie.pdf",
-        "opened": false
+        "downloaded": false
       },
       {
         "name": "Questionnaire",
         "status": "pending",
-        "url": null,
-        "opened": null
+        "downloaded": null
       },
       {
         "name": "Surgery Estimate",
         "status": "staff_attn",
-        "url": null,
-        "opened": null
+        "downloaded": null
       },
       {
         "name": "Anesthesia Consent",
         "staus": "pending",
-        "url": null,
-        "opened": null
+        "downloaded": null
       },
       {
         "name": "Records from ABC Animal Hospital",
         "status": "complete",
-        "url": "https://s3.aws.amazon.com/snoutid-snapshot/AbXjoie.pdf",
-        "opened": true
+        "downloaded": true
       }
     ]
   }
@@ -349,7 +343,17 @@ Returns the number of intakes with certain statuses, regardless of date. An inta
 
 Gets list of intakes for the given day for the vet. The `:date` parameter is an ISO-8601 date (without time), e.g. '2020-11-15'; if not specified, it defaults to the current day in the vet's time zone.
 
-**`status` filter**
+### HTTP Request
+`GET /partners/v2/intake/:date?`
+
+## Get list of intakes by status
+> Response example
+
+```json
+(see above)
+```
+
+Gets a list of intakes across all dates filtered by status.
 
 Value | Description
 ----- | -----------
@@ -360,12 +364,7 @@ staff_attn | Returns intakes that require the practice's attention (i.e. form ne
 new_files | Returns unarchived intakes that have undownloaded files. If an archived intake has new files attached to it (e.g. client filled out a form late), the intake will automatically be unarchived. Specifying this causes the date parameter to be ignored.
 
 ### HTTP Request
-`GET /partners/v2/intake/:date`
-
-### Query string parameters
-Parameter | Type | Description
---------- | ---- | -----------
-filter | string? | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"status":"staff_attn"}`.
+`GET /partners/intake/status/:status`
 
 ## Archive an intake
 > Request example
