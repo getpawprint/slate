@@ -275,70 +275,77 @@ Returns the number of intakes with certain statuses, regardless of date. An inta
 > Response example
 
 ```json
-[
-  {
-    "id": 93,
-    "status": {
-      "archived": false,
-      "pending": true,
-      "staff_attn": true,
-      "new_files": true
-    },
-    "user": {
-      "id": 37683,
-      "first_name": "John",
-      "last_name": "Smith",
-      "email": "johnsmith@snoutid.com",
-      "phone": "(555) 550-1234",
-      "normalized_phone": "+15555501234"
-    },
-    "pet": {
-      "name": "Hachi",
-      "species": "dog",
-      "breed": "Akita",
-      "image_url": "https://s3.aws.amazon.com/snoutid-profile-pic/AbXjoie.jpg"
-    },
-    "appointment": {
-      "datetime": "2020-01-20T15:45:00-04:00",
-      "type": "Wellness Exam",
-      "last_email_at": "2020-01-20T10:01:12-04:00",
-      "last_sms_at": "2020-01-20T10:01:28-04:00",
-      "confirmation_code": "NCC1701D"
-    },
-    "files": [
-      {
-        "name": "New Client Form",
-        "status": "complete",   // "pending", "complete" or "staff_attn"
-        "downloaded": true
+{
+  metadata: {
+    "first_date": "2019-05-22",
+    "last_date": "2023-03-05",
+    "next_date": "2020-12-31"
+  },
+  data: [
+    {
+      "id": 93,
+      "status": {
+        "archived": false,
+        "pending": true,
+        "staff_attn": true,
+        "new_files": true
       },
-      {
-        "name": "Snapshot",
-        "status": "complete",
-        "downloaded": false
+      "user": {
+        "id": 37683,
+        "first_name": "John",
+        "last_name": "Smith",
+        "email": "johnsmith@snoutid.com",
+        "phone": "(555) 550-1234",
+        "normalized_phone": "+15555501234"
       },
-      {
-        "name": "Questionnaire",
-        "status": "pending",
-        "downloaded": null
+      "pet": {
+        "name": "Hachi",
+        "species": "dog",
+        "breed": "Akita",
+        "image_url": "https://s3.aws.amazon.com/snoutid-profile-pic/AbXjoie.jpg"
       },
-      {
-        "name": "Surgery Estimate",
-        "status": "staff_attn",
-        "downloaded": null
+      "appointment": {
+        "datetime": "2020-01-20T15:45:00-04:00",
+        "type": "Wellness Exam",
+        "last_email_at": "2020-01-20T10:01:12-04:00",
+        "last_sms_at": "2020-01-20T10:01:28-04:00",
+        "confirmation_code": "NCC1701D"
       },
-      {
-        "name": "Anesthesia Consent",
-        "staus": "pending",
-        "downloaded": null
-      },
-      {
-        "name": "Records from ABC Animal Hospital",
-        "status": "complete",
-        "downloaded": true
-      }
-    ]
-  }
-]
+      "files": [
+        {
+          "name": "New Client Form",
+          "status": "complete",   // "pending", "complete" or "staff_attn"
+          "downloaded": true
+        },
+        {
+          "name": "Snapshot",
+          "status": "complete",
+          "downloaded": false
+        },
+        {
+          "name": "Questionnaire",
+          "status": "pending",
+          "downloaded": null
+        },
+        {
+          "name": "Surgery Estimate",
+          "status": "staff_attn",
+          "downloaded": null
+        },
+        {
+          "name": "Anesthesia Consent",
+          "staus": "pending",
+          "downloaded": null
+        },
+        {
+          "name": "Records from ABC Animal Hospital",
+          "status": "complete",
+          "downloaded": true
+        }
+      ]
+    }
+  ]
+}
 ```
 
 Gets list of intakes for the given day for the vet. The `:date` parameter is an ISO-8601 date (without time), e.g. '2020-11-15'; if not specified, it defaults to the current day in the vet's time zone.
