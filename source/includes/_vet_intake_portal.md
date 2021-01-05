@@ -288,7 +288,8 @@ Returns the number of intakes with certain statuses, regardless of date. An inta
         "archived": false,
         "pending": true,
         "staff_attn": true,
-        "new_files": true
+        "new_files": true,
+        "visible_by_default": true
       },
       "user": {
         "id": 37683,
