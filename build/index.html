@@ -5497,6 +5497,20 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
 <p>Gets list of intakes for the given day for the vet. The <code>:date</code> parameter is an ISO-8601 date (without time), e.g. &#39;2020-11-15&#39;; if not specified, it defaults to the current day in the vet&#39;s time zone.</p>
 <h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET /partners/v2/intake/:date?</code></p>
+<h3 id='query-string-parameters-2'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>filter</td>
+<td>string?</td>
+<td>JSON object, where the key is the filter name and the value is the filter value, e.g. <code>&amp;filter={&quot;name&quot;:&quot;smi&quot;}</code>. Performs partial name match on user first name OR last name OR pet name</td>
+</tr>
+</tbody></table>
 <h2 id='get-list-of-intakes-by-status'>Get list of intakes by status</h2>
 <blockquote>
 <p>Response example</p>

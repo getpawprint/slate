@@ -354,6 +354,11 @@ Gets list of intakes for the given day for the vet. The `:date` parameter is an 
 ### HTTP Request
 `GET /partners/v2/intake/:date?`
 
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+filter | string? | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"name":"smi"}`. Performs partial name match on user first name OR last name OR pet name
+
 ## Get list of intakes by status
 > Response example
 
