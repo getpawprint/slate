@@ -24,8 +24,6 @@ includes:
   - payments
   - places
   - places_v3
-  - requests_v3
-  - sharing
   - user
   - vetstoria
   - legacy_portal

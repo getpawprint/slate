@@ -1,5 +1,5 @@
 # Vet Billing
-This is for the vets' subscriptions for services that we provide; see the Payments section for client payments.
+This is for the vet/Snout subscriptions for services that we provide; see the Payments section for vet/client payments.
 
 ## Create a Setup Intent
 

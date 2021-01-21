@@ -1,5 +1,5 @@
 # Payments
-We use [Stripe](http://stripe.com/) for managing payments.
+We use [Stripe](http://stripe.com/) for managing payments. This is the interface for vet/client transactions; for Snout/vet transactions, see Vet Billing.
 
 ## Create a Setup Intent
 

@@ -39,7 +39,7 @@ Gets all medications built in with Pawprint.
 ### HTTP Request
 `GET /user/medications`
 
-## Get all of a pet's medications
+<!-- ## Get all of a pet's medications
 
 > Response example
 
@@ -270,7 +270,7 @@ Rejects a suggested medication from the queue. The medication will not appear in
 at a later date which suggests the same medication.
 
 ### HTTP Request
-`DELETE /user/v2/pets/:petid/medication/suggested/:suggestionid`
+`DELETE /user/v2/pets/:petid/medication/suggested/:suggestionid` -->
 
 
 

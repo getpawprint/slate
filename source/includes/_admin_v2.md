@@ -379,7 +379,7 @@ $skip | int? | Offsets number of results.
 sort_by | string? | Either `{"created_at":"asc"}`, `{"created_at":"desc"}`, `{"updated_at":"asc"}` or `{"updated_at":"desc"}`. Default field is `{"updated_at":"desc"}`.
 filter | string? | Filter fields separated by commas, e.g. `filter={"place_name":"banf","pet_name":"er"}`. All channels support filtering by `user_name`, `pet_name`, `status` and `place_name`. Claims also supports `insurance_name`.
 
-## Get an insurance claim
+<!-- ## Get an insurance claim
 
 ```json
 {
@@ -432,7 +432,7 @@ filter | string? | Filter fields separated by commas, e.g. `filter={"place_name"
 Gets a single insurance claim's details.
 
 ### HTTP Request
-`GET /admin/v2/claims/:claim_id`
+`GET /admin/v2/claims/:claim_id` -->
 
 ## Get intake forms
 
@@ -607,7 +607,7 @@ Gets all intakes associated with a pet.
 ### HTTP Request
 `GET /admin/pets/:petid/intake`
 
-## Get insurance claims for pet
+<!-- ## Get insurance claims for pet
 
 ```json
 [
@@ -630,7 +630,7 @@ Gets all intakes associated with a pet.
 Gets all insurance claims associated with a pet.
 
 ### HTTP Request
-`GET /admin/pets/:petid/claims`
+`GET /admin/pets/:petid/claims` -->
 
 ## Get appointment requests for pet
 
