@@ -528,7 +528,18 @@ They are generated for datasync intakes, and erased when the intake is submitted
       "city": "San Francisco",
       "state": "CA"
     }
-  ]
+  ],
+  "payment_instruments": {
+    "cards": [
+      {
+        "payment_instrument_id": 10,
+        "brand": "visa",
+        "exp_month": 8,
+        "exp_year": 2021,
+        "last4": "4242"
+      }
+    ]
+  }
 }
 ```
 
@@ -536,6 +547,8 @@ Gets multiple intake forms. Bundles are predefined on the server. A bundle can c
 
 The `questionnaire` field may not be present if there is more than 48 hours before the appointment;
 full example of a question can be found at https://pawprint.slite.com/app/channels/6M2TLvSBWU/notes/peYMA8k23x.
+
+The `payment_instruments` fields will be empty if the intake hasn't been submitted yet.
 
 ### HTTP Request
 `GET /intake/bundle/:bundle_id`

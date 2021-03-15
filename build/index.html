@@ -687,6 +687,28 @@
               </ul>
           </li>
           <li>
+            <a href="#payments-v2" class="toc-h1 toc-link" data-title="payments-v2">Payments V2</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-payment-instruments-by-bundle-id" class="toc-h2 toc-link" data-title="list-payment-instruments-by-bundle-id">List payment instruments by bundle ID</a>
+                  </li>
+                  <li>
+                    <a href="#remove-payment-instrument-by-bundle-id" class="toc-h2 toc-link" data-title="remove-payment-instrument-by-bundle-id">Remove payment instrument by bundle ID</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#gravity-payments" class="toc-h1 toc-link" data-title="gravity-payments">Gravity Payments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-creditsavecard-transaction-token" class="toc-h2 toc-link" data-title="get-a-creditsavecard-transaction-token">Get a CreditSaveCard transaction token</a>
+                  </li>
+                  <li>
+                    <a href="#gravity-creditsavecard-transaction-savecard-webhook" class="toc-h2 toc-link" data-title="gravity-creditsavecard-transaction-savecard-webhook">Gravity CreditSaveCard transaction SaveCard webhook</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#places" class="toc-h1 toc-link" data-title="places">Places</a>
               <ul class="toc-list-h2">
                   <li>
@@ -813,6 +835,17 @@
                   </li>
                   <li>
                     <a href="#get-list-of-unknown-phone-numbers-with-messages" class="toc-h2 toc-link" data-title="get-list-of-unknown-phone-numbers-with-messages">Get list of unknown phone numbers with messages</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#gravity-payments" class="toc-h1 toc-link" data-title="gravity-payments">Gravity Payments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-a-creditsavecard-transaction-token" class="toc-h2 toc-link" data-title="get-a-creditsavecard-transaction-token">Get a CreditSaveCard transaction token</a>
+                  </li>
+                  <li>
+                    <a href="#gravity-creditsavecard-transaction-savecard-webhook" class="toc-h2 toc-link" data-title="gravity-creditsavecard-transaction-savecard-webhook">Gravity CreditSaveCard transaction SaveCard webhook</a>
                   </li>
               </ul>
           </li>
@@ -3828,13 +3861,26 @@ They are generated for datasync intakes, and erased when the intake is submitted
       </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CA"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"payment_instruments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"payment_instrument_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Gets multiple intake forms. Bundles are predefined on the server. A bundle can contain one or more intakes, and each intake can only belong to one bundle. Bundles are formed based on combined client email + phone (including nulls) and appointment date. Consequently, all intakes in a bundle will have the same client email, phone and appointment date (but the times may be different).</p>
 
 <p>The <code>questionnaire</code> field may not be present if there is more than 48 hours before the appointment;
 full example of a question can be found at https://pawprint.slite.com/app/channels/6M2TLvSBWU/notes/peYMA8k23x.</p>
+
+<p>The <code>payment_instruments</code> fields will be empty if the intake hasn&#39;t been submitted yet.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /intake/bundle/:bundle_id</code></p>
 <h2 id='get-intake-bundle-by-confirmation-code'>Get intake bundle by confirmation code</h2>
@@ -8406,6 +8452,113 @@ No action should be required on the client&#39;s part.</p>
 </ul>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /partners/user/:user_id/payments</code></p>
+<h1 id='payments-v2'>Payments V2</h1>
+<p>WIP Client payments</p>
+<h2 id='list-payment-instruments-by-bundle-id'>List payment instruments by bundle ID</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"payment_instrument_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"payment_instrument_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"american_express"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The bundle&#39;s (intake&#39;s) client is used (intake.user.id) as the identity for the wallet owner.
+In case the intake&#39;s client has payment instruments registered with multiple practices,
+this returns only the payment instruments associated with the practice that created the given intake bundle.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /bundle/:bundle_id/payment_instrument</code></p>
+<h2 id='remove-payment-instrument-by-bundle-id'>Remove payment instrument by bundle ID</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"payment_instrument_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Removes a saved card.</p>
+
+<p>The bundle&#39;s (intake&#39;s) client is used (intake.user.id) as the identity for the wallet owner.
+In case the intake&#39;s client has payment instruments registered with multiple practices,
+this returns only the remaining payment instruments associated with the practice that created the given intake bundle.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>DELETE /bundle/:bundle_id/payment_instrument/:payment_instrument_id</code></p>
+<h1 id='gravity-payments'>Gravity Payments</h1>
+<p>Calls specific to the Gravity Payments flow.</p>
+<h2 id='get-a-creditsavecard-transaction-token'>Get a CreditSaveCard transaction token</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789abcdef"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a transaction token with type CreditSaveCard from Gravity; the intent is to save a card for later charges.
+<code>bundle_id</code> is used to identify the client to whom the card belongs; it is a private, opaque identifier for a group of intakes belonging to the same client.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /bundle/:bundle_id/gravity_card</code></p>
+<h2 id='gravity-creditsavecard-transaction-savecard-webhook'>Gravity CreditSaveCard transaction SaveCard webhook</h2>
+<blockquote>
+<p>Request example
+ <code>json
+ {
+  &quot;uniqueTransId&quot;: &quot;77c87064222c4bf88c27f0865d176cf0-0e7453dc741e4233ad571d6ca8d73587&quot;,
+  &quot;batchNumber&quot;: &quot;115&quot;,
+  &quot;resultMessage&quot;: &quot;Approved&quot;,
+  &quot;resultStatus&quot;: &quot;true&quot;,
+  &quot;approvalNumberResult&quot;: &quot;039275&quot;,
+  &quot;amountProcessed&quot;: &quot;0.01&quot;,
+  &quot;amount&quot;: &quot;0.01&quot;,
+  &quot;amountBalance&quot;: &quot;&quot;,
+  &quot;transactionReference&quot;: &quot;&quot;,
+  &quot;avsResponseCode&quot;: &quot;Y&quot;,
+  &quot;avsResponseText&quot;: &quot;Address: Match &amp; 5 Digit Zip: Match&quot;,
+  &quot;cvvResponseCode&quot;: &quot;P&quot;,
+  &quot;cvvResponseText&quot;: &quot;Not Processed&quot;,
+  &quot;accountCardType&quot;: &quot;AX&quot;,
+  &quot;accountExpiryDate&quot;: &quot;0123&quot;,
+  &quot;transactionType&quot;: &quot;CreditSale&quot;,
+  &quot;billingName&quot;: &quot;&quot;,
+  &quot;maskedAccount&quot;: &quot;***********1111&quot;,
+  &quot;accountEntryMethod&quot;: &quot;Keyed&quot;,
+  &quot;externalTransactionId&quot;: &quot;cad8d603-0c51-478a-b410-c5ffa7425be1&quot;
+}
+</code></p>
+
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Called by Gravity after the client has submitted card information.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /gravity/card</code></p>
 <h1 id='places'>Places</h1>
 <p>Places are backed by the <code>place</code> table and are referenced by a lot of other
 tables, such as <code>request</code>, <code>business_pet</code>, and <code>event</code>.</p>
@@ -9970,6 +10123,60 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 <td>Start index</td>
 </tr>
 </tbody></table>
+<h1 id='gravity-payments'>Gravity Payments</h1>
+<p>Calls specific to the Gravity Payments flow.</p>
+<h2 id='get-a-creditsavecard-transaction-token'>Get a CreditSaveCard transaction token</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789abcdef"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a transaction token with type CreditSaveCard from Gravity; the intent is to save a card for later charges.
+<code>bundle_id</code> is used to identify the client to whom the card belongs; it is a private, opaque identifier for a group of intakes belonging to the same client.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /bundle/:bundle_id/gravity_card</code></p>
+<h2 id='gravity-creditsavecard-transaction-savecard-webhook'>Gravity CreditSaveCard transaction SaveCard webhook</h2>
+<blockquote>
+<p>Request example
+ <code>json
+ {
+  &quot;uniqueTransId&quot;: &quot;77c87064222c4bf88c27f0865d176cf0-0e7453dc741e4233ad571d6ca8d73587&quot;,
+  &quot;batchNumber&quot;: &quot;115&quot;,
+  &quot;resultMessage&quot;: &quot;Approved&quot;,
+  &quot;resultStatus&quot;: &quot;true&quot;,
+  &quot;approvalNumberResult&quot;: &quot;039275&quot;,
+  &quot;amountProcessed&quot;: &quot;0.01&quot;,
+  &quot;amount&quot;: &quot;0.01&quot;,
+  &quot;amountBalance&quot;: &quot;&quot;,
+  &quot;transactionReference&quot;: &quot;&quot;,
+  &quot;avsResponseCode&quot;: &quot;Y&quot;,
+  &quot;avsResponseText&quot;: &quot;Address: Match &amp; 5 Digit Zip: Match&quot;,
+  &quot;cvvResponseCode&quot;: &quot;P&quot;,
+  &quot;cvvResponseText&quot;: &quot;Not Processed&quot;,
+  &quot;accountCardType&quot;: &quot;AX&quot;,
+  &quot;accountExpiryDate&quot;: &quot;0123&quot;,
+  &quot;transactionType&quot;: &quot;CreditSale&quot;,
+  &quot;billingName&quot;: &quot;&quot;,
+  &quot;maskedAccount&quot;: &quot;***********1111&quot;,
+  &quot;accountEntryMethod&quot;: &quot;Keyed&quot;,
+  &quot;externalTransactionId&quot;: &quot;cad8d603-0c51-478a-b410-c5ffa7425be1&quot;
+}
+</code></p>
+
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Called by Gravity after the client has submitted card information.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /gravity/card</code></p>
 
       </div>
       <div class="dark-box">

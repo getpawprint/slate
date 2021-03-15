@@ -22,11 +22,14 @@ includes:
   - form_instance
   - medication
   - payments
+  - payments_v2
+  - gravity
   - places
   - places_v3
   - user
   - vetstoria
   - legacy_portal
+  - gravity
 
 search: true
 ---
