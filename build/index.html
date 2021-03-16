@@ -8523,35 +8523,35 @@ this returns only the remaining payment instruments associated with the practice
 <p>Gets a transaction token with type CreditSaveCard from Gravity; the intent is to save a card for later charges.
 <code>bundle_id</code> is used to identify the client to whom the card belongs; it is a private, opaque identifier for a group of intakes belonging to the same client.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /bundle/:bundle_id/gravity_card</code></p>
+<p><code>POST /intake/bundle/:bundle_id/gravity_card</code></p>
 <h2 id='gravity-creditsavecard-transaction-savecard-webhook'>Gravity CreditSaveCard transaction SaveCard webhook</h2>
 <blockquote>
-<p>Request example
- <code>json
- {
-  &quot;uniqueTransId&quot;: &quot;77c87064222c4bf88c27f0865d176cf0-0e7453dc741e4233ad571d6ca8d73587&quot;,
-  &quot;batchNumber&quot;: &quot;115&quot;,
-  &quot;resultMessage&quot;: &quot;Approved&quot;,
-  &quot;resultStatus&quot;: &quot;true&quot;,
-  &quot;approvalNumberResult&quot;: &quot;039275&quot;,
-  &quot;amountProcessed&quot;: &quot;0.01&quot;,
-  &quot;amount&quot;: &quot;0.01&quot;,
-  &quot;amountBalance&quot;: &quot;&quot;,
-  &quot;transactionReference&quot;: &quot;&quot;,
-  &quot;avsResponseCode&quot;: &quot;Y&quot;,
-  &quot;avsResponseText&quot;: &quot;Address: Match &amp; 5 Digit Zip: Match&quot;,
-  &quot;cvvResponseCode&quot;: &quot;P&quot;,
-  &quot;cvvResponseText&quot;: &quot;Not Processed&quot;,
-  &quot;accountCardType&quot;: &quot;AX&quot;,
-  &quot;accountExpiryDate&quot;: &quot;0123&quot;,
-  &quot;transactionType&quot;: &quot;CreditSale&quot;,
-  &quot;billingName&quot;: &quot;&quot;,
-  &quot;maskedAccount&quot;: &quot;***********1111&quot;,
-  &quot;accountEntryMethod&quot;: &quot;Keyed&quot;,
-  &quot;externalTransactionId&quot;: &quot;cad8d603-0c51-478a-b410-c5ffa7425be1&quot;
-}
-</code></p>
-
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"uniqueTransId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"77c87064222c4bf88c27f0865d176cf0-0e7453dc741e4233ad571d6ca8d73587"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"batchNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"resultMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approved"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"resultStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"approvalNumberResult"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039275"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountProcessed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transactionReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avsResponseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avsResponseText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address: Match &amp; 5 Digit Zip: Match"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cvvResponseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cvvResponseText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Processed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountCardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AX"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transactionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CreditSale"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"billingName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"maskedAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***********1111"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountEntryMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keyed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"externalTransactionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cad8d603-0c51-478a-b410-c5ffa7425be1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
@@ -10141,35 +10141,35 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 <p>Gets a transaction token with type CreditSaveCard from Gravity; the intent is to save a card for later charges.
 <code>bundle_id</code> is used to identify the client to whom the card belongs; it is a private, opaque identifier for a group of intakes belonging to the same client.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /bundle/:bundle_id/gravity_card</code></p>
+<p><code>POST /intake/bundle/:bundle_id/gravity_card</code></p>
 <h2 id='gravity-creditsavecard-transaction-savecard-webhook'>Gravity CreditSaveCard transaction SaveCard webhook</h2>
 <blockquote>
-<p>Request example
- <code>json
- {
-  &quot;uniqueTransId&quot;: &quot;77c87064222c4bf88c27f0865d176cf0-0e7453dc741e4233ad571d6ca8d73587&quot;,
-  &quot;batchNumber&quot;: &quot;115&quot;,
-  &quot;resultMessage&quot;: &quot;Approved&quot;,
-  &quot;resultStatus&quot;: &quot;true&quot;,
-  &quot;approvalNumberResult&quot;: &quot;039275&quot;,
-  &quot;amountProcessed&quot;: &quot;0.01&quot;,
-  &quot;amount&quot;: &quot;0.01&quot;,
-  &quot;amountBalance&quot;: &quot;&quot;,
-  &quot;transactionReference&quot;: &quot;&quot;,
-  &quot;avsResponseCode&quot;: &quot;Y&quot;,
-  &quot;avsResponseText&quot;: &quot;Address: Match &amp; 5 Digit Zip: Match&quot;,
-  &quot;cvvResponseCode&quot;: &quot;P&quot;,
-  &quot;cvvResponseText&quot;: &quot;Not Processed&quot;,
-  &quot;accountCardType&quot;: &quot;AX&quot;,
-  &quot;accountExpiryDate&quot;: &quot;0123&quot;,
-  &quot;transactionType&quot;: &quot;CreditSale&quot;,
-  &quot;billingName&quot;: &quot;&quot;,
-  &quot;maskedAccount&quot;: &quot;***********1111&quot;,
-  &quot;accountEntryMethod&quot;: &quot;Keyed&quot;,
-  &quot;externalTransactionId&quot;: &quot;cad8d603-0c51-478a-b410-c5ffa7425be1&quot;
-}
-</code></p>
-
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"uniqueTransId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"77c87064222c4bf88c27f0865d176cf0-0e7453dc741e4233ad571d6ca8d73587"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"batchNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"resultMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approved"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"resultStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"approvalNumberResult"</span><span class="p">:</span><span class="w"> </span><span class="s2">"039275"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountProcessed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.01"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amountBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transactionReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avsResponseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"avsResponseText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address: Match &amp; 5 Digit Zip: Match"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cvvResponseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cvvResponseText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Processed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountCardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AX"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"transactionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CreditSale"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"billingName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"maskedAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***********1111"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"accountEntryMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Keyed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"externalTransactionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cad8d603-0c51-478a-b410-c5ffa7425be1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">

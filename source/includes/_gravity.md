@@ -21,11 +21,12 @@ Gets a transaction token with type CreditSaveCard from Gravity; the intent is to
 `bundle_id` is used to identify the client to whom the card belongs; it is a private, opaque identifier for a group of intakes belonging to the same client.
 
 ### HTTP Request
-`POST /bundle/:bundle_id/gravity_card`
+`POST /intake/bundle/:bundle_id/gravity_card`
 
 ## Gravity CreditSaveCard transaction SaveCard webhook
 
 > Request example
+
  ```json
  {
   "uniqueTransId": "77c87064222c4bf88c27f0865d176cf0-0e7453dc741e4233ad571d6ca8d73587",
