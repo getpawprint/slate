@@ -690,9 +690,6 @@
             <a href="#payments-v2" class="toc-h1 toc-link" data-title="payments-v2">Payments V2</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#list-payment-instruments-by-bundle-id" class="toc-h2 toc-link" data-title="list-payment-instruments-by-bundle-id">List payment instruments by bundle ID</a>
-                  </li>
-                  <li>
                     <a href="#remove-payment-instrument-by-bundle-id" class="toc-h2 toc-link" data-title="remove-payment-instrument-by-bundle-id">Remove payment instrument by bundle ID</a>
                   </li>
               </ul>
@@ -5561,13 +5558,51 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
 <blockquote>
 <p>Response example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(see</span><span class="w"> </span><span class="err">above)</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">93</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"archived"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pending"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"staff_attn"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"new_files"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"visible_by_default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37683</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@snoutid.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 550-1234"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"normalized_phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15555501234"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hachi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Akita"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://s3.aws.amazon.com/snoutid-profile-pic/AbXjoie.jpg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"datetime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-20T15:45:00-04:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_email_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-20T10:01:12-04:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"last_sms_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-20T10:01:28-04:00"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"confirmation_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NCC1701D"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Client Form"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w"> </span><span class="s2">"complete"</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="s2">"staff_attn"</span><span class="w">
+          </span><span class="s2">"downloaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Gets a list of intakes across all dates filtered by status.</p>
+<p>Gets a list of intakes across all dates filtered by status. The <code>filter</code> parameter allows searching by client or patient name,
+for example: <code>?filter={&quot;name&quot;:&quot;Mochi&quot;}</code>.</p>
 
 <table><thead>
 <tr>
-<th>Value</th>
+<th>Status</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -5594,6 +5629,20 @@ Direction is specified by <code>asc</code> or <code>desc</code>.</p>
 </tbody></table>
 <h3 id='http-request-11'>HTTP Request</h3>
 <p><code>GET /partners/intake/status/:status</code></p>
+<h3 id='query-string-parameters-3'>Query string parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>filter</td>
+<td>string</td>
+<td>JSON object, where the key is the filter name and the value is the filter value, e.g. <code>&amp;filter={&quot;name&quot;:&quot;Mochi&quot;}</code>.</td>
+</tr>
+</tbody></table>
 <h2 id='archive-an-intake'>Archive an intake</h2>
 <blockquote>
 <p>Request example</p>
@@ -8454,34 +8503,6 @@ No action should be required on the client&#39;s part.</p>
 <p><code>GET /partners/user/:user_id/payments</code></p>
 <h1 id='payments-v2'>Payments V2</h1>
 <p>WIP Client payments</p>
-<h2 id='list-payment-instruments-by-bundle-id'>List payment instruments by bundle ID</h2>
-<blockquote>
-<p>Response example</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"payment_instrument_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"payment_instrument_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"american_express"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>The bundle&#39;s (intake&#39;s) client is used (intake.user.id) as the identity for the wallet owner.
-In case the intake&#39;s client has payment instruments registered with multiple practices,
-this returns only the payment instruments associated with the practice that created the given intake bundle.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /bundle/:bundle_id/payment_instrument</code></p>
 <h2 id='remove-payment-instrument-by-bundle-id'>Remove payment instrument by bundle ID</h2>
 <blockquote>
 <p>Response example</p>
@@ -8503,8 +8524,8 @@ this returns only the payment instruments associated with the practice that crea
 <p>The bundle&#39;s (intake&#39;s) client is used (intake.user.id) as the identity for the wallet owner.
 In case the intake&#39;s client has payment instruments registered with multiple practices,
 this returns only the remaining payment instruments associated with the practice that created the given intake bundle.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>DELETE /bundle/:bundle_id/payment_instrument/:payment_instrument_id</code></p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>DELETE /intake/bundle/:bundle_id/payment_instrument/:payment_instrument_id</code></p>
 <h1 id='gravity-payments'>Gravity Payments</h1>
 <p>Calls specific to the Gravity Payments flow.</p>
 <h2 id='get-a-creditsavecard-transaction-token'>Get a CreditSaveCard transaction token</h2>

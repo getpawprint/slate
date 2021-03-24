@@ -363,12 +363,50 @@ filter | string? | JSON object, where the key is the filter name and the value i
 > Response example
 
 ```json
-(see above)
+{
+      "id": 93,
+      "status": {
+        "archived": false,
+        "pending": true,
+        "staff_attn": true,
+        "new_files": true,
+        "visible_by_default": true
+      },
+      "user": {
+        "id": 37683,
+        "first_name": "John",
+        "last_name": "Smith",
+        "email": "johnsmith@snoutid.com",
+        "phone": "(555) 550-1234",
+        "normalized_phone": "+15555501234"
+      },
+      "pet": {
+        "name": "Hachi",
+        "species": "dog",
+        "breed": "Akita",
+        "image_url": "https://s3.aws.amazon.com/snoutid-profile-pic/AbXjoie.jpg"
+      },
+      "appointment": {
+        "datetime": "2020-01-20T15:45:00-04:00",
+        "type": "Wellness Exam",
+        "last_email_at": "2020-01-20T10:01:12-04:00",
+        "last_sms_at": "2020-01-20T10:01:28-04:00",
+        "confirmation_code": "NCC1701D"
+      },
+      "files": [
+        {
+          "name": "New Client Form",
+          "status": "complete",   // "pending", "complete" or "staff_attn"
+          "downloaded": true
+        }
+      ]
+    }
 ```
 
-Gets a list of intakes across all dates filtered by status.
+Gets a list of intakes across all dates filtered by status. The `filter` parameter allows searching by client or patient name,
+for example: `?filter={"name":"Mochi"}`.
 
-Value | Description
+Status | Description
 ----- | -----------
 default | Returns everything except archived intakes.
 all | Returns everything.
@@ -378,6 +416,11 @@ new_files | Returns unarchived intakes that have undownloaded files. If an archi
 
 ### HTTP Request
 `GET /partners/intake/status/:status`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+filter | string | JSON object, where the key is the filter name and the value is the filter value, e.g. `&filter={"name":"Mochi"}`.
 
 ## Archive an intake
 > Request example
