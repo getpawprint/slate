@@ -23,7 +23,38 @@ Gets a transaction token with type CreditSaveCard from Gravity; the intent is to
 ### HTTP Request
 `POST /intake/bundle/:bundle_id/gravity_card`
 
-## Gravity CreditSaveCard transaction SaveCard webhook
+## Start CreditSale transaction
+
+> Request example
+
+```json
+{
+  "save_card": true,
+  "device_name": "my_credit_card_reader"
+}
+```
+
+> Response example
+
+```json
+{
+	"token": "0123456789abcdef"
+}
+```
+
+Gets a transaction token with type CreditSale from Gravity. If `save_card` is true, and the charge is linked to a completed intake or user account,
+the card is saved to the user account for later use after the payment succeeds.
+
+### HTTP Request
+`POST /charge/:charge_external_id/gravity_sale`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+save_card | boolean? | If the charge is linked to a completed intake or user account, the card is saved to the user account for later use after the payment succeeds.
+device_name | string? | Used to identify a Gravity hardware payment device for card present payments.
+
+## Gravity webhook
 
 > Request example
 
@@ -58,7 +89,7 @@ Gets a transaction token with type CreditSaveCard from Gravity; the intent is to
 (none)
 ```
 
-Called by Gravity after the client has submitted card information.
+Called by Gravity after a CreditSaveCard or CreditSale transaction has run.
 
 ### HTTP Request
 `POST /gravity/card`

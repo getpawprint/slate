@@ -692,6 +692,12 @@
                   <li>
                     <a href="#remove-payment-instrument-by-bundle-id" class="toc-h2 toc-link" data-title="remove-payment-instrument-by-bundle-id">Remove payment instrument by bundle ID</a>
                   </li>
+                  <li>
+                    <a href="#get-a-charge-by-charge-id" class="toc-h2 toc-link" data-title="get-a-charge-by-charge-id">Get a charge by charge ID</a>
+                  </li>
+                  <li>
+                    <a href="#make-a-payment-on-a-charge" class="toc-h2 toc-link" data-title="make-a-payment-on-a-charge">Make a payment on a charge</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -701,7 +707,10 @@
                     <a href="#get-a-creditsavecard-transaction-token" class="toc-h2 toc-link" data-title="get-a-creditsavecard-transaction-token">Get a CreditSaveCard transaction token</a>
                   </li>
                   <li>
-                    <a href="#gravity-creditsavecard-transaction-savecard-webhook" class="toc-h2 toc-link" data-title="gravity-creditsavecard-transaction-savecard-webhook">Gravity CreditSaveCard transaction SaveCard webhook</a>
+                    <a href="#start-creditsale-transaction" class="toc-h2 toc-link" data-title="start-creditsale-transaction">Start CreditSale transaction</a>
+                  </li>
+                  <li>
+                    <a href="#gravity-webhook" class="toc-h2 toc-link" data-title="gravity-webhook">Gravity webhook</a>
                   </li>
               </ul>
           </li>
@@ -842,7 +851,10 @@
                     <a href="#get-a-creditsavecard-transaction-token" class="toc-h2 toc-link" data-title="get-a-creditsavecard-transaction-token">Get a CreditSaveCard transaction token</a>
                   </li>
                   <li>
-                    <a href="#gravity-creditsavecard-transaction-savecard-webhook" class="toc-h2 toc-link" data-title="gravity-creditsavecard-transaction-savecard-webhook">Gravity CreditSaveCard transaction SaveCard webhook</a>
+                    <a href="#start-creditsale-transaction" class="toc-h2 toc-link" data-title="start-creditsale-transaction">Start CreditSale transaction</a>
+                  </li>
+                  <li>
+                    <a href="#gravity-webhook" class="toc-h2 toc-link" data-title="gravity-webhook">Gravity webhook</a>
                   </li>
               </ul>
           </li>
@@ -5878,11 +5890,37 @@ for example: <code>?filter={&quot;name&quot;:&quot;Mochi&quot;}</code>.</p>
         </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Park"</span><span class="p">,</span><span class="s2">"Leash Walks"</span><span class="p">]</span><span class="w">
       </span><span class="p">}]</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"charges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gH_zis2b"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:30:21-04:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:33:42-04:00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:31:55-04:00:00"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:31:55-04:00:00"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Get detailed information about a specific intake for a partner place. There are three main fields - <code>appointment</code> and <code>summary</code>; <code>summary</code> is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal.
 <code>questionnaire</code> will be null if the client did not fill out an intake questionnaire.
+Payment and charge amounts are in cents.
 HTTP 403 is returned if the <code>intake_id</code> does not belong to the partner place.</p>
 <h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET /partners/intake/:intake_id</code></p>
@@ -8502,7 +8540,18 @@ No action should be required on the client&#39;s part.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET /partners/user/:user_id/payments</code></p>
 <h1 id='payments-v2'>Payments V2</h1>
-<p>WIP Client payments</p>
+<p>Terminology:</p>
+
+<ul>
+<li><strong>Payment method</strong> - A class of payment instruments: Card, check, cash, loan, money order, etc.</li>
+<li><strong>Payment instrument</strong> - A specific instance of a payment method, e.g. credit card ending with 4242, loan ID etc. Practically, only applicable to card and loan payment types.</li>
+<li><strong>Charge</strong> - An amount owed by someone to the practice. A charge can be associated with one or more intakes (appointments).</li>
+<li><strong>Payment</strong> - A transfer of money (using a payment instrument) to pay off the balance on a charge. A charge can be paid off with multiple payments.</li>
+<li><strong>Invoice</strong> - A detailed description (possibly including line items) of the charge.</li>
+</ul>
+
+<p>All money amounts are in cents because Javascript Numbers are imprecise floating point values,
+for example, try running <code>node -e &quot;console.log(0.1 + 0.2)&quot;</code> from a console.</p>
 <h2 id='remove-payment-instrument-by-bundle-id'>Remove payment instrument by bundle ID</h2>
 <blockquote>
 <p>Response example</p>
@@ -8526,6 +8575,123 @@ In case the intake&#39;s client has payment instruments registered with multiple
 this returns only the remaining payment instruments associated with the practice that created the given intake bundle.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE /intake/bundle/:bundle_id/payment_instrument/:payment_instrument_id</code></p>
+<h2 id='get-a-charge-by-charge-id'>Get a charge by charge ID</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gH_zis2b"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:30:21-04:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:33:42-04:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deposit"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a charge. Charges are created by the vet and may be associated with a user (account balance), intake (appointment-specific) or neither (anonymous charge).
+Amounts are in cents.</p>
+
+<p>Charge <code>status</code> is either <code>pending</code> or <code>complete</code>. The status will be <code>complete</code> if the sum of payment amounts is greater than or equal to the charge amount,
+or if the vet overrides it (write-off).</p>
+
+<p><code>instrument</code> is one of <code>card</code>, <code>cash</code> or <code>check</code>; <code>loan</code> may be added in the future.</p>
+
+<p>Payment <code>status</code> is either <code>pending</code>, <code>complete</code>, <code>failed</code> or <code>refunded</code>.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /charge/:charge_external_id</code></p>
+<h2 id='make-a-payment-on-a-charge'>Make a payment on a charge</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"payment_instrument_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Alternate</span><span class="w"> </span><span class="err">form</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Initial deposit"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gH_zis2b"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:30:21-04:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:33:42-04:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Initial deposit"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Amount is in cents, and may be less than the remaining balance on the charge.
+Returns the updated charge object.</p>
+
+<p>Errors:
+HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.
+HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
+<em>TBD - HTTP 502/Bad Gateway if executing the payment failed (for <code>card</code> instruments)</em></p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /charge/:charge_external_id/payment</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>payment_instrument_id</td>
+<td>integer?</td>
+<td>ID of a previously saved payment instrument;</td>
+</tr>
+<tr>
+<td>method</td>
+<td>string?</td>
+<td>Charge description; required if payment_instrument_id is omitted.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>int</td>
+<td>Payment amount, in cents</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string?</td>
+<td>Freeform text field for practice&#39;s use</td>
+</tr>
+</tbody></table>
 <h1 id='gravity-payments'>Gravity Payments</h1>
 <p>Calls specific to the Gravity Payments flow.</p>
 <h2 id='get-a-creditsavecard-transaction-token'>Get a CreditSaveCard transaction token</h2>
@@ -8545,7 +8711,46 @@ this returns only the remaining payment instruments associated with the practice
 <code>bundle_id</code> is used to identify the client to whom the card belongs; it is a private, opaque identifier for a group of intakes belonging to the same client.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /intake/bundle/:bundle_id/gravity_card</code></p>
-<h2 id='gravity-creditsavecard-transaction-savecard-webhook'>Gravity CreditSaveCard transaction SaveCard webhook</h2>
+<h2 id='start-creditsale-transaction'>Start CreditSale transaction</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"save_card"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"device_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_credit_card_reader"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789abcdef"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a transaction token with type CreditSale from Gravity. If <code>save_card</code> is true, and the charge is linked to a completed intake or user account,
+the card is saved to the user account for later use after the payment succeeds.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /charge/:charge_external_id/gravity_sale</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>save_card</td>
+<td>boolean?</td>
+<td>If the charge is linked to a completed intake or user account, the card is saved to the user account for later use after the payment succeeds.</td>
+</tr>
+<tr>
+<td>device_name</td>
+<td>string?</td>
+<td>Used to identify a Gravity hardware payment device for card present payments.</td>
+</tr>
+</tbody></table>
+<h2 id='gravity-webhook'>Gravity webhook</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
@@ -8577,8 +8782,8 @@ this returns only the remaining payment instruments associated with the practice
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Called by Gravity after the client has submitted card information.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<p>Called by Gravity after a CreditSaveCard or CreditSale transaction has run.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /gravity/card</code></p>
 <h1 id='places'>Places</h1>
 <p>Places are backed by the <code>place</code> table and are referenced by a lot of other
@@ -10163,7 +10368,46 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 <code>bundle_id</code> is used to identify the client to whom the card belongs; it is a private, opaque identifier for a group of intakes belonging to the same client.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /intake/bundle/:bundle_id/gravity_card</code></p>
-<h2 id='gravity-creditsavecard-transaction-savecard-webhook'>Gravity CreditSaveCard transaction SaveCard webhook</h2>
+<h2 id='start-creditsale-transaction'>Start CreditSale transaction</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"save_card"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"device_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_credit_card_reader"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789abcdef"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a transaction token with type CreditSale from Gravity. If <code>save_card</code> is true, and the charge is linked to a completed intake or user account,
+the card is saved to the user account for later use after the payment succeeds.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /charge/:charge_external_id/gravity_sale</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>save_card</td>
+<td>boolean?</td>
+<td>If the charge is linked to a completed intake or user account, the card is saved to the user account for later use after the payment succeeds.</td>
+</tr>
+<tr>
+<td>device_name</td>
+<td>string?</td>
+<td>Used to identify a Gravity hardware payment device for card present payments.</td>
+</tr>
+</tbody></table>
+<h2 id='gravity-webhook'>Gravity webhook</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
@@ -10195,8 +10439,8 @@ If <code>filter</code> query parameter is specified: Number of unread messages b
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
-<p>Called by Gravity after the client has submitted card information.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<p>Called by Gravity after a CreditSaveCard or CreditSale transaction has run.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /gravity/card</code></p>
 
       </div>
