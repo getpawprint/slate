@@ -663,31 +663,29 @@ Archives an intake. All files will be marked as downloaded. If a new file is att
       }]
     }
   },
-  "charges": [
-    {
-      "external_id": "gH_zis2b",
-      "amount": 12345,
-      "status": "complete",
-      "created_at": "2021-03-21T12:30:21-04:00:00",
-      "completed_at": "2021-03-21T12:33:42-04:00:00",
-      "payments": [
-        {
-          "amount": 10000,
-          "method": "cash",
-          "status": "complete",
-          "notes": null,
-          "created_at": "2021-03-21T12:31:55-04:00:00"
-        },
-        {
-          "amount": 2345,
-          "method": "card",
-          "status": "complete",
-          "notes": null,
-          "created_at": "2021-03-21T12:31:55-04:00:00"
-        }
-      ]
-    }
-  ]
+  "charge": {
+    "external_id": "gH_zis2b",
+    "amount": 12345,
+    "status": "complete",
+    "created_at": "2021-03-21T12:30:21-04:00:00",
+    "completed_at": "2021-03-21T12:33:42-04:00:00",
+    "payments": [
+      {
+        "amount": 10000,
+        "method": "cash",
+        "status": "complete",
+        "notes": null,
+        "created_at": "2021-03-21T12:31:55-04:00:00"
+      },
+      {
+        "amount": 2345,
+        "method": "card",
+        "status": "complete",
+        "notes": null,
+        "created_at": "2021-03-21T12:31:55-04:00:00"
+      }
+    ]
+  }
 }
 ```
 Get detailed information about a specific intake for a partner place. There are three main fields - `appointment` and `summary`; `summary` is the same Pawprint Summary object that gets passed to the PDF generator in the admin portal.
