@@ -101,35 +101,22 @@ Payment `status` is either `pending`, `complete`, `failed` or `refunded`.
 
 ```json
 {
-  "external_id": "gH_zis2b",
-  "amount": 12345,
+  "amount": 10000,
+  "method": "cash",
+  "notes": "Initial deposit",
   "status": "complete",
-  "created_at": "2021-03-21T12:30:21-04:00:00",
-  "completed_at": "2021-03-21T12:33:42-04:00:00",
-  "payments": [
-    {
-      "amount": 10000,
-      "method": "cash",
-      "notes": "Initial deposit",
-      "status": "complete"
-    },
-    {
-      "amount": 2345,
-      "method": "card",
-      "notes": null,
-      "status": "complete"
-    }
-  ]
+  "message": null
 }
 ```
 
 Amount is in cents, and may be less than the remaining balance on the charge.
 Returns the updated charge object.
+If the payment instrument was unable to be charged (e.g. insufficient balance or credit limit exceeded),
+the payment's `status` will be `failed` and the error message will be in the `message` field.
 
 Errors:
 HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.
 HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
-*TBD - HTTP 502/Bad Gateway if executing the payment failed (for `card` instruments)*
 
 ### HTTP Request
 `POST /charge/:charge_external_id/payment`
