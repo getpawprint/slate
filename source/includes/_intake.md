@@ -536,7 +536,8 @@ They are generated for datasync intakes, and erased when the intake is submitted
         "brand": "visa",
         "exp_month": 8,
         "exp_year": 2021,
-        "last4": "4242"
+        "last4": "4242",
+        "default": true
       }
     ]
   }

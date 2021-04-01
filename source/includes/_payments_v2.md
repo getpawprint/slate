@@ -62,7 +62,14 @@ Payment instruments are soft-deleted so that existing payments can still referen
       "status": "complete",
       "notes": null
     }
-  ]
+  ],
+  "place": {
+    "id": 3,
+    "name": "Super Test Veterinary Clinic",
+    "address": "123 Main St, Bellevue, WA 98004",
+    "phone": "(555) 555-4567",
+    "banner_image": "https://api.scoutvet.com/images/logo-header.png"
+  },
 }
 ```
 
