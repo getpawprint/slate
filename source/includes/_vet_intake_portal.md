@@ -684,7 +684,14 @@ Archives an intake. All files will be marked as downloaded. If a new file is att
         "notes": null,
         "created_at": "2021-03-21T12:31:55-04:00:00"
       }
-    ]
+    ],
+    "place": {
+      "id": 3,
+      "name": "Super Test Veterinary Clinic",
+      "address": "123 Main St, Bellevue, WA 98004",
+      "phone": "(555) 555-4567",
+      "banner_image": "https://api.scoutvet.com/images/logo-header.png"
+    }
   }
 }
 ```
