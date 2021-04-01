@@ -8570,7 +8570,8 @@ for example, try running <code>node -e &quot;console.log(0.1 + 0.2)&quot;</code>
 
 <p>The bundle&#39;s (intake&#39;s) client is used (intake.user.id) as the identity for the wallet owner.
 In case the intake&#39;s client has payment instruments registered with multiple practices,
-this returns only the remaining payment instruments associated with the practice that created the given intake bundle.</p>
+this returns only the remaining payment instruments associated with the practice that created the given intake bundle.
+Payment instruments are soft-deleted so that existing payments can still reference them.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE /intake/bundle/:bundle_id/payment_instrument/:payment_instrument_id</code></p>
 <h2 id='get-a-charge-by-charge-id'>Get a charge by charge ID</h2>

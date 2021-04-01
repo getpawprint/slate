@@ -33,6 +33,7 @@ Removes a saved card.
 The bundle's (intake's) client is used (intake.user.id) as the identity for the wallet owner.
 In case the intake's client has payment instruments registered with multiple practices,
 this returns only the remaining payment instruments associated with the practice that created the given intake bundle.
+Payment instruments are soft-deleted so that existing payments can still reference them.
 
 ### HTTP Request
 `DELETE /intake/bundle/:bundle_id/payment_instrument/:payment_instrument_id`
