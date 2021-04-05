@@ -30,7 +30,8 @@ Gets a transaction token with type CreditSaveCard from Gravity; the intent is to
 ```json
 {
   "save_card": true,
-  "device_name": "my_credit_card_reader"
+  "device_name": "my_credit_card_reader",
+  "amount": 100
 }
 ```
 
@@ -53,6 +54,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 save_card | boolean? | If the charge is linked to a completed intake or user account, the card is saved to the user account for later use after the payment succeeds.
 device_name | string? | Used to identify a Gravity hardware payment device for card present payments.
+amount | integer? | Amount in cents. Optional - only for partial payments; otherwise the amount is assumed to be the remaining amount from the charge.
 
 ## Gravity webhook
 
