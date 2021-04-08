@@ -691,6 +691,11 @@ Archives an intake. All files will be marked as downloaded. If a new file is att
       "address": "123 Main St, Bellevue, WA 98004",
       "phone": "(555) 555-4567",
       "banner_image": "https://api.scoutvet.com/images/logo-header.png"
+    },
+    "user": {
+      "id": 1000052,
+      "first_name": "John",
+      "last_name": "Smith
     }
   }
 }
