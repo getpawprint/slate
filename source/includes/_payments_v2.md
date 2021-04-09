@@ -152,8 +152,8 @@ notes| string? | Freeform text field for practice's use
   "method": "check",
   "amount": 100000,
   "notes": "Initial deposit",
-  "drivers_license": "EC131K*WA",
-  "state": "WA"
+  "drivers_license_number": "EC131K*WA",
+  "drivers_license_state": "WA"
 }
 ```
 
@@ -188,5 +188,5 @@ payment_instrument_id | integer? | ID of a previously saved payment instrument;
 method | string? | Charge description; required if payment_instrument_id is omitted. Valid values are `cash` or `check`.
 amount | int | Payment amount, in cents
 notes| string? | Freeform text field for practice's use
-drivers_license | string? | Driver's license number (only considered for `check` method)
-state | string? | Driver's license state (only considered for `check` method)
+drivers_license_number | string? | Driver's license number (only considered for `check` method)
+drivers_license_state | string? | Driver's license state (only considered for `check` method)
