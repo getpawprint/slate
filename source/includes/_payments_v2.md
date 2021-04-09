@@ -86,7 +86,50 @@ Payment `status` is either `pending`, `complete`, `failed` or `refunded`.
 ### HTTP Request
 `GET /charge/:charge_external_id`
 
-## Make a payment on a charge
+## Make a payment on a charge (from client portal)
+
+> Request example
+
+```json
+{
+  "payment_instrument_id": 10,
+  "amount": 2345,
+  "notes": "Initial deposit"
+}
+```
+
+> Response example
+
+```json
+{
+  "amount": 10000,
+  "method": "card",
+  "notes": "Initial deposit",
+  "status": "complete",
+  "message": null
+}
+```
+
+Amount is in cents, and may be less than the remaining balance on the charge.
+Returns the newly payment object.
+If the payment instrument could not be charged (e.g. insufficient balance or credit limit exceeded),
+the payment's `status` will be `failed` and the error message will be in the `message` field.
+
+Errors:
+HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.
+HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
+
+### HTTP Request
+`POST /charge/:charge_external_id/payment`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+payment_instrument_id | integer | ID of a previously saved payment instrument
+amount | int | Payment amount, in cents
+notes| string? | Freeform text field for practice's use
+
+## Make a payment on a charge (from vet portal)
 
 > Request example
 
@@ -97,11 +140,20 @@ Payment `status` is either `pending`, `complete`, `failed` or `refunded`.
   "notes": null
 }
 
-// Alternate form
+// Cash form
 {
   "method": "cash",
   "amount": 100000,
   "notes": "Initial deposit"
+}
+
+// Check form
+{
+  "method": "check",
+  "amount": 100000,
+  "notes": "Initial deposit",
+  "drivers_license": "EC131K*WA",
+  "state": "WA"
 }
 ```
 
@@ -119,7 +171,7 @@ Payment `status` is either `pending`, `complete`, `failed` or `refunded`.
 
 Amount is in cents, and may be less than the remaining balance on the charge.
 Returns the updated charge object.
-If the payment instrument was unable to be charged (e.g. insufficient balance or credit limit exceeded),
+If the payment instrument could not be charged (e.g. insufficient balance or credit limit exceeded),
 the payment's `status` will be `failed` and the error message will be in the `message` field.
 
 Errors:
@@ -127,12 +179,14 @@ HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the 
 HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
 
 ### HTTP Request
-`POST /charge/:charge_external_id/payment`
+`POST /partners/charge/:charge_external_id/payment`
 
 ### POST parameters
 Parameter | Type | Description
 --------- | ---- | -----------
 payment_instrument_id | integer? | ID of a previously saved payment instrument; 
-method | string? | Charge description; required if payment_instrument_id is omitted.
+method | string? | Charge description; required if payment_instrument_id is omitted. Valid values are `cash` or `check`.
 amount | int | Payment amount, in cents
 notes| string? | Freeform text field for practice's use
+drivers_license | string? | Driver's license number (only considered for `check` method)
+state | string? | Driver's license state (only considered for `check` method)
