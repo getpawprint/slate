@@ -69,7 +69,27 @@ Payment instruments are soft-deleted so that existing payments can still referen
     "address": "123 Main St, Bellevue, WA 98004",
     "phone": "(555) 555-4567",
     "banner_image": "https://api.scoutvet.com/images/logo-header.png"
-  }
+  },
+  "user": {
+    "first_name": "John",
+    "last_name": "Smith"
+  },
+  "intakes": [
+    {
+      "pet": {
+        "name": "Mochi",
+        "species": "dog", 
+        "breed": "Maltese",
+        "gender": "m",
+        "profile_pic": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"
+      },
+      "appointment": {
+        "type": "Canine Neuter",
+        "date": "2021-04-02",
+        "time": "4:30 PM"
+      }
+    }
+  ]
 }
 ```
 
