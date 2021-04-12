@@ -72,7 +72,19 @@ Payment instruments are soft-deleted so that existing payments can still referen
   },
   "user": {
     "first_name": "John",
-    "last_name": "Smith"
+    "last_name": "Smith",
+    "payment_instruments": {
+      "cards": [
+        {
+          "payment_instrument_id": 10,
+          "brand": "visa",
+          "exp_month": 8,
+          "exp_year": 2021,
+          "last4": "4242",
+          "default": true
+        }
+      ]
+    }
   },
   "intakes": [
     {
