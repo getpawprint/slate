@@ -38,6 +38,35 @@ Payment instruments are soft-deleted so that existing payments can still referen
 ### HTTP Request
 `DELETE /intake/bundle/:bundle_id/payment_instrument/:payment_instrument_id`
 
+## Remove payment instrument by charge ID
+
+> Response example
+
+```json
+{
+  "cards": [
+    {
+      "payment_instrument_id": 10,
+      "brand": "visa",
+      "exp_month": 8,
+      "exp_year": 2021,
+      "last4": "4242"
+    }
+  ]
+}
+```
+
+Removes a saved card.
+
+`payment_instrument_id` and `charge_external_id` are both required to verify that the charge's user
+and the payment instrument's owner are the same.
+In case the intake's client has payment instruments registered with multiple practices,
+this returns only the remaining payment instruments associated with the practice that created the charge.
+Payment instruments are soft-deleted so that existing payments can still reference them.
+
+### HTTP Request
+`DELETE /charge/:charge_external_id/payment_instrument/:payment_instrument_id`
+
 ## Get a charge by charge ID
 
 > Response example
