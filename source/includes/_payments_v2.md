@@ -303,3 +303,35 @@ amount | int | Payment amount, in cents
 notes| string? | Freeform text field for practice's use
 drivers_license_number | string? | Driver's license number (only considered for `check` method)
 drivers_license_state | string? | Driver's license state (only considered for `check` method)
+
+## Send payment receipt
+
+> Request example
+
+```json
+{
+  "email": "johnsmith@snoutid.com",
+  "phone": "+15555551234"
+}
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Re-sends a payment receipt to the specified email or phone.
+
+Errors:
+- HTTP 400/Bad Request if `email` is obviously not an email address.
+- HTTP 400/Bad Request if `phone` is obviously not a phone number.
+
+### HTTP Request
+`POST /partners/charge/:charge_external_id/receipt`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+email | string? | Specifying this will cause the receipt to be emailed to this address
+phone | string? | Specifying this will cause the receipt to be SMSed to this phone number. It should be in E.164 format (e.g. +14155552671).
