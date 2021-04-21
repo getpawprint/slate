@@ -10,6 +10,58 @@ Terminology:
 All money amounts are in cents because Javascript Numbers are imprecise floating point values,
 for example, try running `node -e "console.log(0.1 + 0.2)"` from a console.
 
+## Create charge
+
+> Request example
+
+```json
+{
+  "amount": 2345,
+  "notes": "Pumpkin and Roger exam + vax",
+  "user_id": 101,
+  "intake_ids": [42, 43],
+  "email": "johnsmith@snoutid.com",
+  "phone": "+15555551234"
+}
+```
+
+> Response example
+
+```json
+{
+  "id": 738
+}
+```
+
+Creates a charge and optionally emails or SMSes it to the client.
+
+`intake_ids` and `user_id` are both optional.
+If `intake_ids` is used, then those intakes will be associated with this charge, which means the recipient will have access to those appointments' details and they can use a saved payment instrument.
+If `user_id` is used, then the charge will be associated with this user, which means they can use a saved payment instrument.
+If neither `user_id` or `intake_ids` is used, then an anonymous charge will be created.
+
+Specifying `email` and/or `phone` will cause a remote payment link (and reminders, if any) to be sent to their respective destinations; they can be different from the user's email/phone on file (linked through `user_id` or `intake_ids`).
+
+Errors:
+- HTTP 400/Bad Request if the payment amount is 0, negative or not a Javascript safe integer.
+- HTTP 400/Bad Request if the `user_id` doesn't exist.
+- HTTP 400/Bad Request if any of the intake IDs don't exist, or intakes belong to different clients.
+- HTTP 400/Bad Request if `email` is obviously not an email address.
+- HTTP 400/Bad Request if `phone` is obviously not a phone number.
+
+### HTTP Request
+`POST /charge/:charge_external_id/payment`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+amount | int | Payment amount, in cents
+notes| string? | Freeform text field for practice's use
+intake_ids | int[]? | Intake IDs to associate with this charge
+user_id | int? | User ID to associate with this charge; ignored if intakes were passed
+email | string? | Specifying this will cause a remote payment link, receipt and any reminders to be emailed to this address
+phone | string? | Specifying this will cause a remote payment link, receipt and any reminders to be SMSed to this phone number. It should be in E.164 format (e.g. +14155552671).
+
 ## Remove payment instrument by bundle ID
 
 > Response example
@@ -172,13 +224,13 @@ Payment `status` is either `pending`, `complete`, `failed` or `refunded`.
 ```
 
 Amount is in cents, and may be less than the remaining balance on the charge.
-Returns the newly payment object.
+Returns the newly created payment object.
 If the payment instrument could not be charged (e.g. insufficient balance or credit limit exceeded),
 the payment's `status` will be `failed` and the error message will be in the `message` field.
 
 Errors:
-HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.
-HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
+- HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.
+- HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
 
 ### HTTP Request
 `POST /charge/:charge_external_id/payment`
@@ -236,8 +288,8 @@ If the payment instrument could not be charged (e.g. insufficient balance or cre
 the payment's `status` will be `failed` and the error message will be in the `message` field.
 
 Errors:
-HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.
-HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
+- HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.
+- HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
 
 ### HTTP Request
 `POST /partners/charge/:charge_external_id/payment`

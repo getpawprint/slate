@@ -902,3 +902,71 @@ as the intake summary object in `GET /partners/intake`.
 
 ### Connection Request
 `ws://www.getpawprint.com/ws/partners/intake?access_token=${authToken}`
+
+## Find a client
+> Response example
+
+```json
+[{
+  "user": {
+    "id": 37683,
+    "first_name": "John",
+    "last_name": "Smith",
+    "phone": "(415) 555-2671",
+    "email": "johnsmith@snoutid.com",
+    "address": "123 Main St, Bellevue, WA 98004"
+  },
+  "pets": [{
+    "name": "Pumpkin",
+    "species": "cat",
+    "breed": "Domestic Shorthair",
+    "image_url": "https://s3.aws.amazon.com/snoutid-profile-pic/AbXjoie.jpg"
+  }]
+}]
+```
+
+Find a client, with an arbitrary ranking. Their list of pets is returned, but it is not an exhaustive listing - 
+the client may have more pets than we know about.
+
+The `query` parameter is a single string that is matched across multiple fields - client first name, last name, phone number and
+email address.
+
+### HTTP Request
+`GET /partners/user`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+$top | int? | Limits number of results. Defaults to 10.
+$skip | int? | Offsets number of results. Defaults to 0.
+query | string? | Search string
+
+## Find intakes for a client
+> Response example
+
+```json
+[{
+  "pet": {
+    "name": "Hachi",
+    "species": "dog",
+    "breed": "Akita",
+    "image_url": "https://s3.aws.amazon.com/snoutid-profile-pic/AbXjoie.jpg"
+  },
+  "appointment": {
+    "date": "2019-04-20",
+    "time": "10:00 AM",
+    "datetime": "2019-04-20T10:00:00-06:00:00"
+  }
+}]
+```
+
+Lists all the pet and appointment fields of intakes for the given client, sorted from most recent (before present) to least recent. Intakes for appointments in the future are last.
+
+### HTTP Request
+`GET /partners/user/:user_id/intake`
+
+### Query string parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+$top | int? | Limits number of results. Defaults to 10.
+$skip | int? | Offsets number of results. Defaults to 0.
