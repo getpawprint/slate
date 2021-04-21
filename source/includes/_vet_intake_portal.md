@@ -903,7 +903,7 @@ as the intake summary object in `GET /partners/intake`.
 ### Connection Request
 `ws://www.getpawprint.com/ws/partners/intake?access_token=${authToken}`
 
-## Find a client
+## List clients
 > Response example
 
 ```json
@@ -941,7 +941,7 @@ $top | int? | Limits number of results. Defaults to 10.
 $skip | int? | Offsets number of results. Defaults to 0.
 query | string? | Search string
 
-## Find intakes for a client
+## List intakes for a client
 > Response example
 
 ```json
