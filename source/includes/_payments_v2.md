@@ -29,7 +29,52 @@ for example, try running `node -e "console.log(0.1 + 0.2)"` from a console.
 
 ```json
 {
-  "id": 738
+  "external_id": "gH_zis2b",
+  "amount": 12345,
+  "status": "pending",
+  "created_at": "2021-03-21T12:30:21-04:00:00",
+  "completed_at": null,
+  "payments": [
+  ],
+  "place": {
+    "id": 3,
+    "name": "Super Test Veterinary Clinic",
+    "address": "123 Main St, Bellevue, WA 98004",
+    "phone": "(555) 555-4567",
+    "banner_image": "https://api.scoutvet.com/images/logo-header.png"
+  },
+  "user": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "payment_instruments": {
+      "cards": [
+        {
+          "payment_instrument_id": 10,
+          "brand": "visa",
+          "exp_month": 8,
+          "exp_year": 2021,
+          "last4": "4242",
+          "default": true
+        }
+      ]
+    }
+  },
+  "intakes": [
+    {
+      "pet": {
+        "name": "Mochi",
+        "species": "dog", 
+        "breed": "Maltese",
+        "gender": "m",
+        "profile_pic": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"
+      },
+      "appointment": {
+        "type": "Canine Neuter",
+        "date": "2021-04-02",
+        "time": "4:30 PM"
+      }
+    }
+  ]
 }
 ```
 
@@ -43,6 +88,7 @@ If neither `user_id` or `intake_ids` is used, then an anonymous charge will be c
 Specifying `email` and/or `phone` will cause a remote payment link (and reminders, if any) to be sent to their respective destinations; they can be different from the user's email/phone on file (linked through `user_id` or `intake_ids`).
 
 Errors:
+
 - HTTP 400/Bad Request if the payment amount is 0, negative or not a Javascript safe integer.
 - HTTP 400/Bad Request if the `user_id` doesn't exist.
 - HTTP 400/Bad Request if any of the intake IDs don't exist, or intakes belong to different clients.
@@ -229,6 +275,7 @@ If the payment instrument could not be charged (e.g. insufficient balance or cre
 the payment's `status` will be `failed` and the error message will be in the `message` field.
 
 Errors:
+
 - HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.
 - HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
 
@@ -288,6 +335,7 @@ If the payment instrument could not be charged (e.g. insufficient balance or cre
 the payment's `status` will be `failed` and the error message will be in the `message` field.
 
 Errors:
+
 - HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.
 - HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
 
@@ -324,6 +372,7 @@ drivers_license_state | string? | Driver's license state (only considered for `c
 Re-sends a payment receipt to the specified email or phone.
 
 Errors:
+
 - HTTP 400/Bad Request if `email` is obviously not an email address.
 - HTTP 400/Bad Request if `phone` is obviously not a phone number.
 
