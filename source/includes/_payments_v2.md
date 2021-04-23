@@ -96,7 +96,7 @@ Errors:
 - HTTP 400/Bad Request if `phone` is obviously not a phone number.
 
 ### HTTP Request
-`POST /charge/:charge_external_id/payment`
+`POST /partners/charge`
 
 ### POST parameters
 Parameter | Type | Description
