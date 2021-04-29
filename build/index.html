@@ -6270,6 +6270,7 @@ as the intake summary object in <code>GET /partners/intake</code>.</p>
 <pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
   </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37683</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(415) 555-2671"</span><span class="p">,</span><span class="w">
@@ -6289,6 +6290,10 @@ the client may have more pets than we know about.</p>
 
 <p>The <code>query</code> parameter is a single string that is matched across multiple fields - client first name, last name, phone number and
 email address.</p>
+
+<p>If a result came from the vet&#39;s PMS and the client hasn&#39;t interacted with Snout before, the <code>user.id</code> field will be null, but <code>user.vet_user_id</code> will be non-null.
+In that case, charges can be created against the <code>vet_user_id</code> - a Snout user account will be automatically created and associated with the new charge. This endpoint will attempt to
+de-duplicate search results coming from both the <code>user</code> (Snout user) and <code>vet_user</code> (vet PMS) tables.</p>
 <h3 id='http-request-19'>HTTP Request</h3>
 <p><code>GET /partners/user</code></p>
 <h3 id='query-string-parameters-4'>Query string parameters</h3>

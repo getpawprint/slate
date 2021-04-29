@@ -910,6 +910,7 @@ as the intake summary object in `GET /partners/intake`.
 [{
   "user": {
     "id": 37683,
+    "vet_user_id": null,
     "first_name": "John",
     "last_name": "Smith",
     "phone": "(415) 555-2671",
@@ -930,6 +931,10 @@ the client may have more pets than we know about.
 
 The `query` parameter is a single string that is matched across multiple fields - client first name, last name, phone number and
 email address.
+
+If a result came from the vet's PMS and the client hasn't interacted with Snout before, the `user.id` field will be null, but `user.vet_user_id` will be non-null.
+In that case, charges can be created against the `vet_user_id` - a Snout user account will be automatically created and associated with the new charge. This endpoint will attempt to
+de-duplicate search results coming from both the `user` (Snout user) and `vet_user` (vet PMS) tables.
 
 ### HTTP Request
 `GET /partners/user`
