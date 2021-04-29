@@ -6320,6 +6320,8 @@ email address.</p>
 <p>Response example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hachi"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w">
@@ -6333,7 +6335,8 @@ email address.</p>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
-<p>Lists all the pet and appointment fields of intakes for the given client, sorted from most recent (before present) to least recent. Intakes for appointments in the future are last.</p>
+<p>Lists all the pet and appointment fields of intakes for the given client, sorted in descending chronological order (including intakes submitted for future appointments) to least recent.
+Status may be <code>pending records</code>, <code>in review</code>, <code>complete</code> or <code>cancelled</code>.</p>
 <h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET /partners/user/:user_id/intake</code></p>
 <h3 id='query-string-parameters-5'>Query string parameters</h3>
@@ -8722,6 +8725,7 @@ for example, try running <code>node -e &quot;console.log(0.1 + 0.2)&quot;</code>
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
   </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin and Roger exam + vax"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"vet_user_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"intake_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p">],</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@snoutid.com"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15555551234"</span><span class="w">
@@ -8781,10 +8785,15 @@ for example, try running <code>node -e &quot;console.log(0.1 + 0.2)&quot;</code>
 </span></code></pre>
 <p>Creates a charge and optionally emails or SMSes it to the client.</p>
 
-<p><code>intake_ids</code> and <code>user_id</code> are both optional.
-If <code>intake_ids</code> is used, then those intakes will be associated with this charge, which means the recipient will have access to those appointments&#39; details and they can use a saved payment instrument.
-If <code>user_id</code> is used, then the charge will be associated with this user, which means they can use a saved payment instrument.
-If neither <code>user_id</code> or <code>intake_ids</code> is used, then an anonymous charge will be created.</p>
+<p><code>intake_ids</code>, <code>user_id</code> and <code>vet_user_id</code> are all optional.</p>
+
+<ul>
+<li>If <code>intake_ids</code> is used, then those intakes will be associated with this charge, which means the recipient will have access to those appointments&#39; details and they can use a saved payment instrument.</li>
+<li>If <code>user_id</code> is used, then the charge will be associated with this user, which means they can use a saved payment instrument.</li>
+<li>If <code>vet_user_id</code> is used, then a Snout user account will be created using data from the vet&#39;s PMS, and the charge will be associated with the new user account&#39;s ID.
+<code>vet_user_id</code> is obtained from the client listing/search API - sometimes the vet may select a client who hasn&#39;t interacted with Snout yet.</li>
+<li>If none of <code>user_id</code>, <code>vet_user_id</code> or <code>intake_ids</code> is used, then an anonymous charge will be created.</li>
+</ul>
 
 <p>Specifying <code>email</code> and/or <code>phone</code> will cause a remote payment link (and reminders, if any) to be sent to their respective destinations; they can be different from the user&#39;s email/phone on file (linked through <code>user_id</code> or <code>intake_ids</code>).</p>
 
@@ -8826,6 +8835,11 @@ If neither <code>user_id</code> or <code>intake_ids</code> is used, then an anon
 <td>user_id</td>
 <td>int?</td>
 <td>User ID to associate with this charge; ignored if intakes were passed</td>
+</tr>
+<tr>
+<td>vet_user_id</td>
+<td>int?</td>
+<td>Creates (or reuses) a user account from this PMS account; ignored if user_id or intake_ids were passed</td>
 </tr>
 <tr>
 <td>email</td>

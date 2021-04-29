@@ -946,6 +946,8 @@ query | string? | Search string
 
 ```json
 [{
+  "id": 42,
+  "status": "complete",
   "pet": {
     "name": "Hachi",
     "species": "dog",
@@ -960,7 +962,8 @@ query | string? | Search string
 }]
 ```
 
-Lists all the pet and appointment fields of intakes for the given client, sorted from most recent (before present) to least recent. Intakes for appointments in the future are last.
+Lists all the pet and appointment fields of intakes for the given client, sorted in descending chronological order (including intakes submitted for future appointments) to least recent.
+Status may be `pending records`, `in review`, `complete` or `cancelled`.
 
 ### HTTP Request
 `GET /partners/user/:user_id/intake`

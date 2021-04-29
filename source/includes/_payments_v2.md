@@ -19,6 +19,7 @@ for example, try running `node -e "console.log(0.1 + 0.2)"` from a console.
   "amount": 2345,
   "notes": "Pumpkin and Roger exam + vax",
   "user_id": 101,
+  "vet_user_id": null,
   "intake_ids": [42, 43],
   "email": "johnsmith@snoutid.com",
   "phone": "+15555551234"
@@ -80,10 +81,13 @@ for example, try running `node -e "console.log(0.1 + 0.2)"` from a console.
 
 Creates a charge and optionally emails or SMSes it to the client.
 
-`intake_ids` and `user_id` are both optional.
-If `intake_ids` is used, then those intakes will be associated with this charge, which means the recipient will have access to those appointments' details and they can use a saved payment instrument.
-If `user_id` is used, then the charge will be associated with this user, which means they can use a saved payment instrument.
-If neither `user_id` or `intake_ids` is used, then an anonymous charge will be created.
+`intake_ids`, `user_id` and `vet_user_id` are all optional.
+
+- If `intake_ids` is used, then those intakes will be associated with this charge, which means the recipient will have access to those appointments' details and they can use a saved payment instrument.
+- If `user_id` is used, then the charge will be associated with this user, which means they can use a saved payment instrument.
+- If `vet_user_id` is used, then a Snout user account will be created using data from the vet's PMS, and the charge will be associated with the new user account's ID.
+`vet_user_id` is obtained from the client listing/search API - sometimes the vet may select a client who hasn't interacted with Snout yet.
+- If none of `user_id`, `vet_user_id` or `intake_ids` is used, then an anonymous charge will be created.
 
 Specifying `email` and/or `phone` will cause a remote payment link (and reminders, if any) to be sent to their respective destinations; they can be different from the user's email/phone on file (linked through `user_id` or `intake_ids`).
 
@@ -105,6 +109,7 @@ amount | int | Payment amount, in cents
 notes| string? | Freeform text field for practice's use
 intake_ids | int[]? | Intake IDs to associate with this charge
 user_id | int? | User ID to associate with this charge; ignored if intakes were passed
+vet_user_id | int? | Creates (or reuses) a user account from this PMS account; ignored if user_id or intake_ids were passed
 email | string? | Specifying this will cause a remote payment link, receipt and any reminders to be emailed to this address
 phone | string? | Specifying this will cause a remote payment link, receipt and any reminders to be SMSed to this phone number. It should be in E.164 format (e.g. +14155552671).
 
