@@ -937,7 +937,7 @@ In that case, charges can be created against the `vet_user_id` - a Snout user ac
 de-duplicate search results coming from both the `user` (Snout user) and `vet_user` (vet PMS) tables.
 
 ### HTTP Request
-`GET /partners/user`
+`GET /partners/v2/user`
 
 ### Query string parameters
 Parameter | Type | Description
