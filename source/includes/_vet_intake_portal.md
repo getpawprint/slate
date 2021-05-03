@@ -152,24 +152,39 @@ password | string | Partner place's password.
 {
   "name": "Test Animal Clinic",
   "place_id": "27015",
+  "address": "123 Main St, Bellevue, WA 98004",
+  "timezone": "America/Los_Angeles",
   "partner_id": 5,
   "partner_name": "Pawprint Farm",
   "banner_image": "https://www.getpawprint.com/images/banner.jpg",
-  "email": "demo@getpawprint.com",
+  "email": "vetlogin@snoutid.com",
+  "pawprint_email": "test@snoutid.com",
+  "petrecords_email": "records@snoutid.com",
+  "appointment_request_enabled": false,
+  "terms_of_service": "I hereby authorize the veterinarian to examine, prescribe for, and/or treat the above described pet(s). As the owner or acting on behalf of the owner, I assume responsibility for all the charges incurred in the care of this animal. I understand that payment is due at the time of service.",
+  "questionnaire_enabled": true,
+  "email_questionnaire_to_vet": true,
+  "questionnaire_reminder": true,
+  "stripe_account_id": null,
+  "new_client_form_enabled": true,
   "appointment_types": [
     {
-      "id": 1",
-      "description": "Wellness exam"
+        "id": 1,
+        "description": "wellness exam"
     },
     {
-      "id": 2",
-      "description": "Illness/injury"
-    },
-  ]
+        "id": 2,
+        "description": "surgery"
+    }
+  ],
+  "gravity": {
+    "oid": "3",
+    "devices": [ "device_id1" ]
+  }
 }
 ```
 
-Gets partner place info for the caller identifed in the auth header, like place name, partner ID, partner name and banner image.
+Gets partner information and some configuration for the caller identifed in the auth header, like place name, partner ID, partner name and banner image.
 
 ### HTTP Request
 `GET /partners/info`

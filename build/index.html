@@ -5399,23 +5399,38 @@ Always returns HTTP 200.</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Animal Clinic"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"place_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27015"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Bellevue, WA 98004"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los_Angeles"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"partner_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
   </span><span class="s2">"partner_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pawprint Farm"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.getpawprint.com/images/banner.jpg"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo@getpawprint.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vetlogin@snoutid.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pawprint_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@snoutid.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"petrecords_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"records@snoutid.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"appointment_request_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"terms_of_service"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I hereby authorize the veterinarian to examine, prescribe for, and/or treat the above described pet(s). As the owner or acting on behalf of the owner, I assume responsibility for all the charges incurred in the care of this animal. I understand that payment is due at the time of service."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"questionnaire_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email_questionnaire_to_vet"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"questionnaire_reminder"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"stripe_account_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"new_client_form_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"appointment_types"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="s2">",
-      "</span><span class="err">description</span><span class="s2">": "</span><span class="err">Wellness</span><span class="w"> </span><span class="err">exam</span><span class="s2">"
-    },
-    {
-      "</span><span class="err">id</span><span class="s2">": 2"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Illness/injury"</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wellness exam"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"surgery"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"gravity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"device_id1"</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Gets partner place info for the caller identifed in the auth header, like place name, partner ID, partner name and banner image.</p>
+<p>Gets partner information and some configuration for the caller identifed in the auth header, like place name, partner ID, partner name and banner image.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /partners/info</code></p>
 <h2 id='get-list-of-intakes'>Get list of intakes</h2>
@@ -8914,6 +8929,8 @@ Payment instruments are soft-deleted so that existing payments can still referen
   </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gH_zis2b"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"js+personal@snoutid.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14155556789"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:30:21-04:00:00"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:33:42-04:00:00"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -8940,6 +8957,8 @@ Payment instruments are soft-deleted so that existing payments can still referen
   </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@snoutid.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14155552671"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment_instruments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">

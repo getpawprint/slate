@@ -179,6 +179,8 @@ Payment instruments are soft-deleted so that existing payments can still referen
   "external_id": "gH_zis2b",
   "amount": 12345,
   "status": "complete",
+  "email": "js+personal@snoutid.com",
+  "phone": "+14155556789",
   "created_at": "2021-03-21T12:30:21-04:00:00",
   "completed_at": "2021-03-21T12:33:42-04:00:00",
   "payments": [
@@ -205,6 +207,8 @@ Payment instruments are soft-deleted so that existing payments can still referen
   "user": {
     "first_name": "John",
     "last_name": "Smith",
+    "email": "johnsmith@snoutid.com",
+    "phone": "+14155552671",
     "payment_instruments": {
       "cards": [
         {
