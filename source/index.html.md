@@ -29,7 +29,6 @@ includes:
   - user
   - vetstoria
   - legacy_portal
-  - gravity
 
 search: true
 ---
