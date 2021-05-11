@@ -22,7 +22,11 @@ for example, try running `node -e "console.log(0.1 + 0.2)"` from a console.
   "vet_user_id": null,
   "intake_ids": [42, 43],
   "email": "johnsmith@snoutid.com",
-  "phone": "+15555551234"
+  "phone": "+15555551234",
+  "files": [{
+    "description": "Invoice for PUMPKIN EXAM",
+    "data": "e0b7YUamJuV5Ln34zpjaes236w3RJi0j"
+  }]
 }
 ```
 
@@ -75,7 +79,11 @@ for example, try running `node -e "console.log(0.1 + 0.2)"` from a console.
         "time": "4:30 PM"
       }
     }
-  ]
+  ],
+  "files": [{
+    "description": "Invoice for PUMPKIN EXAM",
+    "url": "https://snout-vet-invoice.s3-us-west-2.amazonaws.com/2394872834.pdf"
+  }]
 }
 ```
 
@@ -98,6 +106,7 @@ Errors:
 - HTTP 400/Bad Request if any of the intake IDs don't exist, or intakes belong to different clients.
 - HTTP 400/Bad Request if `email` is obviously not an email address.
 - HTTP 400/Bad Request if `phone` is obviously not a phone number.
+- HTTP 400/Bad Request if an uploaded file is not in an acceptable format.
 
 ### HTTP Request
 `POST /partners/charge`
@@ -112,6 +121,9 @@ user_id | int? | User ID to associate with this charge; ignored if intakes were 
 vet_user_id | int? | Creates (or reuses) a user account from this PMS account; ignored if user_id or intake_ids were passed
 email | string? | Specifying this will cause a remote payment link, receipt and any reminders to be emailed to this address
 phone | string? | Specifying this will cause a remote payment link, receipt and any reminders to be SMSed to this phone number. It should be in E.164 format (e.g. +14155552671).
+files | object[]? | List of invoice files to upload with this charge
+files.description | string? | Description of the file; defaults to "Invoice file uploaded on _date_"
+files.data | string | base64 string of the data. JPG, PNG or PDF only.
 
 ## Remove payment instrument by bundle ID
 
@@ -237,7 +249,11 @@ Payment instruments are soft-deleted so that existing payments can still referen
         "time": "4:30 PM"
       }
     }
-  ]
+  ],
+  "files": [{
+    "description": "Invoice for Mochi's Canine Neuter",
+    "url": "https://snout-vet-invoice.s3-us-west-2.amazonaws.com/2394872834.pdf"
+  }]
 }
 ```
 

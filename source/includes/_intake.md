@@ -573,8 +573,12 @@ They are generated for datasync intakes, and erased when the intake is submitted
     "user": {
       "id": 1000052,
       "first_name": "John",
-      "last_name": "Smith
-    }
+      "last_name": "Smith"
+    },
+    "files": [{
+      "description": "Invoice for PUMPKIN EXAM",
+      "url": "https://snout-vet-invoice.s3-us-west-2.amazonaws.com/2394872834.pdf"
+    }]
   }
 }
 ```
