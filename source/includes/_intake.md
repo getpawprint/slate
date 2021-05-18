@@ -795,6 +795,12 @@ Gets payment terms and terms of service copy for a particular vet. May include H
       "is_visible": false
     }
   },
+  "payments": {
+    "enabled": true,
+    "gravity_enabled": true,
+    "cash_enabled": true,
+    "check_enabled": true
+  },
   "checkin_instructions": "Please wait in the parking lot and call 555-555-5555 when you arrive.",
   "timezone": "America/Los_Angeles"
 }

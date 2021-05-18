@@ -714,6 +714,9 @@
                     <a href="#make-a-payment-on-a-charge-from-vet-portal" class="toc-h2 toc-link" data-title="make-a-payment-on-a-charge-from-vet-portal">Make a payment on a charge (from vet portal)</a>
                   </li>
                   <li>
+                    <a href="#make-a-refund-on-a-charge-from-vet-portal" class="toc-h2 toc-link" data-title="make-a-refund-on-a-charge-from-vet-portal">Make a refund on a charge (from vet portal)</a>
+                  </li>
+                  <li>
                     <a href="#send-payment-receipt" class="toc-h2 toc-link" data-title="send-payment-receipt">Send payment receipt</a>
                   </li>
               </ul>
@@ -729,6 +732,9 @@
                   </li>
                   <li>
                     <a href="#start-creditsale-transaction-vet-portal" class="toc-h2 toc-link" data-title="start-creditsale-transaction-vet-portal">Start CreditSale transaction (vet portal)</a>
+                  </li>
+                  <li>
+                    <a href="#start-creditreturn-transaction-vet-portal" class="toc-h2 toc-link" data-title="start-creditreturn-transaction-vet-portal">Start CreditReturn transaction (vet portal)</a>
                   </li>
                   <li>
                     <a href="#gravity-webhook" class="toc-h2 toc-link" data-title="gravity-webhook">Gravity webhook</a>
@@ -4313,6 +4319,12 @@ record requests are created as soon the intake form has been submitted the first
       </span><span class="s2">"is_visible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gravity_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cash_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"check_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"checkin_instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please wait in the parking lot and call 555-555-5555 when you arrive."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Los_Angeles"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -5411,6 +5423,12 @@ Always returns HTTP 200.</p>
         </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"surgery"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gravity_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cash_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"check_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"gravity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"oid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"device_id1"</span><span class="w"> </span><span class="p">]</span><span class="w">
@@ -9112,7 +9130,6 @@ the payment&#39;s <code>status</code> will be <code>failed</code> and the error 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Amount is in cents, and may be less than the remaining balance on the charge.
-Returns the updated charge object.
 If the payment instrument could not be charged (e.g. insufficient balance or credit limit exceeded),
 the payment&#39;s <code>status</code> will be <code>failed</code> and the error message will be in the <code>message</code> field.</p>
 
@@ -9140,7 +9157,7 @@ the payment&#39;s <code>status</code> will be <code>failed</code> and the error 
 <tr>
 <td>method</td>
 <td>string?</td>
-<td>Charge description; required if payment_instrument_id is omitted. Valid values are <code>cash</code> or <code>check</code>.</td>
+<td>Payment method; required if <code>payment_instrument_id is omitted</code>. Valid values are <code>cash</code> or <code>check</code>.</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -9161,6 +9178,77 @@ the payment&#39;s <code>status</code> will be <code>failed</code> and the error 
 <td>drivers_license_state</td>
 <td>string?</td>
 <td>Driver&#39;s license state (only considered for <code>check</code> method)</td>
+</tr>
+</tbody></table>
+<h2 id='make-a-refund-on-a-charge-from-vet-portal'>Make a refund on a charge (from vet portal)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"payment_instrument_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Refunded for overpayment"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Cash</span><span class="w"> </span><span class="err">form</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Refunded for overpayment"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Refunded for overpayment"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Amount is in cents. This endpoint is only for refunds using cash or an existing card; to refund to a new card, either save a new card or use
+the Gravity Start CreditReturn endpoint instead.
+If a payment instrument was given but the payment processor failed to refund, the payment&#39;s <code>status</code> will be <code>failed</code> and the error message will be in the <code>message</code> field.
+When the refund is completed, a receipt notification is automatically emailed/SMSed to the client, depending on the contact information on the <code>charge</code>.</p>
+
+<p>Errors:</p>
+
+<ul>
+<li>HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.</li>
+<li>HTTP 400/Bad Request if payment_instrument_id is given but its payment method is not a card (e.g. can&#39;t refund to loans).</li>
+<li>HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)</li>
+</ul>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST /partners/charge/:charge_external_id/refund</code></p>
+<h3 id='post-parameters-4'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>payment_instrument_id</td>
+<td>integer?</td>
+<td>ID of a previously saved payment instrument;</td>
+</tr>
+<tr>
+<td>method</td>
+<td>string?</td>
+<td>Payment method; required if <code>payment_instrument_id</code> is omitted. The only valid value is <code>cash</code> (for cards, use the <code>payment_instrument_id</code> field).</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>int</td>
+<td>Payment amount, in cents</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string?</td>
+<td>Freeform text field for practice&#39;s use</td>
 </tr>
 </tbody></table>
 <h2 id='send-payment-receipt'>Send payment receipt</h2>
@@ -9185,9 +9273,9 @@ the payment&#39;s <code>status</code> will be <code>failed</code> and the error 
 <li>HTTP 400/Bad Request if <code>email</code> is obviously not an email address.</li>
 <li>HTTP 400/Bad Request if <code>phone</code> is obviously not a phone number.</li>
 </ul>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /partners/charge/:charge_external_id/receipt</code></p>
-<h3 id='post-parameters-4'>POST parameters</h3>
+<h3 id='post-parameters-5'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9281,10 +9369,55 @@ the card is saved to the user account for later use after the payment succeeds.<
     </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789abcdef"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Same as above (Start CreditalSale Transaction (client portal)), but also accepts the <code>device_name</code> parameter for selecting a hardware device.</p>
+<p>Same as above (Start CreditSale Transaction (client portal)), but also accepts the <code>device_name</code> parameter for selecting a hardware device.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /partners/charge/:charge_external_id/gravity_sale</code></p>
 <h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>save_card</td>
+<td>boolean?</td>
+<td>If the charge is linked to a completed intake or user account, the card is saved to the user account for later use after the payment succeeds.</td>
+</tr>
+<tr>
+<td>device_name</td>
+<td>string?</td>
+<td>Used to identify a Gravity hardware payment device for card present payments.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>integer</td>
+<td>Amount in cents.</td>
+</tr>
+</tbody></table>
+<h2 id='start-creditreturn-transaction-vet-portal'>Start CreditReturn transaction (vet portal)</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"save_card"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"device_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_credit_card_reader"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789abcdef"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Gets a transaction token with type CreditReturn from Gravity, intended for refunds. If <code>save_card</code> is true, and the charge is linked to a completed intake or user account,
+the card is saved to the user account for later use after the refund succeeds.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>POST /partners/charge/:charge_external_id/gravity_return</code></p>
+<h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9341,7 +9474,7 @@ the card is saved to the user account for later use after the payment succeeds.<
 <pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
 </span></code></pre>
 <p>Called by Gravity after a CreditSaveCard or CreditSale transaction has run.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>POST /gravity/card</code></p>
 <h1 id='places'>Places</h1>
 <p>Places are backed by the <code>place</code> table and are referenced by a lot of other

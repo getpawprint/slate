@@ -355,7 +355,6 @@ notes| string? | Freeform text field for practice's use
 ```
 
 Amount is in cents, and may be less than the remaining balance on the charge.
-Returns the updated charge object.
 If the payment instrument could not be charged (e.g. insufficient balance or credit limit exceeded),
 the payment's `status` will be `failed` and the error message will be in the `message` field.
 
@@ -371,11 +370,64 @@ Errors:
 Parameter | Type | Description
 --------- | ---- | -----------
 payment_instrument_id | integer? | ID of a previously saved payment instrument; 
-method | string? | Charge description; required if payment_instrument_id is omitted. Valid values are `cash` or `check`.
+method | string? | Payment method; required if `payment_instrument_id is omitted`. Valid values are `cash` or `check`.
 amount | int | Payment amount, in cents
 notes| string? | Freeform text field for practice's use
 drivers_license_number | string? | Driver's license number (only considered for `check` method)
 drivers_license_state | string? | Driver's license state (only considered for `check` method)
+
+## Make a refund on a charge (from vet portal)
+
+> Request example
+
+```json
+{
+  "payment_instrument_id": 10,
+  "amount": 2345,
+  "notes": "Refunded for overpayment"
+}
+
+// Cash form
+{
+  "method": "cash",
+  "amount": 10000,
+  "notes": "Refunded for overpayment"
+}
+```
+
+> Response example
+
+```json
+{
+  "amount": 10000,
+  "method": "cash",
+  "notes": "Refunded for overpayment",
+  "status": "complete",
+  "message": null
+}
+```
+
+Amount is in cents. This endpoint is only for refunds using cash or an existing card; to refund to a new card, either save a new card or use
+the Gravity Start CreditReturn endpoint instead.
+If a payment instrument was given but the payment processor failed to refund, the payment's `status` will be `failed` and the error message will be in the `message` field.
+When the refund is completed, a receipt notification is automatically emailed/SMSed to the client, depending on the contact information on the `charge`.
+
+Errors:
+
+- HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.
+- HTTP 400/Bad Request if payment_instrument_id is given but its payment method is not a card (e.g. can't refund to loans).
+- HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)
+
+### HTTP Request
+`POST /partners/charge/:charge_external_id/refund`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+payment_instrument_id | integer? | ID of a previously saved payment instrument; 
+method | string? | Payment method; required if `payment_instrument_id` is omitted. The only valid value is `cash` (for cards, use the `payment_instrument_id` field).
+amount | int | Payment amount, in cents
+notes| string? | Freeform text field for practice's use
 
 ## Send payment receipt
 

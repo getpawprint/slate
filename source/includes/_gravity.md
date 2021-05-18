@@ -74,10 +74,43 @@ amount | integer | Amount in cents.
 }
 ```
 
-Same as above (Start CreditalSale Transaction (client portal)), but also accepts the `device_name` parameter for selecting a hardware device.
+Same as above (Start CreditSale Transaction (client portal)), but also accepts the `device_name` parameter for selecting a hardware device.
 
 ### HTTP Request
 `POST /partners/charge/:charge_external_id/gravity_sale`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+save_card | boolean? | If the charge is linked to a completed intake or user account, the card is saved to the user account for later use after the payment succeeds.
+device_name | string? | Used to identify a Gravity hardware payment device for card present payments.
+amount | integer | Amount in cents.
+
+## Start CreditReturn transaction (vet portal)
+
+> Request example
+
+```json
+{
+  "save_card": true,
+  "device_name": "my_credit_card_reader",
+  "amount": 100
+}
+```
+
+> Response example
+
+```json
+{
+	"token": "0123456789abcdef"
+}
+```
+
+Gets a transaction token with type CreditReturn from Gravity, intended for refunds. If `save_card` is true, and the charge is linked to a completed intake or user account,
+the card is saved to the user account for later use after the refund succeeds.
+
+### HTTP Request
+`POST /partners/charge/:charge_external_id/gravity_return`
 
 ### POST parameters
 Parameter | Type | Description

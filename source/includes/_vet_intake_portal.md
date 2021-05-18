@@ -177,6 +177,12 @@ password | string | Partner place's password.
         "description": "surgery"
     }
   ],
+  "payments": {
+    "enabled": true,
+    "gravity_enabled": true,
+    "cash_enabled": true,
+    "check_enabled": true
+  },
   "gravity": {
     "oid": "3",
     "devices": [ "device_id1" ]
