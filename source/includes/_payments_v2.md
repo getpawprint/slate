@@ -24,6 +24,7 @@ for example, try running `node -e "console.log(0.1 + 0.2)"` from a console.
   "email": "johnsmith@snoutid.com",
   "phone": "+15555551234",
   "files": [{
+    "id": 132,
     "description": "Invoice for PUMPKIN EXAM",
     "data": "e0b7YUamJuV5Ln34zpjaes236w3RJi0j"
   }]
@@ -81,6 +82,7 @@ for example, try running `node -e "console.log(0.1 + 0.2)"` from a console.
     }
   ],
   "files": [{
+    "id": 132,
     "description": "Invoice for PUMPKIN EXAM",
     "url": "https://snout-vet-invoice.s3-us-west-2.amazonaws.com/2394872834.pdf"
   }]
@@ -101,7 +103,7 @@ Specifying `email` and/or `phone` will cause a remote payment link (and reminder
 
 Errors:
 
-- HTTP 400/Bad Request if the payment amount is 0, negative or not a Javascript safe integer.
+- HTTP 400/Bad Request if the amount owed is 0, negative or not a Javascript safe integer.
 - HTTP 400/Bad Request if the `user_id` doesn't exist.
 - HTTP 400/Bad Request if any of the intake IDs don't exist, or intakes belong to different clients.
 - HTTP 400/Bad Request if `email` is obviously not an email address.
@@ -124,6 +126,150 @@ phone | string? | Specifying this will cause a remote payment link, receipt and 
 files | object[]? | List of invoice files to upload with this charge
 files.description | string? | Description of the file; defaults to "Invoice file uploaded on _date_"
 files.data | string | base64 string of the data. JPG, PNG or PDF only.
+
+## Edit charge
+
+> Request example
+
+```json
+{
+  "amount": 2600,
+  "notes": "Pumpkin and Roger exam + vax",
+  "email": "johnsmith@snoutid.com",
+  "phone": "+15555551234"
+}
+```
+
+> Response example
+
+```json
+{
+  "external_id": "gH_zis2b",
+  "amount": 12345,
+  "status": "pending",
+  "created_at": "2021-03-21T12:30:21-04:00:00",
+  "completed_at": null,
+  "payments": [
+  ],
+  "place": {
+    "id": 3,
+    "name": "Super Test Veterinary Clinic",
+    "address": "123 Main St, Bellevue, WA 98004",
+    "phone": "(555) 555-4567",
+    "banner_image": "https://api.scoutvet.com/images/logo-header.png"
+  },
+  "user": {
+    "first_name": "John",
+    "last_name": "Smith",
+    "payment_instruments": {
+      "cards": [
+        {
+          "payment_instrument_id": 10,
+          "brand": "visa",
+          "exp_month": 8,
+          "exp_year": 2021,
+          "last4": "4242",
+          "default": true
+        }
+      ]
+    }
+  },
+  "intakes": [
+    {
+      "pet": {
+        "name": "Mochi",
+        "species": "dog", 
+        "breed": "Maltese",
+        "gender": "m",
+        "profile_pic": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"
+      },
+      "appointment": {
+        "type": "Canine Neuter",
+        "date": "2021-04-02",
+        "time": "4:30 PM"
+      }
+    }
+  ],
+  "files": [{
+    "id": 132,
+    "description": "Invoice for PUMPKIN EXAM",
+    "url": "https://snout-vet-invoice.s3-us-west-2.amazonaws.com/2394872834.pdf"
+  }]
+}
+```
+
+Updates a charge.
+
+Specifying `email` and/or `phone` will cause a remote payment link (and reminders, if any) to be sent to their respective destinations; they can be different from the user's email/phone on file (linked through `user_id` or `intake_ids`).
+
+Errors:
+
+- HTTP 400/Bad Request if the payment amount is 0, negative or not a Javascript safe integer.
+- HTTP 400/Bad Request if `email` is obviously not an email address.
+- HTTP 400/Bad Request if `phone` is obviously not a phone number.
+- HTTP 400/Bad Request if an uploaded file is not in an acceptable format.
+
+### HTTP Request
+`PATCH /partners/charge/:charge_external_id`
+
+### PATCH parameters
+Parameter | Type | Description
+---------  | ---- | -----------
+amount | int | Payment amount, in cents
+notes| string? | Freeform text field for practice's use
+email | string? | Specifying this will cause a remote payment link, receipt and any reminders to be emailed to this address
+phone | string? | Specifying this will cause a remote payment link, receipt and any reminders to be SMSed to this phone number. It should be in E.164 format (e.g. +14155552671).
+
+## Add file(s) to existing charge
+
+> Request example
+
+```json
+  [{
+    "description": "Invoice for PUMPKIN EXAM",
+    "data": "e0b7YUamJuV5Ln34zpjaes236w3RJi0j"
+  }]
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Adds files (JPG, PNG or PDF) to a charge.
+
+Errors:
+
+- HTTP 400/Bad Request if an uploaded file is not in an acceptable format.
+
+### HTTP Request
+`POST /partners/charge/:charge_external_id/file`
+
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+description | string? | Description of the file; defaults to "Invoice file uploaded on _date_"
+data | string | base64 string of the data. JPG, PNG or PDF only.
+
+## Remove file from existing charge
+
+> Request example
+
+```json
+(none)
+```
+
+> Response example
+
+```json
+(none)
+```
+
+Removes a file from a charge.
+
+### HTTP Request
+`DELETE /partners/charge/:charge_external_id/file/:file_id`
 
 ## Remove payment instrument by bundle ID
 
@@ -251,6 +397,7 @@ Payment instruments are soft-deleted so that existing payments can still referen
     }
   ],
   "files": [{
+    "id": 132,
     "description": "Invoice for Mochi's Canine Neuter",
     "url": "https://snout-vet-invoice.s3-us-west-2.amazonaws.com/2394872834.pdf"
   }]
@@ -375,6 +522,37 @@ amount | int | Payment amount, in cents
 notes| string? | Freeform text field for practice's use
 drivers_license_number | string? | Driver's license number (only considered for `check` method)
 drivers_license_state | string? | Driver's license state (only considered for `check` method)
+
+## Void a payment
+
+> Request example
+
+```json
+(none)
+```
+
+> Response example
+
+```json
+{
+  "result": "void"
+}
+```
+
+Voids an existing payment (`result: void`), or creates a refund if the payment could not be voided (`result: refund`).
+A void should be initiated within 15 minutes of a payment being made; see  https://dev.gravitypayments.com/docs/emergepay/voids/
+
+Void | Refund 
+---- | ------
+Existing payments only | Not tied to a specific payment
+Amount returned to the payer is fixed | Can be for any amount
+Payment must not be settled | Can be initiated at any time
+Money is returned immediately | Must wait 3-5 business days when returning unsettled transactions
+
+- HTTP 400/Bad Request if the payment is not voidable (currently only Gravity cards are voidable)
+
+### HTTP Request
+`POST /partners/payment/:payment_id/void`
 
 ## Make a refund on a charge (from vet portal)
 

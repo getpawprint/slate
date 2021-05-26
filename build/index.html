@@ -699,6 +699,15 @@
                     <a href="#create-charge" class="toc-h2 toc-link" data-title="create-charge">Create charge</a>
                   </li>
                   <li>
+                    <a href="#edit-charge" class="toc-h2 toc-link" data-title="edit-charge">Edit charge</a>
+                  </li>
+                  <li>
+                    <a href="#add-file-s-to-existing-charge" class="toc-h2 toc-link" data-title="add-file-s-to-existing-charge">Add file(s) to existing charge</a>
+                  </li>
+                  <li>
+                    <a href="#remove-file-from-existing-charge" class="toc-h2 toc-link" data-title="remove-file-from-existing-charge">Remove file from existing charge</a>
+                  </li>
+                  <li>
                     <a href="#remove-payment-instrument-by-bundle-id" class="toc-h2 toc-link" data-title="remove-payment-instrument-by-bundle-id">Remove payment instrument by bundle ID</a>
                   </li>
                   <li>
@@ -712,6 +721,9 @@
                   </li>
                   <li>
                     <a href="#make-a-payment-on-a-charge-from-vet-portal" class="toc-h2 toc-link" data-title="make-a-payment-on-a-charge-from-vet-portal">Make a payment on a charge (from vet portal)</a>
+                  </li>
+                  <li>
+                    <a href="#void-a-payment" class="toc-h2 toc-link" data-title="void-a-payment">Void a payment</a>
                   </li>
                   <li>
                     <a href="#make-a-refund-on-a-charge-from-vet-portal" class="toc-h2 toc-link" data-title="make-a-refund-on-a-charge-from-vet-portal">Make a refund on a charge (from vet portal)</a>
@@ -8755,6 +8767,7 @@ for example, try running <code>node -e &quot;console.log(0.1 + 0.2)&quot;</code>
   </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@snoutid.com"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15555551234"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice for PUMPKIN EXAM"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e0b7YUamJuV5Ln34zpjaes236w3RJi0j"</span><span class="w">
   </span><span class="p">}]</span><span class="w">
@@ -8811,6 +8824,7 @@ for example, try running <code>node -e &quot;console.log(0.1 + 0.2)&quot;</code>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice for PUMPKIN EXAM"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://snout-vet-invoice.s3-us-west-2.amazonaws.com/2394872834.pdf"</span><span class="w">
   </span><span class="p">}]</span><span class="w">
@@ -8833,7 +8847,7 @@ for example, try running <code>node -e &quot;console.log(0.1 + 0.2)&quot;</code>
 <p>Errors:</p>
 
 <ul>
-<li>HTTP 400/Bad Request if the payment amount is 0, negative or not a Javascript safe integer.</li>
+<li>HTTP 400/Bad Request if the amount owed is 0, negative or not a Javascript safe integer.</li>
 <li>HTTP 400/Bad Request if the <code>user_id</code> doesn&#39;t exist.</li>
 <li>HTTP 400/Bad Request if any of the intake IDs don&#39;t exist, or intakes belong to different clients.</li>
 <li>HTTP 400/Bad Request if <code>email</code> is obviously not an email address.</li>
@@ -8901,6 +8915,173 @@ for example, try running <code>node -e &quot;console.log(0.1 + 0.2)&quot;</code>
 <td>base64 string of the data. JPG, PNG or PDF only.</td>
 </tr>
 </tbody></table>
+<h2 id='edit-charge'>Edit charge</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2600</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pumpkin and Roger exam + vax"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@snoutid.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15555551234"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gH_zis2b"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-21T12:30:21-04:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"completed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Super Test Veterinary Clinic"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Bellevue, WA 98004"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(555) 555-4567"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"banner_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.scoutvet.com/images/logo-header.png"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"payment_instruments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"payment_instrument_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visa"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"intakes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mochi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maltese"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canine Neuter"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-02"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4:30 PM"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice for PUMPKIN EXAM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://snout-vet-invoice.s3-us-west-2.amazonaws.com/2394872834.pdf"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates a charge.</p>
+
+<p>Specifying <code>email</code> and/or <code>phone</code> will cause a remote payment link (and reminders, if any) to be sent to their respective destinations; they can be different from the user&#39;s email/phone on file (linked through <code>user_id</code> or <code>intake_ids</code>).</p>
+
+<p>Errors:</p>
+
+<ul>
+<li>HTTP 400/Bad Request if the payment amount is 0, negative or not a Javascript safe integer.</li>
+<li>HTTP 400/Bad Request if <code>email</code> is obviously not an email address.</li>
+<li>HTTP 400/Bad Request if <code>phone</code> is obviously not a phone number.</li>
+<li>HTTP 400/Bad Request if an uploaded file is not in an acceptable format.</li>
+</ul>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>PATCH /partners/charge/:charge_external_id</code></p>
+<h3 id='patch-parameters'>PATCH parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>int</td>
+<td>Payment amount, in cents</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string?</td>
+<td>Freeform text field for practice&#39;s use</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string?</td>
+<td>Specifying this will cause a remote payment link, receipt and any reminders to be emailed to this address</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>string?</td>
+<td>Specifying this will cause a remote payment link, receipt and any reminders to be SMSed to this phone number. It should be in E.164 format (e.g. +14155552671).</td>
+</tr>
+</tbody></table>
+<h2 id='add-file-s-to-existing-charge'>Add file(s) to existing charge</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice for PUMPKIN EXAM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e0b7YUamJuV5Ln34zpjaes236w3RJi0j"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Adds files (JPG, PNG or PDF) to a charge.</p>
+
+<p>Errors:</p>
+
+<ul>
+<li>HTTP 400/Bad Request if an uploaded file is not in an acceptable format.</li>
+</ul>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST /partners/charge/:charge_external_id/file</code></p>
+<h3 id='post-parameters-2'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>description</td>
+<td>string?</td>
+<td>Description of the file; defaults to &quot;Invoice file uploaded on <em>date</em>&quot;</td>
+</tr>
+<tr>
+<td>data</td>
+<td>string</td>
+<td>base64 string of the data. JPG, PNG or PDF only.</td>
+</tr>
+</tbody></table>
+<h2 id='remove-file-from-existing-charge'>Remove file from existing charge</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<p>Removes a file from a charge.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>DELETE /partners/charge/:charge_external_id/file/:file_id</code></p>
 <h2 id='remove-payment-instrument-by-bundle-id'>Remove payment instrument by bundle ID</h2>
 <blockquote>
 <p>Response example</p>
@@ -8923,7 +9104,7 @@ for example, try running <code>node -e &quot;console.log(0.1 + 0.2)&quot;</code>
 In case the intake&#39;s client has payment instruments registered with multiple practices,
 this returns only the remaining payment instruments associated with the practice that created the given intake bundle.
 Payment instruments are soft-deleted so that existing payments can still reference them.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>DELETE /intake/bundle/:bundle_id/payment_instrument/:payment_instrument_id</code></p>
 <h2 id='remove-payment-instrument-by-charge-id'>Remove payment instrument by charge ID</h2>
 <blockquote>
@@ -8948,7 +9129,7 @@ and the payment instrument&#39;s owner are the same.
 In case the intake&#39;s client has payment instruments registered with multiple practices,
 this returns only the remaining payment instruments associated with the practice that created the charge.
 Payment instruments are soft-deleted so that existing payments can still reference them.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>DELETE /charge/:charge_external_id/payment_instrument/:payment_instrument_id</code></p>
 <h2 id='get-a-charge-by-charge-id'>Get a charge by charge ID</h2>
 <blockquote>
@@ -9018,6 +9199,7 @@ Payment instruments are soft-deleted so that existing payments can still referen
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
     </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice for Mochi's Canine Neuter"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://snout-vet-invoice.s3-us-west-2.amazonaws.com/2394872834.pdf"</span><span class="w">
   </span><span class="p">}]</span><span class="w">
@@ -9032,7 +9214,7 @@ or if the vet overrides it (write-off).</p>
 <p><code>instrument</code> is one of <code>card</code>, <code>cash</code> or <code>check</code>; <code>loan</code> may be added in the future.</p>
 
 <p>Payment <code>status</code> is either <code>pending</code>, <code>complete</code>, <code>failed</code> or <code>refunded</code>.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET /charge/:charge_external_id</code></p>
 <h2 id='make-a-payment-on-a-charge-from-client-portal'>Make a payment on a charge (from client portal)</h2>
 <blockquote>
@@ -9066,9 +9248,9 @@ the payment&#39;s <code>status</code> will be <code>failed</code> and the error 
 <li>HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.</li>
 <li>HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)</li>
 </ul>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>POST /charge/:charge_external_id/payment</code></p>
-<h3 id='post-parameters-2'>POST parameters</h3>
+<h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9139,9 +9321,9 @@ the payment&#39;s <code>status</code> will be <code>failed</code> and the error 
 <li>HTTP 400/Bad Request if the payment amount exceeds the remaining balance on the charge, or the amount is 0, negative or not a Javascript safe integer.</li>
 <li>HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)</li>
 </ul>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>POST /partners/charge/:charge_external_id/payment</code></p>
-<h3 id='post-parameters-3'>POST parameters</h3>
+<h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9180,6 +9362,51 @@ the payment&#39;s <code>status</code> will be <code>failed</code> and the error 
 <td>Driver&#39;s license state (only considered for <code>check</code> method)</td>
 </tr>
 </tbody></table>
+<h2 id='void-a-payment'>Void a payment</h2>
+<blockquote>
+<p>Request example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"void"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Voids an existing payment (<code>result: void</code>), or creates a refund if the payment could not be voided (<code>result: refund</code>).
+A void should be initiated within 15 minutes of a payment being made; see  https://dev.gravitypayments.com/docs/emergepay/voids/</p>
+
+<table><thead>
+<tr>
+<th>Void</th>
+<th>Refund</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Existing payments only</td>
+<td>Not tied to a specific payment</td>
+</tr>
+<tr>
+<td>Amount returned to the payer is fixed</td>
+<td>Can be for any amount</td>
+</tr>
+<tr>
+<td>Payment must not be settled</td>
+<td>Can be initiated at any time</td>
+</tr>
+<tr>
+<td>Money is returned immediately</td>
+<td>Must wait 3-5 business days when returning unsettled transactions</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>HTTP 400/Bad Request if the payment is not voidable (currently only Gravity cards are voidable)</li>
+</ul>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>POST /partners/payment/:payment_id/void</code></p>
 <h2 id='make-a-refund-on-a-charge-from-vet-portal'>Make a refund on a charge (from vet portal)</h2>
 <blockquote>
 <p>Request example</p>
@@ -9220,9 +9447,9 @@ When the refund is completed, a receipt notification is automatically emailed/SM
 <li>HTTP 400/Bad Request if payment_instrument_id is given but its payment method is not a card (e.g. can&#39;t refund to loans).</li>
 <li>HTTP 404/Resource Not Found if the payment instrument does not exist (including the case where the payment instrument for the client was saved from a different practice)</li>
 </ul>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST /partners/charge/:charge_external_id/refund</code></p>
-<h3 id='post-parameters-4'>POST parameters</h3>
+<h3 id='post-parameters-5'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9273,9 +9500,9 @@ When the refund is completed, a receipt notification is automatically emailed/SM
 <li>HTTP 400/Bad Request if <code>email</code> is obviously not an email address.</li>
 <li>HTTP 400/Bad Request if <code>phone</code> is obviously not a phone number.</li>
 </ul>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>POST /partners/charge/:charge_external_id/receipt</code></p>
-<h3 id='post-parameters-5'>POST parameters</h3>
+<h3 id='post-parameters-6'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
