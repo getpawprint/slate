@@ -7247,13 +7247,16 @@ Only payment methods of type <code>card</code> are supported; if the default pay
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w"> 
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"checkin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"custom_instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please wear a mask when you arrive to comply with the governor's mandate."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"curbside_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cash_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"check_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gravity_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Gets a vet configuration; some sections are read-only: <code>place.pawprint_email</code>, <code>intake.vanity_slug</code>, <code>sms_messaging.twilio_phone_number</code></p>
+<p>Gets a vet configuration; some sections are read-only: <code>place.pawprint_email</code>, <code>intake.vanity_slug</code>, <code>sms_messaging.twilio_phone_number</code>, <code>payments.enabled</code>.
+If <code>payments.enabled</code> is false, vets should be prevented from updating their payment settings.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET /admin/vet/:place_id/settings</code></p>
 <h2 id='update-configuration-admin'>Update configuration (admin)</h2>
@@ -7332,9 +7335,10 @@ Only payment methods of type <code>card</code> are supported; if the default pay
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"checkin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"custom_instructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Please wear a mask when you arrive to comply with the governor's mandate."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"curbside_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"cash_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"check_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gravity_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -7343,7 +7347,7 @@ Only payment methods of type <code>card</code> are supported; if the default pay
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">(Same</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">admin</span><span class="w"> </span><span class="err">configuration)</span><span class="w">
 </span></code></pre>
-<p>Updates a vet configuration; sections may be partially specified.</p>
+<p>Updates a vet configuration; sections may be partially specified. Specifying payment options while a vet has their global payment setting turned off will return HTTP 400.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>PATCH /admin/vet/:place_id/settings</code></p>
 <h3 id='patch-parameters-2'>PATCH parameters</h3>

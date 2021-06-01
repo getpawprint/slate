@@ -292,13 +292,16 @@ checkin.custom_instructions | string | Custom checkin instructions; displayed in
       }
     } 
   },
-  "checkin": {
-    "custom_instructions": "Please wear a mask when you arrive to comply with the governor's mandate.",
-    "curbside_enabled": true
-  }
+  "payments": {
+    "enabled": true,
+    "cash_enabled": true,
+    "check_enabled": true,
+    "gravity_enabled": true
+  },
 }
 ```
-Gets a vet configuration; some sections are read-only: `place.pawprint_email`, `intake.vanity_slug`, `sms_messaging.twilio_phone_number`
+Gets a vet configuration; some sections are read-only: `place.pawprint_email`, `intake.vanity_slug`, `sms_messaging.twilio_phone_number`, `payments.enabled`.
+If `payments.enabled` is false, vets should be prevented from updating their payment settings.
 
 ### HTTP Request
 `GET /admin/vet/:place_id/settings`
@@ -379,9 +382,10 @@ Gets a vet configuration; some sections are read-only: `place.pawprint_email`, `
       }
     }
   },
-  "checkin": {
-    "custom_instructions": "Please wear a mask when you arrive to comply with the governor's mandate.",
-    "curbside_enabled": true
+  "payments": {
+    "cash_enabled": true,
+    "check_enabled": true,
+    "gravity_enabled": true
   }
 }
 ```
@@ -391,7 +395,7 @@ Gets a vet configuration; some sections are read-only: `place.pawprint_email`, `
 ```json
 (Same as get admin configuration)
 ```
-Updates a vet configuration; sections may be partially specified.
+Updates a vet configuration; sections may be partially specified. Specifying payment options while a vet has their global payment setting turned off will return HTTP 400.
 
 ### HTTP Request
 `PATCH /admin/vet/:place_id/settings`
