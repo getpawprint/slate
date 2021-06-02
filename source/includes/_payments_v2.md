@@ -367,6 +367,8 @@ Payment instruments are soft-deleted so that existing payments can still referen
     "last_name": "Smith",
     "email": "johnsmith@snoutid.com",
     "phone": "+14155552671",
+    "address": "123 Main St, Bellevue, WA",
+    "zip": "98004",
     "payment_instruments": {
       "cards": [
         {

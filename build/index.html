@@ -9173,6 +9173,8 @@ Payment instruments are soft-deleted so that existing payments can still referen
     </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@snoutid.com"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14155552671"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Bellevue, WA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98004"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment_instruments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"cards"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -9531,7 +9533,13 @@ When the refund is completed, a receipt notification is automatically emailed/SM
 <blockquote>
 <p>Request example</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">(none)</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"billing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ichiro"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Bellevue, WA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="mi">98004</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Response example</p>
@@ -9544,13 +9552,47 @@ When the refund is completed, a receipt notification is automatically emailed/SM
 <code>bundle_id</code> is used to identify the client to whom the card belongs; it is a private, opaque identifier for a group of intakes belonging to the same client.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /intake/bundle/:bundle_id/gravity_card</code></p>
+<h3 id='post-parameters'>POST parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>billing</td>
+<td>object</td>
+<td>Billing information.</td>
+</tr>
+<tr>
+<td>billing.name</td>
+<td>string</td>
+<td>Name on a credit card.</td>
+</tr>
+<tr>
+<td>billing.address</td>
+<td>string</td>
+<td>Billing address on a credit card.</td>
+</tr>
+<tr>
+<td>billing.zip</td>
+<td>string</td>
+<td>Billing postal code on a credit card.</td>
+</tr>
+</tbody></table>
 <h2 id='start-creditsale-transaction-client-portal'>Start CreditSale transaction (client portal)</h2>
 <blockquote>
 <p>Request example</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"save_card"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"billing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ichiro"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Bellevue, WA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="mi">98004</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -9564,7 +9606,7 @@ When the refund is completed, a receipt notification is automatically emailed/SM
 the card is saved to the user account for later use after the payment succeeds.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST /charge/:charge_external_id/gravity_sale</code></p>
-<h3 id='post-parameters'>POST parameters</h3>
+<h3 id='post-parameters-2'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9582,6 +9624,26 @@ the card is saved to the user account for later use after the payment succeeds.<
 <td>integer</td>
 <td>Amount in cents.</td>
 </tr>
+<tr>
+<td>billing</td>
+<td>object</td>
+<td>Billing information.</td>
+</tr>
+<tr>
+<td>billing.name</td>
+<td>string</td>
+<td>Name on a credit card.</td>
+</tr>
+<tr>
+<td>billing.address</td>
+<td>string</td>
+<td>Billing address on a credit card.</td>
+</tr>
+<tr>
+<td>billing.zip</td>
+<td>string</td>
+<td>Billing postal code on a credit card.</td>
+</tr>
 </tbody></table>
 <h2 id='start-creditsale-transaction-vet-portal'>Start CreditSale transaction (vet portal)</h2>
 <blockquote>
@@ -9590,7 +9652,12 @@ the card is saved to the user account for later use after the payment succeeds.<
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"save_card"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"device_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_credit_card_reader"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"billing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ichiro"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123 Main St, Bellevue, WA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="mi">98004</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -9600,10 +9667,11 @@ the card is saved to the user account for later use after the payment succeeds.<
     </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0123456789abcdef"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Same as above (Start CreditSale Transaction (client portal)), but also accepts the <code>device_name</code> parameter for selecting a hardware device.</p>
+<p>Same as above (Start CreditSale Transaction (client portal)), but also accepts the <code>device_name</code> parameter for selecting a hardware device.
+If a hardware device is selected but <code>save_card</code> is <code>false</code>, billing information is optional; otherwise it is required.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST /partners/charge/:charge_external_id/gravity_sale</code></p>
-<h3 id='post-parameters-2'>POST parameters</h3>
+<h3 id='post-parameters-3'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9625,6 +9693,26 @@ the card is saved to the user account for later use after the payment succeeds.<
 <td>amount</td>
 <td>integer</td>
 <td>Amount in cents.</td>
+</tr>
+<tr>
+<td>billing</td>
+<td>object?</td>
+<td>Billing information. Optional if <code>device_name</code> is specified (card is present) and save_card is false; otherwise required.</td>
+</tr>
+<tr>
+<td>billing.name</td>
+<td>string</td>
+<td>Name on a credit card.</td>
+</tr>
+<tr>
+<td>billing.address</td>
+<td>string</td>
+<td>Billing address on a credit card.</td>
+</tr>
+<tr>
+<td>billing.zip</td>
+<td>string</td>
+<td>Billing postal code on a credit card.</td>
 </tr>
 </tbody></table>
 <h2 id='start-creditreturn-transaction-vet-portal'>Start CreditReturn transaction (vet portal)</h2>
@@ -9648,7 +9736,7 @@ the card is saved to the user account for later use after the payment succeeds.<
 the card is saved to the user account for later use after the refund succeeds.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>POST /partners/charge/:charge_external_id/gravity_return</code></p>
-<h3 id='post-parameters-3'>POST parameters</h3>
+<h3 id='post-parameters-4'>POST parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>

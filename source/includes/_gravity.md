@@ -6,7 +6,13 @@ Calls specific to the Gravity Payments flow.
 > Request example
 
 ```json
-(none)
+{
+  "billing": {
+    "name": "Ichiro",
+    "address": "123 Main St, Bellevue, WA",
+    "zip": 98004
+  }
+}
 ```
 
 > Response example
@@ -23,6 +29,14 @@ Gets a transaction token with type CreditSaveCard from Gravity; the intent is to
 ### HTTP Request
 `POST /intake/bundle/:bundle_id/gravity_card`
 
+### POST parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+billing | object | Billing information.
+billing.name | string | Name on a credit card.
+billing.address | string | Billing address on a credit card.
+billing.zip | string | Billing postal code on a credit card.
+
 ## Start CreditSale transaction (client portal)
 
 > Request example
@@ -30,7 +44,12 @@ Gets a transaction token with type CreditSaveCard from Gravity; the intent is to
 ```json
 {
   "save_card": true,
-  "amount": 100
+  "amount": 100,
+  "billing": {
+    "name": "Ichiro",
+    "address": "123 Main St, Bellevue, WA",
+    "zip": 98004
+  }
 }
 ```
 
@@ -53,6 +72,10 @@ Parameter | Type | Description
 --------- | ---- | -----------
 save_card | boolean? | If the charge is linked to a completed intake or user account, the card is saved to the user account for later use after the payment succeeds.
 amount | integer | Amount in cents.
+billing | object | Billing information.
+billing.name | string | Name on a credit card.
+billing.address | string | Billing address on a credit card.
+billing.zip | string | Billing postal code on a credit card.
 
 ## Start CreditSale transaction (vet portal)
 
@@ -62,7 +85,12 @@ amount | integer | Amount in cents.
 {
   "save_card": true,
   "device_name": "my_credit_card_reader",
-  "amount": 100
+  "amount": 100,
+  "billing": {
+    "name": "Ichiro",
+    "address": "123 Main St, Bellevue, WA",
+    "zip": 98004
+  }
 }
 ```
 
@@ -75,6 +103,7 @@ amount | integer | Amount in cents.
 ```
 
 Same as above (Start CreditSale Transaction (client portal)), but also accepts the `device_name` parameter for selecting a hardware device.
+If a hardware device is selected but `save_card` is `false`, billing information is optional; otherwise it is required.
 
 ### HTTP Request
 `POST /partners/charge/:charge_external_id/gravity_sale`
@@ -85,6 +114,10 @@ Parameter | Type | Description
 save_card | boolean? | If the charge is linked to a completed intake or user account, the card is saved to the user account for later use after the payment succeeds.
 device_name | string? | Used to identify a Gravity hardware payment device for card present payments.
 amount | integer | Amount in cents.
+billing | object? | Billing information. Optional if `device_name` is specified (card is present) and save_card is false; otherwise required.
+billing.name | string | Name on a credit card.
+billing.address | string | Billing address on a credit card.
+billing.zip | string | Billing postal code on a credit card.
 
 ## Start CreditReturn transaction (vet portal)
 
