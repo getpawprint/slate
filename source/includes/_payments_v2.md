@@ -352,7 +352,11 @@ Payment instruments are soft-deleted so that existing payments can still referen
       "amount": 2345,
       "method": "card",
       "status": "complete",
-      "notes": null
+      "notes": null,
+      "brand": "Visa",
+      "last4": "4242",
+      "exp_month": 12,
+      "exp_year": 2024
     }
   ],
   "place": {
