@@ -731,6 +731,9 @@
                   <li>
                     <a href="#send-payment-receipt" class="toc-h2 toc-link" data-title="send-payment-receipt">Send payment receipt</a>
                   </li>
+                  <li>
+                    <a href="#list-charges-and-payments" class="toc-h2 toc-link" data-title="list-charges-and-payments">List charges and payments</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -9529,6 +9532,262 @@ When the refund is completed, a receipt notification is automatically emailed/SM
 <td>phone</td>
 <td>string?</td>
 <td>Specifying this will cause the receipt to be SMSed to this phone number. It should be in E.164 format (e.g. +14155552671).</td>
+</tr>
+</tbody></table>
+<h2 id='list-charges-and-payments'>List charges and payments</h2>
+<blockquote>
+<p>Response example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">232</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-20T23:03:13-07:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@snoutid.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14155556271"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"intakes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">632</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mochi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maltese"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canine Neuter"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-02"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4:30 PM"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20000"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payment"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">948</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-20T23:04:32-07:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"payment_instrument"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2024</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"drivers_license_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"drivers_license_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@snoutid.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14155556271"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"intakes"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mochi"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dog"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maltese"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"m"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profile_pic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"appointment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Canine Neuter"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-02"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4:30 PM"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}],</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"is_refund"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+<p>Gets a flat list of invoices (charges) and payments in reverse chronological order. No other sort order is supported.
+Two <code>type</code>s of objects are returned in the list: <code>charge</code> and <code>payment</code>. Their fields have some same names but different meanings, described below.</p>
+<h4 id='charge-type'>Charge type</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>ID in the <code>charge</code> table.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>datetime</td>
+<td>Timestamp when the charge was created.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>One of <code>pending</code> or <code>complete</code>.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Notes entered when the charge was created.</td>
+</tr>
+<tr>
+<td>user</td>
+<td>object</td>
+<td>Description of the client; may be null for guest checkouts.</td>
+</tr>
+<tr>
+<td>intakes</td>
+<td>object[]</td>
+<td>Multiple intakes (and thus multiple pets) may be linked to an charge. May also be empty for guest checkouts.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>int</td>
+<td>The original amount owed to the vet.</td>
+</tr>
+</tbody></table>
+<h4 id='payment-type'>Payment type</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>ID in the <code>payment</code> table.</td>
+</tr>
+<tr>
+<td>date</td>
+<td>datetime</td>
+<td>Timestamp when the payment was first attempted.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>One of <code>pending</code>, <code>complete</code>, <code>failed</code> or <code>void</code>.</td>
+</tr>
+<tr>
+<td>method</td>
+<td>string</td>
+<td>One of <code>cash</code>, <code>check</code> or <code>card</code></td>
+</tr>
+<tr>
+<td>payment_instrument</td>
+<td>object</td>
+<td>Card or check information. If <code>method</code> is <code>cash</code>, then this is null.</td>
+</tr>
+<tr>
+<td>payment_instrument.last4</td>
+<td>string</td>
+<td>Only returned if <code>method</code> is <code>card</code>. Last 4 digits of card.</td>
+</tr>
+<tr>
+<td>payment_instrument.brand</td>
+<td>string</td>
+<td>Only returned if <code>method</code> is <code>card</code>. Card brand.</td>
+</tr>
+<tr>
+<td>payment_instrument.exp_month</td>
+<td>int</td>
+<td>Only returned if <code>method</code> is <code>card</code>. Expiration month of card.</td>
+</tr>
+<tr>
+<td>payment_instrument.exp_year</td>
+<td>int</td>
+<td>Only returned if <code>method</code> is <code>card</code>. Expiration year of card.</td>
+</tr>
+<tr>
+<td>payment_instrument.drivers_license_month</td>
+<td>int</td>
+<td>Only returned if <code>method</code> is <code>check</code>. Driver&#39;s license number.</td>
+</tr>
+<tr>
+<td>payment_instrument.drivers_license_state</td>
+<td>int</td>
+<td>Only returned if <code>method</code> is <code>check</code>. Driver&#39;s license state.</td>
+</tr>
+<tr>
+<td>user</td>
+<td>object</td>
+<td>Description of the client; may be null for guest checkouts.</td>
+</tr>
+<tr>
+<td>intakes</td>
+<td>object[]</td>
+<td>Multiple intakes (and thus multiple pets) may be linked to an charge. May also be empty for guest checkouts.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>int</td>
+<td>The amount paid to the vet or refunded to the client.</td>
+</tr>
+<tr>
+<td>is_refund</td>
+<td>boolean</td>
+<td>Whether or not this payment is a refund to the client.</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>GET /partners/report</code></p>
+<h3 id='get-parameters'>GET parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>$top</td>
+<td>int?</td>
+<td>Limits number of results.</td>
+</tr>
+<tr>
+<td>$skip</td>
+<td>int?</td>
+<td>Offsets number of results.</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>string?</td>
+<td>Filter fields separated by commas, e.g. <code>filter={&quot;date_gte&quot;:&quot;2021-05-01T00:00:00-07:00:00&quot;,&quot;date_lt&quot;:&quot;start_date&quot;:&quot;2021-06-01T00:00:00-07:00:00&quot;}</code>.</td>
+</tr>
+</tbody></table>
+<h4 id='filters'>Filters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>date_gte</td>
+<td>datetime?</td>
+<td>Results will have <code>date</code> greater than or equal to the given value. If a date but no time is given, then the time will be midnight in the vet&#39;s time zone.</td>
+</tr>
+<tr>
+<td>date_lt</td>
+<td>datetime?</td>
+<td>Results will have <code>date</code> strictly less than the given value.  If a date but no time is given, then the time will be midnight in the vet&#39;s time zone.</td>
+</tr>
+<tr>
+<td>statuses</td>
+<td>string[]</td>
+<td>Comma-separated list of statuses; acceptable values are <code>pending</code>, <code>complete</code>, <code>failed</code> and <code>void</code>. <code>failed</code> and <code>void</code> are not a possible status for invoices and thus have no effect on which invoices are returned.</td>
+</tr>
+<tr>
+<td>types</td>
+<td>string[]</td>
+<td>Comma-separated list of types; currently the only types are <code>charge</code> and <code>payment</code>. If not specified, defaults to <code>charge,payment</code>.</td>
 </tr>
 </tbody></table>
 <h1 id='gravity-payments'>Gravity Payments</h1>

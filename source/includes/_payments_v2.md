@@ -645,3 +645,128 @@ Parameter | Type | Description
 --------- | ---- | -----------
 email | string? | Specifying this will cause the receipt to be emailed to this address
 phone | string? | Specifying this will cause the receipt to be SMSed to this phone number. It should be in E.164 format (e.g. +14155552671).
+
+
+## List charges and payments
+
+> Response example
+
+```json
+[
+	{
+		"type": "charge",
+    "id": 232,
+    "date": "2020-05-20T23:03:13-07:00",
+    "status": "complete",
+		"description": "Wellness Exam",
+    "user": {
+        "name": "John Smith",
+        "email": "johnsmith@snoutid.com",
+        "phone": "+14155556271"
+    },
+    "intakes": [{
+      "id": 632,
+      "pet": {
+        "name": "Mochi",
+        "species": "dog", 
+        "breed": "Maltese",
+        "gender": "m",
+        "profile_pic": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"
+      },
+      "appointment": {
+        "type": "Canine Neuter",
+        "date": "2021-04-02",
+        "time": "4:30 PM"
+      }
+    }],
+		"amount": "20000"
+	},
+  {
+  "type": "payment",
+  "id": 948,
+  "date": "2020-05-20T23:04:32-07:00",
+  "status": "complete",
+  "description": null,
+  "method": "card",
+  "payment_instrument": {
+      "last4": "4242",
+      "brand": "Visa",
+      "exp_month": 12,
+      "exp_year": 2024,
+      "drivers_license_number": "ABCDE",
+      "drivers_license_state": "WA"
+  },
+  "user": {
+      "name": "John Smith",
+      "email": "johnsmith@snoutid.com",
+      "phone": "+14155556271"
+  },
+  "intakes": [{
+    "pet": {
+      "name": "Mochi",
+      "species": "dog", 
+      "breed": "Maltese",
+      "gender": "m",
+      "profile_pic": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"
+    },
+    "appointment": {
+      "type": "Canine Neuter",
+      "date": "2021-04-02",
+      "time": "4:30 PM"
+    }
+  }],
+  "amount": "20000",
+  "is_refund": false
+}]
+```
+
+Gets a flat list of invoices (charges) and payments in reverse chronological order. No other sort order is supported.
+Two `type`s of objects are returned in the list: `charge` and `payment`. Their fields have some same names but different meanings, described below.
+
+#### Charge type ####
+Field | Type | Description
+--------- | ---- | -----------
+id | int | ID in the `charge` table.
+date | datetime | Timestamp when the charge was created.
+status | string | One of `pending` or `complete`.
+description | string | Notes entered when the charge was created.
+user | object | Description of the client; may be null for guest checkouts.
+intakes | object[] | Multiple intakes (and thus multiple pets) may be linked to an charge. May also be empty for guest checkouts.
+amount | int | The original amount owed to the vet.
+
+#### Payment type ####
+Field | Type | Description
+--------- | ---- | -----------
+id | int | ID in the `payment` table.
+date | datetime | Timestamp when the payment was first attempted.
+status | string | One of `pending`, `complete`, `failed` or `void`.
+method | string | One of `cash`, `check` or `card`
+payment_instrument | object | Card or check information. If `method` is `cash`, then this is null.
+payment_instrument.last4 | string | Only returned if `method` is `card`. Last 4 digits of card.
+payment_instrument.brand | string | Only returned if `method` is `card`. Card brand.
+payment_instrument.exp_month | int | Only returned if `method` is `card`. Expiration month of card.
+payment_instrument.exp_year | int | Only returned if `method` is `card`. Expiration year of card.
+payment_instrument.drivers_license_month | int | Only returned if `method` is `check`. Driver's license number.
+payment_instrument.drivers_license_state | int | Only returned if `method` is `check`. Driver's license state.
+user | object | Description of the client; may be null for guest checkouts.
+intakes | object[] | Multiple intakes (and thus multiple pets) may be linked to an charge. May also be empty for guest checkouts.
+amount | int | The amount paid to the vet or refunded to the client.
+is_refund | boolean | Whether or not this payment is a refund to the client.
+
+### HTTP Request
+`GET /partners/report`
+
+### GET parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+$top | int? | Limits number of results.
+$skip | int? | Offsets number of results.
+filter | string? | Filter fields separated by commas, e.g. `filter={"date_gte":"2021-05-01T00:00:00-07:00:00","date_lt":"start_date":"2021-06-01T00:00:00-07:00:00"}`.
+
+#### Filters ####
+Parameter | Type | Description
+--------- | ---- | -----------
+date_gte | datetime? | Results will have `date` greater than or equal to the given value. If a date but no time is given, then the time will be midnight in the vet's time zone.
+date_lt | datetime? | Results will have `date` strictly less than the given value.  If a date but no time is given, then the time will be midnight in the vet's time zone.
+statuses | string[] | Comma-separated list of statuses; acceptable values are `pending`, `complete`, `failed` and `void`. `failed` and `void` are not a possible status for invoices and thus have no effect on which invoices are returned.
+types | string[] | Comma-separated list of types; currently the only types are `charge` and `payment`. If not specified, defaults to `charge,payment`.
