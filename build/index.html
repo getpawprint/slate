@@ -9604,9 +9604,16 @@ When the refund is completed, a receipt notification is automatically emailed/SM
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20000"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"is_refund"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}]</span><span class="w">
-</span></code></pre>
+</span></code></pre><pre class="highlight plaintext"><code>"type","id","date","status","description","user","pets","amount","is_refund"
+"charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"payment",948,"2020-05-20T23:04:32-07:00","complete","Visa ending in 4242","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"payment",948,"2020-05-20T23:04:32-07:00","complete","Cash payment","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"payment",948,"2020-05-20T23:04:32-07:00","complete","Check payment","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+</code></pre>
 <p>Gets a flat list of invoices (charges) and payments in reverse chronological order. No other sort order is supported.
 Two <code>type</code>s of objects are returned in the list: <code>charge</code> and <code>payment</code>. Their fields have some same names but different meanings, described below.</p>
+
+<p>If the request&#39;s <code>Accept</code> header is <code>text/csv</code>, then a CSV result is returned instead of JSON.</p>
 <h4 id='charge-type'>Charge type</h4>
 <table><thead>
 <tr>

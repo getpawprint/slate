@@ -720,8 +720,18 @@ phone | string? | Specifying this will cause the receipt to be SMSed to this pho
 }]
 ```
 
+```csv
+"type","id","date","status","description","user","pets","amount","is_refund"
+"charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"payment",948,"2020-05-20T23:04:32-07:00","complete","Visa ending in 4242","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"payment",948,"2020-05-20T23:04:32-07:00","complete","Cash payment","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"payment",948,"2020-05-20T23:04:32-07:00","complete","Check payment","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+```
+
 Gets a flat list of invoices (charges) and payments in reverse chronological order. No other sort order is supported.
 Two `type`s of objects are returned in the list: `charge` and `payment`. Their fields have some same names but different meanings, described below.
+
+If the request's `Accept` header is `text/csv`, then a CSV result is returned instead of JSON.
 
 #### Charge type ####
 Field | Type | Description
