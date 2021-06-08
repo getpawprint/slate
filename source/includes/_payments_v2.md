@@ -653,12 +653,12 @@ phone | string? | Specifying this will cause the receipt to be SMSed to this pho
 
 ```json
 [
-	{
-		"type": "charge",
+  {
+    "type": "charge",
     "id": 232,
     "date": "2020-05-20T23:03:13-07:00",
     "status": "complete",
-		"description": "Wellness Exam",
+    "description": "Wellness Exam",
     "user": {
         "name": "John Smith",
         "email": "johnsmith@snoutid.com",
@@ -679,45 +679,46 @@ phone | string? | Specifying this will cause the receipt to be SMSed to this pho
         "time": "4:30 PM"
       }
     }],
-		"amount": "20000"
-	},
+    "amount": "20000"
+  },
   {
-  "type": "payment",
-  "id": 948,
-  "date": "2020-05-20T23:04:32-07:00",
-  "status": "complete",
-  "description": null,
-  "method": "card",
-  "payment_instrument": {
+    "type": "payment",
+    "id": 948,
+    "date": "2020-05-20T23:04:32-07:00",
+    "status": "complete",
+    "description": null,
+    "method": "card",
+    "payment_instrument": {
       "last4": "4242",
       "brand": "Visa",
       "exp_month": 12,
       "exp_year": 2024,
       "drivers_license_number": "ABCDE",
       "drivers_license_state": "WA"
-  },
-  "user": {
+    },
+    "user": {
       "name": "John Smith",
       "email": "johnsmith@snoutid.com",
       "phone": "+14155556271"
-  },
-  "intakes": [{
-    "pet": {
-      "name": "Mochi",
-      "species": "dog", 
-      "breed": "Maltese",
-      "gender": "m",
-      "profile_pic": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"
     },
-    "appointment": {
-      "type": "Canine Neuter",
-      "date": "2021-04-02",
-      "time": "4:30 PM"
-    }
-  }],
-  "amount": "20000",
-  "is_refund": false
-}]
+    "intakes": [{
+      "pet": {
+        "name": "Mochi",
+        "species": "dog", 
+        "breed": "Maltese",
+        "gender": "m",
+        "profile_pic": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"
+      },
+      "appointment": {
+        "type": "Canine Neuter",
+        "date": "2021-04-02",
+        "time": "4:30 PM"
+      }
+    }],
+    "amount": "20000",
+    "is_refund": false
+  }
+]
 ```
 
 ```csv
