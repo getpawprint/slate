@@ -764,7 +764,7 @@ amount | int | The amount paid to the vet or refunded to the client.
 is_refund | boolean | Whether or not this payment is a refund to the client.
 
 ### HTTP Request
-`GET /partners/report`
+`GET /partners/payment_report`
 
 ### GET parameters
 Parameter | Type | Description
