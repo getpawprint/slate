@@ -656,9 +656,9 @@ phone | string? | Specifying this will cause the receipt to be SMSed to this pho
   {
     "type": "charge",
     "id": 232,
-    "date": "2020-05-20T23:03:13-07:00",
+    "created_at": "2020-05-20T23:03:13-07:00",
     "status": "complete",
-    "description": "Wellness Exam",
+    "notes": "Wellness Exam",
     "user": {
         "name": "John Smith",
         "email": "johnsmith@snoutid.com",
@@ -670,9 +670,9 @@ phone | string? | Specifying this will cause the receipt to be SMSed to this pho
   {
     "type": "payment",
     "id": 948,
-    "date": "2020-05-20T23:04:32-07:00",
+    "created_at": "2020-05-20T23:04:32-07:00",
     "status": "complete",
-    "description": null,
+    "notes": null,
     "method": "card",
     "payment_instrument": {
       "last4": "4242",
@@ -688,22 +688,44 @@ phone | string? | Specifying this will cause the receipt to be SMSed to this pho
         "phone": "+14155556271"
     },
     "pets": ["Mochi", "Pumpkin"],
-    "amount": "20000",
-    "is_refund": false
+    "amount": "20000"
+  },
+  {
+    "type": "refund",
+    "id": 949,
+    "created_at": "2020-05-21T23:04:32-07:00",
+    "status": "complete",
+    "notes": null,
+    "method": "card",
+    "payment_instrument": {
+      "last4": "4242",
+      "brand": "Visa",
+      "exp_month": 12,
+      "exp_year": 2024,
+      "drivers_license_number": "ABCDE",
+      "drivers_license_state": "WA"
+    },
+    "user": {
+        "name": "John Smith",
+        "email": "johnsmith@snoutid.com",
+        "phone": "+14155556271"
+    },
+    "pets": ["Mochi", "Pumpkin"],
+    "amount": "1800"
   }
 ]
 ```
 
 ```csv
-"type","id","date","status","description","user","pets","amount","is_refund"
-"charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"payment",948,"2020-05-20T23:04:32-07:00","complete","Visa ending in 4242","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"payment",948,"2020-05-20T23:04:32-07:00","complete","Cash payment","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"payment",948,"2020-05-20T23:04:32-07:00","complete","Check payment","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"type","id","created_at","status","notes","method","user","pets","amount"
+"charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam", "card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"payment",948,"2020-05-20T23:04:32-07:00","complete",,"card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"payment",949,"2020-05-20T23:07:01-07:00","complete",,"cash","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"refund",950,"2020-05-21T23:04:32-07:00","complete","Client overpaid","card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
 ```
 
 Gets a flat list of invoices (charges) and payments in reverse chronological order. No other sort order is supported.
-Two `type`s of objects are returned in the list: `charge` and `payment`. Their fields have some same names but different meanings, described below.
+Three `type`s of objects are returned in the list: `charge`, `payment` and `refund`. Their fields have some same names but different meanings, described below.
 
 If the request's `Accept` header is `text/csv`, then a CSV result is returned instead of JSON.
 
@@ -711,18 +733,18 @@ If the request's `Accept` header is `text/csv`, then a CSV result is returned in
 Field | Type | Description
 --------- | ---- | -----------
 id | int | ID in the `charge` table.
-date | datetime | Timestamp when the charge was created.
+created_at | datetime | Timestamp when the charge was created.
 status | string | One of `pending` or `complete`.
-description | string | Notes entered when the charge was created.
+notes | string | Notes entered when the charge was created.
 user | object | Description of the client; may be null for guest checkouts.
 intakes | object[] | Multiple intakes (and thus multiple pets) may be linked to an charge. May also be empty for guest checkouts.
 amount | int | The original amount owed to the vet.
 
-#### Payment type ####
+#### Payment and refund type ####
 Field | Type | Description
 --------- | ---- | -----------
 id | int | ID in the `payment` table.
-date | datetime | Timestamp when the payment was first attempted.
+created_at | datetime | Timestamp when the payment was first attempted.
 status | string | One of `pending`, `complete`, `failed` or `void`.
 method | string | One of `cash`, `check` or `card`
 payment_instrument | object | Card or check information. If `method` is `cash`, then this is null.
@@ -735,7 +757,6 @@ payment_instrument.drivers_license_state | int | Only returned if `method` is `c
 user | object | Description of the client; may be null for guest checkouts.
 intakes | object[] | Multiple intakes (and thus multiple pets) may be linked to an charge. May also be empty for guest checkouts.
 amount | int | The amount paid to the vet or refunded to the client.
-is_refund | boolean | Whether or not this payment is a refund to the client.
 
 ### HTTP Request
 `GET /partners/payment_report`

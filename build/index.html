@@ -9542,9 +9542,9 @@ When the refund is completed, a receipt notification is automatically emailed/SM
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"charge"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">232</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-20T23:03:13-07:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-20T23:03:13-07:00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wellness Exam"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@snoutid.com"</span><span class="p">,</span><span class="w">
@@ -9556,9 +9556,9 @@ When the refund is completed, a receipt notification is automatically emailed/SM
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"payment"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">948</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-20T23:04:32-07:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-20T23:04:32-07:00"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment_instrument"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
@@ -9574,18 +9574,40 @@ When the refund is completed, a receipt notification is automatically emailed/SM
         </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14155556271"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Mochi"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"is_refund"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20000"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"refund"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">949</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-21T23:04:32-07:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"payment_instrument"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_month"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"exp_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2024</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"drivers_license_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABCDE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"drivers_license_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WA"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Smith"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johnsmith@snoutid.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+14155556271"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Mochi"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Pumpkin"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1800"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><pre class="highlight plaintext"><code>"type","id","date","status","description","user","pets","amount","is_refund"
-"charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"payment",948,"2020-05-20T23:04:32-07:00","complete","Visa ending in 4242","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"payment",948,"2020-05-20T23:04:32-07:00","complete","Cash payment","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"payment",948,"2020-05-20T23:04:32-07:00","complete","Check payment","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+</span></code></pre><pre class="highlight plaintext"><code>"type","id","created_at","status","notes","method","user","pets","amount"
+"charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam", "card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"payment",948,"2020-05-20T23:04:32-07:00","complete",,"card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"payment",949,"2020-05-20T23:07:01-07:00","complete",,"cash","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"refund",950,"2020-05-21T23:04:32-07:00","complete","Client overpaid","card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
 </code></pre>
 <p>Gets a flat list of invoices (charges) and payments in reverse chronological order. No other sort order is supported.
-Two <code>type</code>s of objects are returned in the list: <code>charge</code> and <code>payment</code>. Their fields have some same names but different meanings, described below.</p>
+Three <code>type</code>s of objects are returned in the list: <code>charge</code>, <code>payment</code> and <code>refund</code>. Their fields have some same names but different meanings, described below.</p>
 
 <p>If the request&#39;s <code>Accept</code> header is <code>text/csv</code>, then a CSV result is returned instead of JSON.</p>
 <h4 id='charge-type'>Charge type</h4>
@@ -9602,7 +9624,7 @@ Two <code>type</code>s of objects are returned in the list: <code>charge</code> 
 <td>ID in the <code>charge</code> table.</td>
 </tr>
 <tr>
-<td>date</td>
+<td>created_at</td>
 <td>datetime</td>
 <td>Timestamp when the charge was created.</td>
 </tr>
@@ -9612,7 +9634,7 @@ Two <code>type</code>s of objects are returned in the list: <code>charge</code> 
 <td>One of <code>pending</code> or <code>complete</code>.</td>
 </tr>
 <tr>
-<td>description</td>
+<td>notes</td>
 <td>string</td>
 <td>Notes entered when the charge was created.</td>
 </tr>
@@ -9632,7 +9654,7 @@ Two <code>type</code>s of objects are returned in the list: <code>charge</code> 
 <td>The original amount owed to the vet.</td>
 </tr>
 </tbody></table>
-<h4 id='payment-type'>Payment type</h4>
+<h4 id='payment-and-refund-type'>Payment and refund type</h4>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -9646,7 +9668,7 @@ Two <code>type</code>s of objects are returned in the list: <code>charge</code> 
 <td>ID in the <code>payment</code> table.</td>
 </tr>
 <tr>
-<td>date</td>
+<td>created_at</td>
 <td>datetime</td>
 <td>Timestamp when the payment was first attempted.</td>
 </tr>
@@ -9709,11 +9731,6 @@ Two <code>type</code>s of objects are returned in the list: <code>charge</code> 
 <td>amount</td>
 <td>int</td>
 <td>The amount paid to the vet or refunded to the client.</td>
-</tr>
-<tr>
-<td>is_refund</td>
-<td>boolean</td>
-<td>Whether or not this payment is a refund to the client.</td>
 </tr>
 </tbody></table>
 <h3 id='http-request-13'>HTTP Request</h3>
