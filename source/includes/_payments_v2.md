@@ -664,21 +664,7 @@ phone | string? | Specifying this will cause the receipt to be SMSed to this pho
         "email": "johnsmith@snoutid.com",
         "phone": "+14155556271"
     },
-    "intakes": [{
-      "id": 632,
-      "pet": {
-        "name": "Mochi",
-        "species": "dog", 
-        "breed": "Maltese",
-        "gender": "m",
-        "profile_pic": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"
-      },
-      "appointment": {
-        "type": "Canine Neuter",
-        "date": "2021-04-02",
-        "time": "4:30 PM"
-      }
-    }],
+    "pets": ["Mochi", "Pumpkin"],
     "amount": "20000"
   },
   {
@@ -697,24 +683,11 @@ phone | string? | Specifying this will cause the receipt to be SMSed to this pho
       "drivers_license_state": "WA"
     },
     "user": {
-      "name": "John Smith",
-      "email": "johnsmith@snoutid.com",
-      "phone": "+14155556271"
+        "name": "John Smith",
+        "email": "johnsmith@snoutid.com",
+        "phone": "+14155556271"
     },
-    "intakes": [{
-      "pet": {
-        "name": "Mochi",
-        "species": "dog", 
-        "breed": "Maltese",
-        "gender": "m",
-        "profile_pic": "https://pawprint-user-upload.s3-us-west-2.amazonaws.com/68795-37683-1502212252631.jpg"
-      },
-      "appointment": {
-        "type": "Canine Neuter",
-        "date": "2021-04-02",
-        "time": "4:30 PM"
-      }
-    }],
+    "pets": ["Mochi", "Pumpkin"],
     "amount": "20000",
     "is_refund": false
   }
