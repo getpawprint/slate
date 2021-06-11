@@ -346,7 +346,8 @@ Payment instruments are soft-deleted so that existing payments can still referen
       "amount": 10000,
       "method": "cash",
       "status": "complete",
-      "notes": "deposit"
+      "notes": "deposit",
+      "created_at": "2021-03-21T12:31:21-04:00:0"
     },
     {
       "amount": 2345,
@@ -356,7 +357,8 @@ Payment instruments are soft-deleted so that existing payments can still referen
       "brand": "Visa",
       "last4": "4242",
       "exp_month": 12,
-      "exp_year": 2024
+      "exp_year": 2024,
+      "created_at": "2021-03-21T12:32:09-04:00:0"
     }
   ],
   "place": {
