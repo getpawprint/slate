@@ -9603,10 +9603,10 @@ When the refund is completed, a receipt notification is automatically emailed/SM
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre><pre class="highlight plaintext"><code>"type","id","created_at","status","notes","method","user","pets","amount"
-"charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam", "card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"payment",948,"2020-05-20T23:04:32-07:00","complete",,"card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"payment",949,"2020-05-20T23:07:01-07:00","complete",,"cash","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"refund",950,"2020-05-21T23:04:32-07:00","complete","Client overpaid","card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam", "card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
+"payment",948,"2020-05-20T23:04:32-07:00","complete",,"card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
+"payment",949,"2020-05-20T23:07:01-07:00","complete",,"cash","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
+"refund",950,"2020-05-21T23:04:32-07:00","complete","Client overpaid","card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
 </code></pre>
 <p>Gets a flat list of invoices (charges) and payments in reverse chronological order. No other sort order is supported.
 Three <code>type</code>s of objects are returned in the list: <code>charge</code>, <code>payment</code> and <code>refund</code>. Their fields have some same names but different meanings, described below.</p>
@@ -9758,7 +9758,7 @@ Three <code>type</code>s of objects are returned in the list: <code>charge</code
 <tr>
 <td>filter</td>
 <td>string?</td>
-<td>Filter fields separated by commas, e.g. <code>filter={&quot;date_gte&quot;:&quot;2021-05-01T00:00:00-07:00:00&quot;,&quot;date_lt&quot;:&quot;start_date&quot;:&quot;2021-06-01T00:00:00-07:00:00&quot;}</code>.</td>
+<td>Filter fields separated by commas, e.g. <code>filter={&quot;created_at_gte&quot;:&quot;2021-05-01T00:00:00-07:00:00&quot;,&quot;created_at_lte&quot;:&quot;start_date&quot;:&quot;2021-06-01T00:00:00-07:00:00&quot;}</code>.</td>
 </tr>
 </tbody></table>
 <h4 id='filters'>Filters</h4>
@@ -9770,14 +9770,14 @@ Three <code>type</code>s of objects are returned in the list: <code>charge</code
 </tr>
 </thead><tbody>
 <tr>
-<td>date_gte</td>
+<td>created_at_gte</td>
 <td>datetime?</td>
 <td>Results will have <code>date</code> greater than or equal to the given value. If a date but no time is given, then the time will be midnight in the vet&#39;s time zone.</td>
 </tr>
 <tr>
-<td>date_lt</td>
+<td>created_at_lte</td>
 <td>datetime?</td>
-<td>Results will have <code>date</code> strictly less than the given value.  If a date but no time is given, then the time will be midnight in the vet&#39;s time zone.</td>
+<td>Results will have <code>date</code> less than or equal to the given value.  If a date but no time is given, then the time will be midnight in the vet&#39;s time zone.</td>
 </tr>
 <tr>
 <td>statuses</td>

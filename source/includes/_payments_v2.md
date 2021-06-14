@@ -720,10 +720,10 @@ phone | string? | Specifying this will cause the receipt to be SMSed to this pho
 
 ```csv
 "type","id","created_at","status","notes","method","user","pets","amount"
-"charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam", "card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"payment",948,"2020-05-20T23:04:32-07:00","complete",,"card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"payment",949,"2020-05-20T23:07:01-07:00","complete",,"cash","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
-"refund",950,"2020-05-21T23:04:32-07:00","complete","Client overpaid","card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90,false
+"charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam", "card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
+"payment",948,"2020-05-20T23:04:32-07:00","complete",,"card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
+"payment",949,"2020-05-20T23:07:01-07:00","complete",,"cash","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
+"refund",950,"2020-05-21T23:04:32-07:00","complete","Client overpaid","card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
 ```
 
 Gets a flat list of invoices (charges) and payments in reverse chronological order. No other sort order is supported.
@@ -768,12 +768,12 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-filter | string? | Filter fields separated by commas, e.g. `filter={"date_gte":"2021-05-01T00:00:00-07:00:00","date_lt":"start_date":"2021-06-01T00:00:00-07:00:00"}`.
+filter | string? | Filter fields separated by commas, e.g. `filter={"created_at_gte":"2021-05-01T00:00:00-07:00:00","created_at_lte":"start_date":"2021-06-01T00:00:00-07:00:00"}`.
 
 #### Filters ####
 Parameter | Type | Description
 --------- | ---- | -----------
-date_gte | datetime? | Results will have `date` greater than or equal to the given value. If a date but no time is given, then the time will be midnight in the vet's time zone.
-date_lt | datetime? | Results will have `date` strictly less than the given value.  If a date but no time is given, then the time will be midnight in the vet's time zone.
+created_at_gte | datetime? | Results will have `date` greater than or equal to the given value. If a date but no time is given, then the time will be midnight in the vet's time zone.
+created_at_lte | datetime? | Results will have `date` less than or equal to the given value.  If a date but no time is given, then the time will be midnight in the vet's time zone.
 statuses | string[] | Comma-separated list of statuses; acceptable values are `pending`, `complete`, `failed` and `void`. `failed` and `void` are not a possible status for invoices and thus have no effect on which invoices are returned.
 types | string[] | Comma-separated list of types; currently the only types are `charge` and `payment`. If not specified, defaults to `charge,payment`.
