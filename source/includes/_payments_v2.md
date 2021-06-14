@@ -719,7 +719,7 @@ phone | string? | Specifying this will cause the receipt to be SMSed to this pho
 ```
 
 ```csv
-"type","id","created_at","status","notes","method","user","pets","amount"
+"type","id","created_at","status","notes","method","client","patients","amount"
 "charge",232,"2020-05-20T23:03:13-07:00","complete","Wellness Exam", "card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
 "payment",948,"2020-05-20T23:04:32-07:00","complete",,"card","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
 "payment",949,"2020-05-20T23:07:01-07:00","complete",,"cash","John Smith (johnsmith@snoutid.com)","Mochi,Pumpkin",106.90
