@@ -775,5 +775,5 @@ Parameter | Type | Description
 --------- | ---- | -----------
 created_at_gte | datetime? | Results will have `date` greater than or equal to the given value. If a date but no time is given, then the time will be midnight in the vet's time zone.
 created_at_lte | datetime? | Results will have `date` less than or equal to the given value.  If a date but no time is given, then the time will be midnight in the vet's time zone.
-statuses | string[] | Comma-separated list of statuses; acceptable values are `pending`, `complete`, `failed` and `void`. `failed` and `void` are not a possible status for invoices and thus have no effect on which invoices are returned.
-types | string[] | Comma-separated list of types; currently the only types are `charge` and `payment`. If not specified, defaults to `charge,payment`.
+statuses | string? | Comma-separated list of statuses; acceptable values are `pending`, `complete`, `failed` and `void`. `failed` and `void` are not a possible status for invoices and thus will not return invoices.
+types | string? | Comma-separated list of types; currently the only types are `charge` and `payment`. If not specified, defaults to `charge,payment`.

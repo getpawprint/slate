@@ -9781,12 +9781,12 @@ Three <code>type</code>s of objects are returned in the list: <code>charge</code
 </tr>
 <tr>
 <td>statuses</td>
-<td>string[]</td>
-<td>Comma-separated list of statuses; acceptable values are <code>pending</code>, <code>complete</code>, <code>failed</code> and <code>void</code>. <code>failed</code> and <code>void</code> are not a possible status for invoices and thus have no effect on which invoices are returned.</td>
+<td>string?</td>
+<td>Comma-separated list of statuses; acceptable values are <code>pending</code>, <code>complete</code>, <code>failed</code> and <code>void</code>. <code>failed</code> and <code>void</code> are not a possible status for invoices and thus will not return invoices.</td>
 </tr>
 <tr>
 <td>types</td>
-<td>string[]</td>
+<td>string?</td>
 <td>Comma-separated list of types; currently the only types are <code>charge</code> and <code>payment</code>. If not specified, defaults to <code>charge,payment</code>.</td>
 </tr>
 </tbody></table>
