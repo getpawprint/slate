@@ -768,7 +768,7 @@ Parameter | Type | Description
 --------- | ---- | -----------
 $top | int? | Limits number of results.
 $skip | int? | Offsets number of results.
-filter | string? | Filter fields separated by commas, e.g. `filter={"created_at_gte":"2021-05-01T00:00:00-07:00:00","created_at_lte":"start_date":"2021-06-01T00:00:00-07:00:00"}`.
+filters | string? | Filter fields separated by commas, e.g. `filters={"created_at_gte":"2021-05-01T00:00:00-07:00:00","created_at_lte":"start_date":"2021-06-01T00:00:00-07:00:00"}`.
 
 #### Filters ####
 Parameter | Type | Description
