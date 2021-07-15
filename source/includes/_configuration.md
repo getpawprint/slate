@@ -78,6 +78,11 @@ Switch features on and off; vet-specific customizations.
     "checkin": {
       "custom_instructions": "Please wear a mask when you arrive to comply with the governor's mandate.",
       "curbside_enabled": true
+    },
+    "payments": {
+      "cash_enabled": true,
+      "check_enabled": true,
+      "gravity_enabled": true
     }
 }
 ```
@@ -156,6 +161,11 @@ Gets a vet configuration.
     "checkin": {
       "custom_instructions": "Please wear a mask when you arrive to comply with the governor's mandate.",
       "curbside_enabled": true
+    },
+    "payments": {
+      "cash_enabled": true,
+      "check_enabled": true,
+      "gravity_enabled": true
     }
 }
 ```
@@ -216,6 +226,8 @@ intake.checkin_instructions | string | Custom checkin instructions; displayed in
 checkin | object? | Controls day-of-appointment checkin customizations 
 checkin.curbside_enabled | boolean | Whether or not to show the "I'm here" button in the client access page and if checkin email should be sent
 checkin.custom_instructions | string | Custom checkin instructions; displayed in client intake confirmation email
+payments | object? | Controls payment integrations (payments must be enabled)
+payments.gravity_enabled | boolean | Whether or not to enable Gravity integration
 
 ## Get configuration (admin)
 
