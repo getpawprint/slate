@@ -220,6 +220,30 @@ notes| string? | Freeform text field for practice's use
 email | string? | Specifying this will cause a remote payment link, receipt and any reminders to be emailed to this address
 phone | string? | Specifying this will cause a remote payment link, receipt and any reminders to be SMSed to this phone number. It should be in E.164 format (e.g. +14155552671).
 
+## Cancel charge
+
+> Response example
+
+```json
+{
+  "payment_instrument_id": 10
+}
+```
+
+Cancels a charge. If no payments have been made, the charge is cancelled immediately.
+If at least 1 card payment has been made, then `payment_instrument_id` is a required parameter
+and is the ID of a card that was used for a payment on this charge; all paid amounts will be
+refunded to the given card. If only cash payments were made, a manual refund should be created
+before cancelling the charge.
+
+Errors:
+
+- HTTP 400/Bad Request if at least 1 card payment has been made and payment_instrument_id is not given.
+- HTTP 400/Bad Request if only cash payments were made and they have not been manually refunded.
+
+### HTTP Request
+`DELETE /partners/charge/:charge_external_id`
+
 ## Add file(s) to existing charge
 
 > Request example
